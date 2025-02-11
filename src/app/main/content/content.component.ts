@@ -9,10 +9,16 @@ import { HeaderComponent } from "../../shared/header/header.component";
 @Component({
   selector: 'app-content',
   standalone: true,
-  imports: [SummaryComponent, AddTaskComponent, BoardComponent, ContactsComponent, FooterComponent, HeaderComponent],
+  imports: [
+    SummaryComponent,
+    AddTaskComponent,
+    BoardComponent,
+    ContactsComponent,
+    FooterComponent,
+    HeaderComponent,
+    ContactsComponent,
+  ],
   templateUrl: './content.component.html',
-  styleUrl: './content.component.scss'
+  styleUrl: './content.component.scss',
 })
-export class ContentComponent {
-
-}
+export class ContentComponent {}
