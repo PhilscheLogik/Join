@@ -12,16 +12,24 @@ section {
     
 
     >.header_left {
+        >h1 {
+            background-color: $white;
+        }
+        background-color: $white;
        padding: 32px 64px;
     }
 
     >.header_right {
+        background-color: $white;
 
         @include dFlex($jc: center);
         
         >.help_link {
-            height: 16px;
+            height: 32px;
+            width: 32px;
             background-image: url('./../../../assets/img/icons/help_button.svg');
+            background-color: $white;
+            margin-right: 32px;
             &:hover {
                 transform: scale(1.1);
             }
@@ -29,13 +37,35 @@ section {
         }
 
         >.initials_btn {
+
+            @include dFlex($ai: center);
+
             height: 64px;
-            background-image: url('./../../../assets/img/icons/user_profile_initials.svg');
+            width: 64px;
+            border-radius: 50%;
+            border: 3px solid black;
+            background-color: $white;
+            margin-right: 40px;
+            // background-image: url('./../../../assets/img/icons/user_profile_initials.svg');
 
             &:hover {
-                background-image: url('./../../../assets/img/icons/user_profile_initials_hover.svg');
-                // transform: scale(1.1);
+                // background-image: url('./../../../assets/img/icons/user_profile_initials1.svg');
+                transform: scale(1.25);
+                background-color: rgba($color: #000000, $alpha: 0.1);
+                cursor: pointer;
             }
+
+            >p {
+                background-color: $white;
+                @include font($fs: 32px, $fw: 500);
+                color: $aqua_blue;
+            } 
         }
+    }
+}
+
+.initials_btn p{
+    &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.1);
     }
 }
