@@ -1,17 +1,41 @@
-@import './../../../styles/colors.scss';
-@import './../../../styles/mixins.scss';
+@import './../../../styles.scss';
+
 
 section {
-    background-color: $cream_white;
-    font-family: 'Inter';
+    @include font($fs: 20px);
+    @include dFlex($jc: space-between);
+
+    // max-width: 85%;
+    width: 100%;
+    background-color: $white;
+    border-bottom: inset;
+    
 
     >.header_left {
        padding: 32px 64px;
     }
 
     >.header_right {
+
+        @include dFlex($jc: center);
+        
         >.help_link {
+            height: 16px;
             background-image: url('./../../../assets/img/icons/help_button.svg');
+            &:hover {
+                transform: scale(1.1);
+            }
+
+        }
+
+        >.initials_btn {
+            height: 64px;
+            background-image: url('./../../../assets/img/icons/user_profile_initials.svg');
+
+            &:hover {
+                background-image: url('./../../../assets/img/icons/user_profile_initials_hover.svg');
+                // transform: scale(1.1);
+            }
         }
     }
 }
