@@ -2,12 +2,11 @@
 @import './styles/colors.scss';
 @import './styles/mixins.scss';
 
-
 * {
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    font-family: 'Inter';
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
     color: $black;
     background-color: $white;
 
@@ -19,6 +18,8 @@
     max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
+}
 
-    border: 1px solid;
+a {
+    cursor: pointer;
 }
