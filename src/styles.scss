@@ -3,3 +3,20 @@
 @import './styles/mixins.scss';
 
 
+* {
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Inter';
+    color: $black;
+    background-color: $white;
+
+    // outline: 2px solid lime;
+    // background: hsl(0 100% 50% / 0.1);
+}
+
+.content_max {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
