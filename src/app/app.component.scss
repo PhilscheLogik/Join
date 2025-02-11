@@ -1,5 +1,5 @@
 @import './../../src/styles.scss';
 
 h1 {
-    font-family: 'Open Sans';
+    @include font();
 }
