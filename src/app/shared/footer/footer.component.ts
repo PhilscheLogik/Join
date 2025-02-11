@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { NavigationService } from '../navi/navigation.service';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  selectedItem: number = 0;
+  navigationService = inject(NavigationService);  
 
-  selectItem(num: number) {
-    this.selectedItem = num;
+  selectItem(index: number) {
+    this.navigationService.setSelectedItem(index);
   }
 
 }

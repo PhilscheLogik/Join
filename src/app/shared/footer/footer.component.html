@@ -2,25 +2,37 @@
   <div class="logo-img"></div>
   <nav>
     <ul>
-      <li [ngClass]="{ active: selectedItem === 0 }" (click)="selectItem(0)">
+      <li
+        [ngClass]="{ active: navigationService.selectedItem === 0 }"
+        (click)="selectItem(0)"
+      >
         <a
           ><div class="icon-section summary"></div>
           Summary</a
         >
       </li>
-      <li [ngClass]="{ active: selectedItem === 1 }" (click)="selectItem(1)">
+      <li
+        [ngClass]="{ active: navigationService.selectedItem === 1 }"
+        (click)="selectItem(1)"
+      >
         <a
           ><div class="icon-section add-task"></div>
           Add Task</a
         >
       </li>
-      <li [ngClass]="{ active: selectedItem === 2 }" (click)="selectItem(2)">
+      <li
+        [ngClass]="{ active: navigationService.selectedItem === 2 }"
+        (click)="selectItem(2)"
+      >
         <a
           ><div class="icon-section board"></div>
           Board</a
         >
       </li>
-      <li [ngClass]="{ active: selectedItem === 3 }" (click)="selectItem(3)">
+      <li
+        [ngClass]="{ active: navigationService.selectedItem === 3 }"
+        (click)="selectItem(3)"
+      >
         <a
           ><div class="icon-section contact"></div>
           Contacts</a

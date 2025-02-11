@@ -1,1 +1,16 @@
 @import './../../../styles.scss';
+
+section{
+    position: relative;
+}
+
+app-summary,
+app-add-task,
+app-board,
+app-contacts {
+  display: none;
+}
+
+.active {
+  display: block;
+}
