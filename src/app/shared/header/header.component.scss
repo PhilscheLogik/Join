@@ -1,0 +1,17 @@
+@import './../../../styles/colors.scss';
+@import './../../../styles/mixins.scss';
+
+section {
+    background-color: $cream_white;
+    font-family: 'Inter';
+
+    >.header_left {
+       padding: 32px 64px;
+    }
+
+    >.header_right {
+        >.help_link {
+            background-image: url('./../../../assets/img/icons/help_button.svg');
+        }
+    }
+}
