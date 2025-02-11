@@ -1,1 +1,93 @@
-@import './../../../styles.scss';
+@import "./../../../styles.scss";
+
+footer {
+  @include dFlex($jc: space-between);
+  flex-direction: column;
+  background-color: $dark_blue;
+  width: 230px;
+  height: 100vh;
+  z-index: 50;
+}
+
+.logo-img {
+  background-image: url("./../../../assets/img/icons/logo_mobile.svg");
+  width: 100px;
+  height: 122px;
+  margin-top: 65px;
+}
+
+nav {
+  @include dFlex(); 
+  width: 100%;
+  margin-bottom: 25vh;
+
+  ul {
+    list-style: none;   
+    
+    padding: 0;   
+    width: 100%; 
+
+    li {      
+      margin-bottom: 16px;      
+      width: 100%;
+
+      a {
+        text-decoration: none;
+        @include dFlex($jc:flex-start);
+        color: $white;
+        padding: 8px 50px; 
+        width: 100%;              
+      }
+
+      &:hover {
+        background-color: rgba($light_blue, 0.1);
+      }
+
+      &.active {
+        background-color: $dark_dark_blue;
+      }
+
+    }
+  }
+}
+
+
+.icon-section {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-right: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.summary {
+  background-image: url("./../../../assets/img/icons/summary.svg");
+}
+
+.add-task {
+  background-image: url("./../../../assets/img/icons/add_task.svg");
+}
+
+.board {
+  background-image: url("./../../../assets/img/icons/board.svg");
+}
+
+.contact {
+  background-image: url("./../../../assets/img/icons/contacts.svg");
+}
+
+.notes {
+  @include dFlex($ai: flex-start);
+  flex-direction: column;
+  margin-bottom: 65px;
+  a {
+    text-decoration: none;
+    color: $gray;
+    font-size: 16px;
+    &:hover {
+      color: $light_blue;
+      font-weight: 700;
+    }
+  }
+}

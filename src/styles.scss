@@ -1,25 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-@import './styles/colors.scss';
-@import './styles/mixins.scss';
+@import "./styles/colors.scss";
+@import "./styles/mixins.scss";
 
 * {
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
-    color: $black;
-    background-color: $white;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
 
-    // outline: 2px solid lime;
-    // background: hsl(0 100% 50% / 0.1);
+  // outline: 2px solid lime;
+  // background: hsl(0 100% 50% / 0.1);
+}
+
+body {
+  color: $black;
+  background-color: $white;
 }
 
 .content_max {
-    max-width: 1920px;
-    margin-left: auto;
-    margin-right: auto;
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }

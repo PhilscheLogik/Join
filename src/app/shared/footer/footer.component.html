@@ -1,15 +1,35 @@
 <footer>
-  <div>LOGO</div>
+  <div class="logo-img"></div>
   <nav>
     <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
+      <li [ngClass]="{ active: selectedItem === 0 }" (click)="selectItem(0)">
+        <a
+          ><div class="icon-section summary"></div>
+          Summary</a
+        >
+      </li>
+      <li [ngClass]="{ active: selectedItem === 1 }" (click)="selectItem(1)">
+        <a
+          ><div class="icon-section add-task"></div>
+          Add Task</a
+        >
+      </li>
+      <li [ngClass]="{ active: selectedItem === 2 }" (click)="selectItem(2)">
+        <a
+          ><div class="icon-section board"></div>
+          Board</a
+        >
+      </li>
+      <li [ngClass]="{ active: selectedItem === 3 }" (click)="selectItem(3)">
+        <a
+          ><div class="icon-section contact"></div>
+          Contacts</a
+        >
+      </li>
     </ul>
   </nav>
 
-  <div>
+  <div class="notes">
     <a href="#">Privacy Policy</a>
     <a href="#">Legal notice</a>
   </div>
