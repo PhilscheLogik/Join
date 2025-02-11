@@ -1,1 +1,31 @@
-<p>contacts works!</p>
+<section>
+    <div class="contact-list">
+        <div class="list">
+            <button>
+                <span>Add new Contact</span>
+                <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="">
+            </button>
+
+            <div class="single-contact">
+                @for(contact of contactList; track $index;){
+                    <div>
+                        <img src="assets/img/icons/" alt="">
+                    </div>
+                <div class="info">
+                    <p class="name">{{ contact.name }}</p>
+                    <a class="email">{{ contact.email }}</a>
+
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="contacts">
+        <div class="headline">
+            <h1>Contacts</h1>
+            <img src="assets/img/icons/or_icon.svg">
+            <p>Better with a team</p>
+        </div>
+
+    </div>
+</section>

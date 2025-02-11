@@ -1,0 +1,112 @@
+@import './../../../../styles.scss';
+
+section {
+    @include dFlex($ai: flex-start);
+    width: 100%;
+    height: 100vh;
+
+    border: 1px solid;
+}
+
+/* Scrollbar Styling */
+.contact-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.contact-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.contact-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.contact-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.contact-list {
+    width: 30%;
+    padding-top: 20px;
+    // padding-left: 50px;
+    background-color: $white;
+
+    border: 1px solid green;
+}
+
+.list {
+    @include dFlex();
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.single-contact {
+    background-color: transparent;
+    @include dFlex($g: 20px);
+    flex-direction: column;
+    padding: 8px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    }
+}
+
+.info {
+    background-color: transparent;
+    flex: 1;
+}
+
+p {
+    @include font($fs: 20px, $fw: 400);
+    background-color: transparent;
+}
+
+.email {
+    color: $blue;
+}
+
+button {
+    @include dFlex($g: 20px);
+    width: 352px;
+    height: 56px;
+    background-color: $dark_blue;
+    color: $white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+span {
+    @include font($fs: 21px, $fw: 700);
+    color: $white;
+    background-color: transparent;
+}
+
+.person_add_icon {
+    background-color: transparent;
+}
+
+.contacts {
+    width: 70%;
+    padding: 20px;
+
+    border: 1px solid red;
+}
+
+.headline {
+    @include dFlex($g: 30px);
+}
+
+h1 {
+    @include font($fs: 61px, $fw: 700);
+}
+
+
+
+p {
+    @include font($fs: 27px, $fw: 400);
+    color: $dark_blue;
+}
