@@ -8,14 +8,13 @@
 
             <div class="single-contact">
                 @for(contact of contactList; track $index;){
-                    <div>
-                        <img src="assets/img/icons/" alt="">
+                    <div class="single-contact-content">
+                        <div class="profile_badge"></div>
+                        <div class="info">
+                            <p class="name">{{ contact.name }}</p>
+                            <a class="email">{{ contact.email }}</a>
+                        </div>
                     </div>
-                <div class="info">
-                    <p class="name">{{ contact.name }}</p>
-                    <a class="email">{{ contact.email }}</a>
-
-                </div>
                 }
             </div>
         </div>

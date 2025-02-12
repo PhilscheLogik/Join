@@ -37,36 +37,53 @@ section {
 }
 
 .list {
-    @include dFlex();
+    @include dFlex($g: 20px);
     flex-direction: column;
     background-color: transparent;
 }
 
 .single-contact {
     background-color: transparent;
-    @include dFlex($g: 20px);
+    @include dFlex($ai: flex-start, $g: 20px);
     flex-direction: column;
-    padding: 8px;
-    cursor: pointer;
+}
+
+.single-contact-content {
+    @include dFlex($jc: flex-start, $g: 20px);
+    width: 352px;
+
+    // border: 1px solid;
 
     &:hover {
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-    }
+            background-color: $cream-white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+}
+
+.profile_badge {
+    width: 42px;
+    height: 42px;
+    border: 1px solid;
+    border-radius: 50%;
 }
 
 .info {
+    @include dFlex($ai: flex-start, $g: 10px);
+    flex-direction: column;
     background-color: transparent;
-    flex: 1;
-}
+    padding: 8px;
+    cursor: pointer;
+    // flex: 1;    
 
-p {
-    @include font($fs: 20px, $fw: 400);
-    background-color: transparent;
-}
+    >p {
+        @include font($fs: 20px, $fw: 400);
+        background-color: transparent;
+    }
 
-.email {
-    color: $blue;
+    .email {
+        color: $blue;
+    }
 }
 
 button {
@@ -98,15 +115,13 @@ span {
 
 .headline {
     @include dFlex($g: 30px);
-}
 
-h1 {
-    @include font($fs: 61px, $fw: 700);
-}
+    h1 {
+        @include font($fs: 61px, $fw: 700);
+    }
 
-
-
-p {
-    @include font($fs: 27px, $fw: 400);
-    color: $dark_blue;
+    p {
+        @include font($fs: 27px, $fw: 400);
+        color: $dark_blue;
+    }
 }
