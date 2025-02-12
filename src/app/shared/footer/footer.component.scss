@@ -41,7 +41,7 @@ nav {
       }
 
       &:hover {
-        background-color: rgba($light_blue, 0.1);
+        background-color: $button_hover_blue;
       }
 
       &.active {

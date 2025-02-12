@@ -1,37 +1,61 @@
 <section>
-    <div class="contact-list">
-        <div class="list">
-            <button>
-                <span>Add new Contact</span>
-                <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="">
-            </button>
+  <div class="contact-list">
+    <div class="list">
+      <button>
+        <span>Add new Contact</span>
+        <img
+          class="person_add_icon"
+          src="assets/img/icons/person_add_icon.svg"
+          alt=""
+        />
+      </button>
 
-            <div class="single-contact" *ngFor="let group of getGroupedContacts() | keyvalue">
-                <div class="letter">
-                    {{ group.key }}
-                </div>
+      <div
+        class="single-contact"
+        *ngFor="let group of getGroupedContacts() | keyvalue"
+      >
+        <div class="letter">
+          {{ group.key }}
+        </div>
 
-                <div class="single-contact-container" *ngFor="let contact of group.value; let i = index">
-                    <div class="single-contact-content">
-                        <!-- Initialen anzeigen -->
-                        <div class="profile_badge" [ngStyle]="{'background-color': getBadgeColor(i)}">
-                            {{ contact.initials }}
-                        </div>
-                        <div class="info">
-                            <p class="name">{{ contact.name }}</p>
-                            <a class="email">{{ contact.email }}</a>
-                        </div>
-                    </div>
-                </div>
+        <div
+          class="single-contact-container"
+          *ngFor="let contact of group.value; let i = index"
+        >
+          <div class="single-contact-content">
+            <!-- Initialen anzeigen -->
+            <div
+              class="profile_badge"
+              [ngStyle]="{ 'background-color': getBadgeColor(i) }"
+            >
+              {{ contact.initials }}
             </div>
+            <div class="info">
+              <p class="name">{{ contact.name }}</p>
+              <a class="email">{{ contact.email }}</a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="contacts">
-        <div class="headline">
-            <h1>Contacts</h1>
-            <img src="assets/img/icons/or_icon.svg">
-            <p>Better with a team</p>
-        </div>
+  </div>
+  <div class="contacts">
+    <div class="headline">
+      <h1>Contacts</h1>
+      <img src="assets/img/icons/or_icon.svg" />
+      <p>Better with a team</p>
+    </div>
+  </div>
 
-    </div>
+  @for (item of contactService.contactList; track $index) {
+  <p>{{ item.name }}</p>
+  <p>{{ item.email }}</p>
+  <p>{{ item.phone }}</p>
+  }
+
+  <input [(ngModel)]="name" type="text" />
+  <input [(ngModel)]="email" type="text" />
+  <input [(ngModel)]="phone" type="text" />
+  <button (click)="addContactList()">Neuer Kontakt</button>
+  <button (click)="getList(); getList2()">List ausgeben</button>
 </section>

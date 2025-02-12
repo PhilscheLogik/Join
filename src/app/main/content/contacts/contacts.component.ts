@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Contact } from '../../../interfaces/contact';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ContactsService } from '../../services/contacts.service';
 
 @Component({
   selector: 'app-contacts',
@@ -11,40 +12,68 @@ import { CommonModule } from '@angular/common';
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
-  contactList: Contact[] = [
-    {
-      name: 'Anton Mayer',
-      email: 'antonm@gmail.com',
-      type: 'contact',
-    },
-    {
-      name: 'Anja Schulz',
-      email: 'schulz@hotmail.com',
-      type: 'contact',
-    },
-    {
-      name: 'Benedikt Ziegler',
-      email: 'benedikt@gmail.com',
-      type: 'contact',
-    },
-    {
-      name: 'David Eisenberg',
-      email: 'davidberg@gmail.com',
-      type: 'contact',
-    },
-    {
-      name: 'Eva Fischer',
-      email: 'eva@gmail.com',
-      type: 'contact',
-    },
-    {
-      name: 'Emmanuel Mauer',
-      email: 'emmanuelma@gmail.com',
-      type: 'contact',
-    },
-  ];
+  contactService = inject(ContactsService);
 
-  // Farben aus colors.scss
+  // contactList: Contact[]= this.contactService.contactList;
+
+  constructor() {
+    console.log(this.contactService);
+    console.log(this.contactService.contactList);
+    console.log(this.contactService.contactList[0]);
+    console.log(this.contactList);
+  }
+
+  name = '';
+  email = '';
+  phone = '';
+
+  getList(): Contact[] {
+    console.log('getList: ', this.contactService.contactList);
+    return this.contactService.contactList;
+  }
+
+  getList2(): any {
+    console.log(this.contactService.contactList[0].name);
+    return this.contactService.contactList[0].name;
+  }
+
+  contactList: Contact[] = this.getList();
+
+  // contactList: Contact[] = [
+  //   {
+  //     name: 'Anton Mayer',
+  //     email: 'antonm@gmail.com',
+  //     type: 'contact',
+  //   },
+  //   {
+  //     name: 'Anja Schulz',
+  //     email: 'schulz@hotmail.com',
+  //     type: 'contact',
+  //   },
+  //   {
+  //     name: 'Benedikt Ziegler',
+  //     email: 'benedikt@gmail.com',
+  //     type: 'contact',
+  //   },
+  //   {
+  //     name: 'David Eisenberg',
+  //     email: 'davidberg@gmail.com',
+  //     type: 'contact',
+  //   },
+  //   {
+  //     name: 'Eva Fischer',
+  //     email: 'eva@gmail.com',
+  //     type: 'contact',
+  //   },
+  //   {
+  //     name: 'Emmanuel Mauer',
+  //     email: 'emmanuelma@gmail.com',
+  //     type: 'contact',
+  //   },
+  // ];
+
+  //Farben aus colors.scss
+
   colors = [
     '#FF7A00', // Sunset Orange
     '#930FFF', // Electric Purple
@@ -112,5 +141,15 @@ export class ContactsComponent {
         : ''; // Erster Buchstabe des Nachnamens
 
     return firstInitial + lastInitial;
+  }
+
+  addContactList() {
+    let newContact: Contact = {
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+    };
+
+    this.contactService.addContact(newContact);
   }
 }
