@@ -1,7 +1,13 @@
-@import './../../../styles.scss';
+@import "./../../../styles.scss";
 
-section{
-    position: relative;
+section {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+div {
+  width: 100%;
 }
 
 app-summary,
@@ -13,4 +19,15 @@ app-contacts {
 
 .active {
   display: block;
+}
+
+
+@media (max-width: 1000px) {
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
 }
