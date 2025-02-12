@@ -16,28 +16,28 @@ export class ContactsComponent {
 
   // contactList: Contact[]= this.contactService.contactList;
 
-  constructor() {
-    console.log(this.contactService);
-    console.log(this.contactService.contactList);
-    console.log(this.contactService.contactList[0]);
-    console.log(this.contactList);
-  }
+  // constructor() {
+  //   console.log(this.contactService);
+  //   console.log(this.contactService.contactList);
+  //   console.log(this.contactService.contactList[0]);
+  //   console.log(this.contactList);
+  // }
 
   name = '';
   email = '';
   phone = '';
 
-  getList(): Contact[] {
-    console.log('getList: ', this.contactService.contactList);
-    return this.contactService.contactList;
-  }
+  // getList(): Contact[] {
+  //   console.log('getList: ', this.contactService.contactList);
+  //   return this.contactService.contactList;
+  // }
 
-  getList2(): any {
-    console.log(this.contactService.contactList[0].name);
-    return this.contactService.contactList[0].name;
-  }
+  // getList2(): any {
+  //   console.log(this.contactService.contactList[0].name);
+  //   return this.contactService.contactList[0].name;
+  // }
 
-  contactList: Contact[] = this.getList();
+  // contactList: Contact[] = this.getList();
 
   // contactList: Contact[] = [
   //   {
@@ -73,7 +73,6 @@ export class ContactsComponent {
   // ];
 
   //Farben aus colors.scss
-
   colors = [
     '#FF7A00', // Sunset Orange
     '#930FFF', // Electric Purple
@@ -97,13 +96,29 @@ export class ContactsComponent {
     return this.colors[index % this.colors.length];
   }
 
+  /**
+   * Findet den Index eines Kontakts in der vollständigen Kontaktliste.
+   *
+   * Diese Methode wird verwendet, um die Position eines Kontakts in der gesamten `contactService.contactList` zu bestimmen. Dies ist nötig, da die
+   * Farbzuweisung für das `profile_badge` anhand der Reihenfolge in der vollständigen Liste erfolgt, während die Anzeige der Initialen aus der gruppierten
+   * Liste (`group.value`) kommt.
+   *
+   * @param contact - Das Kontakt-Objekt, dessen Index in der Hauptliste gesucht wird.
+   * @returns Der Index des Kontakts in `contactService.contactList` oder `-1`, falls nicht gefunden.
+   */
+  getIndexInFullList(contact: any): number {
+    return this.contactService.contactList.findIndex(
+      (c) => c.email === contact.email
+    );
+  }
+  
   // Kontakte nach Anfangsbuchstaben gruppieren
   getGroupedContacts() {
     // Ein leeres Objekt für die Gruppierung erstellen
     let groupedContacts: { [key: string]: any[] } = {};
 
     // Durch alle Kontakte iterieren
-    for (let contact of this.contactList) {
+    for (let contact of this.contactService.contactList) {
       // Den ersten Buchstaben des Namens in Großbuchstaben holen
       let firstLetter = contact.name.charAt(0).toUpperCase();
 
