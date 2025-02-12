@@ -13,27 +13,24 @@
   @include dFlex($ai: flex-start);
   flex: 1.5;
   flex-direction: column;
-  background-color: $dark_blue !important;
+  background-color: $dark_blue;
   padding: 40px;
 
   > h2 {
     @include font($ff: "Inter", $fs: 60px, $fw: 700);
     color: $white;
     margin-bottom: 10px;
-    background-color: $dark_blue !important;
   }
 
   > p {
     @include font($ff: "Inter", $fs: 27px, $fw: 400);
     color: $white;
-    background-color: $dark_blue !important;
   }
 }
 
 .dialog-left .logo {
   width: 60px;
   margin-bottom: 20px;
-  background-color: $dark_blue !important;
 }
 
 .divider {
@@ -41,6 +38,7 @@
   height: 3px;
   background: $light_blue;
   margin-top: 10px;
+  margin-bottom: 48px;
 }
 
 .dialog-right {
@@ -50,17 +48,13 @@
   padding: 40px;
   position: relative;
   gap: 40px;
-  background-color: $white !important;
 }
 
-form {
-  background-color: $white !important;
-}
 
 .form-container {
   display: flex;
   align-items: center;
-  background-color: $white !important;
+
 }
 
 .close-btn {
@@ -70,35 +64,25 @@ form {
   background: none;
   border: none;
   cursor: pointer;
-  background-color: $white;
 }
 
 .profile-pic {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
-  background-color: $white;
-
-  > img {
-    background-color: $white;
-    border-radius: 50%;
-  }
 }
 
 .input-group {
   position: relative;
   margin-bottom: 15px;
-  background-color: $white;
 }
 
 .input-field {
   width: 100%;
   padding: 10px 40px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
-  background-color: $white;
 }
 
 .input-icon {
@@ -107,8 +91,6 @@ form {
   top: 50%;
   transform: translateY(-50%);
   width: 20px;
-  opacity: 0.6;
-  background-color: $white;
 }
 
 .button-group {
@@ -116,14 +98,13 @@ form {
   justify-content: flex-start;
   gap: 24px;
   margin-top: 20px;
-  background-color: $white;
 }
 
 .cancel-btn,
 .create-btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   display: flex;
@@ -131,20 +112,12 @@ form {
 }
 
 .cancel-btn {
-  border: 1px solid #ccc;
-  color: #333;
+  border: 1px solid black;
   background-color: $white;
-
-  > img {
-    background-color: $white;
-  }
 }
 
 .create-btn {
   background: $dark_blue;
   color: white;
 
-  > img {
-    background-color: $dark_blue;
-  }
 }
