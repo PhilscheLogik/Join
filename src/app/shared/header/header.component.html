@@ -4,13 +4,16 @@
     </div>
     <div class="header_right">
         <a class="help_link" href=""></a>
-        <div class="initials_btn">
+        <div (click)="toggleOverlay()" class="initials_btn">
             <p>ID</p>
         </div>
-        <div class="header_overlay">
-            <a href="">Legal Notice</a>
-            <a href="">Privacy Policy</a>
-            <a href="">Log out</a>
+        <div id="overlay" [ngClass]="{'d_none': overlayState }" class="header_overlay">
+            <div class="inner_overlay">
+                <a href="">Legal Notice</a>
+                <a href="">Privacy Policy</a>
+                <a href="">Log out</a>
+            </div>
+            
         </div>
     </div> 
 </section>

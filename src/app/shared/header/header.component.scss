@@ -58,19 +58,20 @@ section {
             }
 
             >p {
-                background-color: $white;
+                background-color: transparent;
                 @include font($fs: 32px, $fw: 500);
                 color: $aqua;
 
+
                 &:hover {
-                    background-color: rgba($color: #000000, $alpha: 0.1);
+                    pointer-events: none;
                 }
             } 
         }
 
     >.header_overlay {
 
-        @include dFlex($ai: start, $g: 16px);
+        
 
         position: absolute;
         top: 84px;
@@ -78,15 +79,25 @@ section {
         background-color: $dark_blue;
         border-radius: 20px 0 20px 20px;
         flex-direction: column;
-        padding: 32px 16px;
-        display: none;
 
-        >a {
-            padding-left: 16px;
-            padding-right: 16px;
-            text-decoration: none;
-            color: $white;
+        >.inner_overlay {
+            @include dFlex($ai: start, $g: 16px);
+            flex-direction: column;
+            padding: 32px 16px;
+
+            >a {
+                padding-left: 16px;
+                padding-right: 16px;
+                text-decoration: none;
+                color: $white;
+            }
         }
+
+        
     }
     }
+}
+
+.d_none {
+    display: none; 
 }
