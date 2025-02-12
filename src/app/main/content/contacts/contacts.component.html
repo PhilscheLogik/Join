@@ -6,16 +6,23 @@
                 <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="">
             </button>
 
-            <div class="single-contact">
-                @for(contact of contactList; track $index;){
+            <div class="single-contact" *ngFor="let group of getGroupedContacts() | keyvalue">
+                <div class="letter">
+                    {{ group.key }}
+                </div>
+
+                <div class="single-contact-container" *ngFor="let contact of group.value; let i = index">
                     <div class="single-contact-content">
-                        <div class="profile_badge"></div>
+                        <!-- Initialen anzeigen -->
+                        <div class="profile_badge" [ngStyle]="{'background-color': getBadgeColor(i)}">
+                            {{ contact.initials }}
+                        </div>
                         <div class="info">
                             <p class="name">{{ contact.name }}</p>
                             <a class="email">{{ contact.email }}</a>
                         </div>
                     </div>
-                }
+                </div>
             </div>
         </div>
     </div>
