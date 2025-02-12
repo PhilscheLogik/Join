@@ -8,7 +8,7 @@ section {
     width: 100%;
     background-color: $white;
     border-bottom: inset;
-    
+    position: relative;
 
     >.header_left {
         background-color: $white;
@@ -60,12 +60,33 @@ section {
             >p {
                 background-color: $white;
                 @include font($fs: 32px, $fw: 500);
-                color: $aqua_blue;
+                color: $aqua;
 
                 &:hover {
                     background-color: rgba($color: #000000, $alpha: 0.1);
                 }
             } 
         }
+
+    >.header_overlay {
+
+        @include dFlex($ai: start, $g: 16px);
+
+        position: absolute;
+        top: 84px;
+        right: 40px;
+        background-color: $dark_blue;
+        border-radius: 20px 0 20px 20px;
+        flex-direction: column;
+        padding: 32px 16px;
+        display: none;
+
+        >a {
+            padding-left: 16px;
+            padding-right: 16px;
+            text-decoration: none;
+            color: $white;
+        }
+    }
     }
 }
