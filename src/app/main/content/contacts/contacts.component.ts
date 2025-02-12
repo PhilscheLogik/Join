@@ -70,47 +70,47 @@ export class ContactsComponent {
 
   // Kontakte nach Anfangsbuchstaben gruppieren
   getGroupedContacts() {
-    return this.contactList.reduce((groupedContacts, contact) => {
-      // Den ersten Buchstaben des Namens extrahieren und in Großbuchstaben umwandeln
-      const firstLetter = contact.name.charAt(0).toUpperCase();
+    // Ein leeres Objekt für die Gruppierung erstellen
+    let groupedContacts: { [key: string]: any[] } = {};
 
-      // Prüfen, ob es bereits eine Gruppe für diesen Buchstaben gibt, falls nicht, eine neue erstellen
+    // Durch alle Kontakte iterieren
+    for (let contact of this.contactList) {
+      // Den ersten Buchstaben des Namens in Großbuchstaben holen
+      let firstLetter = contact.name.charAt(0).toUpperCase();
+
+      // Falls es noch keine Gruppe für diesen Buchstaben gibt, erstelle eine
       if (!groupedContacts[firstLetter]) {
         groupedContacts[firstLetter] = [];
       }
 
-      // Kontakt zur entsprechenden Gruppe hinzufügen, dabei auch firstLetter und initials speichern
-      groupedContacts[firstLetter].push({
-        ...contact, // Originaldaten des Kontakts übernehmen
-        firstLetter: firstLetter, // Den Anfangsbuchstaben speichern
-        initials: this.getInitials(contact.name), // Die Initialen berechnen und speichern
-      });
+      // Initialen berechnen
+      let initials = this.getInitials(contact.name);
 
-      // Das akkumulierte Objekt zurückgeben
-      return groupedContacts;
-      /**
-       * Gruppiert die Kontakte nach ihrem Anfangsbuchstaben und erweitert sie um zusätzliche Eigenschaften.
-       *
-       * @returns {Record<string, (Contact & { firstLetter: string; initials: string })[]>}
-       *          Ein Objekt, bei dem die Schlüssel die Anfangsbuchstaben der Namen sind
-       *          und die Werte Arrays von Kontakten mit den Eigenschaften `firstLetter` und `initials`.
-       *
-       * - `Record<string, ...>`: Erstellt ein Objekt mit `string`-Schlüsseln (Anfangsbuchstaben).
-       * - `Contact & { firstLetter: string; initials: string }`: Fügt jedem Kontakt die Eigenschaften `firstLetter` und `initials` hinzu.
-       * - `[]`: Jeder Schlüssel enthält eine Liste der zugehörigen Kontakte.
-       * - `{}` als Initialwert: Startet mit einem leeren Objekt.
-       */
-    }, {} as Record<string, (Contact & { firstLetter: string; initials: string })[]>);
+      // Kontakt zur Gruppe hinzufügen
+      groupedContacts[firstLetter].push({
+        name: contact.name,
+        email: contact.email,
+        type: contact.type,
+        firstLetter: firstLetter, // Speichert den Anfangsbuchstaben
+        initials: initials, // Speichert die Initialen
+      });
+    }
+
+    return groupedContacts;
   }
 
-  // Funktion, um Initialen zu extrahieren
+  // Funktion zur Berechnung der Initialen
   getInitials(name: string): string {
-    const nameParts = name.split(' ');
-    if (nameParts.length >= 2) {
-      return `${nameParts[0].charAt(0).toUpperCase()}${nameParts[1]
-        .charAt(0)
-        .toUpperCase()}`;
-    }
-    return nameParts[0].charAt(0).toUpperCase();
+    if (!name.trim()) return ''; // Falls der Name leer ist, gib einen leeren String zurück
+
+    let nameParts = name.trim().split(/\s+/); // Trenne anhand von Leerzeichen
+
+    let firstInitial = nameParts[0].charAt(0).toUpperCase(); // Erster Buchstabe des Vornamens
+    let lastInitial =
+      nameParts.length > 1
+        ? nameParts[nameParts.length - 1].charAt(0).toUpperCase()
+        : ''; // Erster Buchstabe des Nachnamens
+
+    return firstInitial + lastInitial;
   }
 }
