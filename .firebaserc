@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "joindb-4dd40": {
+      "hosting": {
+        "join": [
+          "joindb-4dd40"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "joindb-4dd40"
+  }
+}
