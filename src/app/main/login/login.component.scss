@@ -15,11 +15,17 @@
   overflow: hidden;
   z-index: 1000;
 
+  // &.show {
+  //   display: flex;
+  // }
+
   @media (max-width: 1150px) {
     flex-direction: column;
     height: auto;
     width: 70vw;
-    .logo, .cancel-btn {
+    .logo,
+    .cancel-btn,
+    .close-btn {
       display: none;
     }
     .input-group {
@@ -34,27 +40,38 @@
     .dialog-right {
       gap: 0px;
     }
+    .input-field {
+      font-size: 14px;
+    }
   }
 
   @media (max-width: 480px) {
-
     .dialog-left {
       padding: 16px;
+    }
+    .input-field {
+      font-size: 12px;
+    }
+    .create-btn {
+      font-size: 12px;
+    }
+  }
+
+  @media (min-width: 1150px) {
+    .close-btn-mobile {
+      display: none;
     }
   }
 }
 
 .close-btn-mobile {
   display: none;
-  // display: flex;
+  display: flex;
+  align-self: flex-end;
   background: none;
   border: none;
   cursor: pointer;
   border-radius: 50%;
-
-  &:hover {
-    background: #f1f1f1;
-  }
 }
 
 .dialog-left {

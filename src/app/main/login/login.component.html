@@ -1,10 +1,15 @@
 <h3>login-Section</h3>
 <p>In dieser Sectionen kann man sich einloggen (kommt später).</p>
 
-<div class="dialog-container">
+<!-- <div class="dialog-container" [ngClass]="{'show': isDialogOpen}"> -->
+  <div class="dialog-container">
+
   <div class="dialog-left">
-     <button class="close-btn-mobile">
-      <img src="assets/img/icons/close_icon_white.svg" alt="Close-Mobile" />
+    <!-- <button class="close-btn-mobile" (click)="closeDialog()">
+      <img src="assets/img/icons/close.svg" alt="Close" />
+    </button> -->
+    <button class="close-btn-mobile">
+      <img src="assets/img/icons/close_icon_white.svg" alt="Close" />
     </button>
     <img
       src="assets/img/icons/small-contact-logo.svg"
@@ -15,10 +20,14 @@
     <p>Tasks are better with a team!</p>
     <div class="divider"></div>
   </div>
-  <div class="dialog-right">
-    <button class="close-btn">
+  <!-- <div class="dialog-right">
+    <button class="close-btn" (click)="closeDialog()">
       <img src="assets/img/icons/close.svg" alt="Close" />
-    </button>
+    </button> -->
+    <div class="dialog-right">
+      <button class="close-btn">
+        <img src="assets/img/icons/close.svg" alt="Close" />
+      </button>
     <div class="profile-pic">
       <img src="assets/img/icons/user-profile-image.svg" alt="User Profile" />
     </div>
