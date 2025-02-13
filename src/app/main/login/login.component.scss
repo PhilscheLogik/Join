@@ -1,12 +1,60 @@
 @import "./../../../styles.scss";
 
 .dialog-container {
-  display: flex;
-  width: 1080px;
-  height: 524px;
+  display: none;
+  // display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50vh;
+  margin: 0 auto;
   background: $white;
   border-radius: 24px;
   overflow: hidden;
+  z-index: 1000;
+
+  @media (max-width: 1150px) {
+    flex-direction: column;
+    height: auto;
+    width: 70vw;
+    .logo, .cancel-btn {
+      display: none;
+    }
+    .input-group {
+      width: 100%;
+    }
+    .button-group {
+      justify-content: center;
+    }
+    .dialog-left {
+      padding: 28px;
+    }
+    .dialog-right {
+      gap: 0px;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    .dialog-left {
+      padding: 16px;
+    }
+  }
+}
+
+.close-btn-mobile {
+  display: none;
+  // display: flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+
+  &:hover {
+    background: #f1f1f1;
+  }
 }
 
 .dialog-left {
@@ -14,16 +62,21 @@
   flex-direction: column;
   background-color: $dark_blue;
   padding: 40px;
+  flex: 1;
 
   > h2 {
-    @include font($ff: "Inter", $fs: 60px, $fw: 700);
+    @include font($ff: "Inter", $fw: 700);
+    font-size: clamp(32px, 5vw, 60px);
     color: $white;
     margin-bottom: 10px;
+    white-space: nowrap;
   }
 
   > p {
-    @include font($ff: "Inter", $fs: 27px, $fw: 400);
+    @include font($ff: "Inter", $fw: 400);
+    font-size: clamp(12px, 3vw, 28px);
     color: $white;
+    white-space: nowrap;
   }
 }
 
@@ -47,6 +100,11 @@
   padding: 40px;
   position: relative;
   gap: 40px;
+
+  @media (max-width: 1150px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .form-container {
@@ -72,16 +130,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 28px;
 }
 
 form {
   margin-top: 48px;
+  width: 100%;
 }
 
 .input-group {
   position: relative;
+  width: 100%;
   margin-bottom: 24px;
-  width: 120%;
 }
 
 .input-field {
@@ -136,6 +196,7 @@ form {
 .create-btn {
   background: $dark_blue;
   color: white;
+  white-space: nowrap;
 
   &:hover {
     background-color: $light_blue;
