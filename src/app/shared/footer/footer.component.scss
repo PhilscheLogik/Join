@@ -35,7 +35,7 @@ nav {
         text-decoration: none;
         @include dFlex($jc: flex-start);
         color: $white;
-        padding: 8px 50px;
+        padding: 8px 40px;
         width: 100%;
         font-size: 16px;
       }
@@ -80,16 +80,25 @@ nav {
   @include dFlex($ai: flex-start);
   flex-direction: column;
   margin-bottom: 65px;
+  width: 100%;
   a {
     text-decoration: none;
     color: $gray;
     font-size: 16px;
+    padding: 8px 45px;
+    width: 100%;
+
     &:hover {
       color: $light_blue;
       font-weight: 700;
     }
   }
 }
+
+.active{
+  background-color: $dark_dark_blue;
+}
+
 
 @media (max-width: 1000px) {
   .logo-img,

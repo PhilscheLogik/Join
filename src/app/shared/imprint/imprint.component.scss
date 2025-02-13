@@ -1,0 +1,45 @@
+@import "./../../../styles.scss";
+
+section {
+  @include dFlex($ai: flex-start);
+  flex-direction: column;
+  
+  color: $black;
+
+  padding: 100px 75px;
+}
+
+div{
+  margin-top: 35px;
+}
+
+ul{
+ padding-left: 20px;
+ 
+}
+
+h1 {
+  font-size: 61px;
+  color: $black;
+}
+
+h2 {
+  font-size: 27px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: bolder;
+  
+}
+
+p{
+    font-size: 16px;
+}
+
+span{
+  color: $light_blue;
+}
+
+

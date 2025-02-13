@@ -18,6 +18,18 @@
       id="contacts-section"
       [ngClass]="{ active: navigationService.selectedItem === 3 }"
     ></app-contacts>
+
+    <app-policy
+      id="policy-section"
+      [ngClass]="{ active: navigationService.selectedItem === 4 }"
+    >
+    </app-policy>
+
+    <app-imprint
+      id="imprint-section"
+      [ngClass]="{ active: navigationService.selectedItem === 5 }"
+    >
+    </app-imprint>
   </div>
 
   <app-footer></app-footer>

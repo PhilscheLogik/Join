@@ -42,7 +42,11 @@
   </nav>
 
   <div class="notes">
-    <a href="#">Privacy Policy</a>
-    <a href="#">Legal notice</a>
+    <a [ngClass]="{ active: navigationService.selectedItem === 4 }"
+    (click)="selectItem(4)"
+    >Privacy Policy</a>
+    <a [ngClass]="{ active: navigationService.selectedItem === 5 }"
+    (click)="selectItem(5)"
+    >Legal notice</a>
   </div>
 </footer>
