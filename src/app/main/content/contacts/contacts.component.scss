@@ -129,16 +129,7 @@ span {
     height: 100%;
     padding-top: 80px;
     padding-left: 50px;
-    box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
-
-    /* Ausgangszustand: von der rechten Seite nach links verschieben */
-    transform: translateX(100%);
-    transition: transform 0.5s ease-in-out;
-
-    /* Wenn die Klasse 'active' hinzugefügt wird, wird der Container sichtbar */
-    &.active {
-        transform: translateX(0);
-    }
+    box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;    
 }
 
 .headline {
@@ -161,6 +152,19 @@ span {
     width: 100%;
     min-height: 500px;
     background-color: transparent;
+
+    /* Ausgangszustand: von der rechten Seite nach links verschieben */
+        transform: translateX(100%);
+        opacity: 0;
+        /* Unsichtbar, wenn nicht aktiv */
+        transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    
+        /* Wenn die Klasse 'active' hinzugefügt wird, wird der Container sichtbar */
+        &.active {
+            transform: translateX(0);
+            opacity: 1;
+            /* Sichtbar, wenn aktiv */
+        }
 }
 
 .contact_content_head {
