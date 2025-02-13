@@ -6,7 +6,7 @@ section {
 
     width: 100%;
     background-color: $white;
-    border-bottom: inset;
+    // border-bottom: inset;
     position: relative;
 
     >.header_left {
@@ -36,7 +36,6 @@ section {
             &:hover {
                 transform: scale(1.1);
             }
-
         }
 
         >.initials_btn {

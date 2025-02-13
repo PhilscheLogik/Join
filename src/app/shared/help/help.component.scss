@@ -1,0 +1,13 @@
+@import './../../../styles.scss';
+
+.join_aqua {
+    color: $aqua;
+}
+
+section {
+
+    .help_header {
+        @include dFlex($jc: space-between);
+        padding: 32px 0;
+    }
+}
