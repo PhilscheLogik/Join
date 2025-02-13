@@ -9,11 +9,24 @@ import {
   updateDoc
 } from '@angular/fire/firestore';
 import { Contact } from '../../interfaces/contact';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactsService {
+
+    private overlayState = new BehaviorSubject<boolean>(false);
+  overlayState$ = this.overlayState.asObservable();
+
+  openOverlay() {
+    this.overlayState.next(true);
+  }
+
+  closeOverlay() {
+    this.overlayState.next(false);
+  }
+
   contactList: Contact[] = [];
 
   unsubContacts;
@@ -22,6 +35,7 @@ export class ContactsService {
 
   constructor() {
     this.unsubContacts = this.subContactList();
+    this.overlayState$.subscribe(state => console.log('Overlay State:', state));
   }
 
   ngOnDestroy() {

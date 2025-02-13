@@ -3,15 +3,24 @@ import { Contact } from '../../../interfaces/contact';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ContactsService } from '../../services/contacts.service';
+import { OverlayComponent } from "./overlay/overlay.component";
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, OverlayComponent,],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
+
+  constructor(private contactsService: ContactsService) {}
+
+  openOverlay() {
+    console.log('openOverlay() aufgerufen');
+    this.contactsService.openOverlay();
+  }
+
   contactService = inject(ContactsService);
 
   name = '';

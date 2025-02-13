@@ -1,8 +1,9 @@
 <section>
     <div class="contact-list">
         <div class="list">
-            <button (click)="addContactList()">
-            <!-- <button> -->
+            <!-- <button (click)="addContactList()"> -->
+            <!-- <button> --> 
+                <button (click)="openOverlay()">
                 <span>Add new Contact</span>
                 <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="" />
             </button>
@@ -87,3 +88,5 @@
     <!-- <button (click)="addContactList()">Neuer Kontakt</button> -->
     <!-- <button (click)="getList(); getList2()">List ausgeben</button> -->
 </section>
+
+<app-overlay></app-overlay>

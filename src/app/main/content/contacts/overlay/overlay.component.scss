@@ -1,8 +1,8 @@
-@import "./../../../styles.scss";
+@import "./../../../../../styles.scss";
 
 .dialog-container {
   display: none;
-  // display: flex;
+//   display: flex;
   flex-direction: row;
   position: fixed;
   top: 50%;
@@ -15,9 +15,9 @@
   overflow: hidden;
   z-index: 1000;
 
-  // &.show {
-  //   display: flex;
-  // }
+  &.show {
+    display: flex;
+  }
 
   @media (max-width: 1150px) {
     flex-direction: column;
