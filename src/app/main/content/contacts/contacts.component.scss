@@ -8,8 +8,7 @@ section {
 
 /* Scrollbar Styling */
 .contact-list::-webkit-scrollbar {
-    // width: 8px;
-    scrollbar-width: thin;
+    width: 8px;
 
 }
 
@@ -19,12 +18,8 @@ section {
 }
 
 .contact-list::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #A8A8A8;
     border-radius: 4px;
-}
-
-.contact-list::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }
 
 .contact-list {
@@ -67,6 +62,7 @@ section {
 
     &:active {
         background-color: $dark_blue;
+        color: $white;
     }
 }
 
@@ -92,8 +88,6 @@ section {
     flex-direction: column;
     background-color: transparent;
     padding: 8px;
-    // cursor: pointer;
-    // flex: 1;    
 
     >p {
         @include font($fs: 20px, $fw: 400);
@@ -114,8 +108,8 @@ button {
     border-radius: 10px;
     cursor: pointer;
     position: sticky;
-    top: 0px; // 20px Abstand zum unteren Rand
-    z-index: 10; // Setze den Z-Index, damit der Button immer oben bleibt
+    top: 0px;
+    z-index: 10;
 }
 
 span {
@@ -129,31 +123,136 @@ span {
 }
 
 .contacts {
-    @include dFlex($g: 30px);
+    @include dFlex($jc: flex-start, $g: 50px);
     flex-direction: column;
     width: 70%;
     height: 100%;
-    padding: 20px;
+    padding-top: 80px;
+    padding-left: 50px;
     box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+
+    /* Ausgangszustand: von der rechten Seite nach links verschieben */
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+
+    /* Wenn die Klasse 'active' hinzugefügt wird, wird der Container sichtbar */
+    &.active {
+        transform: translateX(0);
+    }
 }
 
 .headline {
-    @include dFlex($g: 30px);
+    @include dFlex($jc: flex-start, $g: 30px);
+    width: 100%;
 
-    h1 {
+    >h1 {
         @include font($fs: 61px, $fw: 700);
     }
 
-    p {
+    >p {
         @include font($fs: 27px, $fw: 400);
         color: $dark_blue;
     }
 }
 
 .contact_content {
+    @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
+    flex-direction: column;
     width: 100%;
     min-height: 500px;
-    background-color: $white;
+    background-color: transparent;
+}
 
-    border: 1px solid green;
+.contact_content_head {
+    @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
+}
+
+.contact_content_headline {
+    @include dFlex($g: 30px);
+    width: 100%;
+    background-color: transparent;
+}
+
+.contact_name_section {
+    @include dFlex($ai: flex-start, $g: 10px);
+    flex-direction: column;
+}
+
+.name {
+    @include font($fs: 47px, $fw: 500);
+}
+
+.editing_section {
+    @include dFlex($g: 30px);
+}
+
+.edit,
+.delete {
+    cursor: pointer;
+    @include dFlex($g: 10px);
+    @include font($fs: 16px, $fw: 400);
+
+    .pencil_icon,
+    .trash_icon {
+        display: block;
+    }
+
+    .pencil_icon_hover_blue,
+    .trash_icon_hover_blue {
+        display: none;
+    }
+
+    &:hover {
+        color: $light_blue;
+        @include font($fs: 16px, $fw: 700);
+
+        .pencil_icon,
+        .trash_icon {
+            display: none;
+        }
+
+        .pencil_icon_hover_blue,
+        .trash_icon_hover_blue {
+            display: block;
+        }
+    }
+}
+
+.contact_profile_badge {
+    @include dFlex();
+    width: 120px;
+    height: 120px;
+    border: 1px solid;
+    border-color: $white;
+    border-radius: 50%;
+    @include font($fs: 47px, $fw: 500);
+    color: $white;
+}
+
+.contact_detail_section {
+    @include dFlex($ai: flex-start, $g: 50px);
+    flex-direction: column;
+
+    .information_headline {
+        @include font($fs: 20px, $fw: 400);
+    }
+
+    .information {
+        @include dFlex($ai: flex-start, $g: 15px);
+        flex-direction: column;
+
+        .email_headline,
+        .phone_headline {
+            @include font($fs: 16px, $fw: 700);
+        }
+
+        .email {
+            @include font($fs: 16px, $fw: 400);
+            color: $blue;
+        }
+
+        .phone {
+            @include font($fs: 16px, $fw: 400);
+        }
+    }
 }

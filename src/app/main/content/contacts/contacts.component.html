@@ -1,7 +1,8 @@
 <section>
     <div class="contact-list">
         <div class="list">
-            <button (click)="addContactList()">
+            <!-- <button (click)="addContactList()"> -->
+            <button>
                 <span>Add new Contact</span>
                 <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="" />
             </button>
@@ -11,9 +12,11 @@
                     {{ group.key }}
                 </div>
 
-                <div class="single-contact-container" *ngFor="let contact of group.value; let i = index">
+                <div class="single-contact-container" *ngFor="let contact of group.value; let i = index"
+                    (click)="selectContact(contact)">
                     <div class="single-contact-content">
-                        <div class="profile_badge" [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(contact)) }">
+                        <div class="profile_badge"
+                            [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(contact)) }">
                             {{ contact.initials }}
                         </div>
                         <div class="info">
@@ -25,14 +28,43 @@
             </div>
         </div>
     </div>
-    <div class="contacts">
+    <div class="contacts" [ngClass]="{'active': isContactSelected}">
         <div class="headline">
             <h1>Contacts</h1>
             <img src="assets/img/icons/or_icon.svg" />
             <p>Better with a team</p>
         </div>
-        <div class="contact_content">
-
+        <div class="contact_content" *ngIf="selectedContact">
+            <div class="contact_content_head">
+                <div class="contact_profile_badge"
+                    [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(selectedContact)) }">
+                    {{ selectedContactInitials }} <!-- Zeigt die Initialen aus der temporären Variable -->
+                </div>
+                <div class="contact_name_section">
+                    <p class="name"> {{ selectedContact.name }}</p>
+                    <div class="editing_section">
+                        <div class="edit">
+                            <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg">
+                            <img class="pencil_icon_hover_blue" src="assets/img/icons/pencil_icon_hover_blue.svg">
+                            <p>Edit</p>
+                        </div>
+                        <div class="delete">
+                            <img class="trash_icon" src="assets/img/icons/trash_icon.svg">
+                            <img class="trash_icon_hover_blue" src="assets/img/icons/trash_icon_hover_blue.svg">
+                            <p>Delete</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact_detail_section">
+                <p class="information_headline">Contact Information</p>
+                <div class="information"> 
+                    <p class="email_headline">Email</p>
+                    <p class="email">{{ selectedContact.email }}</p>
+                    <p class="phone_headline">Phone</p>
+                    <p class="phone">{{ selectedContact.phone }}</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -45,6 +77,6 @@
     <!-- <input [(ngModel)]="name" type="text" />
   <input [(ngModel)]="email" type="text" />
   <input [(ngModel)]="phone" type="text" /> -->
-  <!-- <button (click)="addContactList()">Neuer Kontakt</button> -->
-  <!-- <button (click)="getList(); getList2()">List ausgeben</button> -->
+    <!-- <button (click)="addContactList()">Neuer Kontakt</button> -->
+    <!-- <button (click)="getList(); getList2()">List ausgeben</button> -->
 </section>

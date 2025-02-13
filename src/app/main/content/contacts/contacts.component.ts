@@ -14,63 +14,20 @@ import { ContactsService } from '../../services/contacts.service';
 export class ContactsComponent {
   contactService = inject(ContactsService);
 
-  // contactList: Contact[]= this.contactService.contactList;
-
-  // constructor() {
-  //   console.log(this.contactService);
-  //   console.log(this.contactService.contactList);
-  //   console.log(this.contactService.contactList[0]);
-  //   console.log(this.contactList);
-  // }
-
   name = '';
   email = '';
   phone = '';
 
-  // getList(): Contact[] {
-  //   console.log('getList: ', this.contactService.contactList);
-  //   return this.contactService.contactList;
-  // }
+  selectedContact: Contact | null = null; // Speichert den ausgewählten Kontakt
+  selectedContactInitials: string | null = null;
+  isContactSelected = false; // Zustand für die Animation
 
-  // getList2(): any {
-  //   console.log(this.contactService.contactList[0].name);
-  //   return this.contactService.contactList[0].name;
-  // }
-
-  // contactList: Contact[] = this.getList();
-
-  // contactList: Contact[] = [
-  //   {
-  //     name: 'Anton Mayer',
-  //     email: 'antonm@gmail.com',
-  //     type: 'contact',
-  //   },
-  //   {
-  //     name: 'Anja Schulz',
-  //     email: 'schulz@hotmail.com',
-  //     type: 'contact',
-  //   },
-  //   {
-  //     name: 'Benedikt Ziegler',
-  //     email: 'benedikt@gmail.com',
-  //     type: 'contact',
-  //   },
-  //   {
-  //     name: 'David Eisenberg',
-  //     email: 'davidberg@gmail.com',
-  //     type: 'contact',
-  //   },
-  //   {
-  //     name: 'Eva Fischer',
-  //     email: 'eva@gmail.com',
-  //     type: 'contact',
-  //   },
-  //   {
-  //     name: 'Emmanuel Mauer',
-  //     email: 'emmanuelma@gmail.com',
-  //     type: 'contact',
-  //   },
-  // ];
+  // Funktion zum Setzen des ausgewählten Kontakts
+  selectContact(contact: Contact) {
+    this.selectedContact = contact;
+    this.selectedContactInitials = this.getInitials(contact.name); // Berechne und speichere die Initialen
+    this.isContactSelected = true; // Setze den Zustand, um die Animation zu aktivieren
+  }
 
   //Farben aus colors.scss
   colors = [
@@ -111,7 +68,7 @@ export class ContactsComponent {
       (c) => c.email === contact.email
     );
   }
-  
+
   // Kontakte nach Anfangsbuchstaben gruppieren
   getGroupedContacts() {
     // Ein leeres Objekt für die Gruppierung erstellen
@@ -127,7 +84,7 @@ export class ContactsComponent {
         groupedContacts[firstLetter] = [];
       }
 
-      // Initialen berechnen
+      // Initialen holen
       let initials = this.getInitials(contact.name);
 
       // Kontakt zur Gruppe hinzufügen
@@ -135,8 +92,8 @@ export class ContactsComponent {
         name: contact.name,
         email: contact.email,
         type: contact.type,
-        firstLetter: firstLetter, // Speichert den Anfangsbuchstaben
-        initials: initials, // Speichert die Initialen
+        firstLetter: firstLetter,
+        initials: initials,
       });
     }
 
