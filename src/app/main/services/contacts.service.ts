@@ -4,6 +4,7 @@ import {
   collection,
   Firestore,
   onSnapshot,
+  updateDoc
 } from '@angular/fire/firestore';
 import { Contact } from '../../interfaces/contact';
 
@@ -41,6 +42,26 @@ export class ContactsService {
     });
   }
 
+    // async updateContact(contact: Contact) {
+  //   if(contact.id) {
+  //     await updateDoc(this.getContactRef(this.getColIdfromContact(contact)), contact).catch((err) => {
+  //       console.error(err);
+  //     });
+  //   }
+  // }
+
+  // getCleanJson(contact: Contact) {
+
+  // }
+
+  // getColIdfromContact(contact: Contact) {
+  //   if(contact.type == 'contact') {
+  //     return 'notes'
+  //   } else {
+  //     return console.log('No ID available');
+  //   }
+  // }
+  
   getContactRef() {
     return collection(this.firestore, 'contacts');
   }

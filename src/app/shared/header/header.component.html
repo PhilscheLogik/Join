@@ -4,6 +4,9 @@
     </div>
     <div class="header_right">
         <a class="help_link" href=""></a>
+        <a [ngClass]="{ active: navigationService.selectedItem === 6 }"
+            (click)="selectItem(6)">
+        </a>
         <div (click)="toggleOverlay()" class="initials_btn">
             <p>ID</p>
         </div>

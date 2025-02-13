@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NavigationService } from '../navi/navigation.service';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  navigationService = inject(NavigationService);  
+  
+    selectItem(index: number) {
+      this.navigationService.setSelectedItem(index);
+    }
 
   overlayState = true;
   
