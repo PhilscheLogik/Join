@@ -8,7 +8,8 @@ section {
 
 /* Scrollbar Styling */
 .contact-list::-webkit-scrollbar {
-    width: 8px;
+    // width: 8px;
+    scrollbar-width: thin;
 
 }
 
@@ -131,6 +132,7 @@ span {
     @include dFlex($g: 30px);
     flex-direction: column;
     width: 70%;
+    height: 100%;
     padding: 20px;
     box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
 }
