@@ -91,6 +91,7 @@ export class ContactsComponent {
       groupedContacts[firstLetter].push({
         name: contact.name,
         email: contact.email,
+        phone: contact.phone,
         type: contact.type,
         firstLetter: firstLetter,
         initials: initials,
