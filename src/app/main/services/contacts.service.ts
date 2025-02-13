@@ -2,6 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   Firestore,
   onSnapshot,
   updateDoc
@@ -42,7 +44,13 @@ export class ContactsService {
     });
   }
 
-    // async updateContact(contact: Contact) {
+  async deleteContact(id: string) {
+    if (id) {
+      await deleteDoc(doc(this.getContactRef(), id));
+    }
+  }
+
+  // async updateContact(contact: Contact) {
   //   if(contact.id) {
   //     await updateDoc(this.getContactRef(this.getColIdfromContact(contact)), contact).catch((err) => {
   //       console.error(err);
@@ -61,7 +69,7 @@ export class ContactsService {
   //     return console.log('No ID available');
   //   }
   // }
-  
+
   getContactRef() {
     return collection(this.firestore, 'contacts');
   }

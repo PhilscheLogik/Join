@@ -1,8 +1,8 @@
 <section>
     <div class="contact-list">
         <div class="list">
-            <!-- <button (click)="addContactList()"> -->
-            <button>
+            <button (click)="addContactList()">
+            <!-- <button> -->
                 <span>Add new Contact</span>
                 <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="" />
             </button>
@@ -38,38 +38,41 @@
             <img src="assets/img/icons/or_icon.svg" />
             <p>Better with a team</p>
         </div>
-        <div class="contact_content" *ngIf="selectedContact" [ngClass]="{'active': isContactSelected}" >
-            <div class="contact_content_head">
-                <div class="contact_profile_badge"
-                    [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(selectedContact)) }">
-                    {{ selectedContactInitials }} <!-- Zeigt die Initialen aus der temporären Variable -->
-                </div>
-                <div class="contact_name_section">
-                    <p class="name"> {{ selectedContact.name }}</p>
-                    <div class="editing_section">
-                        <div class="edit">
-                            <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg">
-                            <img class="pencil_icon_hover_blue" src="assets/img/icons/pencil_icon_hover_blue.svg">
-                            <p>Edit</p>
-                        </div>
-                        <div class="delete">
-                            <img class="trash_icon" src="assets/img/icons/trash_icon.svg">
-                            <img class="trash_icon_hover_blue" src="assets/img/icons/trash_icon_hover_blue.svg">
-                            <p>Delete</p>
+        @if(selectedContact) {
+            <div class="contact_content" [ngClass]="{'active': isContactSelected}" >
+                <div class="contact_content_head">
+                    <div class="contact_profile_badge"
+                        [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(selectedContact)) }">
+                        {{ selectedContactInitials }} 
+                    </div>
+                    <div class="contact_name_section">
+                        <p class="name"> {{ selectedContact.name }}</p>
+                        <div class="editing_section">
+                            <div class="edit">
+                                <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg">
+                                <img class="pencil_icon_hover_blue" src="assets/img/icons/pencil_icon_hover_blue.svg">
+                                <p>Edit</p>
+                            </div>
+                            
+                            <div (click)="deleteContact()" class="delete">
+                                <img class="trash_icon" src="assets/img/icons/trash_icon.svg">
+                                <img class="trash_icon_hover_blue" src="assets/img/icons/trash_icon_hover_blue.svg">
+                                <p>Delete</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="contact_detail_section">
-                <p class="information_headline">Contact Information</p>
-                <div class="information"> 
-                    <p class="email_headline">Email</p>
-                    <p class="email">{{ selectedContact.email }}</p>
-                    <p class="phone_headline">Phone</p>
-                    <p class="phone">{{ selectedContact.phone }}</p>
+                <div class="contact_detail_section">
+                    <p class="information_headline">Contact Information</p>
+                    <div class="information"> 
+                        <p class="email_headline">Email</p>
+                        <p class="email">{{ selectedContact.email }}</p>
+                        <p class="phone_headline">Phone</p>
+                        <p class="phone">{{ selectedContact.phone }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 
     <!-- @for (item of contactService.contactList; track $index) {

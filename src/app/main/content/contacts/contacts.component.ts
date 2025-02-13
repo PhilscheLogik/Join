@@ -18,15 +18,19 @@ export class ContactsComponent {
   email = '';
   phone = '';
 
-  selectedContact: Contact | null = null; // Speichert den ausgewählten Kontakt
+  selectedContact: Contact | null = null; 
   selectedContactInitials: string | null = null;
-  isContactSelected: boolean = false; // Zustand für die Animation
+  isContactSelected: boolean = false; 
 
   // Funktion zum Setzen des ausgewählten Kontakts
   selectContact(contact: Contact) {
     this.selectedContact = contact;
-    this.selectedContactInitials = this.getInitials(contact.name); // Berechne und speichere die Initialen
-    this.isContactSelected = true; // Setze den Zustand, um die Animation zu aktivieren
+    this.selectedContactInitials = this.getInitials(contact.name); 
+    this.isContactSelected = true; 
+  }
+
+  getList() {
+   return this.selectedContact?.id;
   }
 
   //Farben aus colors.scss
@@ -89,6 +93,7 @@ export class ContactsComponent {
 
       // Kontakt zur Gruppe hinzufügen
       groupedContacts[firstLetter].push({
+        id: contact.id,
         name: contact.name,
         email: contact.email,
         phone: contact.phone,
@@ -125,4 +130,17 @@ export class ContactsComponent {
 
     this.contactService.addContact(newContact);
   }
+  
+  deleteContact() {
+    if (this.selectedContact && this.selectedContact.id) {
+      this.contactService.deleteContact(this.selectedContact.id).then(() => {
+        // Optional: Leere den ausgewählten Kontakt nach der Löschung
+        this.selectedContact = null;
+        this.isContactSelected = false;
+      }).catch(err => {
+        console.error("Fehler beim Löschen des Kontakts:", err);
+      });
+    }
+  }
 }
+
