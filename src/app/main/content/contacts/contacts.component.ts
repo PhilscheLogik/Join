@@ -142,5 +142,17 @@ export class ContactsComponent {
       });
     }
   }
+
+  updateContact() {
+    if (this.selectedContact && this.selectedContact.id) {
+      this.contactService.updateContact(this.selectedContact.id, 'Benni', 'Benni@Benni', '12345').then(() => {
+        // Optional: Leere den ausgewählten Kontakt nach der Löschung
+        this.selectedContact = null;
+        this.isContactSelected = false;
+      }).catch(err => {
+        console.error("Fehler beim Löschen des Kontakts:", err);
+      });
+    }
+  }
 }
 

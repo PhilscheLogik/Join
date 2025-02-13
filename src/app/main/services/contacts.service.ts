@@ -50,25 +50,17 @@ export class ContactsService {
     }
   }
 
-  // async updateContact(contact: Contact) {
-  //   if(contact.id) {
-  //     await updateDoc(this.getContactRef(this.getColIdfromContact(contact)), contact).catch((err) => {
-  //       console.error(err);
-  //     });
-  //   }
-  // }
+    async updateContact(id: string, newName: string, newEmail : string, newPhone : string) {
+    const updateRef = doc(this.getContactRef(),id);
 
-  // getCleanJson(contact: Contact) {
-
-  // }
-
-  // getColIdfromContact(contact: Contact) {
-  //   if(contact.type == 'contact') {
-  //     return 'notes'
-  //   } else {
-  //     return console.log('No ID available');
-  //   }
-  // }
+    if(newName != '' && newEmail != '' && newPhone != ''){
+    await updateDoc(updateRef, {
+      'name': newName,
+      'email' : newEmail,
+      'phone' : newPhone
+    });
+  }
+  }
 
   getContactRef() {
     return collection(this.firestore, 'contacts');

@@ -48,7 +48,7 @@
                     <div class="contact_name_section">
                         <p class="name"> {{ selectedContact.name }}</p>
                         <div class="editing_section">
-                            <div class="edit">
+                            <div (click)="updateContact()" class="edit">
                                 <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg">
                                 <img class="pencil_icon_hover_blue" src="assets/img/icons/pencil_icon_hover_blue.svg">
                                 <p>Edit</p>
