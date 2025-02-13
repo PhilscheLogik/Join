@@ -27,11 +27,14 @@ section {
 
 .contact-list {
     width: 30%;
+    height: calc(100vh - 91px);
+    overflow-y: auto;
     padding-top: 20px;
     background-color: $white;
 }
 
 .list {
+    height: 100%;
     @include dFlex();
     flex-direction: column;
     background-color: transparent;
@@ -48,23 +51,27 @@ section {
     width: 352px;
     border-bottom: 1px solid rgba(209, 209, 209, 1);
     border-radius: 3px;
-    padding:17px 36px;
+    padding: 17px 36px;
 }
 
 .single-contact-container {
     cursor: pointer;
 
     &:hover {
-            background-color: $cream-white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
+        background-color: $cream-white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    }
+
+    &:active {
+        background-color: $dark_blue;
+    }
 }
 
 .single-contact-content {
     @include dFlex($jc: flex-start, $g: 20px);
     width: 352px;
-    padding: 15px 24px;    
+    padding: 15px 24px;
 }
 
 .profile_badge {
@@ -72,6 +79,7 @@ section {
     width: 42px;
     height: 42px;
     border: 1px solid;
+    border-color: $white;
     border-radius: 50%;
     @include font($fs: 12px, $fw: 400);
     color: $white;
@@ -116,6 +124,8 @@ span {
 }
 
 .contacts {
+    @include dFlex($g: 30px);
+    flex-direction: column;
     width: 70%;
     padding: 20px;
 }
@@ -131,4 +141,12 @@ span {
         @include font($fs: 27px, $fw: 400);
         color: $dark_blue;
     }
+}
+
+.contact_content {
+    width: 100%;
+    min-height: 500px;
+    background-color: $white;
+
+    border: 1px solid green;
 }
