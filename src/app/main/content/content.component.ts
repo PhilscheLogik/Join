@@ -7,6 +7,8 @@ import { FooterComponent } from '../../shared/footer/footer.component';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../shared/navi/navigation.service';
+import { PolicyComponent } from '../../shared/policy/policy.component';
+import { ImprintComponent } from '../../shared/imprint/imprint.component';
 
 @Component({
   selector: 'app-content',
@@ -18,16 +20,17 @@ import { NavigationService } from '../../shared/navi/navigation.service';
     ContactsComponent,
     FooterComponent,
     HeaderComponent,
-    CommonModule
+    CommonModule,
+    PolicyComponent,
+    ImprintComponent
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
 })
 export class ContentComponent {
   navigationService = inject(NavigationService);
-  
-  selectItem(index: number) {
-    this.navigationService.setSelectedItem(index); 
-  }
 
+  selectItem(index: number) {
+    this.navigationService.setSelectedItem(index);
+  }
 }
