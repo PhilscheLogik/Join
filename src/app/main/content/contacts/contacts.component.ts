@@ -20,7 +20,7 @@ export class ContactsComponent {
 
   selectedContact: Contact | null = null; // Speichert den ausgewählten Kontakt
   selectedContactInitials: string | null = null;
-  isContactSelected = false; // Zustand für die Animation
+  isContactSelected: boolean = false; // Zustand für die Animation
 
   // Funktion zum Setzen des ausgewählten Kontakts
   selectContact(contact: Contact) {

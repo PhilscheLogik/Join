@@ -28,13 +28,13 @@
             </div>
         </div>
     </div>
-    <div class="contacts" [ngClass]="{'active': isContactSelected}">
+    <div class="contacts" >
         <div class="headline">
             <h1>Contacts</h1>
             <img src="assets/img/icons/or_icon.svg" />
             <p>Better with a team</p>
         </div>
-        <div class="contact_content" *ngIf="selectedContact">
+        <div class="contact_content" *ngIf="selectedContact" [ngClass]="{'active': isContactSelected}" >
             <div class="contact_content_head">
                 <div class="contact_profile_badge"
                     [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(selectedContact)) }">
