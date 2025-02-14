@@ -46,6 +46,7 @@ section {
             position: sticky;
             top: 0px;
             z-index: 10;
+            border-width: 0px;
 
             span {
                 @include font($fs: 21px, $fw: 700);
@@ -57,8 +58,9 @@ section {
                 background-color: transparent;
             }
 
-            &:hover{
+            &:hover {
                 background-color: $blue;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
         }
 
@@ -124,6 +126,10 @@ section {
     }
 }
 
+.isShown {
+    z-index: 2;
+}
+
 .contacts {
     @include dFlex($jc: flex-start, $g: 50px);
     flex-direction: column;
@@ -145,8 +151,9 @@ section {
                 @include font($fs: 61px, $fw: 700);
             }
 
-            img {
+            .arrow_left {
                 display: none;
+                cursor: pointer;
             }
         }
 
@@ -358,27 +365,48 @@ section {
 
 @media (max-width: 1000px) {
     section {
-            @include dFlex($ai: flex-start);
-            width: 100%;
-            height: calc(100vh - (91px + 80px));
-        }
+        @include dFlex($ai: flex-start);
+        width: 100%;
+        height: calc(100vh - (91px + 80px));
+        position: relative;
+    }
 
     .contact-list {
-        display: none;
+        // display: none;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
     }
 
     .contacts {
         width: 100%;
-        @include dFlex($jc: flex-start);
+        @include dFlex($jc: flex-start, $g: 20px);
         // flex-direction: column;
+        position: absolute;
+        // z-index: 0;
+        background-color: $cream-white;
 
         .headline {
-            @include dFlex($jc: flex-start, $ai: flex-start, $g: 1 0px);
-            flex-direction: column;
+            @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
+            flex-direction: column;            
+
+            >div {
+                @include dFlex($jc: space-between);
+                width: 100%;
+                padding-right: 50px;
+
+                .arrow_left {
+                    display: block;
+                }
+            }
 
             >img {
                 display: none;
             }
         }
     }
+
+    // .contacts {
+    //     display: none;
+    // }
 }

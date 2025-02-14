@@ -25,6 +25,7 @@ export class ContactsComponent {
   name = '';
   email = '';
   phone = '';
+  isShown = false;
 
   selectedContact: Contact | null = null;
   selectedContactInitials: string | null = null;
@@ -49,6 +50,10 @@ export class ContactsComponent {
       // Zeige die "contact_content" div an
       this.showContactContent = true;
     }
+  }
+
+  mobileDisplay() {
+    this.isShown = !this.isShown;
   }
 
   getList() {

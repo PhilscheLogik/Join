@@ -11,9 +11,8 @@
                     {{ group.key }}
                 </div>
                 @for (contact of group.value; track $index) {
-                <div class="single-contact-container" (click)="selectContact(contact)"
+                <div class="single-contact-container" (click)="selectContact(contact); mobileDisplay()"
                     [class.active]="selectedContact?.id === contact.id">
-                    <!-- <div class="single-contact-content"> -->
                     <div class="profile_badge"
                         [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(contact)) }">
                         {{ contact.initials }}
@@ -22,23 +21,27 @@
                         <p class="name">{{ contact.name }}</p>
                         <a class="email">{{ contact.email }}</a>
                     </div>
-                    <!-- </div> -->
                 </div>
                 }
             </div>
             }
         </div>
     </div>
-    <div class="contacts">
+    <div class="contacts" [class.isShown]="isShown">
         <div class="headline">
+           
             <div>
                 <h1>Contacts</h1>
-                <img class="arrow_left" src="assets/img/icons/arrow_left.svg" alt="">
+                @if(selectedContact) {
+                <img class="arrow_left" src="assets/img/icons/arrow_left.svg" (click)="selectContact(selectedContact); mobileDisplay()">
+                }
             </div>
+        
             <img src="assets/img/icons/or_icon.svg" />
             <p>Better with a team</p>
         </div>
         @if(selectedContact) {
+            <!-- <img class="arrow_left" src="assets/img/icons/arrow_left.svg" (click)="selectContact(selectedContact); mobileDisplay()"> -->
         <div class="contact_content" [ngClass]="{'show': showContactContent}">
             <div class="contact_content_head">
                 <div class="contact_profile_badge"
