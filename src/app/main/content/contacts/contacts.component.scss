@@ -56,6 +56,10 @@ section {
             .person_add_icon {
                 background-color: transparent;
             }
+
+            &:hover{
+                background-color: $blue;
+            }
         }
 
         .single-contact {
@@ -112,19 +116,13 @@ section {
 
                 &.active {
                     background-color: $dark_blue;
+                    border-radius: 10px;
                     color: $white;
                 }
             }
         }
     }
 }
-
-
-
-
-
-
-
 
 .contacts {
     @include dFlex($jc: flex-start, $g: 50px);
@@ -141,11 +139,17 @@ section {
     .headline {
         @include dFlex($jc: flex-start, $g: 30px);
         width: 100%;
-    
-        >h1 {
-            @include font($fs: 61px, $fw: 700);
+
+        >div {
+            h1 {
+                @include font($fs: 61px, $fw: 700);
+            }
+
+            img {
+                display: none;
+            }
         }
-    
+
         >p {
             @include font($fs: 27px, $fw: 400);
             color: $dark_blue;
@@ -158,10 +162,10 @@ section {
         width: 100%;
         min-height: 500px;
         background-color: transparent;
-    
+
         .contact_content_head {
             @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
-    
+
             .contact_profile_badge {
                 @include dFlex();
                 width: 120px;
@@ -172,43 +176,43 @@ section {
                 @include font($fs: 47px, $fw: 500);
                 color: $white;
             }
-    
+
             .contact_name_section {
                 @include dFlex($ai: flex-start, $g: 10px);
                 flex-direction: column;
-    
+
                 .name {
                     @include font($fs: 47px, $fw: 500);
                 }
-    
+
                 .editing_section {
                     @include dFlex($g: 30px);
-    
+
                     .edit,
                     .delete {
                         cursor: pointer;
                         @include dFlex($g: 10px);
                         @include font($fs: 16px, $fw: 400);
-    
+
                         .pencil_icon,
                         .trash_icon {
                             display: block;
                         }
-    
+
                         .pencil_icon_hover_blue,
                         .trash_icon_hover_blue {
                             display: none;
                         }
-    
+
                         &:hover {
                             color: $light_blue;
                             @include font($fs: 16px, $fw: 700);
-    
+
                             .pencil_icon,
                             .trash_icon {
                                 display: none;
                             }
-    
+
                             .pencil_icon_hover_blue,
                             .trash_icon_hover_blue {
                                 display: block;
@@ -218,50 +222,163 @@ section {
                 }
             }
         }
-    
+
         .contact_detail_section {
             @include dFlex($ai: flex-start, $g: 50px);
             flex-direction: column;
-    
+
             .information_headline {
                 @include font($fs: 20px, $fw: 400);
             }
-    
+
             .information {
                 @include dFlex($ai: flex-start, $g: 15px);
                 flex-direction: column;
-    
+
                 .email_headline,
                 .phone_headline {
                     @include font($fs: 16px, $fw: 700);
                 }
-    
+
                 .email {
                     @include font($fs: 16px, $fw: 400);
                     color: $blue;
                 }
-    
+
                 .phone {
                     @include font($fs: 16px, $fw: 400);
                 }
             }
         }
     }
-    
+
     .show {
         animation: slide-right 0.5s ease-in;
     }
-    
+
     /* animation slide-right*/
     @keyframes slide-right {
         0% {
             transform: translateX(100%);
         }
-    
+
         100% {
             transform: translateX(0%);
         }
     }
 }
 
+/*--------------------------------------------------   Mobile   --------------------------------------------------*/
+@media (max-width: 1500px) {
+    .contact-list {
+        width: 35%;
+    }
 
+    .contacts {
+        width: 65%;
+    }
+}
+
+@media (max-width: 1300px) {
+    .contact-list {
+        width: 40%;
+    }
+
+    .contacts {
+        width: 60%;
+
+        .headline {
+
+            h1 {
+                @include font($fs: 47px, $fw: 700);
+            }
+
+            p {
+                @include font($fs: 20px, $fw: 400);
+            }
+        }
+
+        .contact_content {
+            @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
+            flex-direction: column;
+            width: 100%;
+            min-height: 500px;
+            background-color: transparent;
+
+            .contact_content_head {
+                @include dFlex($jc: flex-start, $ai: flex-start, $g: 20px);
+
+                .contact_profile_badge {
+                    @include dFlex();
+                    width: 80px;
+                    height: 80px;
+                    @include font($fs: 27px, $fw: 400);
+                }
+
+                .contact_name_section {
+
+                    .name {
+                        @include font($fs: 36px, $fw: 700);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .contact-list {
+        width: 40%;
+
+        .list {
+            width: 100%;
+
+            .add-new-contact {
+                width: 90%;
+            }
+
+            .single-contact {
+                width: 90%;
+
+                .letter {
+                    width: 100%;
+                }
+
+                .single-contact-container {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .contacts {
+        width: 60%;
+    }
+}
+
+@media (max-width: 1000px) {
+    section {
+            @include dFlex($ai: flex-start);
+            width: 100%;
+            height: calc(100vh - (91px + 80px));
+        }
+
+    .contact-list {
+        display: none;
+    }
+
+    .contacts {
+        width: 100%;
+        @include dFlex($jc: flex-start);
+        // flex-direction: column;
+
+        .headline {
+            @include dFlex($jc: flex-start, $ai: flex-start, $g: 1 0px);
+            flex-direction: column;
+
+            >img {
+                display: none;
+            }
+        }
+    }
+}
