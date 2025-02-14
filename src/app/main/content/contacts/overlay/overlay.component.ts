@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ContactsService } from '../../../services/contacts.service';
 import { Contact } from '../../../../interfaces/contact';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-overlay',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './overlay.component.html',
   styleUrl: './overlay.component.scss',
 })

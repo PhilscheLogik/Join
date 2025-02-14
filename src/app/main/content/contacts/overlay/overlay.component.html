@@ -21,9 +21,9 @@
       <img src="assets/img/icons/user-profile-image.svg" alt="User Profile" />
     </div>
     <div class="form-container">
-      <form>
+      <form #contactForm="ngForm">
         <div class="input-group">
-          <input type="text" placeholder="Name" class="input-field" />
+          <input [(ngModel)]="name" name="name" type="text" placeholder="Name" class="input-field" />
           <img
             src="assets/img/icons/person.svg"
             class="input-icon"
@@ -31,7 +31,7 @@
           />
         </div>
         <div class="input-group">
-          <input type="email" placeholder="Email" class="input-field" />
+          <input [(ngModel)]="email" name="email" type="email" placeholder="Email" class="input-field" />
           <img
             src="assets/img/icons/mail.svg"
             class="input-icon"
@@ -39,7 +39,7 @@
           />
         </div>
         <div class="input-group">
-          <input type="tel" placeholder="Phone" class="input-field" />
+          <input [(ngModel)]="phone" name="phone" type="tel" placeholder="Phone" class="input-field" />
           <img
             src="assets/img/icons/call.svg"
             class="input-icon"
@@ -50,7 +50,7 @@
           <button type="button" class="cancel-btn" (click)="closeOverlay()">
             Cancel <img src="assets/img/icons/cancel.svg" alt="Cancel" />
           </button>
-          <button type="submit" class="create-btn">
+          <button type="submit" class="create-btn" (click)="addContactList()">
             Create contact <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
         </div>
