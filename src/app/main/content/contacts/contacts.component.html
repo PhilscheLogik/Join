@@ -1,29 +1,32 @@
 <section>
     <div class="contact-list">
         <div class="list">
-            <button (click)="openOverlay()">
+            <button class="add-new-contact" (click)="openOverlay()">
                 <span>Add new Contact</span>
                 <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="" />
             </button>
             @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
-            <div class="single-contact" >
+            <div class="single-contact">
                 <div class="letter">
                     {{ group.key }}
                 </div>
                 @for (contact of group.value; track $index) {
-                <div class="single-contact-container" (click)="selectContact(contact)" [class.active]="selectedContact?.id === contact.id">
-                    <div class="single-contact-content">
-                        <div class="profile_badge"
-                            [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(contact)) }">
-                            {{ contact.initials }}
-                        </div>
-                        <div class="info">
-                            <p class="name">{{ contact.name }}</p>
-                            <a class="email">{{ contact.email }}</a>
-                        </div>
+                <div class="single-contact-container" (click)="selectContact(contact)"
+                    [class.active]="selectedContact?.id === contact.id">
+                    <!-- <div class="single-contact-content"> -->
+                    <div class="profile_badge"
+                        [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(contact)) }">
+                        {{ contact.initials }}
                     </div>
-                </div>}
-            </div>}
+                    <div class="info">
+                        <p class="name">{{ contact.name }}</p>
+                        <a class="email">{{ contact.email }}</a>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                }
+            </div>
+            }
         </div>
     </div>
     <div class="contacts">

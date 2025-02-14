@@ -28,99 +28,103 @@ section {
     overflow-y: auto;
     padding-top: 10px;
     background-color: $white;
-}
 
-.list {
-    @include dFlex();
-    flex-direction: column;
-    background-color: transparent;
-    position: relative;
-}
-
-.single-contact {
-    background-color: transparent;
-    @include dFlex($ai: flex-start);
-    flex-direction: column;
-}
-
-.letter {
-    @include font($fs: 20px, $fw: 400);
-    width: 352px;
-    border-bottom: 1px solid rgba(209, 209, 209, 1);
-    border-radius: 3px;
-    padding: 17px 36px;
-}
-
-.single-contact-container {
-    cursor: pointer;
-
-    &:hover {
-        background-color: $cream-white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-    }
-
-    &.active {
-        background-color: $dark_blue;
-        color: $white;
-    }
-}
-
-.single-contact-content {
-    @include dFlex($jc: flex-start, $g: 20px);
-    width: 352px;
-    padding: 15px 24px;
-}
-
-.profile_badge {
-    @include dFlex();
-    width: 42px;
-    height: 42px;
-    border: 1px solid;
-    border-color: $white;
-    border-radius: 50%;
-    @include font($fs: 12px, $fw: 400);
-    color: $white;
-}
-
-.info {
-    @include dFlex($ai: flex-start, $g: 5px);
-    flex-direction: column;
-    background-color: transparent;
-    padding: 8px;
-
-    >p {
-        @include font($fs: 20px, $fw: 400);
+    .list {
+        @include dFlex();
+        flex-direction: column;
         background-color: transparent;
+        position: relative;
+
+        .add-new-contact {
+            @include dFlex($g: 20px);
+            width: 352px;
+            height: 56px;
+            background-color: $dark_blue;
+            color: $white;
+            border-radius: 10px;
+            cursor: pointer;
+            position: sticky;
+            top: 0px;
+            z-index: 10;
+
+            span {
+                @include font($fs: 21px, $fw: 700);
+                color: $white;
+                background-color: transparent;
+            }
+
+            .person_add_icon {
+                background-color: transparent;
+            }
+        }
+
+        .single-contact {
+            background-color: transparent;
+            @include dFlex($ai: flex-start);
+            flex-direction: column;
+
+            .letter {
+                @include font($fs: 20px, $fw: 400);
+                width: 352px;
+                border-bottom: 1px solid rgba(209, 209, 209, 1);
+                border-radius: 3px;
+                padding: 17px 36px;
+            }
+
+            .single-contact-container {
+                cursor: pointer;
+                @include dFlex($jc: flex-start, $g: 20px);
+                width: 352px;
+                padding: 15px 24px;
+
+                .profile_badge {
+                    @include dFlex();
+                    width: 42px;
+                    height: 42px;
+                    border: 1px solid;
+                    border-color: $white;
+                    border-radius: 50%;
+                    @include font($fs: 12px, $fw: 400);
+                    color: $white;
+                }
+
+                .info {
+                    @include dFlex($ai: flex-start, $g: 5px);
+                    flex-direction: column;
+                    background-color: transparent;
+                    padding: 8px;
+
+                    >p {
+                        @include font($fs: 20px, $fw: 400);
+                        background-color: transparent;
+                    }
+
+                    .email {
+                        color: $blue;
+                    }
+                }
+
+                &:hover {
+                    background-color: $cream-white;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                    border-radius: 10px;
+                }
+
+                &.active {
+                    background-color: $dark_blue;
+                    color: $white;
+                }
+            }
+        }
     }
-
-    .email {
-        color: $blue;
-    }
 }
 
-button {
-    @include dFlex($g: 20px);
-    width: 352px;
-    height: 56px;
-    background-color: $dark_blue;
-    color: $white;
-    border-radius: 10px;
-    cursor: pointer;
-    position: sticky;
-    top: 0px;
-    z-index: 10;
-}
 
-span {
-    @include font($fs: 21px, $fw: 700);
-    color: $white;
-    background-color: transparent;
-}
 
-.person_add_icon {
-    background-color: transparent;
-}
+
+
+
+
 
 .contacts {
     @include dFlex($jc: flex-start, $g: 50px);
@@ -133,136 +137,131 @@ span {
 
     position: relative;
     overflow: hidden;
-    /* Sicherstellen, dass nichts außerhalb des Containers sichtbar ist */
-}
 
-.headline {
-    @include dFlex($jc: flex-start, $g: 30px);
-    width: 100%;
-
-    >h1 {
-        @include font($fs: 61px, $fw: 700);
-    }
-
-    >p {
-        @include font($fs: 27px, $fw: 400);
-        color: $dark_blue;
-    }
-}
-
-.contact_content {
-    @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    background-color: transparent;
-}
-
-.show {
-    animation: slide-right 0.5s ease-in;
-}
-
-/* animation slide-right*/
-@keyframes slide-right {
-    0% {
-        transform: translateX(100%);
-    }
-
-    100% {
-        transform: translateX(0%);
-    }
-}
-
-.contact_content_head {
-    @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
-}
-
-.contact_content_headline {
-    @include dFlex($g: 30px);
-    width: 100%;
-    background-color: transparent;
-}
-
-.contact_name_section {
-    @include dFlex($ai: flex-start, $g: 10px);
-    flex-direction: column;
-}
-
-.name {
-    @include font($fs: 47px, $fw: 500);
-}
-
-.editing_section {
-    @include dFlex($g: 30px);
-}
-
-.edit,
-.delete {
-    cursor: pointer;
-    @include dFlex($g: 10px);
-    @include font($fs: 16px, $fw: 400);
-
-    .pencil_icon,
-    .trash_icon {
-        display: block;
-    }
-
-    .pencil_icon_hover_blue,
-    .trash_icon_hover_blue {
-        display: none;
-    }
-
-    &:hover {
-        color: $light_blue;
-        @include font($fs: 16px, $fw: 700);
-
-        .pencil_icon,
-        .trash_icon {
-            display: none;
+    .headline {
+        @include dFlex($jc: flex-start, $g: 30px);
+        width: 100%;
+    
+        >h1 {
+            @include font($fs: 61px, $fw: 700);
         }
-
-        .pencil_icon_hover_blue,
-        .trash_icon_hover_blue {
-            display: block;
+    
+        >p {
+            @include font($fs: 27px, $fw: 400);
+            color: $dark_blue;
         }
     }
-}
 
-.contact_profile_badge {
-    @include dFlex();
-    width: 120px;
-    height: 120px;
-    border: 1px solid;
-    border-color: $white;
-    border-radius: 50%;
-    @include font($fs: 47px, $fw: 500);
-    color: $white;
-}
-
-.contact_detail_section {
-    @include dFlex($ai: flex-start, $g: 50px);
-    flex-direction: column;
-
-    .information_headline {
-        @include font($fs: 20px, $fw: 400);
-    }
-
-    .information {
-        @include dFlex($ai: flex-start, $g: 15px);
+    .contact_content {
+        @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
         flex-direction: column;
-
-        .email_headline,
-        .phone_headline {
-            @include font($fs: 16px, $fw: 700);
+        width: 100%;
+        min-height: 500px;
+        background-color: transparent;
+    
+        .contact_content_head {
+            @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
+    
+            .contact_profile_badge {
+                @include dFlex();
+                width: 120px;
+                height: 120px;
+                border: 1px solid;
+                border-color: $white;
+                border-radius: 50%;
+                @include font($fs: 47px, $fw: 500);
+                color: $white;
+            }
+    
+            .contact_name_section {
+                @include dFlex($ai: flex-start, $g: 10px);
+                flex-direction: column;
+    
+                .name {
+                    @include font($fs: 47px, $fw: 500);
+                }
+    
+                .editing_section {
+                    @include dFlex($g: 30px);
+    
+                    .edit,
+                    .delete {
+                        cursor: pointer;
+                        @include dFlex($g: 10px);
+                        @include font($fs: 16px, $fw: 400);
+    
+                        .pencil_icon,
+                        .trash_icon {
+                            display: block;
+                        }
+    
+                        .pencil_icon_hover_blue,
+                        .trash_icon_hover_blue {
+                            display: none;
+                        }
+    
+                        &:hover {
+                            color: $light_blue;
+                            @include font($fs: 16px, $fw: 700);
+    
+                            .pencil_icon,
+                            .trash_icon {
+                                display: none;
+                            }
+    
+                            .pencil_icon_hover_blue,
+                            .trash_icon_hover_blue {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
         }
-
-        .email {
-            @include font($fs: 16px, $fw: 400);
-            color: $blue;
+    
+        .contact_detail_section {
+            @include dFlex($ai: flex-start, $g: 50px);
+            flex-direction: column;
+    
+            .information_headline {
+                @include font($fs: 20px, $fw: 400);
+            }
+    
+            .information {
+                @include dFlex($ai: flex-start, $g: 15px);
+                flex-direction: column;
+    
+                .email_headline,
+                .phone_headline {
+                    @include font($fs: 16px, $fw: 700);
+                }
+    
+                .email {
+                    @include font($fs: 16px, $fw: 400);
+                    color: $blue;
+                }
+    
+                .phone {
+                    @include font($fs: 16px, $fw: 400);
+                }
+            }
         }
-
-        .phone {
-            @include font($fs: 16px, $fw: 400);
+    }
+    
+    .show {
+        animation: slide-right 0.5s ease-in;
+    }
+    
+    /* animation slide-right*/
+    @keyframes slide-right {
+        0% {
+            transform: translateX(100%);
+        }
+    
+        100% {
+            transform: translateX(0%);
         }
     }
 }
+
+

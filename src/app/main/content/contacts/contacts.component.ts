@@ -16,7 +16,7 @@ export class ContactsComponent {
   constructor(private contactsService: ContactsService) {}
 
   openOverlay() {
-    console.log('openOverlay() aufgerufen');
+    // console.log('openOverlay() aufgerufen');
     this.contactsService.openOverlay();
   }
 
@@ -126,7 +126,7 @@ export class ContactsComponent {
           this.isContactSelected = false;
         })
         .catch((err) => {
-          console.error('Fehler beim Löschen des Kontakts:', err);
+          console.error('Fehler beim updaten des Kontakts:', err);
         });
     }
   }
