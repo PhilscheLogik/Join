@@ -1,3 +1,4 @@
+<div class="backdrop" [ngClass]="{ 'show': isOpen }" (click)="closeOverlay()"></div>
 <div class="dialog-container" [ngClass]="{ show: isOpen }">
   <div class="dialog-left">
     <button class="close-btn-mobile" (click)="closeOverlay()">

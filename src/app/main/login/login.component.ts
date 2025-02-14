@@ -9,13 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  // isDialogOpen: boolean = false;
 
-  // openDialog(): void {
-  //   this.isDialogOpen = true;
-  // }
-
-  // closeDialog(): void {
-  //   this.isDialogOpen = false;
-  // }
 }

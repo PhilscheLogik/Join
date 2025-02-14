@@ -14,6 +14,7 @@
   border-radius: 24px;
   overflow: hidden;
   z-index: 1000;
+  
 
   &.show {
     display: flex;
@@ -215,6 +216,10 @@ form {
   cursor: pointer;
   display: flex;
   align-items: center;
+
+  > img {
+    margin-left: 3px;
+  }
 }
 
 .cancel-btn {
@@ -224,7 +229,7 @@ form {
   &:hover {
     border-color: $light_blue;
     color: $light_blue;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     img {
       color: $light_blue;
@@ -239,6 +244,24 @@ form {
 
   &:hover {
     background-color: $light_blue;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.backdrop.show {
+  opacity: 1;
+  visibility: visible;
 }
