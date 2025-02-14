@@ -3,13 +3,13 @@
 section {
   @include dFlex($ai: flex-start);
   flex-direction: column;
-  
+
   color: $black;
 
   padding: 100px 75px;
 }
 
-div{
+div {
   margin-top: 35px;
 }
 
@@ -23,8 +23,27 @@ h2 {
   margin-bottom: 10px;
 }
 
-p{
-    font-size: 16px;
+p {
+  font-size: 16px;
 }
 
+@media (max-width: 1000px) {
+  section {
+    padding: 50px 16px;
+  }
 
+  div {
+    margin-top: 35px;
+  }
+
+  h1 {
+    font-size: 47px;    
+  }    
+}
+
+@media (max-width: 375px) {
+  h1 {
+    text-align: center;   
+  }  
+
+}
