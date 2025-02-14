@@ -6,92 +6,44 @@ section {
 
     width: 100%;
     background-color: $white;
-    // border-bottom: inset;
     position: relative;
+}
 
-    >.header_left {
+
+.header_left {
+    position: relative;
+    background-color: $white;
+    padding: 32px 64px;
+
+    >h1 {
+        @include font($fs: 20px, $fw: 400);
 
         background-color: $white;
-        padding: 32px 64px;
-
-        >h1 {
-            @include font($fs: 20px, $fw: 400);
-
-            background-color: $white;
-        }
-        
     }
+}
 
-    >.header_right {
-        @include dFlex($jc: center);
+img {
+    display: none;
+    position: absolute;
+    top: 32;
+    left: 64;
+    height: 39px;
+    width: 32px;
+}
 
+.header_right {
+    @include dFlex($jc: center);
+
+    background-color: $white;
+    
+    >.help_link {
+        height: 32px;
+        width: 32px;
+        background-image: url('./../../../assets/img/icons/help_button.svg');
         background-color: $white;
-        
-        >.help_link {
-            height: 32px;
-            width: 32px;
-            background-image: url('./../../../assets/img/icons/help_button.svg');
-            background-color: $white;
-            margin-right: 32px;
-            &:hover {
-                transform: scale(1.1);
-            }
-        }
-
-        >.initials_btn {
-            @include dFlex($ai: center);
-
-            height: 64px;
-            width: 64px;
-            border-radius: 50%;
-            border: 3px solid $black;
-            background-color: $white;
-            margin-right: 40px;
-
-            &:hover {
-                background-color: rgba($gray, 0.5);
-                cursor: pointer;
-            }
-
-            >p {
-                @include font($fs: 32px, $fw: 500);
-
-                background-color: transparent;
-                color: $aqua;
-
-                &:hover {
-                    pointer-events: none;
-                }
-            } 
-        }
-
-        >.header_overlay {
-            position: absolute;
-            top: 84px;
-            right: 40px;
-            background-color: $dark_blue;
-            border-radius: 20px 0 20px 20px;
-            flex-direction: column;
-
-            >.inner_overlay {
-                @include dFlex($ai: start);
-
-                flex-direction: column;
-                padding: 16px 8px;
-
-                >a {
-                    padding: 16px 16px;
-                    text-decoration: none;
-                    color: $white;
-                    width: 100%;
-
-                    &:hover {
-                        background-color: $button_hover_blue;
-                    }
-                }
-            }
-
-        
+        margin-right: 32px;
+        &:hover {
+            transform: scale(1.1);
         }
     }
 }
@@ -99,3 +51,106 @@ section {
 .d_none {
     display: none; 
 }
+
+.initials_btn {
+    @include dFlex($ai: center);
+
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    border: 3px solid $black;
+    background-color: $white;
+    margin-right: 40px;
+
+    &:hover {
+        background-color: rgba($gray, 0.5);
+        cursor: pointer;
+    }
+
+    >p {
+        @include font($fs: 32px, $fw: 600);
+
+        background-color: transparent;
+        color: $aqua;
+
+        &:hover {
+            pointer-events: none;
+        }
+    } 
+}
+
+/* Burger-Overlay */
+
+.header_overlay {
+    position: absolute;
+    top: 84px;
+    right: 40px;
+    background-color: $dark_blue;
+    border-radius: 20px 0 20px 20px;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.inner_overlay {
+    @include dFlex($ai: start);
+
+    flex-direction: column;
+    padding: 16px 8px;
+
+    >a {
+        padding: 16px 16px;
+        text-decoration: none;
+        color: $white;
+        width: 100%;
+
+        &:hover {
+            background-color: $button_hover_blue;
+        }
+    }
+}
+
+.burger_help_link {
+    display: none;
+    padding: 16px 16px;
+    text-decoration: none;
+    color: $white;
+    width: 100%;
+}
+
+/* Media query's */
+
+@media (max-width: 720px) {
+
+    .help_link {
+      display: none;
+    }
+
+    .responsive_header_logo {
+            // @include dFlex($jc: start, $ai: center);
+            display: block;
+        
+    }
+
+    .header_left {
+        >h1 {
+            display: none;
+        }
+    }
+
+    .initials_btn {
+        height: 40px;
+        width: 40px;
+        >p {
+            @include font($fs: 16px, $fw: 600);
+        }
+    }
+
+    .burger_help_link {
+        display: block;
+    }
+
+    img {
+        top: 12px;
+        left: 24px;
+    }
+  }
