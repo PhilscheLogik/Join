@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { NavigationService } from '../../shared/navi/navigation.service';
 import { PolicyComponent } from '../../shared/policy/policy.component';
 import { ImprintComponent } from '../../shared/imprint/imprint.component';
+import { HelpComponent } from '../../shared/help/help.component';
 
 @Component({
   selector: 'app-content',
@@ -22,7 +23,8 @@ import { ImprintComponent } from '../../shared/imprint/imprint.component';
     HeaderComponent,
     CommonModule,
     PolicyComponent,
-    ImprintComponent
+    ImprintComponent,
+    HelpComponent
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
