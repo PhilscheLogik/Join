@@ -380,7 +380,7 @@ section {
 
     .contacts {
         width: 100%;
-        @include dFlex($jc: flex-start, $g: 20px);
+        @include dFlex($jc: flex-start, $g: 50px);
         // flex-direction: column;
         position: absolute;
         // z-index: 0;
@@ -388,7 +388,7 @@ section {
 
         .headline {
             @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
-            flex-direction: column;            
+            flex-direction: column;
 
             >div {
                 @include dFlex($jc: space-between);
@@ -400,13 +400,71 @@ section {
                 }
             }
 
+            .border_blue {
+                width: 90px;
+                border: 3px solid;
+                border-color: $light_blue;
+            }
+
             >img {
                 display: none;
             }
         }
     }
+}
 
-    // .contacts {
-    //     display: none;
-    // }
+@media (max-width: 500px) {    
+
+    .contacts {
+        padding-left: 20px;
+
+        .headline {
+            // @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
+            // flex-direction: column;
+
+            >div {
+                //     @include dFlex($jc: space-between);
+                //     width: 100%;
+                padding-right: 20px;
+
+                //     .arrow_left {
+                //         display: block;
+                //     }
+
+                h1 {
+                    @include font($fs: 47px, $fw: 700);
+                }
+            }
+
+            .border_blue {
+                width: 90px;
+                border: 3px solid;
+                border-color: $light_blue;
+            }
+
+            >img {
+                display: none;
+            }
+        }
+
+        .contact_content {
+
+            .contact_content_head {
+
+                .contact_profile_badge {
+                    @include dFlex();
+                    width: 60px;
+                    height: 60px;
+                    @include font($fs: 20px, $fw: 400);
+                }
+
+                .contact_name_section {
+
+                    .name {
+                        @include font($fs: 24px, $fw: 700);
+                    }
+                }
+            }
+        }
+    }
 }
