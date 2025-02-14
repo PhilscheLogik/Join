@@ -60,7 +60,7 @@ section {
         border-radius: 10px;
     }
 
-    &:active {
+    &.active {
         background-color: $dark_blue;
         color: $white;
     }
@@ -130,6 +130,10 @@ span {
     padding-top: 80px;
     padding-left: 50px;
     box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+
+    position: relative;
+    overflow: hidden;
+    /* Sicherstellen, dass nichts außerhalb des Containers sichtbar ist */
 }
 
 .headline {
@@ -152,20 +156,21 @@ span {
     width: 100%;
     min-height: 500px;
     background-color: transparent;
-
-    /* Ausgangszustand: von der rechten Seite nach links verschieben */
-    transform: translateX(100%);
-    opacity: 0; /* Unsichtbar, wenn nicht aktiv */
-    // display: none;
-    transition: transform 1.5s ease-in-out, opacity 0.01s ease-in-out;
-
 }
 
-/* Wenn die Klasse 'active' hinzugefügt wird, wird der Container sichtbar */
-.active {
-    transform: translateX(0);
-    opacity: 1;  /* Sichtbar, wenn aktiv */
-    // display: block;
+.show {
+    animation: slide-right 0.5s ease-in;
+}
+
+/* animation slide-right*/
+@keyframes slide-right {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
 }
 
 .contact_content_head {

@@ -1,23 +1,17 @@
 <section>
     <div class="contact-list">
         <div class="list">
-            <!-- <button (click)="addContactList()"> -->
-            <!-- <button> -->
             <button (click)="openOverlay()">
                 <span>Add new Contact</span>
                 <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="" />
             </button>
-            <!-- <button (click)="openDialog()">
-                <span>Add new Contact</span>
-                <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="" />
-            </button> -->
             @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
             <div class="single-contact" >
                 <div class="letter">
                     {{ group.key }}
                 </div>
                 @for (contact of group.value; track $index) {
-                <div class="single-contact-container" (click)="selectContact(contact)">
+                <div class="single-contact-container" (click)="selectContact(contact)" [class.active]="selectedContact?.id === contact.id">
                     <div class="single-contact-content">
                         <div class="profile_badge"
                             [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(contact)) }">
@@ -39,7 +33,7 @@
             <p>Better with a team</p>
         </div>
         @if(selectedContact) {
-        <div class="contact_content" [ngClass]="{'active': isContactSelected}">
+        <div class="contact_content" [ngClass]="{'show': showContactContent}">
             <div class="contact_content_head">
                 <div class="contact_profile_badge"
                     [ngStyle]="{ 'background-color': getBadgeColor(getIndexInFullList(selectedContact)) }">

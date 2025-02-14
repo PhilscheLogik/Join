@@ -29,14 +29,26 @@ export class ContactsComponent {
   selectedContact: Contact | null = null;
   selectedContactInitials: string | null = null;
   isContactSelected: boolean = false;
+  showContactContent: boolean = false;
 
   // Funktion zum Setzen des ausgewählten Kontakts
   selectContact(contact: Contact) {
-    this.selectedContact = contact;
-    this.selectedContactInitials = this.contactService.getInitials(
-      contact.name
-    );
-    this.isContactSelected = true;
+    if (this.selectedContact && this.selectedContact.id === contact.id) {
+      // Wenn der gleiche Kontakt erneut angeklickt wird, setzte den ausgewählten Kontakt auf null
+      this.selectedContact = null;
+      this.selectedContactInitials = null;
+      this.isContactSelected = false;
+      // Verstecke die "contact_content" div, wenn kein Kontakt ausgewählt ist
+      this.showContactContent = false;
+    } else {
+      this.selectedContact = contact;
+      this.selectedContactInitials = this.contactService.getInitials(
+        contact.name
+      );
+      this.isContactSelected = true;
+      // Zeige die "contact_content" div an
+      this.showContactContent = true;
+    }
   }
 
   getList() {
@@ -83,64 +95,6 @@ export class ContactsComponent {
     );
   }
 
-  // // Kontakte nach Anfangsbuchstaben gruppieren
-  // getGroupedContacts() {
-  //   // Ein leeres Objekt für die Gruppierung erstellen
-  //   let groupedContacts: { [key: string]: any[] } = {};
-
-  //   // Durch alle Kontakte iterieren
-  //   for (let contact of this.contactService.contactList) {
-  //     // Den ersten Buchstaben des Namens in Großbuchstaben holen
-  //     let firstLetter = contact.name.charAt(0).toUpperCase();
-
-  //     // Falls es noch keine Gruppe für diesen Buchstaben gibt, erstelle eine
-  //     if (!groupedContacts[firstLetter]) {
-  //       groupedContacts[firstLetter] = [];
-  //     }
-
-  //     // Initialen holen
-  //     let initials = this.getInitials(contact.name);
-
-  //     // Kontakt zur Gruppe hinzufügen
-  //     groupedContacts[firstLetter].push({
-  //       id: contact.id,
-  //       name: contact.name,
-  //       email: contact.email,
-  //       phone: contact.phone,
-  //       type: contact.type,
-  //       firstLetter: firstLetter,
-  //       initials: initials,
-  //     });
-  //   }
-
-  //   return groupedContacts;
-  // }
-
-  // // Funktion zur Berechnung der Initialen
-  // getInitials(name: string): string {
-  //   if (!name.trim()) return ''; // Falls der Name leer ist, gib einen leeren String zurück
-
-  //   let nameParts = name.trim().split(/\s+/); // Trenne anhand von Leerzeichen
-
-  //   let firstInitial = nameParts[0].charAt(0).toUpperCase(); // Erster Buchstabe des Vornamens
-  //   let lastInitial =
-  //     nameParts.length > 1
-  //       ? nameParts[nameParts.length - 1].charAt(0).toUpperCase()
-  //       : ''; // Erster Buchstabe des Nachnamens
-
-  //   return firstInitial + lastInitial;
-  // }
-
-  // addContactList() {
-  //   let newContact: Contact = {
-  //     name: this.name,
-  //     email: this.email,
-  //     phone: this.phone,
-  //   };
-
-  //   this.contactService.addContact(newContact);
-  // }
-
   deleteContact() {
     if (this.selectedContact && this.selectedContact.id) {
       this.contactService
@@ -158,13 +112,14 @@ export class ContactsComponent {
 
   updateContact() {
     if (this.selectedContact && this.selectedContact.id) {
-      console.log(        
-        this.name,
-        this.email,
-        this.phone
-      );
+      console.log(this.name, this.email, this.phone);
       this.contactService
-        .updateContact(this.selectedContact.id,this.name, this.email, this.phone)
+        .updateContact(
+          this.selectedContact.id,
+          this.name,
+          this.email,
+          this.phone
+        )
         .then(() => {
           // Optional: Leere den ausgewählten Kontakt nach der Löschung
           this.selectedContact = null;
