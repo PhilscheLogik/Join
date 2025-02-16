@@ -3,8 +3,7 @@
 section {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: flex-start; 
-  
+  justify-content: flex-start;
 }
 
 div {
@@ -39,15 +38,13 @@ app-help {
   section {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     // max-height: calc(100vh - 91px - 80px);
   }
 
   app-policy,
-app-imprint,
-app-help {
-  max-height: calc(100vh - 91px - 80px);
-  
-}
-  
+  app-imprint,
+  app-help {
+    max-height: calc(100vh - 91px - 80px);
+  }
 }

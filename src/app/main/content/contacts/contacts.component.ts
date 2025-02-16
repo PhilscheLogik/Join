@@ -15,9 +15,25 @@ import { OverlayComponent } from './overlay/overlay.component';
 export class ContactsComponent {
   constructor(private contactsService: ContactsService) {}
 
-  openOverlay() {
+  openOverlay(text: string) {
     // console.log('openOverlay() aufgerufen');
-    this.contactsService.openOverlay();
+
+    /*NEW for EDIT Fct*/
+    let dummy = {      
+      name:  '',
+      email:  '',
+      phone: '',
+    }
+
+    if(this.selectedContact && text == 'edit'){
+      dummy = this.selectedContact;      
+    }
+
+    console.log('-------------------------------------');
+    console.info('contact ts');
+    console.log(dummy);
+
+    this.contactsService.openOverlay(dummy);    
   }
 
   contactService = inject(ContactsService);

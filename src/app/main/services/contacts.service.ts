@@ -18,13 +18,35 @@ export class ContactsService {
   private overlayState = new BehaviorSubject<boolean>(false);
   overlayState$ = this.overlayState.asObservable();
 
-  openOverlay() {
+  openOverlay(selectedContact:Contact) {
     this.overlayState.next(true);
+
+    /*NEW for EDIT Fct*/
+    this.setTest(selectedContact);
+    console.info('service ts');  
+    console.log(this.getTest());   
   }
 
   closeOverlay() {
     this.overlayState.next(false);
   }
+
+  test: Contact = {      
+    name:  '',
+    email:  '',
+    phone: '',
+  };
+
+  setTest (selectedContact:Contact){
+    this.test = selectedContact;
+  }
+
+
+ getTest (){
+    return this.test;
+  }
+  
+
 
   contactList: Contact[] = [];
 

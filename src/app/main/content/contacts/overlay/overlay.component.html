@@ -1,4 +1,8 @@
-<div class="backdrop" [ngClass]="{ 'show': isOpen }" (click)="closeOverlay()"></div>
+<div
+  class="backdrop"
+  [ngClass]="{ show: isOpen }"
+  (click)="closeOverlay()"
+></div>
 <div class="dialog-container" [ngClass]="{ show: isOpen }">
   <div class="dialog-left">
     <button class="close-btn-mobile" (click)="closeOverlay()">
@@ -9,8 +13,12 @@
       alt="Join Logo"
       class="logo"
     />
+    @if(contactService.test.id){
+    <h2>Edit contact</h2>
+    } @else {
     <h2>Add contact</h2>
     <p>Tasks are better with a team!</p>
+    }
     <div class="divider"></div>
   </div>
 
@@ -24,7 +32,14 @@
     <div class="form-container">
       <form #contactForm="ngForm">
         <div class="input-group">
-          <input [(ngModel)]="name" name="name" type="text" placeholder="Name" class="input-field" />
+          <input
+            [(ngModel)]="name"
+            name="name"
+            type="text"
+            placeholder="Name"
+            class="input-field"
+            [value]="contactService.test.id ? contactService.test.name : ''"
+          />
           <img
             src="assets/img/icons/person.svg"
             class="input-icon"
@@ -32,7 +47,14 @@
           />
         </div>
         <div class="input-group">
-          <input [(ngModel)]="email" name="email" type="email" placeholder="Email" class="input-field" />
+          <input
+            [(ngModel)]="email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            class="input-field"
+            [value]="contactService.test.id ? contactService.test.email : ''"
+          />
           <img
             src="assets/img/icons/mail.svg"
             class="input-icon"
@@ -40,7 +62,14 @@
           />
         </div>
         <div class="input-group">
-          <input [(ngModel)]="phone" name="phone" type="tel" placeholder="Phone" class="input-field" />
+          <input
+            [(ngModel)]="phone"
+            name="phone"
+            type="tel"
+            placeholder="Phone"
+            class="input-field"
+            [value]="contactService.test.id ? contactService.test.phone : ''"
+          />
           <img
             src="assets/img/icons/call.svg"
             class="input-icon"
@@ -48,12 +77,22 @@
           />
         </div>
         <div class="button-group">
+          @if(contactService.test.id){
+          <button type="button" class="cancel-btn" (click)="closeOverlay()">
+            Delete (Cancel Fct)
+          </button>
+          <button type="submit" class="create-btn" (click)="addContactList()">
+            Save (Create Fct) <img src="assets/img/icons/check.svg" alt="Check" />
+          </button>
+          } @else {
           <button type="button" class="cancel-btn" (click)="closeOverlay()">
             Cancel <img src="assets/img/icons/cancel.svg" alt="Cancel" />
           </button>
           <button type="submit" class="create-btn" (click)="addContactList()">
             Create contact <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
+
+          }
         </div>
       </form>
     </div>

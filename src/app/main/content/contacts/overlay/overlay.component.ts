@@ -16,7 +16,7 @@ export class OverlayComponent {
 
   constructor(private contactsService: ContactsService) {
     this.contactsService.overlayState$.subscribe((state) => {
-      console.log('Overlay-Status geändert:', state);
+      console.log('Overlay-Status geändert:', state);     
       this.isOpen = state;
     });
   }
@@ -26,6 +26,7 @@ export class OverlayComponent {
   phone = '';
 
   contactService = inject(ContactsService);
+  
 
   closeOverlay() {
     this.contactsService.closeOverlay();
