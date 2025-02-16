@@ -1,9 +1,9 @@
 <div
   class="backdrop"
-  [ngClass]="{ show: isOpen }"
+  [ngClass]="{ show: isOpen, hide: isClosing }"
   (click)="closeOverlay()"
 ></div>
-<div class="dialog-container" [ngClass]="{ show: isOpen }">
+<div class="dialog-container" [ngClass]="{ show: isOpen, hide: isClosing }">
   <div class="dialog-left">
     <button class="close-btn-mobile" (click)="closeOverlay()">
       <img src="assets/img/icons/close_icon_white.svg" alt="Close" />
@@ -82,7 +82,8 @@
             Delete (Cancel Fct)
           </button>
           <button type="submit" class="create-btn" (click)="addContactList()">
-            Save (Create Fct) <img src="assets/img/icons/check.svg" alt="Check" />
+            Save (Create Fct)
+            <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
           } @else {
           <button type="button" class="cancel-btn" (click)="closeOverlay()">

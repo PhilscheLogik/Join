@@ -13,32 +13,54 @@ import { FormsModule } from '@angular/forms';
 })
 export class OverlayComponent {
   isOpen = false;
-
-  constructor(private contactsService: ContactsService) {
-    this.contactsService.overlayState$.subscribe((state) => {
-      console.log('Overlay-Status geändert:', state);     
-      this.isOpen = state;
-    });
-  }
+  isClosing = false;
 
   name = '';
   email = '';
   phone = '';
 
   contactService = inject(ContactsService);
-  
+
+  constructor(private contactsService: ContactsService) {
+    this.contactsService.overlayState$.subscribe((state) => {
+      console.log('Overlay-Status geändert:', state);
+      this.isOpen = state;
+      if (state) {
+        this.isClosing = false;
+      }
+    });
+  }
 
   closeOverlay() {
-    this.contactsService.closeOverlay();
+    this.isClosing = true;
+
+    setTimeout(() => {
+      this.isOpen = false;
+      this.isClosing = false;
+      this.contactsService.closeOverlay();
+    }, 500);
+
+    this.name = '';
+    this.email = '';
+    this.phone = '';
   }
 
   addContactList() {
+    if (!this.name || !this.email || !this.phone) {
+      console.warn('Alle Felder müssen ausgefüllt sein!');
+      return;
+    }
+
     let newContact: Contact = {
-      name: this.name,
-      email: this.email,
-      phone: this.phone,
+      name: this.name.trim(),
+      email: this.email.trim(),
+      phone: this.phone.trim(),
     };
 
     this.contactService.addContact(newContact);
+
+    this.name = '';
+    this.email = '';
+    this.phone = '';
   }
 }

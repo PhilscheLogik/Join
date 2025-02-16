@@ -15,6 +15,14 @@ import { OverlayComponent } from './overlay/overlay.component';
 export class ContactsComponent {
   constructor(private contactsService: ContactsService) {}
 
+  showSuccessMessage = false;
+
+  ngOnInit() {
+    this.contactsService.contactCreated$.subscribe((status) => {
+      this.showSuccessMessage = status;
+    });
+  }
+
   openOverlay(text: string) {
     // console.log('openOverlay() aufgerufen');
 

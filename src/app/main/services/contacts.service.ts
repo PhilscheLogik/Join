@@ -6,7 +6,7 @@ import {
   doc,
   Firestore,
   onSnapshot,
-  updateDoc
+  updateDoc,
 } from '@angular/fire/firestore';
 import { Contact } from '../../interfaces/contact';
 import { BehaviorSubject } from 'rxjs';
@@ -18,35 +18,31 @@ export class ContactsService {
   private overlayState = new BehaviorSubject<boolean>(false);
   overlayState$ = this.overlayState.asObservable();
 
-  openOverlay(selectedContact:Contact) {
+  private contactCreatedSource = new BehaviorSubject<boolean>(false);
+  contactCreated$ = this.contactCreatedSource.asObservable();
+
+  openOverlay(selectedContact: Contact) {
     this.overlayState.next(true);
 
     /*NEW for EDIT Fct*/
     this.setTest(selectedContact);
-    console.info('service ts');  
-    console.log(this.getTest());   
+    console.info('service ts');
+    console.log(this.getTest());
   }
 
-  closeOverlay() {
-    this.overlayState.next(false);
-  }
-
-  test: Contact = {      
-    name:  '',
-    email:  '',
+  test: Contact = {
+    name: '',
+    email: '',
     phone: '',
   };
 
-  setTest (selectedContact:Contact){
+  setTest(selectedContact: Contact) {
     this.test = selectedContact;
   }
 
-
- getTest (){
+  getTest() {
     return this.test;
   }
-  
-
 
   contactList: Contact[] = [];
 
@@ -76,11 +72,14 @@ export class ContactsService {
   }
 
   async addContact(item: Contact) {
-    await addDoc(this.getContactRef(), item).catch((err) => {
-      console.error(err);
-    });
+    try {
+      await addDoc(this.getContactRef(), item);
+      this.closeOverlay(); 
+      this.notifyContactCreated();
+    } catch (err) {
+      console.error('Error adding contact:', err);
+    }
   }
-
   async deleteContact(id: string) {
     if (id) {
       await deleteDoc(doc(this.getContactRef(), id));
@@ -164,5 +163,15 @@ export class ContactsService {
         : ''; // Erster Buchstabe des Nachnamens
 
     return firstInitial + lastInitial;
+  }
+
+  
+  closeOverlay() {
+    this.overlayState.next(false);
+  }
+
+  private notifyContactCreated() {
+    this.contactCreatedSource.next(true);
+    setTimeout(() => this.contactCreatedSource.next(false), 10000);
   }
 }

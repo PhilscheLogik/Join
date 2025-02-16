@@ -1,23 +1,31 @@
 @import "./../../../../../styles.scss";
 
 .dialog-container {
-  display: none;
-//   display: flex;
-  flex-direction: row;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateX(150%);
   height: 50vh;
   margin: 0 auto;
   background: $white;
   border-radius: 24px;
   overflow: hidden;
   z-index: 1000;
-  
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 
   &.show {
     display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) translateX(0%);
+  }
+
+  &.hide {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateX(150%);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
 
   @media (max-width: 1150px) {
@@ -190,6 +198,11 @@ form {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
+  outline: none;
+
+  &:focus {
+    border-color: $light_blue;
+  }
 }
 
 .input-icon {
@@ -232,7 +245,8 @@ form {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     img {
-      color: $light_blue;
+      filter: invert(56%) sepia(34%) saturate(507%) hue-rotate(165deg)
+        brightness(98%) contrast(95%);
     }
   }
 }
@@ -264,4 +278,26 @@ form {
 .backdrop.show {
   opacity: 1;
   visibility: visible;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translate(-50%, -50%) translateX(150%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translate(-50%, -50%) translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(150%);
+    opacity: 0;
+  }
 }
