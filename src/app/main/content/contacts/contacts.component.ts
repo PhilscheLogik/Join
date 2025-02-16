@@ -13,9 +13,10 @@ import { OverlayComponent } from './overlay/overlay.component';
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
-  constructor(private contactsService: ContactsService) {}
 
-  showSuccessMessage = false;
+    showSuccessMessage: boolean = false;
+
+  constructor(private contactsService: ContactsService) {}
 
   ngOnInit() {
     this.contactsService.contactCreated$.subscribe((status) => {
