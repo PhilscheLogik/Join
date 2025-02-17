@@ -12,6 +12,7 @@
 }
 
 body {
+  @include dFlex($jc: flex-start);
   color: $black;
   background-color: $cream-white;
 }
