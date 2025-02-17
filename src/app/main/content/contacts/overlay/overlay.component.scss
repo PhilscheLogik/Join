@@ -31,7 +31,7 @@
   @media (max-width: 1150px) {
     flex-direction: column;
     height: auto;
-    width: 70vw;
+    width: 85vw;
     .logo,
     .cancel-btn,
     .close-btn {
@@ -39,6 +39,7 @@
     }
     .input-group {
       width: 100%;
+      min-width: 60vw;
     }
     .button-group {
       justify-content: center;
@@ -189,7 +190,14 @@ form {
 .input-group {
   position: relative;
   width: 100%;
-  margin-bottom: 24px;
+  min-width: 20vw;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  margin-bottom: 16px;
 }
 
 .input-field {
@@ -211,6 +219,13 @@ form {
   top: 50%;
   transform: translateY(-50%);
   width: 20px;
+}
+
+.error-message {
+  font-size: 12px;
+  margin-top: -10px;
+  color: red;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .button-group {

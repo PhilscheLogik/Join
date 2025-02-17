@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { ContactsService } from '../../../services/contacts.service';
 import { Contact } from '../../../../interfaces/contact';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-overlay',
@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './overlay.component.scss',
 })
 export class OverlayComponent {
+  @ViewChild('contactForm') contactForm!: NgForm;
+
   isOpen = false;
   isClosing = false;
 
@@ -40,6 +42,10 @@ export class OverlayComponent {
       this.contactsService.closeOverlay();
     }, 500);
 
+    if (this.contactForm) {
+      this.contactForm.resetForm();
+    }
+
     this.name = '';
     this.email = '';
     this.phone = '';
@@ -59,6 +65,10 @@ export class OverlayComponent {
 
     this.contactService.addContact(newContact);
 
+    if (this.contactForm) {
+      this.contactForm.resetForm();
+    }
+    
     this.name = '';
     this.email = '';
     this.phone = '';

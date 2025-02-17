@@ -39,6 +39,9 @@
             placeholder="Name"
             class="input-field"
             [value]="contactService.test.id ? contactService.test.name : ''"
+            #nameField="ngModel"
+            required
+            pattern="^[A-Za-z\s]{3,}$"
           />
           <img
             src="assets/img/icons/person.svg"
@@ -46,6 +49,10 @@
             alt="Name Icon"
           />
         </div>
+        @if (nameField.invalid && nameField.touched) {
+        <p class="error-message">Please use letters only!</p>
+        } @else { <p> </p>}
+
         <div class="input-group">
           <input
             [(ngModel)]="email"
@@ -54,6 +61,9 @@
             placeholder="Email"
             class="input-field"
             [value]="contactService.test.id ? contactService.test.email : ''"
+            #emailField="ngModel"
+            required
+            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
           />
           <img
             src="assets/img/icons/mail.svg"
@@ -61,6 +71,12 @@
             alt="Email Icon"
           />
         </div>
+        @if (emailField.invalid && emailField.touched) {
+        <p class="error-message">
+          Please use a valid email!
+        </p>
+        } @else { <p> </p>}
+
         <div class="input-group">
           <input
             [(ngModel)]="phone"
@@ -69,6 +85,9 @@
             placeholder="Phone"
             class="input-field"
             [value]="contactService.test.id ? contactService.test.phone : ''"
+            #phoneField="ngModel"
+            required
+            pattern="^[+0-9]{3,}$"
           />
           <img
             src="assets/img/icons/call.svg"
@@ -76,6 +95,10 @@
             alt="Phone Icon"
           />
         </div>
+        @if (phoneField.invalid && phoneField.touched) {
+        <p class="error-message">Please use numbers only!</p>
+        } @else { <p> </p>}
+
         <div class="button-group">
           @if(contactService.test.id){
           <button type="button" class="cancel-btn" (click)="deleteItem(contactService.test.id); closeOverlay()">
