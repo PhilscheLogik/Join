@@ -23,9 +23,17 @@
   </div>
 
   <div class="dialog-right">
-    <button class="close-btn" (click)="closeOverlay()">
+    @if(contactService.test.id){
+      <button class="close-btn" (click)="closeOverlayEdit()">
+        <img src="assets/img/icons/close.svg" alt="Close" />
+      </button>
+    } @else {
+      <button class="close-btn" (click)="closeOverlay()">
       <img src="assets/img/icons/close.svg" alt="Close" />
     </button>
+  }
+    
+      
     <div class="profile-pic">
       @if(contactService.test.id){
       <div class="initials" 
@@ -53,7 +61,7 @@
             [value]="contactService.test.id ? contactService.test.name : ''"
             #nameField="ngModel"
             required
-            pattern="[a-zA-ZäüößÄÜÖ\s]{3,}$"
+            pattern="[a-zA-ZäüößÄÜÖ\s]{3,}"
           />
           <img
             src="assets/img/icons/person.svg"

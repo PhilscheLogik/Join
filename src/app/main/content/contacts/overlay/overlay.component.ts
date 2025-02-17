@@ -51,6 +51,18 @@ export class OverlayComponent {
     this.phone = '';
   }
 
+  closeOverlayEdit(){
+    this.isClosing = true;
+
+    setTimeout(() => {
+      this.isOpen = false;
+      this.isClosing = false;
+      this.contactsService.closeOverlay();
+    }, 500);    
+  }
+
+
+
   addContactList() {
     if (!this.name || !this.email || !this.phone) {
       console.warn('Alle Felder müssen ausgefüllt sein!');
