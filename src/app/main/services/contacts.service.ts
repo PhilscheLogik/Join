@@ -92,7 +92,7 @@ export class ContactsService {
     newEmail: string,
     newPhone: string
   ) {
-    const updateRef = doc(this.getContactRef(), id);
+    const updateRef = doc(this.getContactRef(), id);    
 
     if (newName != '' && newEmail != '' && newPhone != '') {
       await updateDoc(updateRef, {

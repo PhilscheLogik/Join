@@ -71,11 +71,29 @@ export class OverlayComponent {
     this.phone = '';
   }
 
-
   updateItem(id: string) {
-    this.contactService.updateContact(id, this.name, this.email, this.phone );
-    this.name = '';
-    this.email = '';
-    this.phone = '';
+
+   
+    let newName = this.name == '' ? this.contactService.test.name : this.name;
+    let newEmail = this.email == '' ? this.contactService.test.email : this.email;
+    let newPhone = this.phone == '' ? this.contactService.test.phone : this.phone;
+
+
+
+    this.contactService.updateContact(id, newName, newEmail, newPhone );
+    // console.log(id, this.name, this.email, this.phone);
+    // console.log(
+    //   this.contactService.test.id,
+    //   this.contactService.test.name,
+    //   this.contactService.test.email,
+    //   this.contactService.test.phone
+    // );
+    // console.log(
+    //   this.contactService.test.id,
+    //   newName,
+    //   newEmail,
+    //   newPhone
+    // );
+
   }
 }
