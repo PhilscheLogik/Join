@@ -2,70 +2,210 @@
 
 
 section {
-    @include font($fs: 20px);
     @include dFlex($jc: space-between);
 
-    // max-width: 85%;
     width: 100%;
     background-color: $white;
-    border-bottom: inset;
+    position: relative;
+    min-height: 91px;
+    // overflow: hidden;
+
     
 
-    >.header_left {
-        >h1 {
-            background-color: $white;
-        }
+}
+
+.header_left {
+    position: relative;
+    background-color: $white;
+    padding: 32px 64px;
+
+    >h1 {
+        @include font($fs: 20px, $fw: 400);
+
         background-color: $white;
-       padding: 32px 64px;
     }
+}
 
-    >.header_right {
+img {
+    display: none;
+    position: absolute;
+    top: 32;
+    left: 64;
+    height: 39px;
+    width: 32px;
+}
+
+.header_right {
+    @include dFlex($jc: center);
+    background-color: $white;
+    
+    >.help_link {
+        height: 32px;
+        width: 32px;
+        background-image: url('./../../../assets/img/icons/help_button.svg');
         background-color: $white;
-
-        @include dFlex($jc: center);
-        
-        >.help_link {
-            height: 32px;
-            width: 32px;
-            background-image: url('./../../../assets/img/icons/help_button.svg');
-            background-color: $white;
-            margin-right: 32px;
-            &:hover {
-                transform: scale(1.1);
-            }
-
-        }
-
-        >.initials_btn {
-
-            @include dFlex($ai: center);
-
-            height: 64px;
-            width: 64px;
-            border-radius: 50%;
-            border: 3px solid black;
-            background-color: $white;
-            margin-right: 40px;
-            // background-image: url('./../../../assets/img/icons/user_profile_initials.svg');
-
-            &:hover {
-                // background-image: url('./../../../assets/img/icons/user_profile_initials1.svg');
-                transform: scale(1.25);
-                background-color: rgba($color: #000000, $alpha: 0.1);
-                cursor: pointer;
-            }
-
-            >p {
-                background-color: $white;
-                @include font($fs: 32px, $fw: 500);
-                color: $aqua_blue;
-            } 
+        margin-right: 32px;
+        &:hover {
+            transform: scale(1.1);
         }
     }
 }
 
-.initials_btn p{
+.d_none {
+    display: none; 
+}
+
+.initials_btn {
+    @include dFlex($ai: center);
+
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    border: 3px solid $black;
+    background-color: $white;
+    margin-right: 40px;
+
     &:hover {
-        background-color: rgba($color: #000000, $alpha: 0.1);
+        background-color: rgba($gray, 0.5);
+        cursor: pointer;
+    }
+
+    >p {
+        @include font($fs: 32px, $fw: 600);
+
+        background-color: transparent;
+        color: $aqua;
+
+        &:hover {
+            pointer-events: none;
+        }
+    } 
+}
+
+/* Burger-Overlay */
+
+.toggleOff_container {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 15;
+}
+
+.header_overlay {
+    position: fixed;
+    top: 92px;
+    right: -300px; // Start off-screen
+    width: 160px;
+    background-color: $dark_blue;
+    border-radius: 20px 0 20px 20px;
+    transition: all 0.3s ease-in-out; // Transition for slide
+    visibility: hidden; // Initially hidden
+    opacity: 0; // Fully transparent when hidden
+    z-index: 5;
+    height: auto;
+    
+    &.open {
+      right: 0; // Slide into view
+      visibility: visible; // Make it visible when open
+      opacity: 1; // Make it fully opaque when open
+    }
+  }
+
+.inner_overlay {
+    @include dFlex($ai: start);
+
+    flex-direction: column;
+    padding: 16px 8px;
+
+    >a {
+        padding: 16px 16px;
+        text-decoration: none;
+        color: $white;
+        width: 100%;
+
+        &:hover {
+            background-color: $button_hover_blue;
+        }
     }
 }
+
+.burger_help_link {
+    display: none;
+    padding: 16px 16px;
+    text-decoration: none;
+    color: $white;
+    width: 100%;
+}
+
+.slideIn {
+    animation: slide-in 125ms ease-in forwards,
+}
+
+/* Animations */
+
+ @keyframes slide-in {
+     0% {
+       transform: translate(-50%, -50%) translateX(150%);
+       opacity: 0;
+     }
+     100% {
+       transform: translate(-50%, -50%) translateX(0%);
+       opacity: 1;
+     }
+   }
+  
+   @keyframes slide-out {
+     0% {
+       transform: translate(-50%, -50%) translateX(0%);
+     opacity: 1;
+     }
+    100% {
+      transform: translate(-50%, -50%) translateX(150%);
+      opacity: 0;
+    }
+}
+
+/* Media query's */
+
+@media (max-width: 720px) {
+
+    .help_link {
+      display: none;
+    }
+
+    .responsive_header_logo {
+            // @include dFlex($jc: start, $ai: center);
+            display: block;
+        
+    }
+
+    .header_left {
+        >h1 {
+            display: none;
+        }
+    }
+
+    .initials_btn {
+        height: 40px;
+        width: 40px;
+        >p {
+            @include font($fs: 16px, $fw: 600);
+        }
+    }
+
+    .burger_help_link {
+        display: block;
+    }
+
+    img {
+        top: 12px;
+        left: 24px;
+    }
+
+    .header_overlay {
+        top: 68px;
+        right: -300px;
+    }
+  }

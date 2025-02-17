@@ -1,31 +1,122 @@
 <section>
-    <div class="contact-list">
-        <div class="list">
-            <button>
-                <span>Add new Contact</span>
-                <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="">
-            </button>
+  @if(!selectedContact) {
+  <div class="new_contact_mobile_icon" (click)="openOverlay('add')">
+    <img src="assets/img/icons/person_add_icon.svg" alt="">
+  </div>
+  }
+  @if(selectedContact) {
+  <div class="new_contact_mobile_icon" (click)="openOverlayEditContactMobile('edit')">
+    <img src="assets/img/icons/edit_vert_icon.svg" alt="">
+  </div>
+  }
 
-            <div class="single-contact">
-                @for(contact of contactList; track $index;){
-                    <div>
-                        <img src="assets/img/icons/" alt="">
-                    </div>
-                <div class="info">
-                    <p class="name">{{ contact.name }}</p>
-                    <a class="email">{{ contact.email }}</a>
+  <!-- Overlay für Editieren und Löschen von Kontakt -->
+  @if(isOverlayVisible) {
+  <div class="parent-overlay-container" (click)="closeOverlay()">
+    <div class="overlay">
+      <div class="overlay-content" (click)="$event.stopPropagation()">
+        <div (click)="openOverlay('edit')">
+          <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg" />
+          <p>Edit</p>
+        </div>
 
-                </div>
-                }
+        <div (click)="deleteContact()">
+          <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
+          <p>Delete</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  <div class="contact-list">
+    <div class="list">
+      <button class="add-new-contact" (click)="openOverlay('add')">
+        <span>Add new Contact</span>
+        <img class="person_add_icon" src="assets/img/icons/person_add_icon.svg" alt="" />
+      </button>
+      @for (group of contactService.getGroupedContacts() | keyvalue; track
+      $index) {
+      <div class="single-contact">
+        <div class="letter">
+          {{ group.key }}
+        </div>
+        @for (contact of group.value; track $index) {
+        <div class="single-contact-container" (click)="selectContact(contact); mobileDisplay()"
+          [class.active]="selectedContact?.id === contact.id">
+          <div class="profile_badge" [ngStyle]="{
+              'background-color': contactService.getBadgeColor(getIndexInFullList(contact))
+            }">
+            {{ contact.initials }}
+          </div>
+          <div class="info">
+            <p class="name">{{ contact.name }}</p>
+            <a class="email">{{ contact.email }}</a>
+          </div>
+        </div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+  <div class="contacts" [class.isShown]="isShown">
+    <div class="headline">
+      <div>
+        <h1>Contacts</h1>
+        @if(selectedContact) {
+        <img class="arrow_left" src="assets/img/icons/arrow_left.svg"
+          (click)="selectContact(selectedContact); mobileDisplay()" />
+        }
+      </div>
+      <img src="assets/img/icons/or_icon.svg" />
+      <p>Better with a team</p>
+      <div class="border_blue"></div>
+    </div>
+    @if(selectedContact) {
+    <!-- <img class="arrow_left" src="assets/img/icons/arrow_left.svg" (click)="selectContact(selectedContact); mobileDisplay()"> -->
+    <div class="contact_content" [ngClass]="{ show: showContactContent }">
+      <div class="contact_content_head">
+        <div class="contact_profile_badge" [ngStyle]="{
+            'background-color': contactService.getBadgeColor(
+              getIndexInFullList(selectedContact)
+            )
+          }">
+          {{ selectedContactInitials }}
+        </div>
+        <div class="contact_name_section">
+          <p class="name">{{ selectedContact.name }}</p>
+          <div class="editing_section">
+            <!-- <div (click)="updateContact()" class="edit"> -->
+            <div (click)="openOverlay('edit')" class="edit">
+              <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg" />
+              <img class="pencil_icon_hover_blue" src="assets/img/icons/pencil_icon_hover_blue.svg" />
+              <p>Edit</p>
             </div>
+            <div (click)="deleteContact()" class="delete">
+              <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
+              <img class="trash_icon_hover_blue" src="assets/img/icons/trash_icon_hover_blue.svg" />
+              <p>Delete</p>
+            </div>
+          </div>
         </div>
-    </div>
-    <div class="contacts">
-        <div class="headline">
-            <h1>Contacts</h1>
-            <img src="assets/img/icons/or_icon.svg">
-            <p>Better with a team</p>
+      </div>
+      <div class="contact_detail_section">
+        <p class="information_headline">Contact Information</p>
+        <div class="information">
+          <p class="email_headline">Email</p>
+          <p class="email">{{ selectedContact.email }}</p>
+          <p class="phone_headline">Phone</p>
+          <p class="phone">{{ selectedContact.phone }}</p>
         </div>
-
+      </div>
     </div>
+    }
+  </div>  
 </section>
+
+<app-overlay></app-overlay>
+
+@if (showSuccessMessage) {
+<div class="success-message">
+  Contact successfully created
+</div>
+}

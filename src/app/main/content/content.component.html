@@ -1,12 +1,42 @@
-<h3>Content-Section</h3>
-<p>Hier entsteht das erste Sprint Goal! Also Navbar, Header und Kontaktliste mit Add Option. </p>
-<p>Das ist meiner!"</p>
+<section>
+  <div>
+    <app-header></app-header>
 
-<app-header></app-header>
+    <app-summary
+      id="summary-section"
+      [ngClass]="{ active: navigationService.selectedItem === 0 }"
+    ></app-summary>
+    <app-add-task
+      id="add-task-section"
+      [ngClass]="{ active: navigationService.selectedItem === 1 }"
+    ></app-add-task>
+    <app-board
+      id="board-section"
+      [ngClass]="{ active: navigationService.selectedItem === 2 }"
+    ></app-board>
+    <app-contacts
+      id="contacts-section"
+      [ngClass]="{ active: navigationService.selectedItem === 3 }"
+    ></app-contacts>
 
-<app-summary id="summay-section"></app-summary>
-<app-add-task id="add-task-section"></app-add-task>
-<app-board id="board-section"></app-board>
-<app-contacts id="contacts-section"></app-contacts>
+    <app-policy
+      id="policy-section"
+      [ngClass]="{ active: navigationService.selectedItem === 4 }"
+    >
+    </app-policy>
 
-<app-footer></app-footer>
+    <app-imprint
+      id="imprint-section"
+      [ngClass]="{ active: navigationService.selectedItem === 5 }"
+    >
+    </app-imprint>
+    
+    <app-help
+      id="help-section"
+      [ngClass]="{ active: navigationService.selectedItem === 6 }"      
+    > Test
+    </app-help>
+  </div>
+
+  <app-footer></app-footer>
+</section>

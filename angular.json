@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Join": {
+    "join": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Join:build:production"
+              "buildTarget": "join:build:production"
             },
             "development": {
-              "buildTarget": "Join:build:development"
+              "buildTarget": "join:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Join:build"
+            "buildTarget": "join:build"
           }
         },
         "test": {
@@ -95,6 +95,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "join:build:production",
+              "serveTarget": "join:serve:production"
+            },
+            "development": {
+              "buildTarget": "join:build:development",
+              "serveTarget": "join:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
