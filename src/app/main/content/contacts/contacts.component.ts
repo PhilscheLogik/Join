@@ -65,9 +65,9 @@ export class ContactsComponent {
       dummy = this.selectedContact;
     }
 
-    console.log('-------------------------------------');
-    console.info('contact ts');
-    console.log(dummy);
+    // console.log('-------------------------------------');
+    // console.info('contact ts');
+    // console.log(dummy);
 
     this.contactsService.openOverlay(dummy);
   }

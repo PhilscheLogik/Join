@@ -26,8 +26,8 @@ export class ContactsService {
 
     /*NEW for EDIT Fct*/
     this.setTest(selectedContact);
-    console.info('service ts');
-    console.log(this.getTest());
+    // console.info('service ts');
+    // console.log(this.getTest());
   }
 
   test: Contact = {
@@ -52,9 +52,9 @@ export class ContactsService {
 
   constructor() {
     this.unsubContacts = this.subContactList();
-    this.overlayState$.subscribe((state) =>
-      console.log('Overlay State:', state)
-    );
+    // this.overlayState$.subscribe((state) =>
+    //   console.log('Overlay State:', state)
+    // );
   }
 
   ngOnDestroy() {
