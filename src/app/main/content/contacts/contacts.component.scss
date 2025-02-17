@@ -264,7 +264,7 @@ section {
     }
 
     .show {
-        animation: slide-right 0.5s ease-in;
+        animation: slide-right 125ms ease-in;
     }
 
     /* animation slide-right*/
@@ -433,6 +433,65 @@ section {
         }
     }
 
+    .parent-overlay-container {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 20;
+
+        background-color:transparent;
+        border: 1px solid;
+
+        .overlay {
+            @include dFlex($g: 20px);
+            flex-direction: column;
+            position: fixed;
+            bottom: 90px;
+            right: 5px;
+            width: 116px;
+            height: 100px;
+            background-color: $white;
+            z-index: 100;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+            animation: slide-right 125ms ease-in-out;
+        }
+
+        /* animation slide-right*/
+        @keyframes slide-right {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .overlay-content {
+            @include dFlex($ai: flex-start, $g: 10px);
+            flex-direction: column;
+
+            div {
+                cursor: pointer;
+                @include dFlex($g: 10px);
+
+                p {
+                    @include font($fs: 16px, $fw: 400);
+                }
+
+                img {
+                    width: 24px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+
     .contact-list {
 
         .list {
@@ -441,21 +500,21 @@ section {
                 display: none;
             }
 
-                        .single-contact {
-                            .single-contact-container {
-                                .info {
-            
-                                    >p {
-                                        @include font($fs: 16px, $fw: 400);
-                                        background-color: transparent;
-                                    }
-            
-                                    .email {
-                                        @include font($fs: 16px, $fw: 400);
-                                    }
-                                }
-                            }
+            .single-contact {
+                .single-contact-container {
+                    .info {
+
+                        >p {
+                            @include font($fs: 16px, $fw: 400);
+                            background-color: transparent;
                         }
+
+                        .email {
+                            @include font($fs: 16px, $fw: 400);
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -485,6 +544,8 @@ section {
 
         .contact_content {
             .contact_content_head {
+                @include dFlex($ai: center, $g: 20px);
+
                 .contact_profile_badge {
                     @include dFlex();
                     width: 60px;
@@ -495,6 +556,10 @@ section {
                 .contact_name_section {
                     .name {
                         @include font($fs: 24px, $fw: 700);
+                    }
+
+                    .editing_section {
+                        display: none;
                     }
                 }
             }

@@ -13,8 +13,8 @@ import { OverlayComponent } from './overlay/overlay.component';
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
-
-    showSuccessMessage: boolean = false;
+  isOverlayVisible: boolean = false;
+  showSuccessMessage: boolean = false;
 
   constructor(private contactsService: ContactsService) {}
 
@@ -24,25 +24,52 @@ export class ContactsComponent {
     });
   }
 
+  openOverlayEditContactMobile(action: string) {
+    // Logik, um das Overlay zu öffnen
+    if (action === 'edit' && this.selectedContact) {
+      this.isOverlayVisible = true;
+    }
+  }
+
+  // Schließt das Overlay, wenn der Hintergrund angeklickt wird
+  closeOverlayOnClick(event: any) {
+    if (event.target.classList.contains('overlay')) {
+      this.closeOverlay();
+    }
+  }
+
+  closeOverlay() {
+    // Schließe das Overlay
+    this.isOverlayVisible = false;
+  }
+
+  editContact() {
+    if (this.selectedContact) {
+      // Logik für das Bearbeiten des Kontakts (öffne Bearbeitungsformular oder führe eine andere Aktion aus)
+      console.log('Edit contact', this.selectedContact);
+      this.closeOverlay(); // Schließt das Overlay nach dem Bearbeiten
+    }
+  }
+
   openOverlay(text: string) {
     // console.log('openOverlay() aufgerufen');
 
     /*NEW for EDIT Fct*/
-    let dummy = {      
-      name:  '',
-      email:  '',
+    let dummy = {
+      name: '',
+      email: '',
       phone: '',
-    }
+    };
 
-    if(this.selectedContact && text == 'edit'){
-      dummy = this.selectedContact;      
+    if (this.selectedContact && text == 'edit') {
+      dummy = this.selectedContact;
     }
 
     console.log('-------------------------------------');
     console.info('contact ts');
     console.log(dummy);
 
-    this.contactsService.openOverlay(dummy);    
+    this.contactsService.openOverlay(dummy);
   }
 
   contactService = inject(ContactsService);
@@ -133,6 +160,7 @@ export class ContactsComponent {
           // Optional: Leere den ausgewählten Kontakt nach der Löschung
           this.selectedContact = null;
           this.isContactSelected = false;
+          this.closeOverlay(); // Schließt das Overlay nach dem Löschen
         })
         .catch((err) => {
           console.error('Fehler beim Löschen des Kontakts:', err);
