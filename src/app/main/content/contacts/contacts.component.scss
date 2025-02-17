@@ -96,6 +96,7 @@ section {
                     border-radius: 50%;
                     @include font($fs: 12px, $fw: 400);
                     color: $white;
+                    min-width: 42px;
                 }
 
                 .info {
