@@ -417,7 +417,7 @@ section {
         cursor: pointer;
         @include dFlex();
         border: 1px solid;
-        border-color: $light_blue;
+        border-color: $dark_blue;
         border-radius: 50%;
         background-color: $dark_blue;
         height: 56px;
@@ -429,6 +429,7 @@ section {
 
         &:hover {
             background-color: $light_blue;
+            border-color: $light_blue;
         }
     }
 
