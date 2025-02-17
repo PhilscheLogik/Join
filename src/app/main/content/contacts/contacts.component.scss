@@ -368,7 +368,7 @@ section {
 
 @media (max-width: 1100px) {
     .contact-list {
-        width: 45%;        
+        width: 45%;
     }
 
     .contacts {
@@ -452,7 +452,7 @@ section {
         left: 0px;
         z-index: 4;
 
-        background-color:transparent;
+        background-color: transparent;
         border: 1px solid;
 
         .overlay {
@@ -578,43 +578,56 @@ section {
     }
 }
 
-/* Norman */
-.success-message {
-    position: fixed;
-    bottom: 400px;
-    right: 20px;
-    background-color: #1d2b3a;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transform: translateX(150%);
-    animation: slide-in 0.5s ease-in forwards,
-        slide-out 0.5s ease-out 1.5s forwards;
-}
+@media (max-width: 370px) {  
+    .contact-list {
 
-@keyframes slide-in {
-    0% {
-        transform: translateX(150%);
+        .list {
+            .single-contact {
+                .single-contact-container {
+                    @include dFlex($jc: flex-start, $g: 10px);
+                    }
+                }
+            }
+        }        
+    }
+
+    /* Norman */
+    .success-message {
+        position: fixed;
+        bottom: 400px;
+        right: 20px;
+        background-color: #1d2b3a;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         opacity: 0;
-    }
-
-    100% {
-        transform: translateX(-50%);
-        opacity: 1;
-    }
-}
-
-@keyframes slide-out {
-    0% {
-        transform: translateX(-50%);
-        opacity: 1;
-    }
-
-    100% {
         transform: translateX(150%);
-        opacity: 0;
+        animation: slide-in 0.5s ease-in forwards,
+            slide-out 0.5s ease-out 1.5s forwards;
     }
-}
+
+    @keyframes slide-in {
+        0% {
+            transform: translateX(150%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateX(-50%);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-out {
+        0% {
+            transform: translateX(-50%);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateX(150%);
+            opacity: 0;
+        }
+    }
