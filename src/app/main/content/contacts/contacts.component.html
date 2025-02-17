@@ -1,4 +1,7 @@
 <section>
+  <div class="new_contact_mobile_icon" (click)="openOverlay('add')">
+    <img src="assets/img/icons/person_add_icon.svg" alt="">
+  </div>
   <div class="contact-list">
     <div class="list">
       <button class="add-new-contact" (click)="openOverlay('add')">
@@ -37,8 +40,8 @@
         }
       </div>
       }
-    </div>
-  </div>
+    </div>    
+  </div>  
   <div class="contacts" [class.isShown]="isShown">
     <div class="headline">
       <div>

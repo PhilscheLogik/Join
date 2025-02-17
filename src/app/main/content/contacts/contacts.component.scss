@@ -1,501 +1,522 @@
 @import "./../../../../styles.scss";
 
 section {
-  @include dFlex($ai: flex-start);
-  width: 100%;
-  height: calc(100vh - 91px);
+    @include dFlex($ai: flex-start);
+    width: 100%;
+    height: calc(100vh - 91px);
+    position: relative;
 }
 
 /* Scrollbar Styling */
 .contact-list::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
 
 .contact-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
+    background: #f1f1f1;
+    border-radius: 4px;
 }
 
 .contact-list::-webkit-scrollbar-thumb {
-  background: #a8a8a8;
-  border-radius: 4px;
+    background: #a8a8a8;
+    border-radius: 4px;
+}
+
+.new_contact_mobile_icon {
+    display: none;
 }
 
 .contact-list {
-  width: 30%;
-  height: 100%;
-  overflow-y: auto;
-  padding-top: 10px;
-  background-color: $white;
+    width: 30%;
+    height: 100%;
+    overflow-y: auto;
+    padding-top: 10px;
+    background-color: $white;
 
-  .list {
-    @include dFlex();
-    flex-direction: column;
-    background-color: transparent;
-    position: relative;
-
-    .add-new-contact {
-      @include dFlex($g: 20px);
-      width: 352px;
-      height: 56px;
-      background-color: $dark_blue;
-      color: $white;
-      border-radius: 10px;
-      cursor: pointer;
-      position: sticky;
-      top: 0px;
-      z-index: 10;
-      border-width: 0px;
-
-      span {
-        @include font($fs: 21px, $fw: 700);
-        color: $white;
-        background-color: transparent;
-      }
-
-      .person_add_icon {
-        background-color: transparent;
-      }
-
-      &:hover {
-        background-color: $blue;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      }
-    }
-
-    .single-contact {
-      background-color: transparent;
-      @include dFlex($ai: flex-start);
-      flex-direction: column;
-
-      .letter {
-        @include font($fs: 20px, $fw: 400);
-        width: 352px;
-        border-bottom: 1px solid rgba(209, 209, 209, 1);
-        border-radius: 3px;
-        padding: 17px 36px;
-      }
-
-      .single-contact-container {
-        cursor: pointer;
-        @include dFlex($jc: flex-start, $g: 20px);
-        width: 352px;
-        padding: 15px 24px;
-
-        .profile_badge {
-          @include dFlex();
-          width: 42px;
-          height: 42px;
-          border: 1px solid;
-          border-color: $white;
-          border-radius: 50%;
-          @include font($fs: 12px, $fw: 400);
-          color: $white;
-        }
-
-        .info {
-          @include dFlex($ai: flex-start, $g: 5px);
-          flex-direction: column;
-          background-color: transparent;
-          padding: 8px;
-
-          > p {
-            @include font($fs: 20px, $fw: 400);
-            background-color: transparent;
-          }
-
-          .email {
-            color: $blue;
-          }
-        }
-
-        &:hover {
-          background-color: $cream-white;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-          border-radius: 10px;
-        }
-
-        &.active {
-          background-color: $dark_blue;
-          border-radius: 10px;
-          color: $white;
-        }
-      }
-    }
-  }
-}
-
-.isShown {
-  z-index: 2;
-}
-
-.contacts {
-  @include dFlex($jc: flex-start, $g: 50px);
-  flex-direction: column;
-  width: 70%;
-  height: 100%;
-  padding-top: 80px;
-  padding-left: 50px;
-  box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
-
-  position: relative;
-  overflow: hidden;
-
-  .headline {
-    @include dFlex($jc: flex-start, $g: 30px);
-    width: 100%;
-
-    > div {
-      h1 {
-        @include font($fs: 61px, $fw: 700);
-      }
-
-      .arrow_left {
-        display: none;
-        cursor: pointer;
-      }
-    }
-
-    > p {
-      @include font($fs: 27px, $fw: 400);
-      color: $dark_blue;
-    }
-  }
-
-  .contact_content {
-    @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
-    flex-direction: column;
-    width: 100%;
-    min-height: 500px;
-    background-color: transparent;
-
-    .contact_content_head {
-      @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
-
-      .contact_profile_badge {
+    .list {
         @include dFlex();
-        width: 120px;
-        height: 120px;
-        border: 1px solid;
-        border-color: $white;
-        border-radius: 50%;
-        @include font($fs: 47px, $fw: 500);
-        color: $white;
-      }
-
-      .contact_name_section {
-        @include dFlex($ai: flex-start, $g: 10px);
         flex-direction: column;
+        background-color: transparent;
+        position: relative;
 
-        .name {
-          @include font($fs: 47px, $fw: 500);
-        }
-
-        .editing_section {
-          @include dFlex($g: 30px);
-
-          .edit,
-          .delete {
+        .add-new-contact {
+            @include dFlex($g: 20px);
+            width: 352px;
+            height: 56px;
+            background-color: $dark_blue;
+            color: $white;
+            border-radius: 10px;
             cursor: pointer;
-            @include dFlex($g: 10px);
-            @include font($fs: 16px, $fw: 400);
+            position: sticky;
+            top: 0px;
+            z-index: 10;
+            border-width: 0px;
 
-            .pencil_icon,
-            .trash_icon {
-              display: block;
+            span {
+                @include font($fs: 21px, $fw: 700);
+                color: $white;
+                background-color: transparent;
             }
 
-            .pencil_icon_hover_blue,
-            .trash_icon_hover_blue {
-              display: none;
+            .person_add_icon {
+                background-color: transparent;
             }
 
             &:hover {
-              color: $light_blue;
-              @include font($fs: 16px, $fw: 700);
-
-              .pencil_icon,
-              .trash_icon {
-                display: none;
-              }
-
-              .pencil_icon_hover_blue,
-              .trash_icon_hover_blue {
-                display: block;
-              }
+                background-color: $blue;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
-          }
         }
-      }
+
+        .single-contact {
+            background-color: transparent;
+            @include dFlex($ai: flex-start);
+            flex-direction: column;
+
+            .letter {
+                @include font($fs: 20px, $fw: 400);
+                width: 352px;
+                border-bottom: 1px solid rgba(209, 209, 209, 1);
+                border-radius: 3px;
+                padding: 17px 36px;
+            }
+
+            .single-contact-container {
+                cursor: pointer;
+                @include dFlex($jc: flex-start, $g: 20px);
+                width: 352px;
+                padding: 15px 24px;
+
+                .profile_badge {
+                    @include dFlex();
+                    width: 42px;
+                    height: 42px;
+                    border: 1px solid;
+                    border-color: $white;
+                    border-radius: 50%;
+                    @include font($fs: 12px, $fw: 400);
+                    color: $white;
+                }
+
+                .info {
+                    @include dFlex($ai: flex-start, $g: 5px);
+                    flex-direction: column;
+                    background-color: transparent;
+                    padding: 8px;
+
+                    >p {
+                        @include font($fs: 20px, $fw: 400);
+                        background-color: transparent;
+                    }
+
+                    .email {
+                        color: $blue;
+                    }
+                }
+
+                &:hover {
+                    background-color: $cream-white;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                    border-radius: 10px;
+                }
+
+                &.active {
+                    background-color: $dark_blue;
+                    border-radius: 10px;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+.isShown {
+    z-index: 2;
+}
+
+.contacts {
+    @include dFlex($jc: flex-start, $g: 50px);
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    padding-top: 80px;
+    padding-left: 50px;
+    box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+
+    position: relative;
+    overflow: hidden;
+
+    .headline {
+        @include dFlex($jc: flex-start, $g: 30px);
+        width: 100%;
+
+        >div {
+            h1 {
+                @include font($fs: 61px, $fw: 700);
+            }
+
+            .arrow_left {
+                display: none;
+                cursor: pointer;
+            }
+        }
+
+        >p {
+            @include font($fs: 27px, $fw: 400);
+            color: $dark_blue;
+        }
     }
 
-    .contact_detail_section {
-      @include dFlex($ai: flex-start, $g: 50px);
-      flex-direction: column;
-
-      .information_headline {
-        @include font($fs: 20px, $fw: 400);
-      }
-
-      .information {
-        @include dFlex($ai: flex-start, $g: 15px);
+    .contact_content {
+        @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
         flex-direction: column;
+        width: 100%;
+        min-height: 500px;
+        background-color: transparent;
 
-        .email_headline,
-        .phone_headline {
-          @include font($fs: 16px, $fw: 700);
+        .contact_content_head {
+            @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
+
+            .contact_profile_badge {
+                @include dFlex();
+                width: 120px;
+                height: 120px;
+                border: 1px solid;
+                border-color: $white;
+                border-radius: 50%;
+                @include font($fs: 47px, $fw: 500);
+                color: $white;
+            }
+
+            .contact_name_section {
+                @include dFlex($ai: flex-start, $g: 10px);
+                flex-direction: column;
+
+                .name {
+                    @include font($fs: 47px, $fw: 500);
+                }
+
+                .editing_section {
+                    @include dFlex($g: 30px);
+
+                    .edit,
+                    .delete {
+                        cursor: pointer;
+                        @include dFlex($g: 10px);
+                        @include font($fs: 16px, $fw: 400);
+
+                        .pencil_icon,
+                        .trash_icon {
+                            display: block;
+                        }
+
+                        .pencil_icon_hover_blue,
+                        .trash_icon_hover_blue {
+                            display: none;
+                        }
+
+                        &:hover {
+                            color: $light_blue;
+                            @include font($fs: 16px, $fw: 700);
+
+                            .pencil_icon,
+                            .trash_icon {
+                                display: none;
+                            }
+
+                            .pencil_icon_hover_blue,
+                            .trash_icon_hover_blue {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        .email {
-          @include font($fs: 16px, $fw: 400);
-          color: $blue;
+        .contact_detail_section {
+            @include dFlex($ai: flex-start, $g: 50px);
+            flex-direction: column;
+
+            .information_headline {
+                @include font($fs: 20px, $fw: 400);
+            }
+
+            .information {
+                @include dFlex($ai: flex-start, $g: 15px);
+                flex-direction: column;
+
+                .email_headline,
+                .phone_headline {
+                    @include font($fs: 16px, $fw: 700);
+                }
+
+                .email {
+                    @include font($fs: 16px, $fw: 400);
+                    color: $blue;
+                }
+
+                .phone {
+                    @include font($fs: 16px, $fw: 400);
+                }
+            }
+        }
+    }
+
+    .show {
+        animation: slide-right 0.5s ease-in;
+    }
+
+    /* animation slide-right*/
+    @keyframes slide-right {
+        0% {
+            transform: translateX(100%);
         }
 
-        .phone {
-          @include font($fs: 16px, $fw: 400);
+        100% {
+            transform: translateX(0%);
         }
-      }
     }
-  }
-
-  .show {
-    animation: slide-right 0.5s ease-in;
-  }
-
-  /* animation slide-right*/
-  @keyframes slide-right {
-    0% {
-      transform: translateX(100%);
-    }
-
-    100% {
-      transform: translateX(0%);
-    }
-  }
 }
 
 /*--------------------------------------------------   Mobile   --------------------------------------------------*/
 @media (max-width: 1500px) {
-  .contact-list {
-    width: 35%;
-  }
+    .contact-list {
+        width: 35%;
+    }
 
-  .contacts {
-    width: 65%;
-  }
+    .contacts {
+        width: 65%;
+    }
 }
 
 @media (max-width: 1300px) {
-  .contact-list {
-    width: 40%;
-  }
-
-  .contacts {
-    width: 60%;
-
-    .headline {
-      h1 {
-        @include font($fs: 47px, $fw: 700);
-      }
-
-      p {
-        @include font($fs: 20px, $fw: 400);
-      }
+    .contact-list {
+        width: 40%;
     }
 
-    .contact_content {
-      @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
-      flex-direction: column;
-      width: 100%;
-      min-height: 500px;
-      background-color: transparent;
+    .contacts {
+        width: 60%;
 
-      .contact_content_head {
-        @include dFlex($jc: flex-start, $ai: flex-start, $g: 20px);
+        .headline {
+            h1 {
+                @include font($fs: 47px, $fw: 700);
+            }
 
-        .contact_profile_badge {
-          @include dFlex();
-          width: 80px;
-          height: 80px;
-          @include font($fs: 27px, $fw: 400);
+            p {
+                @include font($fs: 20px, $fw: 400);
+            }
         }
 
-        .contact_name_section {
-          .name {
-            @include font($fs: 36px, $fw: 700);
-          }
+        .contact_content {
+            @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
+            flex-direction: column;
+            width: 100%;
+            min-height: 500px;
+            background-color: transparent;
+
+            .contact_content_head {
+                @include dFlex($jc: flex-start, $ai: flex-start, $g: 20px);
+
+                .contact_profile_badge {
+                    @include dFlex();
+                    width: 80px;
+                    height: 80px;
+                    @include font($fs: 27px, $fw: 400);
+                }
+
+                .contact_name_section {
+                    .name {
+                        @include font($fs: 36px, $fw: 700);
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @media (max-width: 1200px) {
-  .contact-list {
-    width: 40%;
+    .contact-list {
+        width: 40%;
 
-    .list {
-      width: 100%;
+        .list {
+            width: 100%;
 
-      .add-new-contact {
-        width: 90%;
-      }
+            .add-new-contact {
+                width: 90%;
+            }
 
-      .single-contact {
-        width: 90%;
+            .single-contact {
+                width: 90%;
 
-        .letter {
-          width: 100%;
+                .letter {
+                    width: 100%;
+                }
+
+                .single-contact-container {
+                    width: 100%;
+                }
+            }
         }
-
-        .single-contact-container {
-          width: 100%;
-        }
-      }
     }
-  }
 
-  .contacts {
-    width: 60%;
-  }
+    .contacts {
+        width: 60%;
+    }
 }
 
 @media (max-width: 1000px) {
-  section {
-    @include dFlex($ai: flex-start);
-    width: 100%;
-    height: calc(100vh - (91px + 80px));
-    position: relative;
-  }
-
-  .contact-list {
-    // display: none;
-    width: 100%;
-    position: absolute;
-    z-index: 1;
-  }
-
-  .contacts {
-    width: 100%;
-    @include dFlex($jc: flex-start, $g: 50px);
-    // flex-direction: column;
-    position: absolute;
-    // z-index: 0;
-    background-color: $cream-white;
-
-    .headline {
-      @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
-      flex-direction: column;
-
-      > div {
-        @include dFlex($jc: space-between);
+    section {
+        @include dFlex($ai: flex-start);
         width: 100%;
-        padding-right: 50px;
-
-        .arrow_left {
-          display: block;
-        }
-      }
-
-      .border_blue {
-        width: 90px;
-        border: 3px solid;
-        border-color: $light_blue;
-      }
-
-      > img {
-        display: none;
-      }
+        height: calc(100vh - (91px + 80px));
+        position: relative;
     }
-  }
+
+    .contact-list {
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .contacts {
+        width: 100%;
+        @include dFlex($jc: flex-start, $g: 50px);
+        position: absolute;
+        background-color: $cream-white;
+
+        .headline {
+            @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
+            flex-direction: column;
+
+            >div {
+                @include dFlex($jc: space-between);
+                width: 100%;
+                padding-right: 50px;
+
+                .arrow_left {
+                    display: block;
+                }
+            }
+
+            .border_blue {
+                width: 90px;
+                border: 3px solid;
+                border-color: $light_blue;
+            }
+
+            >img {
+                display: none;
+            }
+        }
+    }
 }
 
 @media (max-width: 500px) {
-  .contacts {
-    padding-left: 20px;
-
-    .headline {
-      // @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
-      // flex-direction: column;
-
-      > div {
-        //     @include dFlex($jc: space-between);
-        //     width: 100%;
-        padding-right: 20px;
-
-        //     .arrow_left {
-        //         display: block;
-        //     }
-
-        h1 {
-          @include font($fs: 47px, $fw: 700);
-        }
-      }
-
-      .border_blue {
-        width: 90px;
-        border: 3px solid;
+    .new_contact_mobile_icon {
+        cursor: pointer;
+        @include dFlex();
+        border: 1px solid;
         border-color: $light_blue;
-      }
-
-      > img {
-        display: none;
-      }
+        border-radius: 50%;
+        background-color: $light_blue;
+        height: 56px;
+        width: 56px;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
     }
 
-    .contact_content {
-      .contact_content_head {
-        .contact_profile_badge {
-          @include dFlex();
-          width: 60px;
-          height: 60px;
-          @include font($fs: 20px, $fw: 400);
+    .contact-list {
+
+        .list {
+
+            .add-new-contact {
+                display: none;
+            }
+        }
+    }
+
+    .contacts {
+        padding-left: 20px;
+
+        .headline {
+
+            >div {
+                padding-right: 20px;
+
+                h1 {
+                    @include font($fs: 47px, $fw: 700);
+                }
+            }
+
+            .border_blue {
+                width: 90px;
+                border: 3px solid;
+                border-color: $light_blue;
+            }
+
+            >img {
+                display: none;
+            }
         }
 
-        .contact_name_section {
-          .name {
-            @include font($fs: 24px, $fw: 700);
-          }
+        .contact_content {
+            .contact_content_head {
+                .contact_profile_badge {
+                    @include dFlex();
+                    width: 60px;
+                    height: 60px;
+                    @include font($fs: 20px, $fw: 400);
+                }
+
+                .contact_name_section {
+                    .name {
+                        @include font($fs: 24px, $fw: 700);
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 .success-message {
-  position: fixed;
-  bottom: 400px;
-  right: 20px;
-  background-color: #1d2b3a;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 16px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  transform: translateX(150%);
-  animation: slide-in 0.5s ease-in forwards,
-    slide-out 0.5s ease-out 1.5s forwards;
+    position: fixed;
+    bottom: 400px;
+    right: 20px;
+    background-color: #1d2b3a;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(150%);
+    animation: slide-in 0.5s ease-in forwards,
+        slide-out 0.5s ease-out 1.5s forwards;
 }
 
 @keyframes slide-in {
-  0% {
-    transform: translateX(150%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(-50%);
-    opacity: 1;
-  }
+    0% {
+        transform: translateX(150%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(-50%);
+        opacity: 1;
+    }
 }
 
 @keyframes slide-out {
-  0% {
-    transform: translateX(-50%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(150%);
-    opacity: 0;
-  }
+    0% {
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(150%);
+        opacity: 0;
+    }
 }
