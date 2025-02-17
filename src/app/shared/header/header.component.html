@@ -10,28 +10,30 @@
       (click)="selectItem(6)"
     ></a>
 
-    <div (click)="toggleOverlay()" class="initials_btn">
+    <div (click)="toggleOverlay()" [class.open]="isOpen" class="initials_btn">
       <p>ID</p>
     </div>
-    <div
-      id="overlay"
-      [class.open]="isOpen"
-      class="header_overlay"
-    >
-      <div class="inner_overlay">
+    <div *ngIf="isOpen" (click)="closeOverlay()" class="toggleOff_container">
+      <div
+        id="overlay"
+        [class.open]="isOpen"
+        class="header_overlay"
+      >
+        <div class="inner_overlay">
 
-        <a class="burger_help_link" 
-        [ngClass]="{ active: navigationService.selectedItem === 6 }"
-          (click)="selectItem(6)">Help</a>
+          <a class="burger_help_link" 
+          [ngClass]="{ active: navigationService.selectedItem === 6 }"
+            (click)="selectItem(6)">Help</a>
 
-        <a  [ngClass]="{ active: navigationService.selectedItem === 5 }"
-            (click)="selectItem(5)">Legal Notice</a>
+          <a  [ngClass]="{ active: navigationService.selectedItem === 5 }"
+              (click)="selectItem(5)">Legal Notice</a>
 
-        <a 
-        [ngClass]="{ active: navigationService.selectedItem === 4 }"
-          (click)="selectItem(4)">Privacy Policy</a>
+          <a 
+          [ngClass]="{ active: navigationService.selectedItem === 4 }"
+            (click)="selectItem(4)">Privacy Policy</a>
 
-        <a href="">Log out</a>
+          <a href="">Log out</a>
+        </div>
       </div>
     </div>
   </div>

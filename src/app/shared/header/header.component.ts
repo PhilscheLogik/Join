@@ -16,6 +16,7 @@ export class HeaderComponent {
     this.navigationService.setSelectedItem(index);
   }
 
+  // isOverlayVisible: boolean = false;
   overlayState = true;
   isOpen = false;
   isClosing = false;
@@ -23,5 +24,9 @@ export class HeaderComponent {
   toggleOverlay() {
     this.isOpen = !this.isOpen;
     this.overlayState = !this.overlayState;
+  }
+
+  closeOverlay() {
+    this.isOpen = false;
   }
 }

@@ -31,13 +31,6 @@ export class ContactsComponent {
     }
   }
 
-  // Schließt das Overlay, wenn der Hintergrund angeklickt wird
-  closeOverlayOnClick(event: any) {
-    if (event.target.classList.contains('overlay')) {
-      this.closeOverlay();
-    }
-  }
-
   closeOverlay() {
     // Schließe das Overlay
     this.isOverlayVisible = false;
