@@ -67,7 +67,6 @@
           (click)="selectContact(selectedContact); mobileDisplay()" />
         }
       </div>
-
       <img src="assets/img/icons/or_icon.svg" />
       <p>Better with a team</p>
       <div class="border_blue"></div>
@@ -92,7 +91,6 @@
               <img class="pencil_icon_hover_blue" src="assets/img/icons/pencil_icon_hover_blue.svg" />
               <p>Edit</p>
             </div>
-
             <div (click)="deleteContact()" class="delete">
               <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
               <img class="trash_icon_hover_blue" src="assets/img/icons/trash_icon_hover_blue.svg" />
@@ -112,19 +110,7 @@
       </div>
     </div>
     }
-  </div>
-
-  <!-- @for (item of contactService.contactList; track $index) {
-  <p>{{ item.name }}</p>
-  <p>{{ item.email }}</p>
-  <p>{{ item.phone }}</p>
-  } -->
-
-  <!-- <input [(ngModel)]="name" type="text" />
-  <input [(ngModel)]="email" type="text" />
-  <input [(ngModel)]="phone" type="text" /> -->
-  <!-- <button (click)="addContactList()">Neuer Kontakt</button> -->
-  <!-- <button (click)="getList(); getList2()">List ausgeben</button> -->
+  </div>  
 </section>
 
 <app-overlay></app-overlay>

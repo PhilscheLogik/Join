@@ -61,8 +61,6 @@ export class OverlayComponent {
     }, 500);    
   }
 
-
-
   addContactList() {
     if (!this.name || !this.email || !this.phone) {
       console.warn('Alle Felder müssen ausgefüllt sein!');
@@ -94,13 +92,10 @@ export class OverlayComponent {
   }
 
   updateItem(id: string) {
-
    
     let newName = this.name == '' ? this.contactService.test.name : this.name;
     let newEmail = this.email == '' ? this.contactService.test.email : this.email;
     let newPhone = this.phone == '' ? this.contactService.test.phone : this.phone;
-
-
 
     this.contactService.updateContact(id, newName, newEmail, newPhone );
     // console.log(id, this.name, this.email, this.phone);
@@ -118,7 +113,6 @@ export class OverlayComponent {
     // );
 
   }
-
 
   getIndexInFullList(contact: any): number {
     return this.contactService.contactList.findIndex(

@@ -74,7 +74,7 @@ export class ContactsService {
   async addContact(item: Contact) {
     try {
       await addDoc(this.getContactRef(), item);
-      this.closeOverlay();
+      this.closeOverlay(); 
       this.notifyContactCreated();
     } catch (err) {
       console.error('Error adding contact:', err);
@@ -92,7 +92,7 @@ export class ContactsService {
     newEmail: string,
     newPhone: string
   ) {
-    const updateRef = doc(this.getContactRef(), id);
+    const updateRef = doc(this.getContactRef(), id);    
 
     if (newName != '' && newEmail != '' && newPhone != '') {
       await updateDoc(updateRef, {
@@ -165,6 +165,7 @@ export class ContactsService {
     return firstInitial + lastInitial;
   }
 
+  
   closeOverlay() {
     this.overlayState.next(false);
   }

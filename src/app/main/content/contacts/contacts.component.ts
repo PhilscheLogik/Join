@@ -31,6 +31,13 @@ export class ContactsComponent {
     }
   }
 
+  // Schließt das Overlay, wenn der Hintergrund angeklickt wird
+  closeOverlayOnClick(event: any) {
+    if (event.target.classList.contains('overlay')) {
+      this.closeOverlay();
+    }
+  }
+
   closeOverlay() {
     // Schließe das Overlay
     this.isOverlayVisible = false;
@@ -80,9 +87,11 @@ export class ContactsComponent {
   // Funktion zum Setzen des ausgewählten Kontakts
   selectContact(contact: Contact) {
     if (this.selectedContact && this.selectedContact.id === contact.id) {
+      // Wenn der gleiche Kontakt erneut angeklickt wird, setzte den ausgewählten Kontakt auf null
       this.selectedContact = null;
       this.selectedContactInitials = null;
       this.isContactSelected = false;
+      // Verstecke die "contact_content" div, wenn kein Kontakt ausgewählt ist
       this.showContactContent = false;
     } else {
       this.selectedContact = contact;
@@ -90,6 +99,7 @@ export class ContactsComponent {
         contact.name
       );
       this.isContactSelected = true;
+      // Zeige die "contact_content" div an
       this.showContactContent = true;
     }
   }
@@ -101,6 +111,30 @@ export class ContactsComponent {
   getList() {
     return this.selectedContact?.id;
   }
+
+  // //Farben aus colors.scss
+  // colors = [
+  //   '#FF7A00', // Sunset Orange
+  //   '#930FFF', // Electric Purple
+  //   '#6E52FF', // Lavender Blue
+  //   '#FC71FF', // Fuchsia Pink
+  //   '#FFBB2B', // Golden Yellow
+  //   '#1FD7C1', // Mint Green
+  //   '#0038FF', // Deep Blue
+  //   '#FF4646', // Light Red
+  //   '#00BEE8', // Aqua Blue
+  //   '#FF5EB3', // Soft Pink
+  //   '#FF745E', // Peach
+  //   '#FFA35E', // Warm Yellow
+  //   '#FFC701', // Bright Yellow
+  //   '#C3FF2B', // Light Green
+  //   '#FFE62B', // Bright Yellow 2
+  // ];
+
+  // // Funktion, um die richtige Farbe basierend auf dem Index zuzuweisen
+  // getBadgeColor(index: number): string {
+  //   return this.colors[index % this.colors.length];
+  // }
 
   /**
    * Findet den Index eines Kontakts in der vollständigen Kontaktliste.
@@ -123,9 +157,10 @@ export class ContactsComponent {
       this.contactService
         .deleteContact(this.selectedContact.id)
         .then(() => {
+          // Optional: Leere den ausgewählten Kontakt nach der Löschung
           this.selectedContact = null;
           this.isContactSelected = false;
-          this.closeOverlay(); 
+          this.closeOverlay(); // Schließt das Overlay nach dem Löschen
         })
         .catch((err) => {
           console.error('Fehler beim Löschen des Kontakts:', err);
