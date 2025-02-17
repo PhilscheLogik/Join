@@ -7,20 +7,18 @@ import { NavigationService } from '../navi/navigation.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  navigationService = inject(NavigationService);
 
-  navigationService = inject(NavigationService);  
-  
-    selectItem(index: number) {
-      this.navigationService.setSelectedItem(index);
-    }
+  selectItem(index: number) {
+    this.navigationService.setSelectedItem(index);
+  }
 
   overlayState = true;
-  
+
   toggleOverlay() {
     this.overlayState = !this.overlayState;
   }
-
 }
