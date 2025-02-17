@@ -74,7 +74,7 @@ export class ContactsService {
   async addContact(item: Contact) {
     try {
       await addDoc(this.getContactRef(), item);
-      this.closeOverlay(); 
+      this.closeOverlay();
       this.notifyContactCreated();
     } catch (err) {
       console.error('Error adding contact:', err);
@@ -92,7 +92,7 @@ export class ContactsService {
     newEmail: string,
     newPhone: string
   ) {
-    const updateRef = doc(this.getContactRef(), id);    
+    const updateRef = doc(this.getContactRef(), id);
 
     if (newName != '' && newEmail != '' && newPhone != '') {
       await updateDoc(updateRef, {
@@ -165,7 +165,6 @@ export class ContactsService {
     return firstInitial + lastInitial;
   }
 
-  
   closeOverlay() {
     this.overlayState.next(false);
   }
@@ -173,5 +172,29 @@ export class ContactsService {
   private notifyContactCreated() {
     this.contactCreatedSource.next(true);
     setTimeout(() => this.contactCreatedSource.next(false), 10000);
+  }
+
+  //Farben aus colors.scss
+  colors = [
+    '#FF7A00', // Sunset Orange
+    '#930FFF', // Electric Purple
+    '#6E52FF', // Lavender Blue
+    '#FC71FF', // Fuchsia Pink
+    '#FFBB2B', // Golden Yellow
+    '#1FD7C1', // Mint Green
+    '#0038FF', // Deep Blue
+    '#FF4646', // Light Red
+    '#00BEE8', // Aqua Blue
+    '#FF5EB3', // Soft Pink
+    '#FF745E', // Peach
+    '#FFA35E', // Warm Yellow
+    '#FFC701', // Bright Yellow
+    '#C3FF2B', // Light Green
+    '#FFE62B', // Bright Yellow 2
+  ];
+
+  // Funktion, um die richtige Farbe basierend auf dem Index zuzuweisen
+  getBadgeColor(index: number): string {
+    return this.colors[index % this.colors.length];
   }
 }

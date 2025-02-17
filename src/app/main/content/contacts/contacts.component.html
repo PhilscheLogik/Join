@@ -12,21 +12,21 @@
 
   <!-- Overlay für Editieren und Löschen von Kontakt -->
   @if(isOverlayVisible) {
-    <div class="parent-overlay-container" (click)="closeOverlay()">
-      <div class="overlay">
-        <div class="overlay-content" (click)="$event.stopPropagation()">
-          <div (click)="editContact()">
-            <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg" />
-            <p>Edit</p>
-          </div>
-    
-          <div (click)="deleteContact()">
-            <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
-            <p>Delete</p>
-          </div>
+  <div class="parent-overlay-container" (click)="closeOverlay()">
+    <div class="overlay">
+      <div class="overlay-content" (click)="$event.stopPropagation()">
+        <div (click)="openOverlay('edit')">
+          <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg" />
+          <p>Edit</p>
+        </div>
+
+        <div (click)="deleteContact()">
+          <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
+          <p>Delete</p>
         </div>
       </div>
     </div>
+  </div>
   }
   <div class="contact-list">
     <div class="list">
@@ -44,7 +44,7 @@
         <div class="single-contact-container" (click)="selectContact(contact); mobileDisplay()"
           [class.active]="selectedContact?.id === contact.id">
           <div class="profile_badge" [ngStyle]="{
-              'background-color': getBadgeColor(getIndexInFullList(contact))
+              'background-color': contactService.getBadgeColor(getIndexInFullList(contact))
             }">
             {{ contact.initials }}
           </div>
@@ -77,7 +77,7 @@
     <div class="contact_content" [ngClass]="{ show: showContactContent }">
       <div class="contact_content_head">
         <div class="contact_profile_badge" [ngStyle]="{
-            'background-color': getBadgeColor(
+            'background-color': contactService.getBadgeColor(
               getIndexInFullList(selectedContact)
             )
           }">
