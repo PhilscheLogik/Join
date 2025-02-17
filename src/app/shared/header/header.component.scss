@@ -8,6 +8,9 @@ section {
     background-color: $white;
     position: relative;
     min-height: 91px;
+    // overflow: hidden;
+
+    
 
 }
 
@@ -34,7 +37,6 @@ img {
 
 .header_right {
     @include dFlex($jc: center);
-
     background-color: $white;
     
     >.help_link {
@@ -82,15 +84,27 @@ img {
 
 /* Burger-Overlay */
 
+
+
 .header_overlay {
-    position: absolute;
-    top: 80px;
-    right: 40px;
+    position: fixed;
+    top: 92px;
+    right: -300px; // Start off-screen
+    width: 160px;
     background-color: $dark_blue;
     border-radius: 20px 0 20px 20px;
-    flex-direction: column;
+    transition: all 0.3s ease-in-out; // Transition for slide
+    visibility: hidden; // Initially hidden
+    opacity: 0; // Fully transparent when hidden
     z-index: 5;
-}
+    height: auto;
+    
+    &.open {
+      right: 0; // Slide into view
+      visibility: visible; // Make it visible when open
+      opacity: 1; // Make it fully opaque when open
+    }
+  }
 
 .inner_overlay {
     @include dFlex($ai: start);
@@ -116,6 +130,34 @@ img {
     text-decoration: none;
     color: $white;
     width: 100%;
+}
+
+.slideIn {
+    animation: slide-in 125ms ease-in forwards,
+}
+
+/* Animations */
+
+ @keyframes slide-in {
+     0% {
+       transform: translate(-50%, -50%) translateX(150%);
+       opacity: 0;
+     }
+     100% {
+       transform: translate(-50%, -50%) translateX(0%);
+       opacity: 1;
+     }
+   }
+  
+   @keyframes slide-out {
+     0% {
+       transform: translate(-50%, -50%) translateX(0%);
+     opacity: 1;
+     }
+    100% {
+      transform: translate(-50%, -50%) translateX(150%);
+      opacity: 0;
+    }
 }
 
 /* Media query's */
@@ -157,6 +199,6 @@ img {
 
     .header_overlay {
         top: 68px;
-        right: 36px;
+        right: -300px;
     }
   }
