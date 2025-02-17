@@ -27,7 +27,19 @@
       <img src="assets/img/icons/close.svg" alt="Close" />
     </button>
     <div class="profile-pic">
-      <img src="assets/img/icons/user-profile-image.svg" alt="User Profile" />
+      @if(contactService.test.id){
+      <div class="initials" 
+      [ngStyle]="{
+        'background-color': contactService.getBadgeColor(
+          getIndexInFullList(contactService.test)
+        )
+      }"
+      >{{ contactService.getInitials(contactService.test.name) }}</div>
+      } @else {
+        <img
+        src="assets/img/icons/user-profile-image.svg"
+        alt="User Profile"
+      />}
     </div>
     <div class="form-container">
       <form #contactForm="ngForm">
@@ -41,7 +53,7 @@
             [value]="contactService.test.id ? contactService.test.name : ''"
             #nameField="ngModel"
             required
-            pattern="^[A-Za-z\s]{3,}$"
+            pattern="[a-zA-ZäüößÄÜÖ\s]{3,}$"
           />
           <img
             src="assets/img/icons/person.svg"
@@ -51,7 +63,9 @@
         </div>
         @if (nameField.invalid && nameField.touched) {
         <p class="error-message">Please use letters only!</p>
-        } @else { <p> </p>}
+        } @else {
+        <p></p>
+        }
 
         <div class="input-group">
           <input
@@ -63,7 +77,7 @@
             [value]="contactService.test.id ? contactService.test.email : ''"
             #emailField="ngModel"
             required
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
           />
           <img
             src="assets/img/icons/mail.svg"
@@ -72,10 +86,10 @@
           />
         </div>
         @if (emailField.invalid && emailField.touched) {
-        <p class="error-message">
-          Please use a valid email!
-        </p>
-        } @else { <p> </p>}
+        <p class="error-message">Please use a valid email!</p>
+        } @else {
+        <p></p>
+        }
 
         <div class="input-group">
           <input
@@ -87,7 +101,7 @@
             [value]="contactService.test.id ? contactService.test.phone : ''"
             #phoneField="ngModel"
             required
-            pattern="^[+0-9]{3,}$"
+            pattern="[+0-9\s]{3,}$"
           />
           <img
             src="assets/img/icons/call.svg"
@@ -97,15 +111,25 @@
         </div>
         @if (phoneField.invalid && phoneField.touched) {
         <p class="error-message">Please use numbers only!</p>
-        } @else { <p> </p>}
+        } @else {
+        <p></p>
+        }
 
         <div class="button-group">
           @if(contactService.test.id){
-          <button type="button" class="cancel-btn" (click)="deleteItem(contactService.test.id); closeOverlay()">
-            Delete (Try)
+          <button
+            type="button"
+            class="cancel-btn"
+            (click)="deleteItem(contactService.test.id); closeOverlay()"
+          >
+            Delete
           </button>
-          <button type="submit" class="create-btn" (click)="updateItem(contactService.test.id); closeOverlay()">
-            Save (Try)
+          <button
+            type="submit"
+            class="create-btn"
+            (click)="updateItem(contactService.test.id); closeOverlay()"
+          >
+            Save
             <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
           } @else {

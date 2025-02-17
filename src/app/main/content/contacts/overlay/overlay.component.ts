@@ -106,4 +106,11 @@ export class OverlayComponent {
     // );
 
   }
+
+
+  getIndexInFullList(contact: any): number {
+    return this.contactService.contactList.findIndex(
+      (c) => c.email === contact.email
+    );
+  }
 }

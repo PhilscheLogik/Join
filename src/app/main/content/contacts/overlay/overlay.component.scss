@@ -28,6 +28,18 @@
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
 
+  .initials{    
+    @include dFlex();
+    width: 120px;
+    height: 120px;
+    border: 1px solid;
+    border-color: $white;
+    border-radius: 50%;
+    @include font($fs: 47px, $fw: 500);
+    color: $white;
+    // background-color: gray;
+}
+
   @media (max-width: 1150px) {
     flex-direction: column;
     height: auto;
