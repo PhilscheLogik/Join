@@ -7,6 +7,8 @@ section {
     width: 100%;
     background-color: $white;
     position: relative;
+    min-height: 96px;
+
 }
 
 .header_left {
@@ -82,7 +84,7 @@ img {
 
 .header_overlay {
     position: absolute;
-    top: 84px;
+    top: 80px;
     right: 40px;
     background-color: $dark_blue;
     border-radius: 20px 0 20px 20px;
@@ -151,5 +153,10 @@ img {
     img {
         top: 12px;
         left: 24px;
+    }
+
+    .header_overlay {
+        top: 68px;
+        right: 36px;
     }
   }
