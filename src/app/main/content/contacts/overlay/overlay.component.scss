@@ -71,6 +71,9 @@
     .dialog-left {
       padding: 16px;
     }
+    .input-group {
+      min-width: 70vw;
+    }
     .input-field {
       font-size: 12px;
     }
@@ -104,6 +107,10 @@
   border: none;
   cursor: pointer;
   border-radius: 50%;
+
+  &:hover {
+    background: $light_blue;
+  }
 }
 
 .dialog-left {
@@ -223,7 +230,7 @@ p {
 
 .error-message {
   font-size: 12px;
-  margin-top: -10px;
+  margin-top: -6px;
   color: red;
   transition: opacity 0.3s ease-in-out;
 }
