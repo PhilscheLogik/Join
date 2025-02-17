@@ -17,8 +17,11 @@ export class HeaderComponent {
   }
 
   overlayState = true;
+  isOpen = false;
+  isClosing = false;
 
   toggleOverlay() {
+    this.isOpen = !this.isOpen;
     this.overlayState = !this.overlayState;
   }
 }
