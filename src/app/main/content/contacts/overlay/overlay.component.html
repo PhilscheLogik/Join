@@ -78,11 +78,11 @@
         </div>
         <div class="button-group">
           @if(contactService.test.id){
-          <button type="button" class="cancel-btn" (click)="closeOverlay()">
-            Delete (Cancel Fct)
+          <button type="button" class="cancel-btn" (click)="deleteItem(contactService.test.id); closeOverlay()">
+            Delete (Try)
           </button>
-          <button type="submit" class="create-btn" (click)="addContactList()">
-            Save (Create Fct)
+          <button type="submit" class="create-btn" (click)="updateItem(contactService.test.id); closeOverlay()">
+            Save (Try)
             <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
           } @else {

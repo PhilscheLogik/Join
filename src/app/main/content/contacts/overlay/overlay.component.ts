@@ -63,4 +63,19 @@ export class OverlayComponent {
     this.email = '';
     this.phone = '';
   }
+
+  deleteItem(id: string) {
+    this.contactService.deleteContact(id);
+    this.name = '';
+    this.email = '';
+    this.phone = '';
+  }
+
+
+  updateItem(id: string) {
+    this.contactService.updateContact(id, this.name, this.email, this.phone );
+    this.name = '';
+    this.email = '';
+    this.phone = '';
+  }
 }
