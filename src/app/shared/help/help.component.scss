@@ -26,35 +26,42 @@ section {
       width: 37px;
     }
   }
+}
 
-  > .help_content {
-    width: 100%;
+.help_content {
+  width: 100%;
 
-    /*wird das überhaupt angesprochen?*/
-    > h2 {
-      @include font($fs: 24px, $fw: 800);
-      padding-top: 32px 0;
-    }
+  /*wird das überhaupt angesprochen?*/
+  > h2 {
+    @include font($fs: 24px, $fw: 800);
+    margin-top: 35px;
+  }
 
-    > p {
-      padding: 24px 0;
-    }
+  > p {
+    padding-top: 24px;
+  }
 
-    > ol {
-      @include font($fs: 24px, $fw: 800);
-      padding-right: 40px;
-      > li {
-        @include font($fs: 16px, $fw: 400);
-        padding-top: 24px;
-        padding-left: 40px;
-      }
+  >ol {
+    @include font($fs: 24px, $fw: 800);
+    padding-right: 40px;
+    > li {
+      @include font($fs: 16px, $fw: 400);
+      padding-top: 24px;
+      padding-left: 40px;
     }
   }
+}
+
+li::marker  {
+  font-weight: bolder;
+  font-size: 24px;
+  // @include font($fs: 24px, $fw: 800);
 }
 
 @media (max-width: 1000px) {
   section {
     padding: 50px 16px;
+    // padding: 128px calc(max(80px, (100% - 1920px) / 2));
   }
 
   h2 {
@@ -65,4 +72,25 @@ section {
   h1 {
     font-size: 47px;
   }
+
+
+  .help_content {
+  
+  
+    >ol {
+      padding-right: 0;
+      > li {
+        padding-top: 24px;
+        padding-left:  12px;
+      }
+    }
+  }
+
+  // ol {
+  //   padding-right: 0;
+  // }
+
+  // li {
+  //   padding-left: 12px;
+  // }
 }
