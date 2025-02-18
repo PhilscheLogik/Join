@@ -8,19 +8,19 @@ section {
 }
 
 /* Scrollbar Styling */
-.contact-list::-webkit-scrollbar {
-    width: 8px;
-}
+// .contact-list::-webkit-scrollbar {
+//     width: 8px;
+// }
 
-.contact-list::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
+// .contact-list::-webkit-scrollbar-track {
+//     background: #f1f1f1;
+//     border-radius: 4px;
+// }
 
-.contact-list::-webkit-scrollbar-thumb {
-    background: #a8a8a8;
-    border-radius: 4px;
-}
+// .contact-list::-webkit-scrollbar-thumb {
+//     background: #a8a8a8;
+//     border-radius: 4px;
+// }
 
 .new_contact_mobile_icon {
     display: none;
@@ -143,9 +143,10 @@ section {
     padding-top: 80px;
     padding-left: 50px;
     box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+    
 
     position: relative;
-    overflow: hidden;
+    overflow: auto;
 
     .headline {
         @include dFlex($jc: flex-start, $g: 30px);
@@ -173,7 +174,7 @@ section {
         flex-direction: column;
         width: 100%;
         min-height: 500px;
-        background-color: transparent;
+        background-color: transparent;  
 
         .contact_content_head {
             @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
@@ -205,6 +206,7 @@ section {
                         cursor: pointer;
                         @include dFlex($g: 10px);
                         @include font($fs: 16px, $fw: 400);
+                        width: 70px;
 
                         .pencil_icon,
                         .trash_icon {

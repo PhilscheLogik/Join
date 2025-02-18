@@ -26,7 +26,7 @@ export class ContactsComponent {
 
   openOverlayEditContactMobile(action: string) {
     // Logik, um das Overlay zu öffnen
-    if (action === 'edit' && this.selectedContact) {
+    if (action === 'edit' && this.contactService.selectedContact) {
       this.isOverlayVisible = true;
     }
   }
@@ -44,9 +44,9 @@ export class ContactsComponent {
   }
 
   editContact() {
-    if (this.selectedContact) {
+    if (this.contactService.selectedContact) {
       // Logik für das Bearbeiten des Kontakts (öffne Bearbeitungsformular oder führe eine andere Aktion aus)
-      console.log('Edit contact', this.selectedContact);
+      console.log('Edit contact', this.contactService.selectedContact);
       this.closeOverlay(); // Schließt das Overlay nach dem Bearbeiten
     }
   }
@@ -61,8 +61,8 @@ export class ContactsComponent {
       phone: '',
     };
 
-    if (this.selectedContact && text == 'edit') {
-      dummy = this.selectedContact;
+    if (this.contactService.selectedContact && text == 'edit') {
+      dummy = this.contactService.selectedContact;
     }
 
     // console.log('-------------------------------------');
@@ -79,28 +79,30 @@ export class ContactsComponent {
   phone = '';
   isShown = false;
 
-  selectedContact: Contact | null = null;
+  // contactService.selectedContact: Contact | null = null;
   selectedContactInitials: string | null = null;
   isContactSelected: boolean = false;
   showContactContent: boolean = false;
 
   // Funktion zum Setzen des ausgewählten Kontakts
   selectContact(contact: Contact) {
-    if (this.selectedContact && this.selectedContact.id === contact.id) {
+    if (this.contactService.selectedContact && this.contactService.selectedContact.id === contact.id) {
       // Wenn der gleiche Kontakt erneut angeklickt wird, setzte den ausgewählten Kontakt auf null
-      this.selectedContact = null;
+      this.contactService.selectedContact = null;
       this.selectedContactInitials = null;
       this.isContactSelected = false;
       // Verstecke die "contact_content" div, wenn kein Kontakt ausgewählt ist
       this.showContactContent = false;
+      this.contactService.isSelected = false;
     } else {
-      this.selectedContact = contact;
+      this.contactService.selectedContact = contact;
       this.selectedContactInitials = this.contactService.getInitials(
         contact.name
       );
       this.isContactSelected = true;
       // Zeige die "contact_content" div an
       this.showContactContent = true;
+      this.contactService.isSelected = true;
     }
   }
 
@@ -109,7 +111,7 @@ export class ContactsComponent {
   }
 
   getList() {
-    return this.selectedContact?.id;
+    return this.contactService.selectedContact?.id;
   }
 
   // //Farben aus colors.scss
@@ -153,12 +155,12 @@ export class ContactsComponent {
   }
 
   deleteContact() {
-    if (this.selectedContact && this.selectedContact.id) {
+    if (this.contactService.selectedContact && this.contactService.selectedContact.id) {
       this.contactService
-        .deleteContact(this.selectedContact.id)
+        .deleteContact(this.contactService.selectedContact.id)
         .then(() => {
           // Optional: Leere den ausgewählten Kontakt nach der Löschung
-          this.selectedContact = null;
+          this.contactService.selectedContact = null;
           this.isContactSelected = false;
           this.closeOverlay(); // Schließt das Overlay nach dem Löschen
         })
@@ -169,18 +171,18 @@ export class ContactsComponent {
   }
 
   updateContact() {
-    if (this.selectedContact && this.selectedContact.id) {
+    if (this.contactService.selectedContact && this.contactService.selectedContact.id) {
       console.log(this.name, this.email, this.phone);
       this.contactService
         .updateContact(
-          this.selectedContact.id,
+          this.contactService.selectedContact.id,
           this.name,
           this.email,
           this.phone
         )
         .then(() => {
           // Optional: Leere den ausgewählten Kontakt nach der Löschung
-          this.selectedContact = null;
+          this.contactService.selectedContact = null;
           this.isContactSelected = false;
         })
         .catch((err) => {

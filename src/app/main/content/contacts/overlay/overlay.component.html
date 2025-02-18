@@ -69,7 +69,7 @@
             alt="Name Icon"
           />
         </div>
-        @if (nameField.invalid && nameField.touched) {
+        @if ((nameField.invalid && nameField.touched) || isValidName) {
         <p class="error-message">Please use letters only!</p>
         } @else {
         <p></p>
@@ -93,7 +93,7 @@
             alt="Email Icon"
           />
         </div>
-        @if (emailField.invalid && emailField.touched) {
+        @if ((emailField.invalid && emailField.touched) || isValidEmail) {
         <p class="error-message">Please use a valid email!</p>
         } @else {
         <p></p>
@@ -109,7 +109,7 @@
             [value]="contactService.test.id ? contactService.test.phone : ''"
             #phoneField="ngModel"
             required
-            pattern="[+0-9\s]{3,}$"
+           pattern="^(\+|0)[1-9\s][0-9\s]{6,14}$"
           />
           <img
             src="assets/img/icons/call.svg"
@@ -117,7 +117,7 @@
             alt="Phone Icon"
           />
         </div>
-        @if (phoneField.invalid && phoneField.touched) {
+        @if ((phoneField.invalid && phoneField.touched) || isValidPhone) {
         <p class="error-message">Please use numbers only!</p>
         } @else {
         <p></p>
