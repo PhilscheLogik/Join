@@ -43,13 +43,13 @@ export class ContactsComponent {
     this.isOverlayVisible = false;
   }
 
-  editContact() {
-    if (this.contactService.selectedContact) {
-      // Logik für das Bearbeiten des Kontakts (öffne Bearbeitungsformular oder führe eine andere Aktion aus)
-      console.log('Edit contact', this.contactService.selectedContact);
-      this.closeOverlay(); // Schließt das Overlay nach dem Bearbeiten
-    }
-  }
+  // editContact() {
+  //   if (this.contactService.selectedContact) {
+  //     // Logik für das Bearbeiten des Kontakts (öffne Bearbeitungsformular oder führe eine andere Aktion aus)
+  //     console.log('Edit contact', this.contactService.selectedContact);
+  //     this.closeOverlay(); // Schließt das Overlay nach dem Bearbeiten
+  //   }
+  // }
 
   openOverlay(text: string) {
     // console.log('openOverlay() aufgerufen');
