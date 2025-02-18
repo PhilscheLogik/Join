@@ -180,7 +180,7 @@ export class ContactsService {
 
   private notifyContactCreated() {
     this.contactCreatedSource.next(true);
-    setTimeout(() => this.contactCreatedSource.next(false), 10000);
+    // setTimeout(() => this.contactCreatedSource.next(false), 10000);
   }
 
   //Farben aus colors.scss
