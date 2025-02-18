@@ -22,7 +22,7 @@
           <p>Edit</p>
         </div>
 
-        <div (click)="deleteContact()">
+        <div (click)="deleteContact(); mobileDisplay()">
           <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
           <p>Delete</p>
         </div>
@@ -116,7 +116,7 @@
               />
               <p>Edit</p>
             </div>
-            <div (click)="deleteContact()" class="delete">
+            <div (click)="deleteContact(); mobileDisplay()" class="delete">
               <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
               <img
                 class="trash_icon_hover_blue"

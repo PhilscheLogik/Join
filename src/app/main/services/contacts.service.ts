@@ -30,8 +30,8 @@ export class ContactsService {
 
     this.overlayState.next(true);
 
-    console.info('service ts davor');
-    console.log(this.selectedContact);   
+    // console.info('service ts davor');
+    // console.log(this.selectedContact);   
    
   }
 

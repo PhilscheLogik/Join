@@ -34,11 +34,12 @@ export class OverlayComponent {
         this.isClosing = false;
       }
 
-      console.log('overlay ts');
-      console.log(this.contactService.isEdit);
-      console.log(
-        this.contactService.selectedContact?.id && this.contactService.isEdit
-      );
+      // console.log('overlay ts');
+      // console.log(this.contactService.isEdit);
+      // console.log(
+      //   this.contactService.selectedContact?.id && this.contactService.isEdit
+      // );
+
       if (
         this.contactService.selectedContact?.id &&
         this.contactService.isEdit
@@ -50,13 +51,7 @@ export class OverlayComponent {
         this.name = '';
         this.email = '';
         this.phone = '';
-
       }
-
-
-
-
-
     });
   }
 
@@ -129,11 +124,8 @@ export class OverlayComponent {
       this.email = '';
       this.phone = '';
       this.contactService.selectedContact = null;
-          
     }
-    console.log(this.name, this.email, this.phone)
-
-
+    // console.log(this.name, this.email, this.phone)
   }
 
   updateItem(id: string | undefined) {
@@ -158,28 +150,17 @@ export class OverlayComponent {
           email: newEmail,
           phone: newPhone,
         };
-        console.log(id, newName, newEmail, newPhone);
       }
-
-      // console.log(id, this.name, this.email, this.phone);
-      // console.log(
-      //   this.contactService.test.id,
-      //   this.contactService.test.name,
-      //   this.contactService.test.email,
-      //   this.contactService.test.phone
-      // );
-
-      console.log(id, newName, newEmail, newPhone);
     }
   }
 
   getIndexInFullList(contact: any): number {
-     if(contact){
+    if (contact) {
       return this.contactService.contactList.findIndex(
         (c) => c.email === contact.email
       );
-    }       
+    }
 
-    return 42;
+    return 404;
   }
 }

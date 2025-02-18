@@ -129,6 +129,7 @@
             Delete
           </button>
           <button
+          [disabled]="contactForm.invalid"
             type="submit"
             class="create-btn"
             (click)="updateItem(contactService.selectedContact?.id); closeOverlay()"
@@ -140,7 +141,7 @@
           <button type="button" class="cancel-btn" (click)="closeOverlay()">
             Cancel <img src="assets/img/icons/cancel.svg" alt="Cancel" />
           </button>
-          <button type="submit" class="create-btn" (click)="addContactList()">
+          <button [disabled]="contactForm.invalid" type="submit" class="create-btn" (click)="addContactList()">
             Create contact <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
 
