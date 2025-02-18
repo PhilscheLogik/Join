@@ -16,6 +16,9 @@ export class OverlayComponent {
 
   isOpen = false;
   isClosing = false;
+  isValidName = false;
+  isValidEmail = false;
+  isValidPhone = false;
 
   name = '';
   email = '';
@@ -51,19 +54,27 @@ export class OverlayComponent {
     this.phone = '';
   }
 
-  closeOverlayEdit(){
+  closeOverlayEdit() {
     this.isClosing = true;
 
     setTimeout(() => {
       this.isOpen = false;
       this.isClosing = false;
       this.contactsService.closeOverlay();
-    }, 500);    
+    }, 500);
   }
 
   addContactList() {
-    if (!this.name || !this.email || !this.phone) {
-      console.warn('Alle Felder müssen ausgefüllt sein!');
+    if (!this.name) {
+      this.isValidName = true;
+      return;
+    }
+    if (!this.email) {
+      this.isValidEmail = true;
+      return;
+    }
+    if (!this.phone) {
+      this.isValidPhone = true;
       return;
     }
 
@@ -78,10 +89,13 @@ export class OverlayComponent {
     if (this.contactForm) {
       this.contactForm.resetForm();
     }
-    
+
     this.name = '';
     this.email = '';
     this.phone = '';
+    this.isValidName = false;
+    this.isValidEmail = false;
+    this.isValidPhone = false;
   }
 
   deleteItem(id: string) {
@@ -92,13 +106,20 @@ export class OverlayComponent {
   }
 
   updateItem(id: string) {
-   
     let newName = this.name == '' ? this.contactService.test.name : this.name;
-    let newEmail = this.email == '' ? this.contactService.test.email : this.email;
-    let newPhone = this.phone == '' ? this.contactService.test.phone : this.phone;
+    let newEmail =
+      this.email == '' ? this.contactService.test.email : this.email;
+    let newPhone =
+      this.phone == '' ? this.contactService.test.phone : this.phone;
 
-    this.contactService.updateContact(id, newName, newEmail, newPhone );
-    // console.log(id, this.name, this.email, this.phone);
+    this.contactService.updateContact(id, newName, newEmail, newPhone);
+    this.contactService.selectedContact = {
+      id:id,
+      name: newName,
+      email: newEmail,
+      phone: newPhone,      
+    };
+    // console.log(id, newName, newEmail, newPhone);
     // console.log(
     //   this.contactService.test.id,
     //   this.contactService.test.name,
@@ -111,7 +132,6 @@ export class OverlayComponent {
     //   newEmail,
     //   newPhone
     // );
-
   }
 
   getIndexInFullList(contact: any): number {

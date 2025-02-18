@@ -1,10 +1,10 @@
 <section>
-  @if(!selectedContact) {
+  @if(!contactService.selectedContact) {
   <div class="new_contact_mobile_icon" (click)="openOverlay('add')">
     <img src="assets/img/icons/person_add_icon.svg" alt="">
   </div>
   }
-  @if(selectedContact) {
+  @if(contactService.selectedContact) {
   <div class="new_contact_mobile_icon" (click)="openOverlayEditContactMobile('edit')">
     <img src="assets/img/icons/edit_vert_icon.svg" alt="">
   </div>
@@ -42,7 +42,7 @@
         </div>
         @for (contact of group.value; track $index) {
         <div class="single-contact-container" (click)="selectContact(contact); mobileDisplay()"
-          [class.active]="selectedContact?.id === contact.id">
+          [class.active]="contactService.selectedContact?.id === contact.id">
           <div class="profile_badge" [ngStyle]="{
               'background-color': contactService.getBadgeColor(getIndexInFullList(contact))
             }">
@@ -62,28 +62,28 @@
     <div class="headline">
       <div>
         <h1>Contacts</h1>
-        @if(selectedContact) {
+        @if(contactService.selectedContact) {
         <img class="arrow_left" src="assets/img/icons/arrow_left.svg"
-          (click)="selectContact(selectedContact); mobileDisplay()" />
+          (click)="selectContact(contactService.selectedContact); mobileDisplay()" />
         }
       </div>
       <img src="assets/img/icons/or_icon.svg" />
       <p>Better with a team</p>
       <div class="border_blue"></div>
     </div>
-    @if(selectedContact) {
-    <!-- <img class="arrow_left" src="assets/img/icons/arrow_left.svg" (click)="selectContact(selectedContact); mobileDisplay()"> -->
+    @if(contactService.selectedContact) {
+    <!-- <img class="arrow_left" src="assets/img/icons/arrow_left.svg" (click)="selectContact(contactService.selectedContact); mobileDisplay()"> -->
     <div class="contact_content" [ngClass]="{ show: showContactContent }">
       <div class="contact_content_head">
         <div class="contact_profile_badge" [ngStyle]="{
             'background-color': contactService.getBadgeColor(
-              getIndexInFullList(selectedContact)
+              getIndexInFullList(contactService.selectedContact)
             )
           }">
           {{ selectedContactInitials }}
         </div>
         <div class="contact_name_section">
-          <p class="name">{{ selectedContact.name }}</p>
+          <p class="name">{{ contactService.selectedContact.name }}</p>
           <div class="editing_section">
             <!-- <div (click)="updateContact()" class="edit"> -->
             <div (click)="openOverlay('edit')" class="edit">
@@ -103,9 +103,9 @@
         <p class="information_headline">Contact Information</p>
         <div class="information">
           <p class="email_headline">Email</p>
-          <p class="email">{{ selectedContact.email }}</p>
+          <p class="email">{{ contactService.selectedContact.email }}</p>
           <p class="phone_headline">Phone</p>
-          <p class="phone">{{ selectedContact.phone }}</p>
+          <p class="phone">{{ contactService.selectedContact.phone }}</p>
         </div>
       </div>
     </div>
