@@ -15,8 +15,17 @@ import { OverlayComponent } from './overlay/overlay.component';
 export class ContactsComponent {
   isOverlayVisible: boolean = false;
   showSuccessMessage: boolean = false;
+  selectedContactInitials: string | null = null;
+  isContactSelected: boolean = false;
+  showContactContent: boolean = false;
+  isShown = false;
+  name = '';
+  email = '';
+  phone = '';
 
   constructor(private contactsService: ContactsService) {}
+
+  contactService = inject(ContactsService);
 
   ngOnInit() {
     this.contactsService.contactCreated$.subscribe((status) => {
@@ -25,13 +34,11 @@ export class ContactsComponent {
   }
 
   openOverlayEditContactMobile(action: string) {
-    // Logik, um das Overlay zu öffnen
     if (action === 'edit' && this.contactService.selectedContact) {
       this.isOverlayVisible = true;
     }
   }
 
-  // Schließt das Overlay, wenn der Hintergrund angeklickt wird
   closeOverlayOnClick(event: any) {
     if (event.target.classList.contains('overlay')) {
       this.closeOverlay();
@@ -39,21 +46,10 @@ export class ContactsComponent {
   }
 
   closeOverlay() {
-    // Schließe das Overlay
     this.isOverlayVisible = false;
   }
 
-  // editContact() {
-  //   if (this.contactService.selectedContact) {
-  //     // Logik für das Bearbeiten des Kontakts (öffne Bearbeitungsformular oder führe eine andere Aktion aus)
-  //     console.log('Edit contact', this.contactService.selectedContact);
-  //     this.closeOverlay(); // Schließt das Overlay nach dem Bearbeiten
-  //   }
-  // }
-
   openOverlay(text: string) {
-    // console.log('openOverlay() aufgerufen');
-
     /*NEW for EDIT Fct*/
     let dummy = {
       name: '',
@@ -64,39 +60,22 @@ export class ContactsComponent {
     if (this.contactService.selectedContact && text == 'edit') {
       dummy = this.contactService.selectedContact;
       this.contactService.isEdit = true;
-    } else{
+    } else {
       this.contactService.isEdit = false;
     }
-
-
-
-    // console.log('-------------------------------------');
-    // console.info('contact ts');
-    // console.log(dummy);
 
     this.contactsService.openOverlay(dummy);
   }
 
-  contactService = inject(ContactsService);
-
-  name = '';
-  email = '';
-  phone = '';
-  isShown = false;
-
-  // contactService.selectedContact: Contact | null = null;
-  selectedContactInitials: string | null = null;
-  isContactSelected: boolean = false;
-  showContactContent: boolean = false;
-
   // Funktion zum Setzen des ausgewählten Kontakts
   selectContact(contact: Contact) {
-    if (this.contactService.selectedContact && this.contactService.selectedContact.id === contact.id) {
-      // Wenn der gleiche Kontakt erneut angeklickt wird, setzte den ausgewählten Kontakt auf null
+    if (
+      this.contactService.selectedContact &&
+      this.contactService.selectedContact.id === contact.id
+    ) {
       this.contactService.selectedContact = null;
       this.selectedContactInitials = null;
       this.isContactSelected = false;
-      // Verstecke die "contact_content" div, wenn kein Kontakt ausgewählt ist
       this.showContactContent = false;
       this.contactService.isSelected = false;
     } else {
@@ -105,7 +84,6 @@ export class ContactsComponent {
         contact.name
       );
       this.isContactSelected = true;
-      // Zeige die "contact_content" div an
       this.showContactContent = true;
       this.contactService.isSelected = true;
     }
@@ -118,30 +96,6 @@ export class ContactsComponent {
   getList() {
     return this.contactService.selectedContact?.id;
   }
-
-  // //Farben aus colors.scss
-  // colors = [
-  //   '#FF7A00', // Sunset Orange
-  //   '#930FFF', // Electric Purple
-  //   '#6E52FF', // Lavender Blue
-  //   '#FC71FF', // Fuchsia Pink
-  //   '#FFBB2B', // Golden Yellow
-  //   '#1FD7C1', // Mint Green
-  //   '#0038FF', // Deep Blue
-  //   '#FF4646', // Light Red
-  //   '#00BEE8', // Aqua Blue
-  //   '#FF5EB3', // Soft Pink
-  //   '#FF745E', // Peach
-  //   '#FFA35E', // Warm Yellow
-  //   '#FFC701', // Bright Yellow
-  //   '#C3FF2B', // Light Green
-  //   '#FFE62B', // Bright Yellow 2
-  // ];
-
-  // // Funktion, um die richtige Farbe basierend auf dem Index zuzuweisen
-  // getBadgeColor(index: number): string {
-  //   return this.colors[index % this.colors.length];
-  // }
 
   /**
    * Findet den Index eines Kontakts in der vollständigen Kontaktliste.
@@ -160,14 +114,16 @@ export class ContactsComponent {
   }
 
   deleteContact() {
-    if (this.contactService.selectedContact && this.contactService.selectedContact.id) {
+    if (
+      this.contactService.selectedContact &&
+      this.contactService.selectedContact.id
+    ) {
       this.contactService
         .deleteContact(this.contactService.selectedContact.id)
         .then(() => {
-          // Optional: Leere den ausgewählten Kontakt nach der Löschung
           this.contactService.selectedContact = null;
           this.isContactSelected = false;
-          this.closeOverlay(); // Schließt das Overlay nach dem Löschen
+          this.closeOverlay();
         })
         .catch((err) => {
           console.error('Fehler beim Löschen des Kontakts:', err);
@@ -176,7 +132,10 @@ export class ContactsComponent {
   }
 
   updateContact() {
-    if (this.contactService.selectedContact && this.contactService.selectedContact.id) {
+    if (
+      this.contactService.selectedContact &&
+      this.contactService.selectedContact.id
+    ) {
       console.log('contact update');
       console.log(this.name, this.email, this.phone);
       this.contactService
@@ -187,7 +146,6 @@ export class ContactsComponent {
           this.phone
         )
         .then(() => {
-          // Optional: Leere den ausgewählten Kontakt nach der Löschung
           this.contactService.selectedContact = null;
           this.isContactSelected = false;
         })
