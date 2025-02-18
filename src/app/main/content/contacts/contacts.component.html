@@ -127,6 +127,7 @@
           </div>
         </div>
       </div>
+
       <div class="contact_detail_section">
         <p class="information_headline">Contact Information</p>
         <div class="information">
@@ -134,23 +135,15 @@
           <p class="email">{{ contactService.selectedContact.email }}</p>
           <p class="phone_headline">Phone</p>
           <p class="phone">{{ contactService.selectedContact.phone }}</p>
-
-          @if (showSuccessMessage) {
-          <div class="success-message">Contact successfully created</div>
-          }
         </div>
       </div>
     </div>
     }
   </div>
 
-  <!-- @if (showSuccessMessage) {
-    <div class="success-message">Contact successfully created</div>
-    } -->
+  @if (showSuccessMessage) {
+  <div class="success-message">Contact successfully created</div>
+  }
 </section>
 
 <app-overlay></app-overlay>
-
-<!-- @if (showSuccessMessage) {
-          <div class="success-message">Contact successfully created</div>
-          } -->
