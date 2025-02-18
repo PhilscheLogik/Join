@@ -98,39 +98,50 @@ export class OverlayComponent {
     this.isValidPhone = false;
   }
 
-  deleteItem(id: string) {
-    this.contactService.deleteContact(id);
-    this.name = '';
-    this.email = '';
-    this.phone = '';
+  deleteItem(id: string | undefined) {
+    if (id) {
+      this.contactService.deleteContact(id);
+      this.name = '';
+      this.email = '';
+      this.phone = '';
+    }
   }
 
-  updateItem(id: string) {
-    let newName = this.name == '' ? this.contactService.test.name : this.name;
-    let newEmail =
-      this.email == '' ? this.contactService.test.email : this.email;
-    let newPhone =
-      this.phone == '' ? this.contactService.test.phone : this.phone;
+  updateItem(id: string | undefined) {
+    if (id) {
+      let newName =
+        this.name == '' ? this.contactService.selectedContact?.name : this.name;
+      let newEmail =
+        this.email == ''
+          ? this.contactService.selectedContact?.email
+          : this.email;
+      let newPhone =
+        this.phone == ''
+          ? this.contactService.selectedContact?.phone
+          : this.phone;
 
-    this.contactService.updateContact(id, newName, newEmail, newPhone);
-    this.contactService.selectedContact = {
-      name: newName,
-      email: newEmail,
-      phone: newPhone,
-    };
-    // console.log(id, this.name, this.email, this.phone);
-    // console.log(
-    //   this.contactService.test.id,
-    //   this.contactService.test.name,
-    //   this.contactService.test.email,
-    //   this.contactService.test.phone
-    // );
-    // console.log(
-    //   this.contactService.test.id,
-    //   newName,
-    //   newEmail,
-    //   newPhone
-    // );
+      this.contactService.updateContact(id, newName, newEmail, newPhone);
+
+      if (newName && newEmail && newPhone) {
+        this.contactService.selectedContact = {
+          id: id,
+          name: newName,
+          email: newEmail,
+          phone: newPhone,
+        };
+        console.log(id, newName, newEmail, newPhone);
+      }
+
+      // console.log(id, this.name, this.email, this.phone);
+      // console.log(
+      //   this.contactService.test.id,
+      //   this.contactService.test.name,
+      //   this.contactService.test.email,
+      //   this.contactService.test.phone
+      // );
+
+      console.log(id, newName, newEmail, newPhone);
+    }
   }
 
   getIndexInFullList(contact: any): number {

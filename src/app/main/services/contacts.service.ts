@@ -27,25 +27,28 @@ export class ContactsService {
   openOverlay(selectedContact: Contact) {
     this.overlayState.next(true);
 
+    console.info('service ts davor');
+    console.log(this.selectedContact);
     /*NEW for EDIT Fct*/
-    this.setTest(selectedContact);
+
     // console.info('service ts');
-    // console.log(this.getTest());
+    console.info('service ts danach');
+    console.log(this.selectedContact);
   }
 
-  test: Contact = {
-    name: '',
-    email: '',
-    phone: '',
-  };
+  // test: Contact = {
+  //   name: '',
+  //   email: '',
+  //   phone: '',
+  // };
 
-  setTest(selectedContact: Contact) {
-    this.test = selectedContact;
-  }
+  // setTest(selectedContact: Contact) {
+  //   this.test = selectedContact;
+  // }
 
-  getTest() {
-    return this.test;
-  }
+  // getTest() {
+  //   return this.test;
+  // }
 
   contactList: Contact[] = [];
 
@@ -90,14 +93,14 @@ export class ContactsService {
   }
 
   async updateContact(
-    id: string,
-    newName: string,
-    newEmail: string,
-    newPhone: string
+    id: string | undefined,
+    newName: string | undefined,
+    newEmail: string | undefined,
+    newPhone: string | undefined
   ) {
     const updateRef = doc(this.getContactRef(), id);
 
-    if (newName != '' && newEmail != '' && newPhone != '') {
+    if (newName && newEmail && newPhone) {
       await updateDoc(updateRef, {
         name: newName,
         email: newEmail,
@@ -154,18 +157,22 @@ export class ContactsService {
   }
 
   // Funktion zur Berechnung der Initialen
-  getInitials(name: string): string {
-    if (!name.trim()) return ''; // Falls der Name leer ist, gib einen leeren String zurück
+  getInitials(name: string | undefined): string {
+    if (name) {
+      if (!name.trim()) return ''; // Falls der Name leer ist, gib einen leeren String zurück
 
-    let nameParts = name.trim().split(/\s+/); // Trenne anhand von Leerzeichen
+      let nameParts = name.trim().split(/\s+/); // Trenne anhand von Leerzeichen
 
-    let firstInitial = nameParts[0].charAt(0).toUpperCase(); // Erster Buchstabe des Vornamens
-    let lastInitial =
-      nameParts.length > 1
-        ? nameParts[nameParts.length - 1].charAt(0).toUpperCase()
-        : ''; // Erster Buchstabe des Nachnamens
+      let firstInitial = nameParts[0].charAt(0).toUpperCase(); // Erster Buchstabe des Vornamens
+      let lastInitial =
+        nameParts.length > 1
+          ? nameParts[nameParts.length - 1].charAt(0).toUpperCase()
+          : ''; // Erster Buchstabe des Nachnamens
 
-    return firstInitial + lastInitial;
+      return firstInitial + lastInitial;
+    } else {
+      return '404';
+    }
   }
 
   closeOverlay() {

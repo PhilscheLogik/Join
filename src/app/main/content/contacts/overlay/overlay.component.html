@@ -13,7 +13,7 @@
       alt="Join Logo"
       class="logo"
     />
-    @if(contactService.test.id){
+    @if(contactService.selectedContact?.id){
     <h2>Edit contact</h2>
     } @else {
     <h2>Add contact</h2>
@@ -23,7 +23,7 @@
   </div>
 
   <div class="dialog-right">
-    @if(contactService.test.id){
+    @if(contactService.selectedContact?.id){
       <button class="close-btn" (click)="closeOverlayEdit()">
         <img src="assets/img/icons/close.svg" alt="Close" />
       </button>
@@ -35,14 +35,14 @@
     
       
     <div class="profile-pic">
-      @if(contactService.test.id){
+      @if(contactService.selectedContact?.id){
       <div class="initials" 
       [ngStyle]="{
         'background-color': contactService.getBadgeColor(
-          getIndexInFullList(contactService.test)
+          getIndexInFullList(contactService.selectedContact)
         )
       }"
-      >{{ contactService.getInitials(contactService.test.name) }}</div>
+      >{{ contactService.getInitials(contactService.selectedContact?.name) }}</div>
       } @else {
         <img
         src="assets/img/icons/user-profile-image.svg"
@@ -58,7 +58,7 @@
             type="text"
             placeholder="Name"
             class="input-field"
-            [value]="contactService.test.id ? contactService.test.name : ''"
+            [value]="contactService.selectedContact?.id ? contactService.selectedContact?.name : ''"
             #nameField="ngModel"
             required
             pattern="[a-zA-ZäüößÄÜÖ\s]{3,}"
@@ -82,7 +82,7 @@
             type="email"
             placeholder="Email"
             class="input-field"
-            [value]="contactService.test.id ? contactService.test.email : ''"
+            [value]="contactService.selectedContact?.id ? contactService.selectedContact?.email : ''"
             #emailField="ngModel"
             required
             pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
@@ -106,7 +106,7 @@
             type="tel"
             placeholder="Phone"
             class="input-field"
-            [value]="contactService.test.id ? contactService.test.phone : ''"
+            [value]="contactService.selectedContact?.id ? contactService.selectedContact?.phone : ''"
             #phoneField="ngModel"
             required
            pattern="^(\+|0)[1-9\s][0-9\s]{6,14}$"
@@ -124,18 +124,18 @@
         }
 
         <div class="button-group">
-          @if(contactService.test.id){
+          @if(contactService.selectedContact?.id){
           <button
             type="button"
             class="cancel-btn"
-            (click)="deleteItem(contactService.test.id); closeOverlay()"
+            (click)="deleteItem(contactService.selectedContact?.id); closeOverlay()"
           >
             Delete
           </button>
           <button
             type="submit"
             class="create-btn"
-            (click)="updateItem(contactService.test.id); closeOverlay()"
+            (click)="updateItem(contactService.selectedContact?.id); closeOverlay()"
           >
             Save
             <img src="assets/img/icons/check.svg" alt="Check" />
