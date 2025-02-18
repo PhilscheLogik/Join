@@ -114,11 +114,12 @@ export class OverlayComponent {
 
     this.contactService.updateContact(id, newName, newEmail, newPhone);
     this.contactService.selectedContact = {
+      id:id,
       name: newName,
       email: newEmail,
-      phone: newPhone,
+      phone: newPhone,      
     };
-    // console.log(id, this.name, this.email, this.phone);
+    // console.log(id, newName, newEmail, newPhone);
     // console.log(
     //   this.contactService.test.id,
     //   this.contactService.test.name,
