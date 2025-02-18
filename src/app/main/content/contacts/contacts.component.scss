@@ -7,21 +7,6 @@ section {
   position: relative;
 }
 
-/* Scrollbar Styling */
-// .contact-list::-webkit-scrollbar {
-//     width: 8px;
-// }
-
-// .contact-list::-webkit-scrollbar-track {
-//     background: #f1f1f1;
-//     border-radius: 4px;
-// }
-
-// .contact-list::-webkit-scrollbar-thumb {
-//     background: #a8a8a8;
-//     border-radius: 4px;
-// }
-
 .new_contact_mobile_icon {
   display: none;
 }
@@ -590,20 +575,31 @@ section {
 .success-message {
   position: fixed;
   bottom: 250px;
+  right: 40%;
   background-color: $dark_blue;
   color: $white;
   padding: 24px 24px;
   border-radius: 24px;
   font-size: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  opacity: 0;
+  z-index: 30;
+  opacity: 1;
   transform: translateX(150%);
   animation: slide-in 0.125s ease-in forwards,
     slide-out 0.125s ease-out 1.5s forwards;
 
-    @media (max-width: 370px) {
-        font-size: 16px;
-    }
+  @media (max-width: 768px) {
+    right: 25%;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    right: 15%;
+  }
+
+  @media (max-width: 375px) {
+    right: 10%;
+  }
 }
 
 @keyframes slide-in {
@@ -628,4 +624,4 @@ section {
     transform: translateX(250%);
     opacity: 0;
   }
- }
+}

@@ -90,8 +90,7 @@
       <p>Better with a team</p>
       <div class="border_blue"></div>
     </div>
-    @if(contactService.selectedContact) {
-    <!-- <img class="arrow_left" src="assets/img/icons/arrow_left.svg" (click)="selectContact(contactService.selectedContact); mobileDisplay()"> -->
+    @if(contactService.selectedContact) {    
     <div class="contact_content" [ngClass]="{ show: showContactContent }">
       <div class="contact_content_head">
         <div
@@ -107,7 +106,6 @@
         <div class="contact_name_section">
           <p class="name">{{ contactService.selectedContact.name }}</p>
           <div class="editing_section">
-            <!-- <div (click)="updateContact()" class="edit"> -->
             <div (click)="openOverlay('edit')" class="edit">
               <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg" />
               <img
