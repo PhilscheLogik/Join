@@ -1,5 +1,6 @@
 @import './../../../styles.scss';
 
+/* Tags and Classes */
 
 section {
     @include dFlex($jc: space-between);
@@ -8,10 +9,6 @@ section {
     background-color: $white;
     position: relative;
     min-height: 91px;
-    // overflow: hidden;
-
-    
-
 }
 
 .header_left {
@@ -21,7 +18,6 @@ section {
 
     >h1 {
         @include font($fs: 20px, $fw: 400);
-
         background-color: $white;
     }
 }
@@ -45,6 +41,7 @@ img {
         background-image: url('./../../../assets/img/icons/help_button.svg');
         background-color: $white;
         margin-right: 32px;
+
         &:hover {
             transform: scale(1.1);
         }
@@ -66,13 +63,13 @@ img {
     margin-right: 40px;
 
     &:hover {
+
         background-color: rgba($gray, 0.5);
         cursor: pointer;
     }
 
     >p {
         @include font($fs: 32px, $fw: 600);
-
         background-color: transparent;
         color: $aqua;
 
@@ -96,26 +93,25 @@ img {
 .header_overlay {
     position: fixed;
     top: 92px;
-    right: -300px; // Start off-screen
+    right: -300px; 
+    height: auto;
     width: 160px;
     background-color: $dark_blue;
     border-radius: 20px 0 20px 20px;
-    transition: all 0.3s ease-in-out; // Transition for slide
-    visibility: hidden; // Initially hidden
-    opacity: 0; // Fully transparent when hidden
+    transition: all 0.3s ease-in-out; 
+    visibility: hidden; 
+    opacity: 0; 
     z-index: 5;
-    height: auto;
     
     &.open {
-      right: 0; // Slide into view
-      visibility: visible; // Make it visible when open
-      opacity: 1; // Make it fully opaque when open
+      right: 0; 
+      visibility: visible; 
+      opacity: 1; 
     }
   }
 
 .inner_overlay {
     @include dFlex($ai: start);
-
     flex-direction: column;
     padding: 16px 8px;
 
@@ -176,12 +172,11 @@ img {
     }
 
     .responsive_header_logo {
-            // @include dFlex($jc: start, $ai: center);
             display: block;
-        
     }
 
     .header_left {
+
         >h1 {
             display: none;
         }
@@ -190,6 +185,7 @@ img {
     .initials_btn {
         height: 40px;
         width: 40px;
+
         >p {
             @include font($fs: 16px, $fw: 600);
         }
@@ -208,4 +204,4 @@ img {
         top: 68px;
         right: -300px;
     }
-  }
+}

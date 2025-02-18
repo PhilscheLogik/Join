@@ -9,6 +9,7 @@ import { NavigationService } from '../navi/navigation.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
+
 export class HeaderComponent {
   navigationService = inject(NavigationService);
 
