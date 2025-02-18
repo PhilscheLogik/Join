@@ -63,7 +63,12 @@ export class ContactsComponent {
 
     if (this.contactService.selectedContact && text == 'edit') {
       dummy = this.contactService.selectedContact;
+      this.contactService.isEdit = true;
+    } else{
+      this.contactService.isEdit = false;
     }
+
+
 
     // console.log('-------------------------------------');
     // console.info('contact ts');
@@ -172,6 +177,7 @@ export class ContactsComponent {
 
   updateContact() {
     if (this.contactService.selectedContact && this.contactService.selectedContact.id) {
+      console.log('contact update');
       console.log(this.name, this.email, this.phone);
       this.contactService
         .updateContact(

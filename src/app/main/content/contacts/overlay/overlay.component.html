@@ -13,7 +13,7 @@
       alt="Join Logo"
       class="logo"
     />
-    @if(contactService.selectedContact?.id){
+    @if(contactService.isEdit){
     <h2>Edit contact</h2>
     } @else {
     <h2>Add contact</h2>
@@ -23,19 +23,15 @@
   </div>
 
   <div class="dialog-right">
-    @if(contactService.selectedContact?.id){
-      <button class="close-btn" (click)="closeOverlayEdit()">
+    
+      <button class="close-btn" (click)="closeOverlay()">
         <img src="assets/img/icons/close.svg" alt="Close" />
       </button>
-    } @else {
-      <button class="close-btn" (click)="closeOverlay()">
-      <img src="assets/img/icons/close.svg" alt="Close" />
-    </button>
-  }
+   
     
       
     <div class="profile-pic">
-      @if(contactService.selectedContact?.id){
+      @if(contactService.isEdit){
       <div class="initials" 
       [ngStyle]="{
         'background-color': contactService.getBadgeColor(
@@ -58,7 +54,7 @@
             type="text"
             placeholder="Name"
             class="input-field"
-            [value]="contactService.selectedContact?.id ? contactService.selectedContact?.name : ''"
+            
             #nameField="ngModel"
             required
             pattern="[a-zA-ZäüößÄÜÖ\s]{3,}"
@@ -82,7 +78,7 @@
             type="email"
             placeholder="Email"
             class="input-field"
-            [value]="contactService.selectedContact?.id ? contactService.selectedContact?.email : ''"
+            
             #emailField="ngModel"
             required
             pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
@@ -106,7 +102,7 @@
             type="tel"
             placeholder="Phone"
             class="input-field"
-            [value]="contactService.selectedContact?.id ? contactService.selectedContact?.phone : ''"
+            
             #phoneField="ngModel"
             required
            pattern="^(\+|0)[1-9\s][0-9\s]{6,14}$"
@@ -124,7 +120,7 @@
         }
 
         <div class="button-group">
-          @if(contactService.selectedContact?.id){
+          @if(contactService.isEdit){
           <button
             type="button"
             class="cancel-btn"

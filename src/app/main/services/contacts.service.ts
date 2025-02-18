@@ -18,22 +18,21 @@ export class ContactsService {
   isSelected = false;
   selectedContact: Contact | null = null;
 
+  isEdit = false;
+
   private overlayState = new BehaviorSubject<boolean>(false);
   overlayState$ = this.overlayState.asObservable();
 
   private contactCreatedSource = new BehaviorSubject<boolean>(false);
   contactCreated$ = this.contactCreatedSource.asObservable();
 
-  openOverlay(selectedContact: Contact) {
+  openOverlay(selectedContact: Contact) {  
+
     this.overlayState.next(true);
 
     console.info('service ts davor');
-    console.log(this.selectedContact);
-    /*NEW for EDIT Fct*/
-
-    // console.info('service ts');
-    console.info('service ts danach');
-    console.log(this.selectedContact);
+    console.log(this.selectedContact);   
+   
   }
 
   // test: Contact = {
