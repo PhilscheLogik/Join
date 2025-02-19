@@ -10,33 +10,37 @@
   @include dFlex();
   z-index: 1000;
 
-   h1 {
-    @include font($ff: 'Inter', $fs: 61px, $fw: 700)
+  h1 {
+    @include font($ff: "Inter", $fs: 61px, $fw: 700);
+    margin-bottom: 16px;
+  }
+
+  p {
+    @include font($ff: "Inter", $fs: 20px, $fw: 400);
   }
 
   .task-overlay-content {
     background: $white;
-    padding: 20px;
+    padding: 32px;
     border-radius: 24px;
-    width: 475px;
+    width: 500px;
     height: 800px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
     .header {
       @include dFlex($jc: space-between);
+      margin-bottom: 24px;
 
       .category {
-        padding: 5px 10px;
-        border-radius: 5px;
+        padding: 3px 20px;
+        border-radius: 6px;
         background-color: $mint;
         color: $white;
-        font-weight: bold;
+        @include font($ff: "Inter", $fs: 23px, $fw: 400);
       }
 
       .close-btn {
         background: none;
         border: none;
-        font-size: 20px;
         cursor: pointer;
       }
     }
@@ -47,6 +51,11 @@
       margin-top: 16px;
     }
 
+    .subtask,
+    .assignee {
+        margin-left: 16px;
+    }
+
     .assignees {
       display: flex;
       flex-direction: column;
@@ -55,30 +64,39 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-top: 5px;
+        margin-top: 16px;
 
         .profile-pic {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
           @include dFlex();
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
           color: $white;
-          font-size: 20px;
+        }
+
+        .assignee-name {
+          @include font($ff: "Inter", $fs: 20px, $fw: 400);
         }
       }
     }
 
     .actions {
+      @include dFlex($jc: flex-end);
       margin-top: 20px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
 
       .delete-btn {
         color: $black;
         border: none;
         padding: 5px 10px;
         cursor: pointer;
+        background: none;
+        @include font($ff: "Inter", $fs: 20px, $fw: 400);
+      }
+
+      .divider {
+        width: 1px;
+        height: 24px;
+        background-color: gray;
       }
 
       .edit-btn {
@@ -86,6 +104,13 @@
         border: none;
         padding: 5px 10px;
         cursor: pointer;
+        background: none;
+        @include font($ff: "Inter", $fs: 20px, $fw: 400);
+      }
+
+      img {
+        position: relative;
+        top: 4px;
       }
     }
   }
