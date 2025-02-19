@@ -1,12 +1,50 @@
 <section>
-  <h2>Lass mich dein Board sein!</h2>
-
-  <div>
-    To do
-    <app-single-task></app-single-task>
+  <div class="board_header">
+    <div class="board_header_left">
+      <h1>Board</h1>
+    </div>
+    <div class="board_header_right">
+      <input type="text">
+    <button>Add task <img src="./assets/img/icons/plus_icon.svg" alt=""></button>
+    </div>
   </div>
-  <div>In progress</div>
-  <div>Await feedback</div>
-  <div>Done</div> 
+  <div class="board_content">
+      <div class="to_do">
+        <div class="board_section_header">
+          <h2>To do</h2>
+          <button class="to_do_add_btn"></button>
+          <div class="tasks_content">
+
+          </div>
+        </div>
+      </div>
+      <div class="in_progress">
+        <div class="board_section_header">
+          <h2>In progress</h2>
+          <button class="in_progress_add_btn"></button>
+        </div>
+        <div class="tasks_content">
+            
+        </div>
+      </div>
+      <div class="await_feedback">
+        <div class="board_section_header">
+          <h2>Await feedback</h2>
+          <button class="await_feedback_add_btn"></button>
+        </div>
+        <div class="tasks_content">
+            
+        </div>
+      </div>
+      <div class="done">
+        <div class="board_section_header">
+          <h2>Done</h2>
+          <button class="done_add_btn"></button>
+        </div>
+        <div class="tasks_content">
+            
+        </div>
+      </div>
+  </div>
   
 </section>
