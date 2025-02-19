@@ -1,5 +1,20 @@
 @import './../../../../styles.scss';
 
-h2 {
-    background-color: lightsalmon;
+// p {
+//     background-color: lightsalmon;
+// }
+
+section {
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
 }
+
+.board_header {
+    @include dFlex($jc: space-between);
+    flex-direction: row;
+}
+
+.board_content {
+    @include dFlex($jc: space-evenly);
+    flex-direction: row;
+}
+
