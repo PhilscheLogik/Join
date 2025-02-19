@@ -51,7 +51,7 @@ section {
         padding-left: 21px;
       }
     }
-<<<<<<< HEAD
+
   }
 
   .description_field {
@@ -107,7 +107,7 @@ section {
   background: url("./../../../../assets/img/icons/add_task.svg") no-repeat right
     10px center;
   background-size: 20px;
-=======
+
 
     .assigned_field {
         @include dFlex($ai: flex-start, $g: 10px);
@@ -126,8 +126,8 @@ section {
 
 
     }
->>>>>>> e0afa5b06e7b99145352bd5feae681907d346b83
 }
+
 
 .choice {
   @include dFlex($ai: flex-start);
@@ -183,15 +183,7 @@ section {
 }
 
 .selectedLow {
-<<<<<<< HEAD
   background: $light_green;
   color: $white;
   font-weight: 700;
 }
-
-
-=======
-    background: $light_green;
-    color: $white;
-}
->>>>>>> e0afa5b06e7b99145352bd5feae681907d346b83
