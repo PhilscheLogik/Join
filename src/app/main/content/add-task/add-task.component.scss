@@ -1,22 +1,22 @@
-@import './../../../../styles.scss';
+@import "./../../../../styles.scss";
 
 section {
-    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
-    padding-left: 50px;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+  padding: 0 50px;
 }
 
 .head-section {
-    @include dFlex($jc: space-between);
-    padding-top: 80px;
-    padding-bottom: 30px;
+  @include dFlex($jc: space-between);
+  padding-top: 80px;
+  padding-bottom: 30px;
 
-    h1 {
-        @include font($fs: 61px, $fw: 700);
-    }
+  h1 {
+    @include font($fs: 61px, $fw: 700);
+  }
 
-    .close {
-        display: none;
-    }
+  .close {
+    display: none;
+  }
 }
 
 // div{
@@ -24,104 +24,128 @@ section {
 // }
 
 .content {
-    @include dFlex($ai: flex-start, $g: 50px);
+  @include dFlex($ai: flex-start, $g: 50px);
+  flex-direction: column;
+
+  .title_field {
+    @include dFlex($ai: flex-start, $g: 10px);
     flex-direction: column;
+    width: 440px;
 
-    .title_field {
-        @include dFlex($ai: flex-start, $g: 10px);
-        flex-direction: column;
-        width: 440px;
+    .title {
+      @include font($fs: 20px, $fw: 400);
+      height: 24px;
 
-        .title {
-            @include font($fs: 20px, $fw: 400);
-            height: 24px;
-
-            span {
-                color: $red;
-            }
-        }
-
-        .input {
-            border: 1px solid;
-            border-color: $light_gray;
-            border-radius: 10px;
-            height: 48px;
-            width: 100%;
-
-            &::placeholder {
-                @include font($fs: 20px, $fw: 400);
-                color: $light_gray;
-                padding-top: 12px;
-                padding-left: 21px;
-            }
-        }
+      span {
+        color: $red;
+      }
     }
 
-    .description_field {
-        @include dFlex($ai: flex-start, $g: 10px);
-        flex-direction: column;
-        width: 440px;
+    .input {
+      border: 1px solid;
+      border-color: $light_gray;
+      border-radius: 10px;
+      height: 48px;
+      width: 100%;
 
-        .title {
-            @include font($fs: 20px, $fw: 400);
-            height: 24px;
-
-            >span {
-                color: $red;
-            }
-
-        }
-
-        .input {
-            border: 1px solid;
-            border-color: $light_gray;
-            border-radius: 10px;
-            height: 120px;
-            width: 100%;
-
-            &::placeholder {
-                @include font($fs: 20px, $fw: 400);
-                color: $light_gray;
-                padding-top: 18px;
-                padding-left: 16px;
-            }
-        }
+      &::placeholder {
+        @include font($fs: 20px, $fw: 400);
+        color: $light_gray;
+        padding-top: 12px;
+        padding-left: 21px;
+      }
     }
+  }
+
+  .description_field {
+    @include dFlex($ai: flex-start, $g: 10px);
+    flex-direction: column;
+    width: 440px;
+
+    .title {
+      @include font($fs: 20px, $fw: 400);
+      height: 24px;
+
+      > span {
+        color: $red;
+      }
+    }
+
+    .input {
+      border: 1px solid;
+      border-color: $light_gray;
+      border-radius: 10px;
+      height: 120px;
+      width: 100%;
+
+      &::placeholder {
+        @include font($fs: 20px, $fw: 400);
+        color: $light_gray;
+        padding-top: 18px;
+        padding-left: 16px;
+      }
+    }
+  }
 }
 
 
 .choice {
-    @include dFlex($ai: flex-start);
-    flex-direction: column;
+  @include dFlex($ai: flex-start);
+  flex-direction: column;
 
-    span {
-        color: $red;
-    }
+  label{
+    font-size: 20px;
+  }
 
+  span {
+    color: $red;
+  }
+
+  input {
+    border: 1px solid;
+    border-color: $light_gray;
+    border-radius: 10px;
+    height: 48px;
     width: 100%;
+
+    &::placeholder {
+      @include font($fs: 20px, $fw: 400);
+      color: $light_gray;
+      padding-top: 18px;
+      padding-left: 16px;
+    }
+  }
+
+  width: 100%;
 }
 
-
+.btn-prio {
+    box-sizing: border-box;
+    padding: 16px;
+    font-size: 21px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: $white;
+    box-shadow: 0px 0px 7px 4px rgba($black, 0.1);
+  }
 
 .selectedHigh {
-    background: $special_red;
-    color: $white;
+  background: $special_red;
+  color: $white;
+  font-weight: 700;
 }
 
-
 .selectedMedium {
-    background: $darker_orange;
-    color: $white;
+  background: $darker_orange;
+  color: $white;
+  font-weight: 700;
 }
 
 .selectedLow {
-    background: $light_green;
-    color: $white;
+  background: $light_green;
+  color: $white;
+  font-weight: 700;
 }
 
 
-.btn-prio{
-
-    
-
-}
