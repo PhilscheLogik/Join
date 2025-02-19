@@ -15,7 +15,11 @@ export class AddTaskComponent {
     console.log(this.taskService.taskList);
   }
 
-  constructor(){     
+  prio = 'medium';
 
+  constructor() {}
+
+  setPriority(status: string) {
+    this.prio = status;
   }
 }

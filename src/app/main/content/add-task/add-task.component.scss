@@ -20,19 +20,6 @@ section {
 //     background-color: lightgreen;
 // }
 
-
-.selected{
-    background: green;
-}
-
-// $red
-
-
-.selected{
-    background: green;
-}
-
-// $red
 .content {
 
     .title {
@@ -44,4 +31,45 @@ section {
         }
     }
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.choice{
+    @include dFlex($ai: flex-start);
+    flex-direction: column;
+    span {
+        color: $red;
+    }
+
+    width: 100%;
+}
+
+
+
+.selectedHigh{
+    background: $special_red;
+    color: $white;
+}
+
+
+.selectedMedium{
+    background: $darker_orange;
+    color: $white;
+}
+
+.selectedLow{
+    background: $light_green;
+    color: $white;
 }
