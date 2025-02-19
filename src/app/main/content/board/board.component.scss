@@ -12,11 +12,31 @@ section {
     
 }
 
-input {
+.input_field {
+    @include dFlex($ai: center, $jc: space-between);
     height: 48px;
+    width: 504px;
     border-radius: 10px;
     border-color: $gray;
     border-style: solid;
+    padding: 8px;
+}
+
+input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+input::placeholder {
+    @include font($fs: 20px, $fw: 400);
+    color: $light_gray;
+}
+
+.search_btn {
+    width: 18px;
+    height: 18px;
 }
 
 h1 {
@@ -46,7 +66,7 @@ h2 {
 }
 
 .board_content {
-    @include dFlex($jc: space-evenly);
+    @include dFlex($jc: space-evenly, $g: 24px);
     flex-direction: row;
     height: 75%;
     width: 100%;
@@ -61,22 +81,22 @@ h2 {
 .to_do {
     @include dFlex($ai: flex-start, $jc: flex-start);
     height: 100%;
-    width: 20%;
+    width: 100%;
 }
 .in_progress {
     @include dFlex($ai: flex-start, $jc: flex-start);
     height: 100%;
-    width: 20%;
+    width: 100%;
 }
 .await_feedback {
     @include dFlex($ai: flex-start, $jc: flex-start);
     height: 100%;
-    width: 20%;
+    width: 100%;
 }
 .done {
     @include dFlex($ai: flex-start, $jc: flex-start);
     height: 100%;
-    width: 20%;
+    width: 100%;
 }
 
 /* Hard coded example task card */
