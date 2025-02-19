@@ -55,6 +55,21 @@ export class OverlayComponent {
     });
   }
 
+  submitForm(form: NgForm, action: 'create' | 'update', contactId?: string) {
+    if (form.invalid) {
+      form.form.markAllAsTouched();
+      return;
+    }
+
+    if (action === 'create') {
+      this.addContactList();
+    } else if (action === 'update' && contactId) {
+      this.updateItem(contactId);
+    }
+
+    this.closeOverlay();
+  }
+
   closeOverlay() {
     this.isClosing = true;
 
