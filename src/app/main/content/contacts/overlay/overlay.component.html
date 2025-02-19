@@ -66,7 +66,7 @@
           />
         </div>
         @if ((nameField.invalid && nameField.touched) || isValidName) {
-        <p class="error-message">Please use letters only!</p>
+        <p class="error-message">Please use at least 3 letters!</p>
         } @else {
         <p></p>
         }
@@ -114,7 +114,7 @@
           />
         </div>
         @if ((phoneField.invalid && phoneField.touched) || isValidPhone) {
-        <p class="error-message">Please use numbers only!</p>
+        <p class="error-message">Please use + or 0 at the beginning and 6-14 numbers!</p>
         } @else {
         <p></p>
         }
