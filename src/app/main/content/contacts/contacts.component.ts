@@ -13,6 +13,7 @@ import { OverlayComponent } from './overlay/overlay.component';
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
+  
   isOverlayVisible: boolean = false;
   showSuccessMessage: boolean = false;
   selectedContactInitials: string | null = null;
@@ -30,6 +31,11 @@ export class ContactsComponent {
   ngOnInit() {
     this.contactsService.contactCreated$.subscribe((status) => {
       this.showSuccessMessage = status;
+      if (status) {
+        setTimeout(() => {
+          this.showSuccessMessage = false;
+        }, 2000);
+      }
     });
   }
 
