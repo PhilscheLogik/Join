@@ -1,5 +1,14 @@
 @import './../../../../styles.scss';
 
-p{
-    background-color: lightgreen;
+section {
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
 }
+
+.head-section {
+    @include dFlex($jc: space-between);
+
+}
+
+// div{
+//     background-color: lightgreen;
+// }
