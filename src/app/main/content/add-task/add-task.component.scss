@@ -7,8 +7,24 @@ section {
 .head-section {
     @include dFlex($jc: space-between);
 
+    h1 {
+        @include font($fs: 61px, $fw: 700);
+    }
+
+    .close {
+        display: none;
+    }
 }
 
-// div{
-//     background-color: lightgreen;
-// }
+.content {
+
+    .title {
+        @include dFlex($ai: flex-start);
+        flex-direction: column;
+
+        span {
+            color: $red;
+        }
+    }
+
+}
