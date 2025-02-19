@@ -13,7 +13,7 @@
       alt="Join Logo"
       class="logo"
     />
-    @if(contactService.test.id){
+    @if(contactService.isEdit){
     <h2>Edit contact</h2>
     } @else {
     <h2>Add contact</h2>
@@ -23,26 +23,22 @@
   </div>
 
   <div class="dialog-right">
-    @if(contactService.test.id){
-      <button class="close-btn" (click)="closeOverlayEdit()">
+    
+      <button class="close-btn" (click)="closeOverlay()">
         <img src="assets/img/icons/close.svg" alt="Close" />
       </button>
-    } @else {
-      <button class="close-btn" (click)="closeOverlay()">
-      <img src="assets/img/icons/close.svg" alt="Close" />
-    </button>
-  }
+   
     
       
     <div class="profile-pic">
-      @if(contactService.test.id){
+      @if(contactService.isEdit){
       <div class="initials" 
       [ngStyle]="{
         'background-color': contactService.getBadgeColor(
-          getIndexInFullList(contactService.test)
+          getIndexInFullList(contactService.selectedContact)
         )
       }"
-      >{{ contactService.getInitials(contactService.test.name) }}</div>
+      >{{ contactService.getInitials(contactService.selectedContact?.name) }}</div>
       } @else {
         <img
         src="assets/img/icons/user-profile-image.svg"
@@ -58,7 +54,7 @@
             type="text"
             placeholder="Name"
             class="input-field"
-            [value]="contactService.test.id ? contactService.test.name : ''"
+            
             #nameField="ngModel"
             required
             pattern="[a-zA-ZäüößÄÜÖ\s]{3,}"
@@ -70,7 +66,7 @@
           />
         </div>
         @if ((nameField.invalid && nameField.touched) || isValidName) {
-        <p class="error-message">Please use letters only!</p>
+        <p class="error-message">Please use at least 3 letters!</p>
         } @else {
         <p></p>
         }
@@ -82,7 +78,7 @@
             type="email"
             placeholder="Email"
             class="input-field"
-            [value]="contactService.test.id ? contactService.test.email : ''"
+            
             #emailField="ngModel"
             required
             pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
@@ -106,10 +102,10 @@
             type="tel"
             placeholder="Phone"
             class="input-field"
-            [value]="contactService.test.id ? contactService.test.phone : ''"
+            
             #phoneField="ngModel"
             required
-           pattern="^(\+|0)[1-9\s][0-9\s]{6,14}$"
+           pattern="^(\+|0|00)[1-9\s][0-9\s]{5,16}$"
           />
           <img
             src="assets/img/icons/call.svg"
@@ -118,24 +114,25 @@
           />
         </div>
         @if ((phoneField.invalid && phoneField.touched) || isValidPhone) {
-        <p class="error-message">Please use numbers only!</p>
+        <p class="error-message">Please use + or 0 at the beginning and 5-18 numbers! (Spaces are included)</p>
         } @else {
         <p></p>
         }
 
         <div class="button-group">
-          @if(contactService.test.id){
+          @if(contactService.isEdit){
           <button
             type="button"
             class="cancel-btn"
-            (click)="deleteItem(contactService.test.id); closeOverlay()"
+            (click)="deleteItem(contactService.selectedContact?.id); closeOverlay()"
           >
             Delete
           </button>
           <button
+          [disabled]="contactForm.invalid"
             type="submit"
             class="create-btn"
-            (click)="updateItem(contactService.test.id); closeOverlay()"
+            (click)="updateItem(contactService.selectedContact?.id); closeOverlay()"
           >
             Save
             <img src="assets/img/icons/check.svg" alt="Check" />
@@ -144,7 +141,7 @@
           <button type="button" class="cancel-btn" (click)="closeOverlay()">
             Cancel <img src="assets/img/icons/cancel.svg" alt="Cancel" />
           </button>
-          <button type="submit" class="create-btn" (click)="addContactList()">
+          <button [disabled]="contactForm.invalid" type="submit" class="create-btn" (click)="addContactList()">
             Create contact <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
 

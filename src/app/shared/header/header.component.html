@@ -18,7 +18,7 @@
         id="overlay"
         [class.open]="isOpen"
         class="header_overlay"
-      >
+        >
         <div class="inner_overlay">
 
           <a class="burger_help_link" 
@@ -28,8 +28,7 @@
           <a  [ngClass]="{ active: navigationService.selectedItem === 5 }"
               (click)="selectItem(5)">Legal Notice</a>
 
-          <a 
-          [ngClass]="{ active: navigationService.selectedItem === 4 }"
+          <a [ngClass]="{ active: navigationService.selectedItem === 4 }"
             (click)="selectItem(4)">Privacy Policy</a>
 
           <a href="">Log out</a>

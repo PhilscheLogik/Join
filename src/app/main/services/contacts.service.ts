@@ -15,8 +15,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ContactsService {
-  isSelected = false;
+  firestore: Firestore = inject(Firestore);
+
   selectedContact: Contact | null = null;
+  isSelected = false;
+  isEdit = false;
+
+  contactList: Contact[] = [];
 
   private overlayState = new BehaviorSubject<boolean>(false);
   overlayState$ = this.overlayState.asObservable();
@@ -27,37 +32,15 @@ export class ContactsService {
   openOverlay(selectedContact: Contact) {
     this.overlayState.next(true);
 
-    /*NEW for EDIT Fct*/
-    this.setTest(selectedContact);
-    // console.info('service ts');
-    // console.log(this.getTest());
+    // console.info('service ts davor');
+    // console.log(this.selectedContact);   
+   
   }
-
-  test: Contact = {
-    name: '',
-    email: '',
-    phone: '',
-  };
-
-  setTest(selectedContact: Contact) {
-    this.test = selectedContact;
-  }
-
-  getTest() {
-    return this.test;
-  }
-
-  contactList: Contact[] = [];
 
   unsubContacts;
 
-  firestore: Firestore = inject(Firestore);
-
   constructor() {
     this.unsubContacts = this.subContactList();
-    // this.overlayState$.subscribe((state) =>
-    //   console.log('Overlay State:', state)
-    // );
   }
 
   ngOnDestroy() {
@@ -83,6 +66,7 @@ export class ContactsService {
       console.error('Error adding contact:', err);
     }
   }
+  
   async deleteContact(id: string) {
     if (id) {
       await deleteDoc(doc(this.getContactRef(), id));
@@ -90,14 +74,14 @@ export class ContactsService {
   }
 
   async updateContact(
-    id: string,
-    newName: string,
-    newEmail: string,
-    newPhone: string
+    id: string | undefined,
+    newName: string | undefined,
+    newEmail: string | undefined,
+    newPhone: string | undefined
   ) {
     const updateRef = doc(this.getContactRef(), id);
 
-    if (newName != '' && newEmail != '' && newPhone != '') {
+    if (newName && newEmail && newPhone) {
       await updateDoc(updateRef, {
         name: newName,
         email: newEmail,
@@ -122,20 +106,15 @@ export class ContactsService {
 
   // Kontakte nach Anfangsbuchstaben gruppieren
   getGroupedContacts() {
-    // Ein leeres Objekt für die Gruppierung erstellen
     let groupedContacts: { [key: string]: any[] } = {};
-
-    // Durch alle Kontakte iterieren
+    
     for (let contact of this.contactList) {
-      // Den ersten Buchstaben des Namens in Großbuchstaben holen
       let firstLetter = contact.name.charAt(0).toUpperCase();
 
-      // Falls es noch keine Gruppe für diesen Buchstaben gibt, erstelle eine
       if (!groupedContacts[firstLetter]) {
         groupedContacts[firstLetter] = [];
       }
 
-      // Initialen holen
       let initials = this.getInitials(contact.name);
 
       // Kontakt zur Gruppe hinzufügen
@@ -154,18 +133,20 @@ export class ContactsService {
   }
 
   // Funktion zur Berechnung der Initialen
-  getInitials(name: string): string {
-    if (!name.trim()) return ''; // Falls der Name leer ist, gib einen leeren String zurück
+  getInitials(name: string | undefined): string {
+    if (name) {
+      if (!name.trim()) return ''; 
+      let nameParts = name.trim().split(/\s+/); 
+      let firstInitial = nameParts[0].charAt(0).toUpperCase(); 
+      let lastInitial =
+        nameParts.length > 1
+          ? nameParts[nameParts.length - 1].charAt(0).toUpperCase()
+          : ''; 
 
-    let nameParts = name.trim().split(/\s+/); // Trenne anhand von Leerzeichen
-
-    let firstInitial = nameParts[0].charAt(0).toUpperCase(); // Erster Buchstabe des Vornamens
-    let lastInitial =
-      nameParts.length > 1
-        ? nameParts[nameParts.length - 1].charAt(0).toUpperCase()
-        : ''; // Erster Buchstabe des Nachnamens
-
-    return firstInitial + lastInitial;
+      return firstInitial + lastInitial;
+    } else {
+      return '404';
+    }
   }
 
   closeOverlay() {
@@ -174,7 +155,6 @@ export class ContactsService {
 
   private notifyContactCreated() {
     this.contactCreatedSource.next(true);
-    setTimeout(() => this.contactCreatedSource.next(false), 10000);
   }
 
   //Farben aus colors.scss

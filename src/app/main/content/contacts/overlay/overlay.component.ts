@@ -33,6 +33,25 @@ export class OverlayComponent {
       if (state) {
         this.isClosing = false;
       }
+
+      // console.log('overlay ts');
+      // console.log(this.contactService.isEdit);
+      // console.log(
+      //   this.contactService.selectedContact?.id && this.contactService.isEdit
+      // );
+
+      if (
+        this.contactService.selectedContact?.id &&
+        this.contactService.isEdit
+      ) {
+        this.name = this.contactService.selectedContact.name;
+        this.email = this.contactService.selectedContact.email;
+        this.phone = this.contactService.selectedContact.phone;
+      } else {
+        this.name = '';
+        this.email = '';
+        this.phone = '';
+      }
     });
   }
 
@@ -54,15 +73,15 @@ export class OverlayComponent {
     this.phone = '';
   }
 
-  closeOverlayEdit() {
-    this.isClosing = true;
+  // closeOverlayEdit() {
+  //   this.isClosing = true;
 
-    setTimeout(() => {
-      this.isOpen = false;
-      this.isClosing = false;
-      this.contactsService.closeOverlay();
-    }, 500);
-  }
+  //   setTimeout(() => {
+  //     this.isOpen = false;
+  //     this.isClosing = false;
+  //     this.contactsService.closeOverlay();
+  //   }, 500);
+  // }
 
   addContactList() {
     if (!this.name) {
@@ -98,45 +117,50 @@ export class OverlayComponent {
     this.isValidPhone = false;
   }
 
-  deleteItem(id: string) {
-    this.contactService.deleteContact(id);
-    this.name = '';
-    this.email = '';
-    this.phone = '';
+  deleteItem(id: string | undefined) {
+    if (id) {
+      this.contactService.deleteContact(id);
+      this.name = '';
+      this.email = '';
+      this.phone = '';
+      this.contactService.selectedContact = null;
+    }
+    // console.log(this.name, this.email, this.phone)
   }
 
-  updateItem(id: string) {
-    let newName = this.name == '' ? this.contactService.test.name : this.name;
-    let newEmail =
-      this.email == '' ? this.contactService.test.email : this.email;
-    let newPhone =
-      this.phone == '' ? this.contactService.test.phone : this.phone;
+  updateItem(id: string | undefined) {
+    if (id) {
+      let newName =
+        this.name == '' ? this.contactService.selectedContact?.name : this.name;
+      let newEmail =
+        this.email == ''
+          ? this.contactService.selectedContact?.email
+          : this.email;
+      let newPhone =
+        this.phone == ''
+          ? this.contactService.selectedContact?.phone
+          : this.phone;
 
-    this.contactService.updateContact(id, newName, newEmail, newPhone);
-    this.contactService.selectedContact = {
-      id:id,
-      name: newName,
-      email: newEmail,
-      phone: newPhone,      
-    };
-    // console.log(id, newName, newEmail, newPhone);
-    // console.log(
-    //   this.contactService.test.id,
-    //   this.contactService.test.name,
-    //   this.contactService.test.email,
-    //   this.contactService.test.phone
-    // );
-    // console.log(
-    //   this.contactService.test.id,
-    //   newName,
-    //   newEmail,
-    //   newPhone
-    // );
+      this.contactService.updateContact(id, newName, newEmail, newPhone);
+
+      if (newName && newEmail && newPhone) {
+        this.contactService.selectedContact = {
+          id: id,
+          name: newName,
+          email: newEmail,
+          phone: newPhone,
+        };
+      }
+    }
   }
 
   getIndexInFullList(contact: any): number {
-    return this.contactService.contactList.findIndex(
-      (c) => c.email === contact.email
-    );
+    if (contact) {
+      return this.contactService.contactList.findIndex(
+        (c) => c.email === contact.email
+      );
+    }
+
+    return 404;
   }
 }
