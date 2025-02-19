@@ -23,27 +23,24 @@
   </div>
 
   <div class="dialog-right">
-    
-      <button class="close-btn" (click)="closeOverlay()">
-        <img src="assets/img/icons/close.svg" alt="Close" />
-      </button>
-   
-    
-      
+    <button class="close-btn" (click)="closeOverlay()">
+      <img src="assets/img/icons/close.svg" alt="Close" />
+    </button>
+
     <div class="profile-pic">
       @if(contactService.isEdit){
-      <div class="initials" 
-      [ngStyle]="{
-        'background-color': contactService.getBadgeColor(
-          getIndexInFullList(contactService.selectedContact)
-        )
-      }"
-      >{{ contactService.getInitials(contactService.selectedContact?.name) }}</div>
+      <div
+        class="initials"
+        [ngStyle]="{
+          'background-color': contactService.getBadgeColor(
+            getIndexInFullList(contactService.selectedContact)
+          )
+        }"
+      >
+        {{ contactService.getInitials(contactService.selectedContact?.name) }}
+      </div>
       } @else {
-        <img
-        src="assets/img/icons/user-profile-image.svg"
-        alt="User Profile"
-      />}
+      <img src="assets/img/icons/user-profile-image.svg" alt="User Profile" />}
     </div>
     <div class="form-container">
       <form #contactForm="ngForm">
@@ -54,7 +51,6 @@
             type="text"
             placeholder="Name"
             class="input-field"
-            
             #nameField="ngModel"
             required
             pattern="[a-zA-ZäüößÄÜÖ\s]{3,}"
@@ -65,7 +61,8 @@
             alt="Name Icon"
           />
         </div>
-        @if ((nameField.invalid && nameField.touched) || isValidName) {
+        @if ( (nameField.invalid && (nameField.touched ||
+        contactForm.submitted)) || isValidName) {
         <p class="error-message">Please use at least 3 letters!</p>
         } @else {
         <p></p>
@@ -78,7 +75,6 @@
             type="email"
             placeholder="Email"
             class="input-field"
-            
             #emailField="ngModel"
             required
             pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
@@ -89,7 +85,8 @@
             alt="Email Icon"
           />
         </div>
-        @if ((emailField.invalid && emailField.touched) || isValidEmail) {
+        @if ((emailField.invalid && (emailField.touched ||
+        contactForm.submitted)) || isValidEmail) {
         <p class="error-message">Please use a valid email!</p>
         } @else {
         <p></p>
@@ -102,10 +99,9 @@
             type="tel"
             placeholder="Phone"
             class="input-field"
-            
             #phoneField="ngModel"
             required
-           pattern="^(\+|0|00)[1-9\s][0-9\s]{5,16}$"
+            pattern="^(\+|0|00)[1-9\s][0-9\s]{5,16}$"
           />
           <img
             src="assets/img/icons/call.svg"
@@ -113,8 +109,12 @@
             alt="Phone Icon"
           />
         </div>
-        @if ((phoneField.invalid && phoneField.touched) || isValidPhone) {
-        <p class="error-message">Please use + or 0 at the beginning and 5-18 numbers! (Spaces are included)</p>
+        @if ((phoneField.invalid && (phoneField.touched ||
+        contactForm.submitted)) || isValidPhone) {
+        <p class="error-message">
+          Please use + or 0 at the beginning and 5-18 numbers! (Spaces are
+          included)
+        </p>
         } @else {
         <p></p>
         }
@@ -124,27 +124,38 @@
           <button
             type="button"
             class="cancel-btn"
-            (click)="deleteItem(contactService.selectedContact?.id); closeOverlay()"
+            (click)="
+              deleteItem(contactService.selectedContact?.id); closeOverlay()
+            "
           >
             Delete
           </button>
           <button
-          [disabled]="contactForm.invalid"
             type="submit"
             class="create-btn"
-            (click)="updateItem(contactService.selectedContact?.id); closeOverlay()"
+            (click)="
+              submitForm(
+                contactForm,
+                'update',
+                contactService.selectedContact?.id
+              )
+            "
           >
             Save
             <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
           } @else {
           <button type="button" class="cancel-btn" (click)="closeOverlay()">
-            Cancel <img src="assets/img/icons/cancel.svg" alt="Cancel" />
+            Cancel
+            <img src="assets/img/icons/cancel.svg" alt="Cancel" />
           </button>
-          <button [disabled]="contactForm.invalid" type="submit" class="create-btn" (click)="addContactList()">
+          <button
+            type="submit"
+            class="create-btn"
+            (click)="submitForm(contactForm, 'create')"
+          >
             Create contact <img src="assets/img/icons/check.svg" alt="Check" />
           </button>
-
           }
         </div>
       </form>
