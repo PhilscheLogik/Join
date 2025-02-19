@@ -571,7 +571,6 @@ section {
   }
 }
 
-/* Norman */
 .success-message {
   position: fixed;
   bottom: 250px;
@@ -583,7 +582,7 @@ section {
   font-size: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 30;
-  opacity: 1;
+  opacity: 0;
   transform: translateX(150%);
   animation: slide-in 0.125s ease-in forwards,
     slide-out 0.125s ease-out 1.5s forwards;
