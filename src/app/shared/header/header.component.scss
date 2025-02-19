@@ -93,7 +93,7 @@ img {
 .header_overlay {
     position: fixed;
     top: 92px;
-    right: -300px; 
+    right: -160px; 
     height: auto;
     width: 160px;
     background-color: $dark_blue;
@@ -104,7 +104,7 @@ img {
     z-index: 5;
     
     &.open {
-      right: 0; 
+      right: 20px; 
       visibility: visible; 
       opacity: 1; 
     }
