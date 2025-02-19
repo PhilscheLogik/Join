@@ -22,7 +22,7 @@
       <div class="choice">
         <label>Prio</label>
         <div>
-          <button
+          <button class="btn-prio"
             type="button"
             (click)="setPriority('high')"
             [class.selectedHigh]="prio === 'high'"
@@ -31,7 +31,7 @@
             <div></div>
           </button>
 
-          <button
+          <button class="btn-prio"
             type="button"
             (click)="setPriority('medium')"
             [class.selectedMedium]="prio === 'medium'"
@@ -39,7 +39,7 @@
             Medium
             <div></div>
           </button>
-          <button
+          <button class="btn-prio"
             type="button"
             (click)="setPriority('low')"
             [class.selectedLow]="prio === 'low'"
