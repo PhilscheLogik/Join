@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SingleTaskComponent } from './single-task/single-task.component';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [],
+  imports: [SingleTaskComponent],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
+  
 
 }
