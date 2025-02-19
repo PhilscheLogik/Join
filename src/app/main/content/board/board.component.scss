@@ -5,16 +5,82 @@
 // }
 
 section {
+    @include dFlex($ai: flex-start, $jc: flex-start);
+    flex-direction: column;
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+    height: 100vh;
+    
+}
+
+input {
+    height: 48px;
+    border-radius: 10px;
+    border-color: $gray;
+    border-style: solid;
+}
+
+h1 {
+    @include font($fs: 61px, $fw: 700);
+}
+
+h2 {
+    @include font($fs: 24px, $fw: 700);
 }
 
 .board_header {
     @include dFlex($jc: space-between);
     flex-direction: row;
+    height: 10%;
+    width: 100%;
+    padding: 128px 56px 56px 56px;    
+}
+
+.board_header_left {
+    @include dFlex($jc: space-between);
+    width: 50%;
+}
+
+.board_header_right {
+    @include dFlex($jc: space-between);
+    width: 50%;
 }
 
 .board_content {
     @include dFlex($jc: space-evenly);
     flex-direction: row;
+    height: 75%;
+    width: 100%;
+    padding: 16px 56px;
 }
 
+.board_content_header {
+    @include dFlex($jc: space-between);
+    width: 100%;
+}
+
+.to_do {
+    @include dFlex($ai: flex-start, $jc: flex-start);
+    height: 100%;
+    width: 20%;
+}
+.in_progress {
+    @include dFlex($ai: flex-start, $jc: flex-start);
+    height: 100%;
+    width: 20%;
+}
+.await_feedback {
+    @include dFlex($ai: flex-start, $jc: flex-start);
+    height: 100%;
+    width: 20%;
+}
+.done {
+    @include dFlex($ai: flex-start, $jc: flex-start);
+    height: 100%;
+    width: 20%;
+}
+
+/* Hard coded example task card */
+
+h3 {
+    @include font($fs: 16px, $fw: 700);
+}
