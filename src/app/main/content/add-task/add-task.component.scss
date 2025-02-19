@@ -19,10 +19,6 @@ section {
     }
 }
 
-// div{
-//     background-color: lightgreen;
-// }
-
 .content {
     @include dFlex($ai: flex-start, $g: 50px);
     flex-direction: column;
@@ -87,8 +83,25 @@ section {
             }
         }
     }
-}
 
+    .assigned_field {
+        @include dFlex($ai: flex-start, $g: 10px);
+        flex-direction: column;
+        width: 440px;
+
+        .title {
+            @include font($fs: 20px, $fw: 400);
+            height: 48px;
+            width: 100%;
+            border: 1px solid;
+            border-color: $light_gray;
+            border-radius: 10px;
+            padding-right: 10px;
+        }
+
+
+    }
+}
 
 .choice {
     @include dFlex($ai: flex-start);
