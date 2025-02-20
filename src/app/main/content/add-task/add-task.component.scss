@@ -2,22 +2,23 @@
 
 section {
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
-  padding: 0  70px;
+  padding: 0 70px;
   max-height: calc(100vh - 91px);
-  min-height: 770px;
+  min-height: auto;
+  overflow: auto;
 }
 
 form {
-    @include dFlex($jc: space-between);
+  @include dFlex($jc: space-between);
   flex-direction: column;
-  height: 60vh;
+  height: calc(100vh - 91px - 190px - 80px);
 
 }
 
 .fill-in-area {
   @include dFlex($jc: space-between);
   width: 100%;
-  
+
 }
 
 .head-section {
@@ -78,7 +79,7 @@ form {
       @include font($fs: 20px, $fw: 400);
       height: 24px;
 
-      > span {
+      >span {
         color: $red;
       }
     }
@@ -103,15 +104,16 @@ form {
     @include dFlex($ai: flex-start, $g: 10px);
     flex-direction: column;
     width: 440px;
+    position: relative;
 
-    .title {
+    #assigned_field {
       @include font($fs: 20px, $fw: 400);
       height: 48px;
       width: 100%;
       border: 1px solid;
       border-color: $light_gray;
       border-radius: 10px;
-      padding-right: 10px;
+      padding-left: 16px;
     }
   }
 }
