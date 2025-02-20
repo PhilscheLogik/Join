@@ -215,7 +215,6 @@ form {
 }
 
 .submit-section {
-  grid-column: span 3;
   width: 100%;
   @include dFlex($jc: space-between);
 }
