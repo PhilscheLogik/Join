@@ -23,13 +23,13 @@ export class TaskServiceService {
   feedbackList: Task[] = [];
   doneList: Task[] = [];
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  // todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
   
-  progress = ['Get to work', 'Pick up groceries']
+  // progress = ['Get to work', 'Pick up groceries']
   
-  feedback = ['Go home', 'Fall asleep']
+  // feedback = ['Go home', 'Fall asleep']
   
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  // done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   unsubToDo;
   unsubInProgress;
@@ -116,17 +116,44 @@ export class TaskServiceService {
     };
   }
 
-  async addToDo(item: Task) {
+  // async addToDo(item: Task) {
+  //   try {
+  //     await addDoc(this.getToDoRef(), item);
+  //   } catch (err) {
+  //     console.error('Error adding contact:', err);
+  //   }
+  // }
+
+  // async deleteToDO(id: string) {
+  //   if (id) {
+  //     await deleteDoc(doc(this.getToDoRef(), id));
+  //   }
+  // }
+
+
+  async addTask(category: string, task: Task) {
+    const ref = this.getCategoryRef(category);
     try {
-      await addDoc(this.getToDoRef(), item);
+      await addDoc(ref, task);
     } catch (err) {
-      console.error('Error adding contact:', err);
+      console.error('Error adding task:', err);
     }
   }
-
-  async deleteToDO(id: string) {
+  
+  async deleteTask(category: string, id: string) {
     if (id) {
-      await deleteDoc(doc(this.getToDoRef(), id));
+      const ref = this.getCategoryRef(category);
+      await deleteDoc(doc(ref, id));
+    }
+  }
+  
+  getCategoryRef(category: string) {
+    switch (category) {
+      case 'todo': return this.getToDoRef();
+      case 'inprogress': return this.getInProgressRef();
+      case 'feedback': return this.getFeedbackRef();
+      case 'done': return this.getDoneRef();
+      default: throw new Error('Invalid category');
     }
   }
 

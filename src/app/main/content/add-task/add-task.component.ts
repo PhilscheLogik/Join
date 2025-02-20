@@ -9,7 +9,7 @@ import { TaskServiceService } from '../../services/task-service.service';
   styleUrl: './add-task.component.scss',
 })
 export class AddTaskComponent {
-  // taskService = inject(TaskServiceService);
+  taskService = inject(TaskServiceService);
 
   toDo = [];
   
