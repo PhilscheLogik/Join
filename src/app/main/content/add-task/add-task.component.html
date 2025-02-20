@@ -58,7 +58,7 @@
               [class.selectedHigh]="prio === 'high'"
             >
               Urgent
-              <div></div>
+              <div class="arrow-up"></div>
             </button>
 
             <button
@@ -68,7 +68,7 @@
               [class.selectedMedium]="prio === 'medium'"
             >
               Medium
-              <div></div>
+              <div class="equal"></div>
             </button>
             <button
               class="btn-prio"
@@ -77,7 +77,7 @@
               [class.selectedLow]="prio === 'low'"
             >
               Low
-              <div></div>
+              <div class="arrow-down"></div>
             </button>
           </div>
         </div>
@@ -98,7 +98,10 @@
     </div>
 
     <div class="submit-section">
-      <p>Pflichtfeld</p>
+      <p>
+        <span>*</span>
+        This field is required
+      </p>
 
       <div>
         <button (click)="test()">TEST</button>
