@@ -2,10 +2,10 @@ export interface Task {
   id?: string;
   title: string;
   description?: string;
-  assignedTo?: any;
+  assignedTo?: string[];
   date: string;
-  prio: string;
-  category: string;
-  subtasks?: any;
+  prio: 'Urgent' | 'Medium' | 'Low';
+  category: 'User Story' | 'Technical Task';
+  subtasks?: string[];
   typ: string;
 }
