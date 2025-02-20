@@ -45,6 +45,7 @@ form {
 
     .title {
       @include font($fs: 20px, $fw: 400);
+      color: $dark_blue;
       height: 24px;
 
       span {
@@ -73,8 +74,9 @@ form {
     flex-direction: column;
     width: 440px;
 
-    .title {
+    .description {
       @include font($fs: 20px, $fw: 400);
+      color: $dark_blue;
       height: 24px;
 
       > span {
