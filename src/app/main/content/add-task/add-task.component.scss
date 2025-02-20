@@ -146,10 +146,10 @@ form {
   color: $light_gray;
   @include font($fs: 20px, $fw: 400);
 
-  background-image: url("./../../../../assets/img/icons/add_task.svg");
-  background-repeat: no-repeat;
-  background-position: right center;
-  padding-right: 100px;
+  // background-image: url("./../../../../assets/img/icons/add_task.svg");
+  // background-repeat: no-repeat;
+  // background-position: right center;
+  padding-right: 16px;
   cursor: pointer;
 }
 
@@ -208,9 +208,6 @@ form {
 .arrow-up,
 .equal,
 .arrow-down {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
   width: 20px;
   height: 15px;
   margin-left: 16px;
@@ -218,29 +215,36 @@ form {
 
 .arrow-up {
   background: url("./../../../../assets/img/icons/arrow_up_red.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .equal {
   background: url("./../../../../assets/img/icons/equal_orange.svg");
+  background-size: contain;
   background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .arrow-down {
   background: url("./../../../../assets/img/icons/arrow_down_green.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
-
-
-
-
-
 
 .selectedHigh {
   background: $special_red;
   color: $white;
   font-weight: 700;
 
-  div{
+  div {
     background: url("./../../../../assets/img/icons/arrow_up_white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    // margin-left: 10px;
   }
 }
 
@@ -249,9 +253,12 @@ form {
   color: $white;
   font-weight: 700;
 
-  div{
+  div {
     background: url("./../../../../assets/img/icons/equal_white.svg");
+    background-size: contain;
     background-repeat: no-repeat;
+    background-position: center center;
+    // margin-left: 10px;
   }
 }
 
@@ -260,10 +267,13 @@ form {
   color: $white;
   font-weight: 700;
 
-  div{
+  div {
     background: url("./../../../../assets/img/icons/arrow_down_white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    // margin-left: 10px;
   }
-
 }
 
 #taskType {

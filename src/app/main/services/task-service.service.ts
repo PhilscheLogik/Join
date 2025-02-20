@@ -60,8 +60,7 @@ export class TaskServiceService {
       date: obj.date,
       prio: obj.prio,
       category: obj.category,
-      subtasks: obj.subtasks || '',
-      typ: obj.typ,
+      subtasks: obj.subtasks || '',      
     };
   }
 
