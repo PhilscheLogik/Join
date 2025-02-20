@@ -3,7 +3,7 @@
     <div class="task-overlay-content">
       <div class="header">
         <span class="category">Technical Task</span>
-        <button class="close-btn">&times;</button>
+        <button class="close-btn"></button>
       </div>
 
       <h1>CSS Architecture Planning</h1>
@@ -19,7 +19,11 @@
         <p>Assigned To:</p>
         <div class="assignees">
           <div class="assignee">
-            <img src="assets/img/icons/user_profile_initials.svg" alt="Profile Icon" class="profile-pic">
+            <img
+              src="assets/img/icons/user_profile_initials.svg"
+              alt="Profile Icon"
+              class="profile-pic"
+            />
             <p class="assignee-name">Sofia Müller</p>
           </div>
         </div>
@@ -27,22 +31,26 @@
 
       <div class="subtasks">
         <p>Subtasks</p>
-        <br />
-        <div class="subtask"><input type="checkbox" /> Setup base styles</div>
+
+        <div class="subtask">
+          <span class="subtask-icon">
+            <img
+              src="assets/img/icons/check_button_checked.svg"
+              alt="Completed Task"
+            />
+          </span>
+          <span class="subtask-text">Setup base styles</span>
+        </div>
       </div>
 
-      <div class="actions">
+      <div class="actions-buttons">
         <button class="delete-btn">
-          <img
-            src="assets/img/icons/trash_icon.svg"
-            alt="Delete Icon"
-            class="icon"
-          />
+          <img src="assets/img/icons/trash_icon.svg" alt="Delete Icon" />
           Delete
         </button>
         <span class="divider"></span>
         <button class="edit-btn">
-          <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" class="icon" />
+          <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" />
           Edit
         </button>
       </div>

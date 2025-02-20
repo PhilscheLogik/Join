@@ -8,6 +8,7 @@
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   @include dFlex();
+  flex-direction: column;
   z-index: 1000;
 
   h1 {
@@ -20,6 +21,7 @@
   }
 
   .task-overlay-content {
+    position: relative;
     background: $white;
     padding: 32px;
     border-radius: 24px;
@@ -53,7 +55,7 @@
 
     .subtask,
     .assignee {
-        margin-left: 16px;
+      margin-left: 16px;
     }
 
     .assignees {
@@ -80,32 +82,38 @@
       }
     }
 
-    .actions {
-      @include dFlex($jc: flex-end);
-      margin-top: 20px;
+    .subtask {
+      margin-top: 16px;
+    }
 
-      .delete-btn {
+    .subtask-icon {
+      position: relative;
+      top: 6px;
+    }
+
+    .actions-buttons {
+      @include dFlex($jc: flex-end);
+      position: absolute;
+      bottom: 32px;
+      right: 32px;
+
+      button {
         color: $black;
         border: none;
         padding: 5px 10px;
         cursor: pointer;
         background: none;
         @include font($ff: "Inter", $fs: 20px, $fw: 400);
+
+        &:hover {
+          color: $light_blue;
+        }
       }
 
       .divider {
         width: 1px;
         height: 24px;
-        background-color: gray;
-      }
-
-      .edit-btn {
-        color: $black;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        background: none;
-        @include font($ff: "Inter", $fs: 20px, $fw: 400);
+        background-color: $light_gray;
       }
 
       img {
