@@ -20,11 +20,11 @@
         </div>
         <div class="tasks_content" cdkDropList
           #todoList="cdkDropList"
-          [cdkDropListData]="todo"
+          [cdkDropListData]="taskService.todo"
           [cdkDropListConnectedTo]="[progressList, feedbackList,]"
           class="example-list"
           (cdkDropListDropped)="drop($event)">
-          @for (item of todo; track item) {
+          @for (item of taskService.todo; track item) {
             <div class="example-box" cdkDrag>{{item}}</div>
           }
         </div>
@@ -36,11 +36,11 @@
         </div>
         <div class="tasks_content" cdkDropList
         #progressList="cdkDropList"
-        [cdkDropListData]="progress"
+        [cdkDropListData]="taskService.progress"
         [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        @for (item of progress; track item) {
+        @for (item of taskService.progress; track item) {
           <div class="example-box" cdkDrag>{{item}}</div>
         }
             
@@ -54,11 +54,11 @@
         <div class="tasks_content"
         cdkDropList
         #feedbackList="cdkDropList"
-        [cdkDropListData]="feedback"
+        [cdkDropListData]="taskService.feedback"
         [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        @for (item of feedback; track item) {
+        @for (item of taskService.feedback; track item) {
           <div class="example-box" cdkDrag>{{item}}</div>
         }
             
@@ -72,11 +72,11 @@
         <div class="tasks_content"
         cdkDropList
         #doneList="cdkDropList"
-        [cdkDropListData]="done"
+        [cdkDropListData]="taskService.done"
         [cdkDropListConnectedTo]="[todoList, progressList]"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        @for (item of done; track item) {
+        @for (item of taskService.done; track item) {
           <div class="example-box" cdkDrag>{{item}}</div>
         }
             

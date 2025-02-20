@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SingleTaskComponent } from './single-task/single-task.component';
+import { TaskServiceService } from '../../services/task-service.service';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -17,13 +18,7 @@ import {
 })
 export class BoardComponent {
   
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  progress = ['Get to work', 'Pick up groceries']
-
-  feedback = ['Go home', 'Fall asleep']
-
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  taskService = inject(TaskServiceService);
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
