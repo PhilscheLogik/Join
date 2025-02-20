@@ -18,15 +18,17 @@
           <h2>To do</h2>
           <button class="to_do_add_btn"></button>
         </div>
-        <div class="tasks_content" cdkDropList
-          #todoList="cdkDropList"
-          [cdkDropListData]="taskService.todo"
-          [cdkDropListConnectedTo]="[progressList, feedbackList,]"
-          class="example-list"
-          (cdkDropListDropped)="drop($event)">
-          @for (item of taskService.todo; track item) {
-            <div class="example-box" cdkDrag>{{item}}</div>
-          }
+        <div class="empty_bg">
+            <div class="tasks_content" cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="taskService.todo"
+              [cdkDropListConnectedTo]="[progressList, feedbackList,]"
+              class="example-list"
+              (cdkDropListDropped)="drop($event)">
+              @for (item of taskService.todo; track item) {
+                <div class="example-box" cdkDrag>{{item}}</div>
+              }
+            </div>  
         </div>
       </div>
       <div class="in_progress">
@@ -34,16 +36,17 @@
           <h2>In progress</h2>
           <button class="in_progress_add_btn"></button>
         </div>
-        <div class="tasks_content" cdkDropList
-        #progressList="cdkDropList"
-        [cdkDropListData]="taskService.progress"
-        [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        @for (item of taskService.progress; track item) {
-          <div class="example-box" cdkDrag>{{item}}</div>
-        }
-            
+          <div class="empty_bg">
+            <div class="tasks_content" cdkDropList
+            #progressList="cdkDropList"
+            [cdkDropListData]="taskService.progress"
+            [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            @for (item of taskService.progress; track item) {
+              <div class="example-box" cdkDrag>{{item}}</div>
+            }
+          </div>    
         </div>
       </div>
       <div class="await_feedback">
@@ -51,17 +54,18 @@
           <h2>Await feedback</h2>
           <button class="await_feedback_add_btn"></button>
         </div>
-        <div class="tasks_content"
-        cdkDropList
-        #feedbackList="cdkDropList"
-        [cdkDropListData]="taskService.feedback"
-        [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        @for (item of taskService.feedback; track item) {
-          <div class="example-box" cdkDrag>{{item}}</div>
-        }
-            
+        <div class="empty_bg">
+            <div class="tasks_content"
+            cdkDropList
+            #feedbackList="cdkDropList"
+            [cdkDropListData]="taskService.feedback"
+            [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            @for (item of taskService.feedback; track item) {
+              <div class="example-box" cdkDrag>{{item}}</div>
+            }
+          </div>    
         </div>
       </div>
       <div class="done">
@@ -69,17 +73,18 @@
           <h2>Done</h2>
           <button class="done_add_btn"></button>
         </div>
-        <div class="tasks_content"
-        cdkDropList
-        #doneList="cdkDropList"
-        [cdkDropListData]="taskService.done"
-        [cdkDropListConnectedTo]="[todoList, progressList]"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        @for (item of taskService.done; track item) {
-          <div class="example-box" cdkDrag>{{item}}</div>
-        }
-            
+          <div class="empty_bg">
+            <div class="tasks_content"
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="taskService.done"
+            [cdkDropListConnectedTo]="[todoList, progressList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            @for (item of taskService.done; track item) {
+              <div class="example-box" cdkDrag>{{item}}</div>
+            }
+          </div>  
         </div>
       </div>
   </div>

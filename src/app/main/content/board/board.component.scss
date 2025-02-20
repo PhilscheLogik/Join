@@ -134,10 +134,19 @@ h2 {
 }
 
 .tasks_content {
-    @include dFlex($ai: flex-start, $jc: flex-start);
+    // @include dFlex($ai: flex-start, $jc: flex-start, $g: 10px);
     min-height: 64px;
     width: 100%;
     background-color: $light_gray;
+}
+
+.empty_bg {
+    width: 100%;
+    background: $mid_gray;
+    border-radius: 10px;
+    border-style: dotted;
+    border-color: $light_gray;
+    border-width: 2px;
 }
 
 /* Hard coded example task card */
@@ -157,27 +166,22 @@ h3 {
   }
   
   .example-list {
-    @include dFlex($ai: flex-start, $jc: center);
+    @include dFlex($ai: flex-start, $jc: center, $g: 10px);
     flex-direction: column;
     border: solid 1px #ccc;
     min-height: 60px;
-    background: $mid_gray;
-    border-radius: 10px;
-    border-style: dotted;
-    border-color: $light_gray;
-    border-width: 2px;
     width: 100%;
     border-radius: 4px;
-    // overflow: hidden;
-    display: block;
   }
   
   .example-box {
     width: 105%;
+    min-height: 160px;
     // height: 103%;
     padding: 20px 10px;
     margin-left: -4px;
     border-bottom: solid 1px #ccc;
+    border-radius: 10px;
     color: rgba(0, 0, 0, 0.87);
     display: flex;
     flex-direction: row;

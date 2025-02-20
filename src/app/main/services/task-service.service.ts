@@ -18,6 +18,15 @@ import { Task } from '../../interfaces/task';
 export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
   taskList: Task[] = [];
+
+  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  
+  progress = ['Get to work', 'Pick up groceries']
+  
+  feedback = ['Go home', 'Fall asleep']
+  
+  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  
   unsubTasks;
 
   constructor() {
