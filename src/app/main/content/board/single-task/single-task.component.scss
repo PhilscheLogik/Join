@@ -12,12 +12,12 @@
   z-index: 1000;
 
   h1 {
-    @include font($ff: "Inter", $fs: 61px, $fw: 700);
+    @include font($ff: "Inter", $fs: clamp(36px, 7vw, 61px), $fw: 700);
     margin-bottom: 16px;
   }
 
   p {
-    @include font($ff: "Inter", $fs: 20px, $fw: 400);
+    @include font($ff: "Inter", $fs: clamp(14px, 3vw, 20px), $fw: 400);
   }
 
   .task-overlay-content {
@@ -28,16 +28,25 @@
     width: 500px;
     height: 800px;
 
+    @media (max-width: 580px) {
+      width: 400px;
+      height: 600px;
+    }
+
     .header {
       @include dFlex($jc: space-between);
       margin-bottom: 24px;
+
+      @media (max-width: 580px) {
+        margin-bottom: 12px;
+      }
 
       .category {
         padding: 3px 20px;
         border-radius: 6px;
         background-color: $mint;
         color: $white;
-        @include font($ff: "Inter", $fs: 23px, $fw: 400);
+        @include font($ff: "Inter", $fs: clamp(16px, 3vw, 23px), $fw: 400);
       }
 
       .close-btn {
@@ -45,6 +54,10 @@
         border: none;
         cursor: pointer;
       }
+    }
+
+    .label {
+      color: $blueish_gray;
     }
 
     .info,
@@ -77,18 +90,22 @@
         }
 
         .assignee-name {
-          @include font($ff: "Inter", $fs: 20px, $fw: 400);
+          @include font($ff: "Inter", $fs: clamp(14px, 3vw, 20px), $fw: 400);
         }
       }
     }
 
     .subtask {
       margin-top: 16px;
+
+      img {
+        position: relative;
+        top: 6px;
+      }
     }
 
-    .subtask-icon {
-      position: relative;
-      top: 6px;
+    .subtask-text {
+      margin-left: 10px;
     }
 
     .actions-buttons {
@@ -103,17 +120,22 @@
         padding: 5px 10px;
         cursor: pointer;
         background: none;
-        @include font($ff: "Inter", $fs: 20px, $fw: 400);
+        @include font($ff: "Inter", $fs: clamp(14px, 3vw, 20px), $fw: 400);
 
         &:hover {
           color: $light_blue;
+
+          img {
+            filter: invert(56%) sepia(34%) saturate(507%) hue-rotate(165deg)
+              brightness(98%) contrast(95%);
+          }
         }
       }
 
       .divider {
-        width: 1px;
-        height: 24px;
-        background-color: $light_gray;
+        width: 2px;
+        height: 26px;
+        background-color: $mid_gray;
       }
 
       img {
