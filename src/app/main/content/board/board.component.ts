@@ -8,6 +8,7 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
+import { Task } from 'zone.js/lib/zone-impl';
 
 @Component({
   selector: 'app-board',
@@ -31,5 +32,12 @@ export class BoardComponent {
         event.currentIndex,
       );
     }
+  }
+
+  get() {
+    console.log(this.taskService.todoList);
+    console.log(this.taskService.progressList);
+    console.log(this.taskService.feedbackList);
+    console.log(this.taskService.doneList);
   }
 }

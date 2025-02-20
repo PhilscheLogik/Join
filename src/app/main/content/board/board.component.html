@@ -9,6 +9,7 @@
         <input type="text" placeholder="Find task..">
         <img src="./assets/img/icons/search_icon.svg" alt="">
       </div>
+      <button (click)="get()">TEST</button>
       <button class="add_task_btn">Add task <img src="./assets/img/icons/plus_icon.svg" alt=""></button>
     </div>
   </div>
@@ -25,8 +26,8 @@
               [cdkDropListConnectedTo]="[progressList, feedbackList,]"
               class="example-list"
               (cdkDropListDropped)="drop($event)">
-              @for (item of taskService.todo; track item) {
-                <div class="example-box" cdkDrag>{{item}}</div>
+              @for (item of taskService.todoList; track item) {
+                <div class="example-box" cdkDrag>{{item.title}}</div>
               }
             </div>  
         </div>
@@ -43,8 +44,8 @@
             [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
             class="example-list"
             (cdkDropListDropped)="drop($event)">
-            @for (item of taskService.progress; track item) {
-              <div class="example-box" cdkDrag>{{item}}</div>
+            @for (item of taskService.progressList; track item) {
+              <div class="example-box" cdkDrag>{{item.title}}</div>
             }
           </div>    
         </div>
@@ -62,8 +63,8 @@
             [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
             class="example-list"
             (cdkDropListDropped)="drop($event)">
-            @for (item of taskService.feedback; track item) {
-              <div class="example-box" cdkDrag>{{item}}</div>
+            @for (item of taskService.feedbackList; track item) {
+              <div class="example-box" cdkDrag>{{item.title}}</div>
             }
           </div>    
         </div>
@@ -81,8 +82,8 @@
             [cdkDropListConnectedTo]="[todoList, progressList]"
             class="example-list"
             (cdkDropListDropped)="drop($event)">
-            @for (item of taskService.done; track item) {
-              <div class="example-box" cdkDrag>{{item}}</div>
+            @for (item of taskService.doneList; track item) {
+              <div class="example-box" cdkDrag>{{item.title}}</div>
             }
           </div>  
         </div>

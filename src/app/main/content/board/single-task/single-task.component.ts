@@ -11,8 +11,8 @@ import { TaskServiceService } from '../../../services/task-service.service';
 export class SingleTaskComponent {
   taskService = inject(TaskServiceService);
   
-    test() {
-      console.log(this.taskService.taskList);
-    }
+    // test() {
+    //   console.log(this.taskService.taskList);
+    // }
 
 }

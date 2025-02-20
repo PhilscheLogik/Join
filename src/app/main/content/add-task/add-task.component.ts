@@ -9,7 +9,7 @@ import { TaskServiceService } from '../../services/task-service.service';
   styleUrl: './add-task.component.scss',
 })
 export class AddTaskComponent {
-  taskService = inject(TaskServiceService);
+  // taskService = inject(TaskServiceService);
 
   toDo = [];
   
@@ -23,9 +23,9 @@ export class AddTaskComponent {
 
 
 
-  test() {
-    console.log(this.taskService.taskList);
-  }
+  // test() {
+  //   console.log(this.taskService.taskList);
+  // }
 
   prio = 'medium';
 

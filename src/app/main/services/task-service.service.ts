@@ -17,7 +17,11 @@ import { Task } from '../../interfaces/task';
 })
 export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
-  taskList: Task[] = [];
+
+  todoList: Task[] = [];
+  progressList: Task[] = [];
+  feedbackList: Task[] = [];
+  doneList: Task[] = [];
 
   todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
   
@@ -26,32 +30,80 @@ export class TaskServiceService {
   feedback = ['Go home', 'Fall asleep']
   
   done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
-  
-  unsubTasks;
+
+  unsubToDo;
+  unsubInProgress;
+  unsubFeedback;
+  unsubDone;
 
   constructor() {
-    this.unsubTasks = this.subTaskList();
+    this.unsubToDo = this.subToDoList();
+    this.unsubInProgress = this.subInProgressList();
+    this.unsubFeedback = this.subFeedbackList();
+    this.unsubDone = this.subDoneList();
   }
 
   ngOnDestroy() {
-    this.unsubTasks();
+    this.unsubToDo();
+    this.unsubInProgress();
+    this.unsubFeedback();
+    this.unsubDone();
   }
 
-  subTaskList() {
-    return onSnapshot(this.getTaskRef(), (task) => {
-      this.taskList = [];
+  subToDoList() {
+    return onSnapshot(this.getToDoRef(), (todo) => {
+      this.todoList = [];
 
-      task.forEach((e) => {
-        this.taskList.push(this.setTaskObj(e.data(), e.id));
+      todo.forEach((e) => {
+        this.todoList.push(this.setObj(e.data(), e.id));
       });
     });
   }
 
-  getTaskRef() {
-    return collection(this.firestore, 'tasks');
+  subInProgressList() {
+    return onSnapshot(this.getInProgressRef(), (progress) => {
+      this.progressList = [];
+
+      progress.forEach((e) => {
+        this.progressList.push(this.setObj(e.data(), e.id));
+      });
+    });
   }
 
-  setTaskObj(obj: any, id: string): Task {
+  subFeedbackList() {
+    return onSnapshot(this.getFeedbackRef(), (feedback) => {
+      this.feedbackList = [];
+
+      feedback.forEach((e) => {
+        this.feedbackList.push(this.setObj(e.data(), e.id));
+      });
+    });
+  }
+
+  subDoneList() {
+    return onSnapshot(this.getDoneRef(), (done) => {
+      this.doneList = [];
+
+      done.forEach((e) => {
+        this.doneList.push(this.setObj(e.data(), e.id));
+      });
+    });
+  }
+
+  getToDoRef() {
+    return collection(this.firestore, 'todo');
+  }
+  getInProgressRef() {
+    return collection(this.firestore, 'inprogress');
+  }
+  getFeedbackRef() {
+    return collection(this.firestore, 'feedback');
+  }
+  getDoneRef() {
+    return collection(this.firestore, 'done');
+  }
+
+  setObj(obj: any, id: string): Task {
     return {
       id: id || '',
       title: obj.title,
@@ -64,17 +116,17 @@ export class TaskServiceService {
     };
   }
 
-  async addTask(item: Task) {
+  async addToDo(item: Task) {
     try {
-      await addDoc(this.getTaskRef(), item);
+      await addDoc(this.getToDoRef(), item);
     } catch (err) {
       console.error('Error adding contact:', err);
     }
   }
 
-  async deleteTask(id: string) {
+  async deleteToDO(id: string) {
     if (id) {
-      await deleteDoc(doc(this.getTaskRef(), id));
+      await deleteDoc(doc(this.getToDoRef(), id));
     }
   }
 
@@ -88,7 +140,7 @@ export class TaskServiceService {
     newCategory: string,
     newSubtasks: any
   ) {
-    const updateRef = doc(this.getTaskRef(), id);
+    const updateRef = doc(this.getToDoRef(), id);
 
     if (
       newTitle &&

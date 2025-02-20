@@ -8,7 +8,7 @@ section {
     @include dFlex($ai: flex-start, $jc: flex-start);
     flex-direction: column;
     box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
-    height: 100vh;
+    height: calc(100vh - 91px);
 }
 
 .input_field {
@@ -108,29 +108,29 @@ h2 {
     @include dFlex($ai: flex-start, $jc: flex-start);
     flex-direction: column;
     height: 100%;
-    width: 20%;
-    border: 2px solid $light_gray;
+    width: 22%;
+    // border: 2px solid $light_gray;
 }
 .in_progress {
     @include dFlex($ai: flex-start, $jc: flex-start);
     flex-direction: column;
     height: 100%;
-    width: 20%;
-    border: 2px solid $light_gray;
+    width: 22%;
+    // border: 2px solid $light_gray;
 }
 .await_feedback {
     @include dFlex($ai: flex-start, $jc: flex-start);
     flex-direction: column;
     height: 100%;
-    width: 20%;
-    border: 2px solid $light_gray;
+    width: 22%;
+    // border: 2px solid $light_gray;
 }
 .done {
     @include dFlex($ai: flex-start, $jc: flex-start);
     flex-direction: column;
     height: 100%;
-    width: 20%;
-    border: 2px solid $light_gray;
+    width: 22%;
+    // border: 2px solid $light_gray;
 }
 
 .tasks_content {
@@ -141,12 +141,14 @@ h2 {
 }
 
 .empty_bg {
+    min-height: 48px;
     width: 100%;
     background: $mid_gray;
     border-radius: 10px;
     border-style: dotted;
     border-color: $light_gray;
     border-width: 2px;
+    overflow: auto;
 }
 
 /* Hard coded example task card */
@@ -168,19 +170,18 @@ h3 {
   .example-list {
     @include dFlex($ai: flex-start, $jc: center, $g: 10px);
     flex-direction: column;
-    border: solid 1px #ccc;
+    // border: solid 1px #ccc;
     min-height: 60px;
     width: 100%;
     border-radius: 4px;
   }
   
   .example-box {
-    width: 105%;
+    width: 100%;
     min-height: 160px;
-    // height: 103%;
     padding: 20px 10px;
-    margin-left: -4px;
-    border-bottom: solid 1px #ccc;
+    
+    // border-bottom: solid 1px #ccc;
     border-radius: 10px;
     color: rgba(0, 0, 0, 0.87);
     display: flex;
