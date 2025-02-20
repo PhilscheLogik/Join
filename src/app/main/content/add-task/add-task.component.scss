@@ -4,33 +4,20 @@ section {
   box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
   padding: 0 70px;
   max-height: calc(100vh - 91px);
-<<<<<<< HEAD
-=======
   min-height: auto;
   overflow: auto;
->>>>>>> bb03e34e6fefa54cbfeb6102ed113623b141ca81
 }
 
 form {
   @include dFlex($jc: space-between);
   flex-direction: column;
-<<<<<<< HEAD
-  height: 60vh;
-  //   min-height: 770px;
-  overflow: auto;
-=======
   height: calc(100vh - 91px - 190px - 80px);
 
->>>>>>> bb03e34e6fefa54cbfeb6102ed113623b141ca81
 }
 
 .fill-in-area {
   @include dFlex($jc: space-between);
   width: 100%;
-<<<<<<< HEAD
-=======
-
->>>>>>> bb03e34e6fefa54cbfeb6102ed113623b141ca81
 }
 
 .head-section {
@@ -230,12 +217,6 @@ form {
 
 .arrow-down {
 }
-
-.arrow-up {}
-
-.equal {}
-
-.arrow-down {}
 
 .selectedHigh {
   background: $special_red;
