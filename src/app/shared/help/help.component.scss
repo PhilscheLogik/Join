@@ -8,30 +8,28 @@ section {
   @include dFlex($jc: space-between);
   flex-direction: column;
   padding: 128px calc(max(80px, (100% - 1920px) / 2));
+}
 
-  .help_header {
-    @include dFlex($jc: space-between);
+.help_header {
+  @include dFlex($jc: space-between);
 
-    padding: 32px 0;
-    width: 100%;
+  padding: 32px 0;
+  width: 100%;
 
-    > h1 {
-      @include font($fs: 40px, $fw: 800);
-      padding-top: 32px 0;
-    }
+  > h1 {
+    @include font($fs: 40px, $fw: 800);
+    padding-top: 32px 0;
+  }
 
-    > a {
-      background-image: url("./../../../assets/img/icons/arrow_left.svg");
-      height: 37px;
-      width: 37px;
-    }
+  > a {
+    background-image: url("./../../../assets/img/icons/arrow_left.svg");
+    height: 37px;
+    width: 37px;
   }
 }
 
 .help_content {
   width: 100%;
-
-  /*wird das überhaupt angesprochen?*/
   > h2 {
     @include font($fs: 24px, $fw: 800);
     margin-top: 35px;
@@ -55,13 +53,11 @@ section {
 li::marker  {
   font-weight: bolder;
   font-size: 24px;
-  // @include font($fs: 24px, $fw: 800);
 }
 
 @media (max-width: 1000px) {
   section {
     padding: 50px 16px;
-    // padding: 128px calc(max(80px, (100% - 1920px) / 2));
   }
 
   h2 {
@@ -72,7 +68,6 @@ li::marker  {
   h1 {
     font-size: 47px;
   }
-
 
   .help_content {
   
@@ -85,12 +80,4 @@ li::marker  {
       }
     }
   }
-
-  // ol {
-  //   padding-right: 0;
-  // }
-
-  // li {
-  //   padding-left: 12px;
-  // }
 }

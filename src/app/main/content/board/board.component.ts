@@ -1,14 +1,35 @@
 import { Component, inject } from '@angular/core';
 import { SingleTaskComponent } from './single-task/single-task.component';
+import { TaskServiceService } from '../../services/task-service.service';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [SingleTaskComponent],
+  imports: [SingleTaskComponent, CdkDropList, CdkDrag],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
   
+  taskService = inject(TaskServiceService);
 
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
 }
