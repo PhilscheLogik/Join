@@ -7,4 +7,5 @@ export interface Task {
   prio: string;
   category: string;
   subtasks?: any;
+  typ: string;
 }

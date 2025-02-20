@@ -52,6 +52,7 @@ export class TaskServiceService {
       prio: obj.prio,
       category: obj.category,
       subtasks: obj.subtasks || '',
+      typ: obj.typ,
     };
   }
 
