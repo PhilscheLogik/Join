@@ -1,23 +1,29 @@
-<!-- <section>
 <section>
+  @if (isOverlayOpen) {
   <div class="task-overlay">
     <div class="task-overlay-content">
       <div class="header">
-        <span class="category">Technical Task</span>
-        <button class="close-btn">
+        <span class="category">{{ selectedTask?.category }}</span>
+        <button class="close-btn" (click)="closeOverlay()">
           <img src="assets/img/icons/close.svg" alt="Close" />
         </button>
       </div>
 
-      <h1>CSS Architecture Planning</h1>
-      <p class="description">Define CSS naming conventions and structure.</p>
+      <h1>{{ selectedTask?.title }}</h1>
+      <p class="description">{{ selectedTask?.description }}</p>
 
       <div class="info">
-        <p><span class="label">Due date:</span> <span class="value">19/02/2024</span></p>
-        <br>
-        <p><span class="label">Priority:</span> <span class="value">Medium</span> <span class="priority-icon"></span></p>
+        <p>
+          <span class="label">Due date:</span>
+          <span class="value">{{ selectedTask?.date }}</span>
+        </p>
+        <br />
+        <p>
+          <span class="label">Priority:</span>
+          <span class="value">{{ selectedTask?.prio }}</span>
+          <span class="priority-icon"></span>
+        </p>
       </div>
-      
 
       <div class="assigned-to">
         <p>Assigned To:</p>
@@ -57,4 +63,17 @@
       </div>
     </div>
   </div>
-</section> -->
+  }
+
+  <div class="task-card-container">
+    <div class="task-card-content">
+      @for (task of tasks; track task.id) {
+      <div class="task-card" (click)="openOverlay(task)" cdkDrag>
+        <span class="category">{{ task.category }}</span>
+        <h1 class="task-title">{{ task.title }}</h1>
+        <p class="description">{{ task.description }}</p>
+      </div>
+      }
+    </div>
+  </div>
+</section>
