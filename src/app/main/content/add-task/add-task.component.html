@@ -39,7 +39,8 @@
             <div class="assigned_field_contact_list">
               @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
               @for (contact of group.value; track $index) {
-              <div class="assigned_field_single_contact" (click)="selectContact()" [ngClass]="{'selected': selectedContact === contact}">
+              <div class="assigned_field_single_contact" [class.selected]="isSelected(contact)"
+           (click)="toggleContactSelection(contact)">
                 <div class="profile_badge" [ngStyle]="{
                                     'background-color': contactService.getBadgeColor(
                                       getIndexInFullList(contact)
@@ -48,7 +49,8 @@
                   {{ contact.initials }}
                 </div>
                 <p>{{ contact.name }}</p>
-                <img src="assets/img/icons/check_button_icon.svg">
+                <img class="check_button" src="assets/img/icons/check_button_icon.svg">
+                <img class="check_button_white" src="assets/img/icons/check_button_icon_white.svg">
               </div>
               }
               }
