@@ -4,40 +4,47 @@
     <img class="close" src="assets/img/icons/close.svg" alt="Closing Image" />
   </div>
 
+  <button (click)="test()">TEST</button>
+
   <form>
     <div class="fill-in-area">
       <div class="content">
         <div class="title_field">
           <label class="title" name="title">Title<span>*</span></label>
-          <input
-            class="input"
-            type="text"
-            name="input"
-            placeholder="Enter a title"
-          />
+          <input class="input" type="text" name="input" placeholder="Enter a title" />
         </div>
 
         <div class="description_field">
           <label class="description" name="description">Description</label>
-          <textarea
-            class="input"
-            type="text"
-            name="input"
-            placeholder="Enter a Description"
-          ></textarea>
+          <textarea class="input" type="text" name="input" placeholder="Enter a Description"></textarea>
         </div>
 
         <div class="assigned_field">
-          <select name="assigned_field" id="assigned_field">
-            <option value="">Select contacts to assign</option>
-            <option value="">Anton Mayer</option>
-            <option value="">Anja Schulz</option>
-            <option value="">Benedikt Ziegler</option>
-            <option value="">David Eisenberg</option>
-            <option value="">Eva Fischer</option>
-            <option value="">Emmanuel Mauer</option>
-          </select>
+          <div name="assigned_field" id="assigned_field">
+            <div>
+              <p>Select contacts to assign</p>           
+
+            </div>
+          </div>
+
+          <!-- <div>
+            @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
+            @for (contact of group.value; track $index) {
+           
+              <div class="profile_badge" [ngStyle]="{
+                                      'background-color': contactService.getBadgeColor(
+                                        getIndexInFullList(contact)
+                                      )
+                                    }">
+                {{ contact.initials }}
+              </div> - {{ contact.name }}
+            
+            }
+            }
+          </div> -->
         </div>
+
+
       </div>
 
       <div class="line"></div>
@@ -51,31 +58,17 @@
         <div class="choice">
           <label>Prio</label>
           <div class="btn-section">
-            <button
-              class="btn-prio"
-              type="button"
-              (click)="setPriority('high')"
-              [class.selectedHigh]="prio === 'high'"
-            >
+            <button class="btn-prio" type="button" (click)="setPriority('high')" [class.selectedHigh]="prio === 'high'">
               Urgent
               <div class="arrow-up"></div>
             </button>
 
-            <button
-              class="btn-prio"
-              type="button"
-              (click)="setPriority('medium')"
-              [class.selectedMedium]="prio === 'medium'"
-            >
+            <button class="btn-prio" type="button" (click)="setPriority('medium')"
+              [class.selectedMedium]="prio === 'medium'">
               Medium
               <div class="equal"></div>
             </button>
-            <button
-              class="btn-prio"
-              type="button"
-              (click)="setPriority('low')"
-              [class.selectedLow]="prio === 'low'"
-            >
+            <button class="btn-prio" type="button" (click)="setPriority('low')" [class.selectedLow]="prio === 'low'">
               Low
               <div class="arrow-down"></div>
             </button>
@@ -106,7 +99,7 @@
       <div>
         <!-- <button (click)="test()">TEST</button>
         <button (click)="test()">TEST</button> -->
-        
+
       </div>
     </div>
   </form>

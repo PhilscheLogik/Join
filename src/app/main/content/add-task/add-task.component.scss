@@ -101,12 +101,13 @@ form {
   }
 
   .assigned_field {
-    @include dFlex($ai: flex-start, $g: 10px);
-    flex-direction: column;
+    background-color: $white;
+    // flex-direction: column;
     width: 440px;
-    position: relative;
+    // position: relative;
 
     #assigned_field {
+      @include dFlex($jc: flex-start);
       @include font($fs: 20px, $fw: 400);
       height: 48px;
       width: 100%;
@@ -117,6 +118,20 @@ form {
     }
   }
 }
+
+.profile_badge {
+  @include dFlex();
+  width: 42px;
+  height: 42px;
+  border: 1px solid;
+  border-color: $white;
+  border-radius: 50%;
+  @include font($fs: 12px, $fw: 400);
+  color: $white;
+  min-width: 42px;
+}
+
+
 
 /*Trennlinie*/
 .line {
@@ -165,6 +180,7 @@ form {
 
   label {
     font-size: 20px;
+    color: $dark_blue;
   }
 
   span {
