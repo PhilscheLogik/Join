@@ -101,11 +101,9 @@ form {
   }
 
   .assigned_field {
-    // background-color: $white;
     width: 440px;
     height: 300px;
     border-radius: 10px;
-
 
     .assigned_field_headline {
       @include dFlex($jc: space-between);
@@ -134,64 +132,66 @@ form {
       display: none;
       position: relative;
       z-index: 3;
-    }
 
-    .assigned_field_contact_list {
-      @include dFlex($jc: flex-start, $ai: flex-start, $g: 5px);
-      flex-direction: column;
-      width: 100%;
-      height: calc(318px - 48px);
-      border-radius: 10px;
-      padding-top: 10px;
-      padding-top: 10px;
-      overflow: auto;
-
-
-      .assigned_field_single_contact {
-        @include dFlex($g: 20px);
+      .assigned_field_contact_list {
+        @include dFlex($jc: flex-start, $ai: flex-start);
+        flex-direction: column;
         width: 100%;
-        height: 56px;
-        padding-left: 16px;
-        padding-right: 30px;
-        cursor: pointer;
-
-        p {
-          flex: 1;
-        }
-
-        &:hover {
-          background-color: $hover_gray;
-          border-radius: 10px;
-        }
-
-        .check_button_white {
-          display: none;
-        }
-      }
-
-      .selected {
-        background-color: $dark_blue;
+        height: calc(318px - 48px);
         border-radius: 10px;
-        color: $white;
-
-        .check_button_white {
-            display: block;
+        padding-top: 10px;
+        overflow: auto;
+  
+  
+        .assigned_field_single_contact {
+          @include dFlex($g: 20px);
+          width: 100%;
+          padding-left: 16px;
+          padding-right: 30px;
+          cursor: pointer;
+  
+          p {
+            @include dFlex($jc: flex-start);
+            @include font($fs: 20px, $fw: 400);
+            height: 56px;
+            flex: 1;
           }
-
-        &:hover {
-          background-color: $dark_dark_blue;
-          border-radius: 10px;
-
-          .check_button {
+  
+          &:hover {
+            background-color: $hover_gray;
+            border-radius: 10px;
+          }
+  
+          .check_button_white {
             display: none;
           }
-
+        }
+  
+        .selected {
+          background-color: $dark_blue;
+          border-radius: 10px;
+          color: $white;
+  
           .check_button_white {
-            display: block;
+              display: block;
+            }
+  
+          &:hover {
+            background-color: $dark_dark_blue;
+            border-radius: 10px;
+  
+            .check_button {
+              display: none;
+            }
+  
+            .check_button_white {
+              display: block;
+            }
           }
         }
       }
     }
+
   }
 }
 
