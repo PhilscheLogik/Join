@@ -4,7 +4,7 @@
     <img class="close" src="assets/img/icons/close.svg" alt="Closing Image" />
   </div>
 
-  <button (click)="test()">TEST</button>
+  
 
   <form>
     <div class="fill-in-area">
@@ -30,27 +30,37 @@
         </div>
 
         <div class="assigned_field">
+<<<<<<< HEAD
           <div name="assigned_field" id="assigned_field">
             <div>
               <p>Select contacts to assign</p>
+=======
+          <div class="assigned_field_headline" (click)="isSelectList()">
+            <p>Select contacts to assign</p>
+            <img class="arrow_drop_down" src="assets/img/icons/arrow_drop_down_icon.svg">
+            <img class="arrow_drop_up" src="assets/img/icons/arrow_drop_up_icon.svg">
+          </div>
+          <div class="contact_list" [ngStyle]="{'display': selectList ? 'block' : 'none'}">
+            <div class="assigned_field_contact_list">
+              @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
+              @for (contact of group.value; track $index) {
+              <div class="assigned_field_single_contact" (click)="toggleContactSelection(contact)"
+                [ngClass]="{'selected-contact': isSelected(contact)}">
+                <div class="profile_badge" [ngStyle]="{
+                                    'background-color': contactService.getBadgeColor(
+                                      getIndexInFullList(contact)
+                                    )
+                                  }">
+                  {{ contact.initials }}
+                </div>
+                <p>{{ contact.name }}</p>
+                <img src="assets/img/icons/check_button_icon.svg">
+              </div>
+              }
+              }
+>>>>>>> c17ccff44f8b169dc82280cd7c1e14a6ee13d495
             </div>
           </div>
-
-          <!-- <div>
-            @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
-            @for (contact of group.value; track $index) {
-           
-              <div class="profile_badge" [ngStyle]="{
-                                      'background-color': contactService.getBadgeColor(
-                                        getIndexInFullList(contact)
-                                      )
-                                    }">
-                {{ contact.initials }}
-              </div> - {{ contact.name }}
-            
-            }
-            }
-          </div> -->
         </div>
       </div>
 
