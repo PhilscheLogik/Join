@@ -23,13 +23,13 @@ export class TaskServiceService {
   feedbackList: Task[] = [];
   doneList: Task[] = [];
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-  
-  progress = ['Get to work', 'Pick up groceries']
-  
-  feedback = ['Go home', 'Fall asleep']
-  
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  // todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+
+  // progress = ['Get to work', 'Pick up groceries']
+
+  // feedback = ['Go home', 'Fall asleep']
+
+  // done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   unsubToDo;
   unsubInProgress;
@@ -112,21 +112,62 @@ export class TaskServiceService {
       date: obj.date,
       prio: obj.prio,
       category: obj.category,
-      subtasks: obj.subtasks || '',      
+      subtasks: obj.subtasks || '',
     };
   }
 
-  async addToDo(item: Task) {
+  // async addToDo(item: Task) {
+  //   try {
+  //     await addDoc(this.getToDoRef(), item);
+  //   } catch (err) {
+  //     console.error('Error adding contact:', err);
+  //   }
+  // }
+
+  // async deleteToDO(id: string) {
+  //   if (id) {
+  //     await deleteDoc(doc(this.getToDoRef(), id));
+  //   }
+  // }
+
+  async addTask(category: string, task: Task) {
+    const ref = this.getCategoryRef(category);
     try {
-      await addDoc(this.getToDoRef(), item);
+      await addDoc(ref, task);
+      console.info('----- task Service AddDoc  -------');      
+      console.log(task);
+      console.log('Wo soll es eingefügt werden: ',category);
     } catch (err) {
-      console.error('Error adding contact:', err);
+      console.error('Error adding task:', err);
     }
   }
 
-  async deleteToDO(id: string) {
+  async deleteTask(category: string, id: string) {
     if (id) {
-      await deleteDoc(doc(this.getToDoRef(), id));
+      const ref = this.getCategoryRef(category);
+      try {
+        await deleteDoc(doc(ref, id));
+        console.info('----- task Service deleteDoc  -------');        
+        console.log(id);
+        console.log('Wo soll gelöscht werden: ',category);
+      } catch (err) {
+        console.error('Error delete task:', err);
+      }
+    }
+  }
+
+  getCategoryRef(category: string) {
+    switch (category) {
+      case 'todo':
+        return this.getToDoRef();
+      case 'inprogress':
+        return this.getInProgressRef();
+      case 'feedback':
+        return this.getFeedbackRef();
+      case 'done':
+        return this.getDoneRef();
+      default:
+        throw new Error('Invalid category');
     }
   }
 
