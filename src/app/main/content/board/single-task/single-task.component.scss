@@ -39,7 +39,6 @@
       padding: 16px;
     }
 
-
     .header {
       @include dFlex($jc: space-between);
       margin-bottom: 24px;
@@ -51,7 +50,7 @@
       .category {
         padding: 3px 20px;
         border-radius: 6px;
-        background-color: $mint;
+        background-color: $blue_deep;
         color: $white;
         @include font($ff: "Inter", $fs: clamp(16px, 3vw, 23px), $fw: 400);
       }
@@ -69,7 +68,7 @@
     }
 
     .label {
-      color: $blueish_gray;
+      color: $black;
     }
 
     .info,
@@ -110,8 +109,8 @@
     .subtask {
       margin-top: 8px;
       border-radius: 16px;
-      padding: 0px 8px; 
-      line-height: 1.8; 
+      padding: 0px 8px;
+      line-height: 1.8;
 
       img {
         position: relative;
@@ -126,7 +125,6 @@
     .subtask-text {
       margin-left: 10px;
       @include font($ff: "Inter", $fs: clamp(12px, 3vw, 16px), $fw: 400);
-
     }
 
     .actions-buttons {
@@ -164,5 +162,31 @@
         top: 4px;
       }
     }
+  }
+}
+
+.task-card-container {
+  .task-card-content {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .task-card {
+    background: $white;
+    padding: 15px;
+  }
+
+  .task-title {
+    @include font($ff: "Inter", $fs: 16, $fw: 700);
+    margin-bottom: 16px;
+  }
+
+  .category {
+    padding: 3px 20px;
+    border-radius: 6px;
+    background-color: $blue_deep;
+    color: $white;
+    @include font($ff: "Inter", $fs: 16px, $fw: 400);
+    margin-bottom: 12px;
   }
 }
