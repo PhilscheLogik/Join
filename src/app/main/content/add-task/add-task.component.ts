@@ -39,4 +39,18 @@ export class AddTaskComponent {
       (c) => c.email === contact.email
     );
   }
+
+  // Methode, um den Kontakt zu selektieren/deselektieren
+  // selectContact(contact: any) {
+  //   if (this.selectedContact === contact) {
+  //     this.selectedContact = null; // Wenn der Kontakt erneut angeklickt wird, wird er deselektiert
+  //   } else {
+  //     this.selectedContact = contact;
+  //   }
+  // }
+
+  selectContact() {
+    this.selectedContact = !this.selectedContact;
+    console.log(this.selectedContact);
+  }
 }
