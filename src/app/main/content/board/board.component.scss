@@ -224,14 +224,17 @@ color: $white;
 }
 
 .task_card_main {
-overflow-y: scroll;
-overflow-wrap: wrap;
-max-height: 84px;
+    max-height: 84px;
+    /* 3 dots appear when content overflows div size */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
   
 .task_card_substasks {
 @include font($fs: 12px, $fw: 400);
-@include dFlex($ai: center, $jc: space-between);
+@include dFlex($ai: flex-end, $jc: space-around);
 width: 100%;
 }
 
@@ -241,10 +244,11 @@ max-width: 128px;
 
 .progress_outer {
 width: 100%;
->.progress_inner {
+}
+
+.progress_inner {
     width: 50%;
     background-color: $blue_lavender;
-    }
 }
 
 .task_card_team {
