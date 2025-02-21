@@ -30,7 +30,12 @@
               class="example-list"
               (cdkDropListDropped)="drop($event)">
               
-              
+              <!-- Normann -->
+              <!-- @for (task of taskService.todoList; track task) {
+                <app-single-task cdkDrag></app-single-task>
+              } -->
+
+              <!-- Dominik -->
               @for (item of taskService.todoList; track item) {
                 <div class="example-box" cdkDrag>
                   <p class="task_card_category">User Story</p>
@@ -55,8 +60,7 @@
                     <div class="team_right">
                     </div>  
                   </div>
-                </div>
-                
+                </div> 
               }
             </div>  
         </div>
