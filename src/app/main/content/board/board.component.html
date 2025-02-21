@@ -22,8 +22,8 @@
         <div class="empty_bg">
             <div class="tasks_content" cdkDropList
               #todoList="cdkDropList"
-              [cdkDropListData]="taskService.todo"
-              [cdkDropListConnectedTo]="[progressList, feedbackList,]"
+              [cdkDropListData]="taskService.todoList"
+              [cdkDropListConnectedTo]="[progressList, feedbackList]"
               class="example-list"
               (cdkDropListDropped)="drop($event)">
               @for (item of taskService.todoList; track item) {
@@ -40,7 +40,7 @@
           <div class="empty_bg">
             <div class="tasks_content" cdkDropList
             #progressList="cdkDropList"
-            [cdkDropListData]="taskService.progress"
+            [cdkDropListData]="taskService.progressList"
             [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
             class="example-list"
             (cdkDropListDropped)="drop($event)">
@@ -59,7 +59,7 @@
             <div class="tasks_content"
             cdkDropList
             #feedbackList="cdkDropList"
-            [cdkDropListData]="taskService.feedback"
+            [cdkDropListData]="taskService.feedbackList"
             [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
             class="example-list"
             (cdkDropListDropped)="drop($event)">
@@ -78,7 +78,7 @@
             <div class="tasks_content"
             cdkDropList
             #doneList="cdkDropList"
-            [cdkDropListData]="taskService.done"
+            [cdkDropListData]="taskService.doneList"
             [cdkDropListConnectedTo]="[todoList, progressList]"
             class="example-list"
             (cdkDropListDropped)="drop($event)">

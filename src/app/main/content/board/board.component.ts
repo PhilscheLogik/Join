@@ -21,11 +21,19 @@ export class BoardComponent {
   
   taskService = inject(TaskServiceService);
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      console.log(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+
+      console.log(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
