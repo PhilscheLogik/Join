@@ -137,7 +137,7 @@ form {
     }
 
     .assigned_field_contact_list {
-      @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
+      @include dFlex($jc: flex-start, $ai: flex-start, $g: 5px);
       flex-direction: column;
       width: 100%;
       height: calc(318px - 48px);
@@ -163,12 +163,35 @@ form {
           background-color: $hover_gray;
           border-radius: 10px;
         }
+
+        .check_button_white {
+          display: none;
+        }
       }
+
       .selected {
-        background-color: $blue; /* Verwende den gewünschten Farbwert für Blau */
-        color: $white;  /* Optional: Falls du die Schriftfarbe ändern möchtest */
+        background-color: $dark_blue;
+        border-radius: 10px;
+        color: $white;
+
+        .check_button_white {
+            display: block;
+          }
+
+        &:hover {
+          background-color: $dark_dark_blue;
+          border-radius: 10px;
+
+          .check_button {
+            display: none;
+          }
+
+          .check_button_white {
+            display: block;
+          }
+        }
       }
-    }    
+    }
   }
 }
 
@@ -356,17 +379,11 @@ form {
   background: $white;
 }
 
-
-ul{
+ul {
   max-height: 100px;
   height: 100px;
   overflow: auto;
 }
-
-
-
-
-
 
 /* Submit und Clear oder Cancel Button*/
 .submit-section {
