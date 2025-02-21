@@ -19,7 +19,7 @@ export class AddTaskComponent {
   toDo = [];
   prio = 'medium';
   selectList = false;
-  selectedContacts: Set<any> = new Set(); // Set to track selected contacts
+  selectedContact = false; //: any = null; // Diese Variable speichert den ausgewählten Kontakt
 
   constructor() {}
 
@@ -32,20 +32,6 @@ export class AddTaskComponent {
    */
   isSelectList() {
     this.selectList = !this.selectList;
-  }
-
-  // Toggle contact selection
-  toggleContactSelection(contact: any) {
-    if (this.selectedContacts.has(contact)) {
-      this.selectedContacts.delete(contact); // Deselect contact
-    } else {
-      this.selectedContacts.add(contact); // Select contact
-    }
-  }
-
-  // Check if contact is selected
-  isSelected(contact: any): boolean {
-    return this.selectedContacts.has(contact);
   }
 
   getIndexInFullList(contact: any): number {

@@ -141,6 +141,7 @@ form {
       flex-direction: column;
       width: 100%;
       height: calc(318px - 48px);
+      border-radius: 10px;
       padding-top: 10px;
       padding-top: 10px;
       overflow: auto;
@@ -163,13 +164,11 @@ form {
           border-radius: 10px;
         }
       }
-
-      .selected-contact {
-        background-color: #007bff;
-        /* Blau, kannst du auch eine andere Farbe wählen */
-        color: white;
+      .selected {
+        background-color: $blue; /* Verwende den gewünschten Farbwert für Blau */
+        color: $white;  /* Optional: Falls du die Schriftfarbe ändern möchtest */
       }
-    }
+    }    
   }
 }
 
