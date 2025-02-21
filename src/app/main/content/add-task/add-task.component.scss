@@ -11,7 +11,7 @@ section {
 form {
   @include dFlex($jc: space-between);
   flex-direction: column;
-  height: calc(100vh - 91px - 190px - 80px);
+  height: calc(100vh - 91px - 190px); //- 80px
 }
 
 .fill-in-area {
@@ -35,7 +35,7 @@ form {
 
 /*linkes Div*/
 .content {
-  @include dFlex($ai: flex-start, $g: 50px);
+  @include dFlex($ai: flex-start, $g: 30px);
   flex-direction: column;
 
   .title_field {
@@ -79,7 +79,7 @@ form {
       color: $dark_blue;
       height: 24px;
 
-      > span {
+      >span {
         color: $red;
       }
     }
@@ -101,20 +101,74 @@ form {
   }
 
   .assigned_field {
-    background-color: $white;
-    // flex-direction: column;
+    // background-color: $white;
     width: 440px;
-    // position: relative;
+    height: 300px;
+    border-radius: 10px;
 
-    #assigned_field {
-      @include dFlex($jc: flex-start);
+
+    .assigned_field_headline {
+      @include dFlex($jc: space-between);
       @include font($fs: 20px, $fw: 400);
+      background-color: $white;
       height: 48px;
       width: 100%;
       border: 1px solid;
       border-color: $light_gray;
       border-radius: 10px;
       padding-left: 16px;
+      padding-right: 16px;
+      cursor: pointer;
+
+      .arrow_drop_down {
+        display: block;
+      }
+
+      .arrow_drop_up {
+        display: none
+      }
+    }
+
+    .contact_list {
+      background-color: $white;
+      display: none;
+      position: relative;
+      z-index: 3;
+    }
+
+    .assigned_field_contact_list {
+      @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
+      flex-direction: column;
+      width: 100%;
+      height: calc(318px - 48px);
+      padding-top: 10px;
+      padding-top: 10px;
+      overflow: auto;
+
+
+      .assigned_field_single_contact {
+        @include dFlex($g: 20px);
+        width: 100%;
+        height: 56px;
+        padding-left: 16px;
+        padding-right: 30px;
+        cursor: pointer;
+
+        p {
+          flex: 1;
+        }
+
+        &:hover {
+          background-color: $hover_gray;
+          border-radius: 10px;
+        }
+      }
+
+      .selected-contact {
+        background-color: #007bff;
+        /* Blau, kannst du auch eine andere Farbe wählen */
+        color: white;
+      }
     }
   }
 }
@@ -307,8 +361,9 @@ form {
 .submit-section {
   width: 100%;
   @include dFlex($jc: space-between);
+  margin-bottom: 70px;
 
-  > p span {
+  >p span {
     color: $red;
   }
 }
