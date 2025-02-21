@@ -37,7 +37,6 @@
     border-radius: 50%;
     @include font($fs: 47px, $fw: 500);
     color: $white;
-    // background-color: gray;
 }
 
   @media (max-width: 1150px) {
