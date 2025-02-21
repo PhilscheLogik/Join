@@ -11,7 +11,7 @@
         <img src="./assets/img/icons/search_icon.svg" alt="">
       </div>
       <button (click)="get()">TEST</button>
-      <button class="add_task_btn">Add task <img src="./assets/img/icons/plus_icon.svg" alt=""></button>
+      <button class="add_task_btn">Add task</button>
     </div>
   </div>
   <div class="board_content">
@@ -27,8 +27,33 @@
               [cdkDropListConnectedTo]="[progressList, feedbackList]"
               class="example-list"
               (cdkDropListDropped)="drop($event)">
+              
+              
               @for (item of taskService.todoList; track item) {
-                <div class="example-box" cdkDrag>{{item.title}}</div>
+                <div class="example-box" cdkDrag>
+                  <p class="task_card_category">User Story</p>
+                  <div class="task_card_main">
+                    <h3>{{item.title}}</h3>
+                    <p>grind & hustle.... Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
+                  </div>
+                  <div class="task_card_substasks">
+                    <div class="subtasks_progress">
+                      <div class="progress_outer">
+                        <div class="progress_inner"></div>
+                      </div>
+                    </div>
+                    <p>1/2 Subtasks</p>
+                  </div>
+                  <div class="task_card_team">
+                    <div class="team_left">
+                      <div class="initials_icon1">AS</div>
+                      <div class="initials_icon2">DE</div>
+                      <div class="initials_icon3">EF</div>
+                    </div>
+                      
+                  </div>
+                </div>
+                
               }
             </div>  
         </div>
