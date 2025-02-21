@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.scss',
 })
@@ -55,10 +55,12 @@ export class AddTaskComponent {
     );
   }
 
-
-  /*new */
+  /*Subtask content*/
   newSubtask: string = '';
-  subtasks: { text: string; isEditing: boolean }[] = [{ text:'Taste Esc suchen',isEditing: false }, { text:'Schuhe zubinden',isEditing: false },];
+  subtasks: { text: string; isEditing: boolean }[] = [
+    { text: 'Taste Esc suchen', isEditing: false },
+    { text: 'Schuhe zubinden', isEditing: false },
+  ];
   isEditing: boolean = false;
 
   startEditing() {
@@ -96,6 +98,3 @@ export class AddTaskComponent {
     this.subtasks[index].isEditing = false;
   }
 }
-
-
-
