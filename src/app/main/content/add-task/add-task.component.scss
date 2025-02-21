@@ -303,6 +303,18 @@ form {
   background: $white;
 }
 
+
+ul{
+  max-height: 100px;
+  height: 100px;
+  overflow: auto;
+}
+
+
+
+
+
+
 /* Submit und Clear oder Cancel Button*/
 .submit-section {
   width: 100%;
