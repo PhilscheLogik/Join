@@ -55,6 +55,13 @@ export class OverlayComponent {
     });
   }
 
+  /**
+   * Submits the form for creating or updating a contact.
+   *
+   * @param {NgForm} form - The form containing contact data.
+   * @param {'create' | 'update'} action - The action to perform.
+   * @param {string} [contactId] - The ID of the contact to update (optional).
+   */
   submitForm(form: NgForm, action: 'create' | 'update', contactId?: string) {
     if (form.invalid) {
       form.form.markAllAsTouched();
@@ -70,6 +77,9 @@ export class OverlayComponent {
     this.closeOverlay();
   }
 
+  /**
+   * Closes the overlay and resets form data.
+   */
   closeOverlay() {
     this.isClosing = true;
 
@@ -98,6 +108,9 @@ export class OverlayComponent {
   //   }, 500);
   // }
 
+  /**
+   * Adds a new contact to the contact list.
+   */
   addContactList() {
     if (!this.name) {
       this.isValidName = true;
@@ -132,6 +145,11 @@ export class OverlayComponent {
     this.isValidPhone = false;
   }
 
+  /**
+   * Deletes a contact by its ID.
+   *
+   * @param {string | undefined} id - The ID of the contact to delete.
+   */
   deleteItem(id: string | undefined) {
     if (id) {
       this.contactService.deleteContact(id);
@@ -143,6 +161,11 @@ export class OverlayComponent {
     // console.log(this.name, this.email, this.phone)
   }
 
+  /**
+   * Updates a contact's information.
+   *
+   * @param {string | undefined} id - The ID of the contact to update.
+   */
   updateItem(id: string | undefined) {
     if (id) {
       let newName =
@@ -169,6 +192,12 @@ export class OverlayComponent {
     }
   }
 
+  /**
+   * Retrieves the index of a contact in the full contact list.
+   *
+   * @param {any} contact - The contact object to find.
+   * @returns {number} The index of the contact, or 404 if not found.
+   */
   getIndexInFullList(contact: any): number {
     if (contact) {
       return this.contactService.contactList.findIndex(

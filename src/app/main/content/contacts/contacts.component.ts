@@ -13,7 +13,6 @@ import { OverlayComponent } from './overlay/overlay.component';
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
-  
   isOverlayVisible: boolean = false;
   showSuccessMessage: boolean = false;
   selectedContactInitials: string | null = null;
@@ -28,6 +27,9 @@ export class ContactsComponent {
 
   contactService = inject(ContactsService);
 
+  /**
+   * Initializes component and subscribes to contact creation events.
+   */
   ngOnInit() {
     this.contactsService.contactCreated$.subscribe((status) => {
       this.showSuccessMessage = status;
@@ -39,12 +41,22 @@ export class ContactsComponent {
     });
   }
 
+  /**
+   * Opens the overlay for editing a contact in mobile view.
+   *
+   * @param {string} action - The action to perform ('edit' to edit an existing contact).
+   */
   openOverlayEditContactMobile(action: string) {
     if (action === 'edit' && this.contactService.selectedContact) {
       this.isOverlayVisible = true;
     }
   }
 
+  /**
+   * Closes the overlay when clicking outside of it.
+   *
+   * @param {Event} event - The click event.
+   */
   closeOverlayOnClick(event: any) {
     if (event.target.classList.contains('overlay')) {
       this.closeOverlay();
@@ -55,13 +67,13 @@ export class ContactsComponent {
     this.isOverlayVisible = false;
   }
 
+  /**
+   * Opens the overlay and preloads contact data if editing.
+   *
+   * @param {string} text - The action type ('edit' to load existing data).
+   */
   openOverlay(text: string) {
-    /*NEW for EDIT Fct*/
-    let dummy = {
-      name: '',
-      email: '',
-      phone: '',
-    };
+    let dummy = { name: '', email: '', phone: '' };
 
     if (this.contactService.selectedContact && text == 'edit') {
       dummy = this.contactService.selectedContact;
@@ -73,7 +85,11 @@ export class ContactsComponent {
     this.contactsService.openOverlay(dummy);
   }
 
-  // Funktion zum Setzen des ausgewählten Kontakts
+  /**
+   * Selects or deselects a contact.
+   *
+   * @param {Contact} contact - The contact to select.
+   */
   selectContact(contact: Contact) {
     if (
       this.contactService.selectedContact &&
@@ -95,23 +111,27 @@ export class ContactsComponent {
     }
   }
 
+  /**
+   * Toggles mobile display state.
+   */
   mobileDisplay() {
     this.isShown = !this.isShown;
   }
 
+  /**
+   * Retrieves the ID of the selected contact.
+   *
+   * @returns {string | undefined} The contact ID if available.
+   */
   getList() {
     return this.contactService.selectedContact?.id;
   }
 
   /**
-   * Findet den Index eines Kontakts in der vollständigen Kontaktliste.
+   * Finds the index of a contact in the full contact list.
    *
-   * Diese Methode wird verwendet, um die Position eines Kontakts in der gesamten `contactService.contactList` zu bestimmen. Dies ist nötig, da die
-   * Farbzuweisung für das `profile_badge` anhand der Reihenfolge in der vollständigen Liste erfolgt, während die Anzeige der Initialen aus der gruppierten
-   * Liste (`group.value`) kommt.
-   *
-   * @param contact - Das Kontakt-Objekt, dessen Index in der Hauptliste gesucht wird.
-   * @returns Der Index des Kontakts in `contactService.contactList` oder `-1`, falls nicht gefunden.
+   * @param {any} contact - The contact to search for.
+   * @returns {number} The index of the contact in the list.
    */
   getIndexInFullList(contact: any): number {
     return this.contactService.contactList.findIndex(
@@ -119,6 +139,9 @@ export class ContactsComponent {
     );
   }
 
+  /**
+   * Deletes the selected contact from the database.
+   */
   deleteContact() {
     if (
       this.contactService.selectedContact &&
@@ -132,17 +155,20 @@ export class ContactsComponent {
           this.closeOverlay();
         })
         .catch((err) => {
-          console.error('Fehler beim Löschen des Kontakts:', err);
+          console.error('Error deleting contact:', err);
         });
     }
   }
 
+  /**
+   * Updates the selected contact's information.
+   */
   updateContact() {
     if (
       this.contactService.selectedContact &&
       this.contactService.selectedContact.id
     ) {
-      console.log('contact update');
+      console.log('Updating contact');
       console.log(this.name, this.email, this.phone);
       this.contactService
         .updateContact(
@@ -156,7 +182,7 @@ export class ContactsComponent {
           this.isContactSelected = false;
         })
         .catch((err) => {
-          console.error('Fehler beim updaten des Kontakts:', err);
+          console.error('Error updating contact:', err);
         });
     }
   }

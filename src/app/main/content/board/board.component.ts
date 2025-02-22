@@ -33,6 +33,12 @@ export class BoardComponent {
   //   }
   // }
 
+  /**
+   * Handles the drag-and-drop functionality for tasks.
+   * Moves items within the same list or transfers them between different lists.
+   *
+   * @param {CdkDragDrop<Task[]>} event - The drag-and-drop event containing task data.
+   */
   async drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -52,10 +58,22 @@ export class BoardComponent {
       console.log(task);
       console.log('Wo soll es hin: ', newCategory);
 
-      // Füge die Aufgabe zur neuen Kategorie in der Datenbank hinzu
+      /**
+       * Adds the task to the new category in the database.
+       * This ensures that the task is properly stored under its new status.
+       *
+       * @param {string} newCategory - The category to which the task is being moved.
+       * @param {Task} task - The task being updated.
+       */
       await this.taskService.addTask(newCategory, task);
 
-      // Entferne die Aufgabe aus der vorherigen Kategorie in der Datenbank
+      /**
+       * Removes the task from its previous category in the database.
+       * This prevents duplicate tasks from appearing across different categories.
+       *
+       * @param {string} previousCategory - The category from which the task is being removed.
+       * @param {string} task.id - The unique identifier of the task.
+       */
       if (task.id) {
         console.log('Woher kam es: ', previousCategory);
         await this.taskService.deleteTask(previousCategory, task.id);
@@ -78,6 +96,12 @@ export class BoardComponent {
     }
   }
 
+  /**
+   * Determines the category of a task based on the provided drop list container.
+   *
+   * @param {CdkDropList} container - The drag-and-drop container.
+   * @returns {string} - The category of the task.
+   */
   getCategoryFromContainer(container: CdkDropList): string {
     if (container.data === this.taskService.todoList) return 'todo';
     if (container.data === this.taskService.progressList) return 'inprogress';
@@ -86,6 +110,9 @@ export class BoardComponent {
     return '';
   }
 
+  /**
+   * Logs the current state of all task lists for debugging purposes.
+   */
   get() {
     console.log(this.taskService.todoList);
     console.log(this.taskService.progressList);
