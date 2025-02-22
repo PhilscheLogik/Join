@@ -20,12 +20,32 @@ export class AddTaskComponent {
   toDo = [];
   prio = 'medium';
   selectList = false;
-  selectedContact = false; //: any = null; // Diese Variable speichert den ausgewählten Kontakt
+  selectedContacts: any[] = []; // Array für ausgewählte Kontakte
 
   constructor() {}
 
   setPriority(status: string) {
     this.prio = status;
+  }
+
+  // Überprüft, ob der Kontakt ausgewählt ist
+  isSelected(contact: any): boolean {
+    return this.selectedContacts.some(
+      (selectedContact) => selectedContact.email === contact.email
+    );
+  }
+
+  // Toggle für den Kontakt - füge hinzu oder entferne aus der Liste der ausgewählten Kontakte
+  toggleContactSelection(contact: any) {
+    if (this.isSelected(contact)) {
+      // Entferne den Kontakt aus der Liste der ausgewählten Kontakte
+      this.selectedContacts = this.selectedContacts.filter(
+        (selectedContact) => selectedContact.email !== contact.email
+      );
+    } else {
+      // Füge den Kontakt zur Liste der ausgewählten Kontakte hinzu
+      this.selectedContacts.push(contact);
+    }
   }
 
   /**

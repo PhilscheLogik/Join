@@ -30,11 +30,9 @@ a {
   display: none;
 }
 
-
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
-
 }
 
 ::-webkit-scrollbar-track {
@@ -46,5 +44,6 @@ a {
   background: #A8A8A8;
   border-radius: 4px;
 }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
