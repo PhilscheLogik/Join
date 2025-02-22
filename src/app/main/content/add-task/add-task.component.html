@@ -4,8 +4,6 @@
     <img class="close" src="assets/img/icons/close.svg" alt="Closing Image" />
   </div>
 
-  
-
   <form>
     <div class="fill-in-area">
       <div class="content">
@@ -32,26 +30,37 @@
         <div class="assigned_field">
           <div class="assigned_field_headline" (click)="isSelectList()">
             <p>Select contacts to assign</p>
-            <img class="arrow_drop_down" src="assets/img/icons/arrow_drop_down_icon.svg">
-            <img class="arrow_drop_up" src="assets/img/icons/arrow_drop_up_icon.svg">
+            <img
+              class="arrow_drop_down"
+              src="assets/img/icons/arrow_drop_down_icon.svg"
+            />
+            <img
+              class="arrow_drop_up"
+              src="assets/img/icons/arrow_drop_up_icon.svg"
+            />
           </div>
-          <div class="contact_list" [ngStyle]="{'display': selectList ? 'block' : 'none'}">
+          <div
+            class="contact_list"
+            [ngStyle]="{ display: selectList ? 'block' : 'none' }"
+          >
             <div class="assigned_field_contact_list">
-              @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
-              @for (contact of group.value; track $index) {
-              <div class="assigned_field_single_contact" (click)="selectContact()" [ngClass]="{'selected': selectedContact === contact}">
-                <div class="profile_badge" [ngStyle]="{
-                                    'background-color': contactService.getBadgeColor(
-                                      getIndexInFullList(contact)
-                                    )
-                                  }">
+              @for (group of contactService.getGroupedContacts() | keyvalue;
+              track $index) { @for (contact of group.value; track $index) {
+              <div class="assigned_field_single_contact">
+                <div
+                  class="profile_badge"
+                  [ngStyle]="{
+                    'background-color': contactService.getBadgeColor(
+                      getIndexInFullList(contact)
+                    )
+                  }"
+                >
                   {{ contact.initials }}
                 </div>
                 <p>{{ contact.name }}</p>
-                <img src="assets/img/icons/check_button_icon.svg">
+                <img src="assets/img/icons/check_button_icon.svg" />
               </div>
-              }
-              }
+              } }
             </div>
           </div>
         </div>
@@ -117,7 +126,7 @@
               [(ngModel)]="newSubtask"
               [ngModelOptions]="{ standalone: true }"
               [placeholder]="isEditing ? '' : 'Add new subtask'"
-              (focus)="startEditing()"              
+              (focus)="startEditing()"
             />
 
             <div class="button-group">
@@ -130,7 +139,6 @@
               }
             </div>
           </div>
-
           <ul class="subtask-list">
             @for(task of subtasks; track $index){
             <li (dblclick)="editSubtask($index)">
@@ -142,6 +150,7 @@
               />
               <div class="actions">
                 <button (click)="deleteSubtask($index)">Delete</button>
+                |
                 <button (click)="saveEdit($index)">Ok</button>
               </div>
               } @else {
@@ -149,6 +158,7 @@
 
               <div class="actions">
                 <button (click)="editSubtask($index)">Edit</button>
+                |
                 <button (click)="deleteSubtask($index)">Delete</button>
               </div>
               }

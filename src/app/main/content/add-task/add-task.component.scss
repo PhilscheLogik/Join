@@ -79,7 +79,7 @@ form {
       color: $dark_blue;
       height: 24px;
 
-      >span {
+      > span {
         color: $red;
       }
     }
@@ -106,7 +106,6 @@ form {
     height: 300px;
     border-radius: 10px;
 
-
     .assigned_field_headline {
       @include dFlex($jc: space-between);
       @include font($fs: 20px, $fw: 400);
@@ -125,7 +124,7 @@ form {
       }
 
       .arrow_drop_up {
-        display: none
+        display: none;
       }
     }
 
@@ -146,7 +145,6 @@ form {
       padding-top: 10px;
       overflow: auto;
 
-
       .assigned_field_single_contact {
         @include dFlex($g: 20px);
         width: 100%;
@@ -166,9 +164,9 @@ form {
       }
       .selected {
         background-color: $blue; /* Verwende den gewünschten Farbwert für Blau */
-        color: $white;  /* Optional: Falls du die Schriftfarbe ändern möchtest */
+        color: $white; /* Optional: Falls du die Schriftfarbe ändern möchtest */
       }
-    }    
+    }
   }
 }
 
@@ -183,8 +181,6 @@ form {
   color: $white;
   min-width: 42px;
 }
-
-
 
 /*Trennlinie*/
 .line {
@@ -213,10 +209,7 @@ form {
 
   color: $light_gray;
   @include font($fs: 20px, $fw: 400);
-
-  // background-image: url("./../../../../assets/img/icons/add_task.svg");
-  // background-repeat: no-repeat;
-  // background-position: right center;
+  
   padding-right: 16px;
   cursor: pointer;
 }
@@ -355,18 +348,74 @@ form {
   padding-right: 10px;
   background: $white;
 }
+/*Subtask*/
+.input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
 
-
-ul{
-  max-height: 100px;
-  height: 100px;
-  overflow: auto;
+  padding: 5px;
+  border-radius: 5px;
 }
 
+.button-group {
+  display: flex;
+  gap: 5px;
 
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
 
+.subtask-list {
+  margin-top: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 100%;
 
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: dotted !important;
 
+    span{
+      color: black;
+      display: inline-block;
+    }
+    
+
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover .actions {
+      display: flex;
+    }
+    
+    .actions {
+      display: none;
+      gap: 5px;
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .edit-input {
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: 1px;
+      border-bottom: 2px solid blue;
+      background: $white;
+      padding: 3px;
+    }
+  }
+}
 
 /* Submit und Clear oder Cancel Button*/
 .submit-section {
@@ -374,7 +423,7 @@ ul{
   @include dFlex($jc: space-between);
   margin-bottom: 70px;
 
-  >p span {
+  > p span {
     color: $red;
   }
 }
