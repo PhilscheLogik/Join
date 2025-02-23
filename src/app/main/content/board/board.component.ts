@@ -32,6 +32,14 @@ export class BoardComponent {
   //     );
   //   }
   // }
+  tasks: Task[] = [];
+  isOverlayOpen = false;
+  selectedTask: Task | null = null;
+
+  openOverlay(task: Task) {
+    this.selectedTask = task;
+    this.isOverlayOpen = true;
+  }
 
   /**
    * Handles the drag-and-drop functionality for tasks.
