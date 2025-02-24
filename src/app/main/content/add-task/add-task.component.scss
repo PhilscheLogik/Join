@@ -54,17 +54,17 @@ form {
     }
 
     .input {
+      @include font($fs: 20px, $fw: 400);
       border: 1px solid;
       border-color: $light_gray;
       border-radius: 10px;
       height: 48px;
       width: 100%;
+      padding-left: 21px;
 
       &::placeholder {
         @include font($fs: 20px, $fw: 400);
         color: $light_gray;
-        padding-top: 12px;
-        padding-left: 21px;
       }
     }
   }
@@ -85,17 +85,18 @@ form {
     }
 
     .input {
+      @include font($fs: 20px, $fw: 400);
       border: 1px solid;
       border-color: $light_gray;
       border-radius: 10px;
       height: 120px;
       width: 100%;
+      padding-top: 18px;
+      padding-left: 16px;
 
       &::placeholder {
         @include font($fs: 20px, $fw: 400);
         color: $light_gray;
-        padding-top: 18px;
-        padding-left: 16px;
       }
     }
   }
@@ -223,6 +224,11 @@ form {
         background-color: $blue; /* Verwende den gewünschten Farbwert für Blau */
         color: $white; /* Optional: Falls du die Schriftfarbe ändern möchtest */
       }
+    }
+
+    .contact_badge_line {
+      @include dFlex($jc: flex-start, $g: 5px);
+      margin-top: 10px
     }
   }
 }

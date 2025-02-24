@@ -9,7 +9,7 @@
       <div class="content">
         <div class="title_field">
           <label class="title" name="title">Title<span>*</span></label>
-          <input class="input" type="text" name="input" placeholder="Enter a title" />
+          <input class="input" type="text" name="input" placeholder="Enter a title" required/>
         </div>
 
         <div class="description_field">
@@ -51,6 +51,17 @@
               </div>
               } }
             </div>
+          </div>
+          <div class="contact_badge_line">
+            @for (contact of selectedContacts; track $index) {
+              <div class="profile_badge" [ngStyle]="{
+                                                  'background-color': contactService.getBadgeColor(
+                                                    getIndexInFullList(contact)
+                                                  )
+                                                }">
+                {{ contact.initials }}
+              </div>
+            }
           </div>
         </div>
       </div>

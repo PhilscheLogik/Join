@@ -28,33 +28,56 @@ export class AddTaskComponent {
     this.prio = status;
   }
 
-  // Überprüft, ob der Kontakt ausgewählt ist
+  /**
+   * Checks if a contact is present in the list of selected contacts.
+   *
+   * @param {Object} contact - The contact to check.
+   * @param {string} contact.email - The email address of the contact to be checked.
+   *
+   * @returns {boolean} - Returns `true` if the contact is found in the selected contacts list, otherwise `false`.
+   */
   isSelected(contact: any): boolean {
     return this.selectedContacts.some(
       (selectedContact) => selectedContact.email === contact.email
     );
   }
 
-  // Toggle für den Kontakt - füge hinzu oder entferne aus der Liste der ausgewählten Kontakte
+  /**
+   * Toggles the selection status of a contact. If the contact is already selected, it will be removed from the selected contacts list.
+   * If the contact is not selected, it will be added to the list of selected contacts.
+   *
+   * @param {Object} contact - The contact whose selection status is to be toggled.
+   * @param {string} contact.email - The email address of the contact to toggle.
+   *
+   * @returns {void} - This method does not return a value.
+   */
   toggleContactSelection(contact: any) {
     if (this.isSelected(contact)) {
-      // Entferne den Kontakt aus der Liste der ausgewählten Kontakte
       this.selectedContacts = this.selectedContacts.filter(
         (selectedContact) => selectedContact.email !== contact.email
       );
     } else {
-      // Füge den Kontakt zur Liste der ausgewählten Kontakte hinzu
       this.selectedContacts.push(contact);
     }
   }
 
   /**
-   * Variable to select / unselect Contactlist
+   * Toggles the state of the `selectList` variable. If it is currently `true`, it will be set to `false`, and vice versa.
+   *
+   * @returns {void} - This method does not return a value.
    */
   isSelectList() {
     this.selectList = !this.selectList;
   }
 
+  /**
+   * Finds the index of a contact in the full contact list based on the contact's email.
+   *
+   * @param {Object} contact - The contact whose index is to be found.
+   * @param {string} contact.email - The email address of the contact to search for.
+   *
+   * @returns {number} - Returns the index of the contact in the contact list, or `-1` if the contact is not found.
+   */
   getIndexInFullList(contact: any): number {
     return this.contactService.contactList.findIndex(
       (c) => c.email === contact.email
