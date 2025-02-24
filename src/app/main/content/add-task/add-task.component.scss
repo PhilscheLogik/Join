@@ -192,7 +192,7 @@ form {
           }
         }
       }
-    }    
+    }
 
     .contact_badge_line {
       position: relative;
@@ -380,6 +380,7 @@ form {
   padding-right: 10px;
   background: $white;
 }
+
 /*Subtask*/
 .input-container {
   display: flex;
@@ -387,19 +388,20 @@ form {
   width: 100%;
 
   position: relative;
-
-  padding: 5px;
   border-radius: 5px;
 }
 
 .button-group {
-  display: flex;
-  gap: 5px;
+  @include dFlex();
 
   position: absolute;
   top: 50%;
   right: 15px;
   transform: translateY(-50%);
+
+  span {
+    color: $light_gray;
+  }
 
   button {
     background: none;
@@ -408,18 +410,17 @@ form {
   }
 }
 
-.btn-subtask{
-    img{
+.btn-subtask {
+  img {
     width: 24px;
-    height: 24px;    
+    height: 24px;
 
-    &:hover{
+    &:hover {
       background-color: $hover_gray;
       border-radius: 50%;
     }
   }
 }
-
 
 .subtask-list {
   margin-top: 10px;
@@ -429,10 +430,13 @@ form {
 
   li {
     .li-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    } 
+      @include dFlex($jc: space-between);
+      min-height: 29px;
+      position: relative;
+      &:hover {
+        background-color: $hover_gray;
+      }
+    }
 
     span {
       color: black;
@@ -443,12 +447,20 @@ form {
     cursor: pointer;
 
     &:hover .actions {
-      display: flex;
+      @include dFlex($jc: space-between);
+      color: $light_gray;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
     }
 
     .actions {
       display: none;
-      gap: 5px;
+
+      span {
+        color: $light_gray;
+      }
 
       button {
         background: none;
@@ -462,7 +474,7 @@ form {
       border: none;
       outline: none;
       border-radius: 1px;
-      border-bottom: 2px solid blue;
+      border-bottom: 2px solid $line_blue;
       background: $white;
       padding: 3px;
     }

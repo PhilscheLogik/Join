@@ -145,8 +145,16 @@
 
             <div class="button-group">
               @if(!isEditing){
-              <button class="btn-subtask"  (click)="startEditing()">+</button>
-              } @if(isEditing){
+              <button class="btn-subtask" (click)="startEditing()">
+                <img
+                  class="close_subtask"
+                  src="assets/img/icons/add_plus_dark_icon.svg"
+                  alt="Ok hook Image"
+                />
+              </button>
+              } 
+
+              @if(isEditing){
               <button class="btn-subtask" (click)="cancelEditing()">
                 <img
                   class="close_subtask"
@@ -154,8 +162,14 @@
                   alt="Closing Image"
                 />
               </button>
-              |
-              <button class="btn-subtask"  (click)="addSubtask()">Yes</button>
+              <span>|</span>
+              <button class="btn-subtask" (click)="addSubtask()">
+                <img
+                  class="close_subtask"
+                  src="assets/img/icons/check_dark_icon.svg"
+                  alt="Ok hook Image"
+                />
+              </button>
               }
             </div>
           </div>
@@ -170,29 +184,40 @@
                   class="edit-input"
                 />
                 <div class="actions">
-                  <button class="btn-subtask"  (click)="deleteSubtask($index)">
+                  <button class="btn-subtask" (click)="deleteSubtask($index)">
                     <img
-                    class="close_subtask"
-                    src="./../../../../assets/img/icons/trash_icon.svg"
-                    alt="delete Image"
-                  /></button>
-                  |
-                  <button class="btn-subtask"  (click)="saveEdit($index)">Ok</button>
+                      class="close_subtask"
+                      src="assets/img/icons/trash_icon.svg"
+                      alt="delete Image"
+                    />
+                  </button>
+                  <span>|</span>
+                  <button class="btn-subtask" (click)="saveEdit($index)">
+                    <img
+                      class="close_subtask"
+                      src="./../../../../assets/img/icons/check_dark_icon.svg"
+                      alt="Ok hook Image"
+                    />
+                  </button>
                 </div>
                 } @else {
                 <span>{{ task.text }}</span>
 
                 <div class="actions">
-                  <button class="btn-subtask"  (click)="editSubtask($index)"><img
-                    class="close_subtask"
-                    src="./../../../../assets/img/icons/check_dark.svg"
-                    alt="check Image"></button>
-                  |
-                  <button class="btn-subtask"  (click)="deleteSubtask($index)">
+                  <button class="btn-subtask" (click)="editSubtask($index)">
                     <img
-                    class="close_subtask"
-                    src="./../../../../assets/img/icons/trash_icon.svg"
-                    alt="delete Image">
+                      class="close_subtask"
+                      src="assets/img/icons/edit_dark_icon.svg"
+                      alt="check Image"
+                    />
+                  </button>
+                  <span>|</span>
+                  <button class="btn-subtask" (click)="deleteSubtask($index)">
+                    <img
+                      class="close_subtask"
+                      src="./../../../../assets/img/icons/trash_icon.svg"
+                      alt="delete Image"
+                    />
                   </button>
                 </div>
                 }
