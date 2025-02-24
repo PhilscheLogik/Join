@@ -112,6 +112,7 @@ h2 {
 .board_content_header {
   @include dFlex($jc: space-between);
   width: 100%;
+  margin-bottom: 23px;
 
   > button {
     height: 25px;
@@ -131,6 +132,7 @@ h2 {
   flex-direction: column;
   height: 100%;
   width: 22%;
+  position: relative;
   // border: 2px solid $light_gray;
 }
 .in_progress {
@@ -138,6 +140,7 @@ h2 {
   flex-direction: column;
   height: 100%;
   width: 22%;
+  position: relative;
   // border: 2px solid $light_gray;
 }
 .await_feedback {
@@ -145,6 +148,7 @@ h2 {
   flex-direction: column;
   height: 100%;
   width: 22%;
+  position: relative;
   // border: 2px solid $light_gray;
 }
 .done {
@@ -152,6 +156,7 @@ h2 {
   flex-direction: column;
   height: 100%;
   width: 22%;
+  position: relative;
   // border: 2px solid $light_gray;
 }
 
@@ -163,6 +168,10 @@ h2 {
 }
 
 .empty_bg {
+  @include font($fs: 16px, $fw: 400);
+  color: $gray;
+  text-align: center;
+  align-content: center;
   margin-top: 24px;
   min-height: 48px;
   width: 100%;
@@ -172,6 +181,9 @@ h2 {
   border-color: $light_gray;
   border-width: 2px;
   overflow: auto;
+  position: absolute;
+  top: 24px;
+  left: 0;
 }
 
 h3 {
@@ -199,6 +211,7 @@ h3 {
 
 app-single-task {
   width: 100%;
+  z-index: 1;
 }
 
 .cdk-drag-preview {
