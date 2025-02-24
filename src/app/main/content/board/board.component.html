@@ -19,76 +19,17 @@
           <button class="to_do_add_btn"></button>
         </div>
         <div class="empty_bg">
-            <div class="tasks_content" cdkDropList
-              #todoList="cdkDropList"
-              [cdkDropListData]="taskService.todoList"
-              [cdkDropListConnectedTo]="[progressList, feedbackList]"
-              class="example-list"
-              (cdkDropListDropped)="drop($event)">
+          <div class="tasks_content" cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="taskService.todoList"
+            [cdkDropListConnectedTo]="[progressList, feedbackList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
               
-              <!-- Normann -->
-              @for (task of taskService.todoList; track $index) {
-                <app-single-task cdkDrag></app-single-task>
-              }
-              <!-- <app-single-task cdkDrag></app-single-task> -->
-
-              <!-- Fusion Normann & Dominik -->
-              <!-- @for (task of taskService.todoList; track task) {
-                <div class="example-box" (click)="openOverlay(task)" cdkDrag>
-                  <p class="task_card_category">{{ task.category }}</p>
-                  <div class="task_card_main" >
-                    <h3>{{ task.title }}</h3>
-                    <p>{{ task.description }}</p>
-                  </div>
-                  <div class="task_card_substasks">
-                    <div class="subtasks_progress">
-                      <div class="progress_outer">
-                        <div class="progress_inner"></div>
-                      </div>
-                    </div>
-                    <p>1/2 Subtasks</p>
-                  </div>
-                  <div class="task_card_team">
-                    <div class="team_left">
-                      <div class="initials_icon1">AS</div>
-                      <div class="initials_icon2">DE</div>
-                      <div class="initials_icon3">EF</div>
-                    </div>
-                    <div class="team_right">
-                      <div class="taskcard_priority">{{ task.prio }}</div>
-                    </div>  
-                  </div>
-                </div>
-              } -->
-              
-              <!-- Dominik -->
-              <!-- @for (item of taskService.todoList; track item) {
-                <div class="example-box" cdkDrag>
-                  <p class="task_card_category">User Story</p>
-                  <div class="task_card_main">
-                    <h3>{{item.title}}</h3>
-                    <p>grind & hustle.... Lorem ipsum dolor, sit amet consectetur adipisicing elit. </p>
-                  </div>
-                  <div class="task_card_substasks">
-                    <div class="subtasks_progress">
-                      <div class="progress_outer">
-                        <div class="progress_inner"></div>
-                      </div>
-                    </div>
-                    <p>1/2 Subtasks</p>
-                  </div>
-                  <div class="task_card_team">
-                    <div class="team_left">
-                      <div class="initials_icon1">AS</div>
-                      <div class="initials_icon2">DE</div>
-                      <div class="initials_icon3">EF</div>
-                    </div>
-                    <div class="team_right">
-                    </div>  
-                  </div>
-                </div> 
-              } -->
-            </div>  
+            @for (task of taskService.todoList; track $index) {
+              <app-single-task [task]="task" cdkDrag></app-single-task>
+            }
+          </div>  
         </div>
       </div>
       <div class="in_progress">
@@ -104,31 +45,7 @@
             class="example-list"
             (cdkDropListDropped)="drop($event)">
             @for (task of taskService.progressList; track task) {
-              <div class="example-box" (click)="openOverlay(task)" cdkDrag>
-                <p class="task_card_category">{{ task.category }}</p>
-                <div class="task_card_main" >
-                  <h3>{{ task.title }}</h3>
-                  <p>{{ task.description }}</p>
-                </div>
-                <div class="task_card_substasks">
-                  <div class="subtasks_progress">
-                    <div class="progress_outer">
-                      <div class="progress_inner"></div>
-                    </div>
-                  </div>
-                  <p>1/2 Subtasks</p>
-                </div>
-                <div class="task_card_team">
-                  <div class="team_left">
-                    <div class="initials_icon1">AS</div>
-                    <div class="initials_icon2">DE</div>
-                    <div class="initials_icon3">EF</div>
-                  </div>
-                  <div class="team_right">
-                    <div class="taskcard_priority">{{ task.prio }}</div>
-                  </div>  
-                </div>
-              </div>
+              <app-single-task [task]="task" cdkDrag></app-single-task>
             }
           </div>    
         </div>
@@ -147,31 +64,7 @@
             class="example-list"
             (cdkDropListDropped)="drop($event)">
             @for (task of taskService.feedbackList; track task) {
-              <div class="example-box" (click)="openOverlay(task)" cdkDrag>
-                <p class="task_card_category">{{ task.category }}</p>
-                <div class="task_card_main" >
-                  <h3>{{ task.title }}</h3>
-                  <p>{{ task.description }}</p>
-                </div>
-                <div class="task_card_substasks">
-                  <div class="subtasks_progress">
-                    <div class="progress_outer">
-                      <div class="progress_inner"></div>
-                    </div>
-                  </div>
-                  <p>1/2 Subtasks</p>
-                </div>
-                <div class="task_card_team">
-                  <div class="team_left">
-                    <div class="initials_icon1">AS</div>
-                    <div class="initials_icon2">DE</div>
-                    <div class="initials_icon3">EF</div>
-                  </div>
-                  <div class="team_right">
-                    <div class="taskcard_priority">{{ task.prio }}</div>
-                  </div>  
-                </div>
-              </div>
+              <app-single-task [task]="task" cdkDrag></app-single-task>
             }
           </div>    
         </div>
@@ -190,31 +83,7 @@
             class="example-list"
             (cdkDropListDropped)="drop($event)">
             @for (task of taskService.doneList; track task) {
-              <div class="example-box" (click)="openOverlay(task)" cdkDrag>
-                <p class="task_card_category">{{ task.category }}</p>
-                <div class="task_card_main" >
-                  <h3>{{ task.title }}</h3>
-                  <p>{{ task.description }}</p>
-                </div>
-                <div class="task_card_substasks">
-                  <div class="subtasks_progress">
-                    <div class="progress_outer">
-                      <div class="progress_inner"></div>
-                    </div>
-                  </div>
-                  <p>1/2 Subtasks</p>
-                </div>
-                <div class="task_card_team">
-                  <div class="team_left">
-                    <div class="initials_icon1">AS</div>
-                    <div class="initials_icon2">DE</div>
-                    <div class="initials_icon3">EF</div>
-                  </div>
-                  <div class="team_right">
-                    <div class="taskcard_priority">{{ task.prio }}</div>
-                  </div>  
-                </div>
-              </div>
+              <app-single-task [task]="task" cdkDrag></app-single-task>
             }
           </div>  
         </div>

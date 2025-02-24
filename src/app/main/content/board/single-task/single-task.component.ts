@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { TaskServiceService } from '../../../services/task-service.service';
 import { Task } from '../../../../interfaces/task';
 import {
@@ -24,13 +24,14 @@ export class SingleTaskComponent {
   selectedTask: Task | null = null;
   isOverlayOpen: boolean = false;
 
+  @Input() task!: Task;
+
   constructor() {
     this.tasks = this.taskService.todoList;
   }
 
   get() {
     console.log(this.tasks);
-    
   }
 
   openOverlay(task: Task) {

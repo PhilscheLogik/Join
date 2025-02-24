@@ -64,44 +64,30 @@
     </div>
   </div>
   }
-
-  <!-- <div class="task-card-container">
-    <div class="task-card-content">
-      @for (task of tasks; track task.id) {
-      <div class="task-card" (click)="openOverlay(task)" cdkDrag>
-        <span class="category">{{ task.category }}</span>
-        <h1 class="task-title">{{ task.title }}</h1>
-        <p class="description">{{ task.description }}</p>
-      </div>
-      }
+  
+  <div class="example-box" (click)="openOverlay(task)" cdkDrag>
+    <p class="task_card_category">{{ task.category }}</p>
+    <div class="task_card_main" >
+      <h3>{{ task.title }}</h3>
+      <p>{{ task.description }}</p>
     </div>
-  </div> -->
-  <button (click)="get()">Test</button>
-  @for (task of tasks; track task) {
-        <div class="example-box" (click)="openOverlay(task)" cdkDrag>
-          <p class="task_card_category">{{ task.category }}</p>
-          <div class="task_card_main" >
-            <h3>{{ task.title }}</h3>
-            <p>{{ task.description }}</p>
-          </div>
-          <div class="task_card_substasks">
-            <div class="subtasks_progress">
-              <div class="progress_outer">
-                <div class="progress_inner"></div>
-              </div>
-            </div>
-            <p>1/2 Subtasks</p>
-          </div>
-          <div class="task_card_team">
-            <div class="team_left">
-              <div class="initials_icon1">AS</div>
-              <div class="initials_icon2">DE</div>
-              <div class="initials_icon3">EF</div>
-            </div>
-            <div class="team_right">
-              <div class="taskcard_priority">{{ task.prio }}</div>
-            </div>  
-          </div>
+    <div class="task_card_substasks">
+      <div class="subtasks_progress">
+        <div class="progress_outer">
+          <div class="progress_inner"></div>
         </div>
-        }
+      </div>
+      <p>1/2 Subtasks</p>
+    </div>
+    <div class="task_card_team">
+      <div class="team_left">
+        <div class="initials_icon1">AS</div>
+        <div class="initials_icon2">DE</div>
+        <div class="initials_icon3">EF</div>
+      </div>
+      <div class="team_right">
+        <div class="taskcard_priority">{{ task.prio }}</div>
+      </div>  
+    </div>
+  </div>
 </section>
