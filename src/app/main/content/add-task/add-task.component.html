@@ -43,7 +43,7 @@
               } }
             </div>
           </div>         
-          <div class="contact_badge_line">
+          <div class="contact_badge_line" [ngStyle]="{ display: selectList ? 'none' : 'flex' }">
             @for (contact of selectedContacts; track $index) {
             <div class="profile_badge" [ngStyle]="{
                 'background-color': contactService.getBadgeColor(

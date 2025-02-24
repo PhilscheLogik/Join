@@ -539,7 +539,14 @@ ul {
 
     .assigned_field {
       height: auto;
+      
+      .contact_list {
+        .assigned_field_contact_list {
+          position: relative;
+        }
+      }
     }
+
   }
 
   .line {
