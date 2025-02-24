@@ -409,17 +409,15 @@ form {
 }
 
 .btn-subtask{
+    img{
+    width: 24px;
+    height: 24px;    
 
-  width: 24px;
-  height: 24px;
-
-  img{
-    width: 14px;
-    height: 14px;    
+    &:hover{
+      background-color: $hover_gray;
+      border-radius: 50%;
+    }
   }
-
-
-
 }
 
 

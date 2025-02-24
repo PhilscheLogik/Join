@@ -145,7 +145,7 @@
 
             <div class="button-group">
               @if(!isEditing){
-              <button (click)="startEditing()">+</button>
+              <button class="btn-subtask"  (click)="startEditing()">+</button>
               } @if(isEditing){
               <button class="btn-subtask" (click)="cancelEditing()">
                 <img
@@ -155,7 +155,7 @@
                 />
               </button>
               |
-              <button (click)="addSubtask()">Yes</button>
+              <button class="btn-subtask"  (click)="addSubtask()">Yes</button>
               }
             </div>
           </div>
@@ -170,17 +170,30 @@
                   class="edit-input"
                 />
                 <div class="actions">
-                  <button (click)="deleteSubtask($index)">Delete</button>
+                  <button class="btn-subtask"  (click)="deleteSubtask($index)">
+                    <img
+                    class="close_subtask"
+                    src="./../../../../assets/img/icons/trash_icon.svg"
+                    alt="delete Image"
+                  /></button>
                   |
-                  <button (click)="saveEdit($index)">Ok</button>
+                  <button class="btn-subtask"  (click)="saveEdit($index)">Ok</button>
                 </div>
                 } @else {
                 <span>{{ task.text }}</span>
 
                 <div class="actions">
-                  <button (click)="editSubtask($index)">Edit</button>
+                  <button class="btn-subtask"  (click)="editSubtask($index)"><img
+                    class="close_subtask"
+                    src="./../../../../assets/img/icons/check_dark.svg"
+                    alt="check Image"></button>
                   |
-                  <button (click)="deleteSubtask($index)">Delete</button>
+                  <button class="btn-subtask"  (click)="deleteSubtask($index)">
+                    <img
+                    class="close_subtask"
+                    src="./../../../../assets/img/icons/trash_icon.svg"
+                    alt="delete Image">
+                  </button>
                 </div>
                 }
               </div>
