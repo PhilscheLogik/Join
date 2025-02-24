@@ -13,7 +13,7 @@ import {
 @Component({
   selector: 'app-single-task',
   standalone: true,
-  imports: [CdkDropList],
+  imports: [],
   templateUrl: './single-task.component.html',
   styleUrl: './single-task.component.scss',
 })
@@ -28,10 +28,6 @@ export class SingleTaskComponent {
 
   constructor() {
     this.tasks = this.taskService.todoList;
-  }
-
-  get() {
-    console.log(this.tasks);
   }
 
   openOverlay(task: Task) {

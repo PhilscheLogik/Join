@@ -5,89 +5,98 @@
     </div>
     <div class="board_header_right">
       <div class="input_field">
-        <input type="text" placeholder="Find task">
-        <img src="./assets/img/icons/search_icon.svg" alt="">
+        <input type="text" placeholder="Find task" />
+        <img src="./assets/img/icons/search_icon.svg" alt="" />
       </div>
-      <!-- <button (click)="get()">TEST</button> -->
-      <button class="add_task_btn">Add task <img src="./../../../../assets/img/icons/plus_icon.svg" alt=""></button>
+      <button class="add_task_btn">
+        Add task
+        <img src="./../../../../assets/img/icons/plus_icon.svg" alt="" />
+      </button>
     </div>
   </div>
   <div class="board_content">
-      <div class="to_do" >
-        <div class="board_content_header">
-          <h2>To do</h2>
-          <button class="to_do_add_btn"></button>
-        </div>
-        <div class="empty_bg">
-          <div class="tasks_content" cdkDropList
-            #todoList="cdkDropList"
-            [cdkDropListData]="taskService.todoList"
-            [cdkDropListConnectedTo]="[progressList, feedbackList]"
-            class="example-list"
-            (cdkDropListDropped)="drop($event)">
-              
-            @for (task of taskService.todoList; track $index) {
-              <app-single-task [task]="task" cdkDrag></app-single-task>
-            }
-          </div>  
+    <div class="to_do">
+      <div class="board_content_header">
+        <h2>To do</h2>
+        <button class="to_do_add_btn"></button>
+      </div>
+      <div class="empty_bg">
+        <div
+          class="tasks_content"
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="taskService.todoList"
+          [cdkDropListConnectedTo]="[progressList, feedbackList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          @for (task of taskService.todoList; track $index) {
+          <app-single-task [task]="task" cdkDrag></app-single-task>
+          }
         </div>
       </div>
-      <div class="in_progress">
-        <div class="board_content_header">
-          <h2>In progress</h2>
-          <button class="in_progress_add_btn"></button>
-        </div>
-          <div class="empty_bg">
-            <div class="tasks_content" cdkDropList
-            #progressList="cdkDropList"
-            [cdkDropListData]="taskService.progressList"
-            [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
-            class="example-list"
-            (cdkDropListDropped)="drop($event)">
-            @for (task of taskService.progressList; track task) {
-              <app-single-task [task]="task" cdkDrag></app-single-task>
-            }
-          </div>    
+    </div>
+    <div class="in_progress">
+      <div class="board_content_header">
+        <h2>In progress</h2>
+        <button class="in_progress_add_btn"></button>
+      </div>
+      <div class="empty_bg">
+        <div
+          class="tasks_content"
+          cdkDropList
+          #progressList="cdkDropList"
+          [cdkDropListData]="taskService.progressList"
+          [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          @for (task of taskService.progressList; track task) {
+          <app-single-task [task]="task" cdkDrag></app-single-task>
+          }
         </div>
       </div>
-      <div class="await_feedback">
-        <div class="board_content_header">
-          <h2>Await feedback</h2>
-          <button class="await_feedback_add_btn"></button>
-        </div>
-        <div class="empty_bg">
-            <div class="tasks_content"
-            cdkDropList
-            #feedbackList="cdkDropList"
-            [cdkDropListData]="taskService.feedbackList"
-            [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
-            class="example-list"
-            (cdkDropListDropped)="drop($event)">
-            @for (task of taskService.feedbackList; track task) {
-              <app-single-task [task]="task" cdkDrag></app-single-task>
-            }
-          </div>    
+    </div>
+    <div class="await_feedback">
+      <div class="board_content_header">
+        <h2>Await feedback</h2>
+        <button class="await_feedback_add_btn"></button>
+      </div>
+      <div class="empty_bg">
+        <div
+          class="tasks_content"
+          cdkDropList
+          #feedbackList="cdkDropList"
+          [cdkDropListData]="taskService.feedbackList"
+          [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          @for (task of taskService.feedbackList; track task) {
+          <app-single-task [task]="task" cdkDrag></app-single-task>
+          }
         </div>
       </div>
-      <div class="done">
-        <div class="board_content_header">
-          <h2>Done</h2>
-          <!-- <button class="done_add_btn"></button> -->
-        </div>
-          <div class="empty_bg">
-            <div class="tasks_content"
-            cdkDropList
-            #doneList="cdkDropList"
-            [cdkDropListData]="taskService.doneList"
-            [cdkDropListConnectedTo]="[todoList, progressList]"
-            class="example-list"
-            (cdkDropListDropped)="drop($event)">
-            @for (task of taskService.doneList; track task) {
-              <app-single-task [task]="task" cdkDrag></app-single-task>
-            }
-          </div>  
+    </div>
+    <div class="done">
+      <div class="board_content_header">
+        <h2>Done</h2>
+      </div>
+      <div class="empty_bg">
+        <div
+          class="tasks_content"
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="taskService.doneList"
+          [cdkDropListConnectedTo]="[todoList, progressList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          @for (task of taskService.doneList; track task) {
+          <app-single-task [task]="task" cdkDrag></app-single-task>
+          }
         </div>
       </div>
+    </div>
   </div>
-  
 </section>
