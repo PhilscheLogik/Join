@@ -36,6 +36,8 @@ export class TaskServiceService {
   unsubFeedback;
   unsubDone;
 
+  testTask: Task[] = [];
+  
   constructor() {
     this.unsubToDo = this.subToDoList();
     this.unsubInProgress = this.subInProgressList();

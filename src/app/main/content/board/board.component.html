@@ -9,7 +9,7 @@
         <img src="./assets/img/icons/search_icon.svg" alt="">
       </div>
       <!-- <button (click)="get()">TEST</button> -->
-      <button class="add_task_btn">Add task</button>
+      <button class="add_task_btn">Add task <img src="./../../../../assets/img/icons/plus_icon.svg" alt=""></button>
     </div>
   </div>
   <div class="board_content">
@@ -27,12 +27,13 @@
               (cdkDropListDropped)="drop($event)">
               
               <!-- Normann -->
-              <!-- @for (task of taskService.todoList; track task) {
+              @for (task of taskService.todoList; track $index) {
                 <app-single-task cdkDrag></app-single-task>
-              } -->
+              }
+              <!-- <app-single-task cdkDrag></app-single-task> -->
 
               <!-- Fusion Normann & Dominik -->
-              @for (task of taskService.todoList; track task) {
+              <!-- @for (task of taskService.todoList; track task) {
                 <div class="example-box" (click)="openOverlay(task)" cdkDrag>
                   <p class="task_card_category">{{ task.category }}</p>
                   <div class="task_card_main" >
@@ -58,7 +59,7 @@
                     </div>  
                   </div>
                 </div>
-              }
+              } -->
               
               <!-- Dominik -->
               <!-- @for (item of taskService.todoList; track item) {
@@ -178,7 +179,7 @@
       <div class="done">
         <div class="board_content_header">
           <h2>Done</h2>
-          <button class="done_add_btn"></button>
+          <!-- <button class="done_add_btn"></button> -->
         </div>
           <div class="empty_bg">
             <div class="tasks_content"

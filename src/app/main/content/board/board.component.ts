@@ -36,6 +36,8 @@ export class BoardComponent {
   isOverlayOpen = false;
   selectedTask: Task | null = null;
 
+  subtaskProgress: number = 30;
+  
   openOverlay(task: Task) {
     this.selectedTask = task;
     this.isOverlayOpen = true;
