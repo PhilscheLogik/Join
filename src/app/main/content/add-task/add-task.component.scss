@@ -142,49 +142,48 @@ form {
         border-radius: 10px;
         padding-top: 10px;
         overflow: auto;
-  
-  
+
         .assigned_field_single_contact {
           @include dFlex($g: 20px);
           width: 100%;
           padding-left: 16px;
           padding-right: 30px;
           cursor: pointer;
-  
+
           p {
             @include dFlex($jc: flex-start);
             @include font($fs: 20px, $fw: 400);
             height: 56px;
             flex: 1;
           }
-  
+
           &:hover {
             background-color: $hover_gray;
             border-radius: 10px;
           }
-  
+
           .check_button_white {
             display: none;
           }
         }
-  
+
         .selected {
           background-color: $dark_blue;
           border-radius: 10px;
           color: $white;
-  
+
           .check_button_white {
-              display: block;
-            }
-  
+            display: block;
+          }
+
           &:hover {
             background-color: $dark_dark_blue;
             border-radius: 10px;
-  
+
             .check_button {
               display: none;
             }
-  
+
             .check_button_white {
               display: block;
             }
@@ -228,7 +227,7 @@ form {
 
     .contact_badge_line {
       @include dFlex($jc: flex-start, $g: 5px);
-      margin-top: 10px
+      margin-top: 10px;
     }
   }
 }
@@ -272,7 +271,7 @@ form {
 
   color: $light_gray;
   @include font($fs: 20px, $fw: 400);
-  
+
   padding-right: 16px;
   cursor: pointer;
 }
@@ -417,6 +416,8 @@ form {
   align-items: center;
   width: 100%;
 
+  position: relative;
+
   padding: 5px;
   border-radius: 5px;
 }
@@ -425,12 +426,32 @@ form {
   display: flex;
   gap: 5px;
 
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+
   button {
     background: none;
     border: none;
     cursor: pointer;
   }
 }
+
+.btn-subtask{
+
+  width: 24px;
+  height: 24px;
+
+  img{
+    width: 14px;
+    height: 14px;    
+  }
+
+
+
+}
+
 
 .subtask-list {
   margin-top: 10px;
@@ -439,16 +460,16 @@ form {
   width: 100%;
 
   li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: dotted !important;
+    .li-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    } 
 
-    span{
+    span {
       color: black;
       display: inline-block;
     }
-    
 
     padding: 5px;
     cursor: pointer;
@@ -456,7 +477,7 @@ form {
     &:hover .actions {
       display: flex;
     }
-    
+
     .actions {
       display: none;
       gap: 5px;

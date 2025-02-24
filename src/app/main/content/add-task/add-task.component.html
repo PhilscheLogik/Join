@@ -9,12 +9,23 @@
       <div class="content">
         <div class="title_field">
           <label class="title" name="title">Title<span>*</span></label>
-          <input class="input" type="text" name="input" placeholder="Enter a title" required/>
+          <input
+            class="input"
+            type="text"
+            name="input"
+            placeholder="Enter a title"
+            required
+          />
         </div>
 
         <div class="description_field">
           <label class="description" name="description">Description</label>
-          <textarea class="input" type="text" name="input" placeholder="Enter a Description"></textarea>
+          <textarea
+            class="input"
+            type="text"
+            name="input"
+            placeholder="Enter a Description"
+          ></textarea>
         </div>
 
         <div class="assigned_field">
@@ -54,13 +65,16 @@
           </div>
           <div class="contact_badge_line">
             @for (contact of selectedContacts; track $index) {
-              <div class="profile_badge" [ngStyle]="{
-                                                  'background-color': contactService.getBadgeColor(
-                                                    getIndexInFullList(contact)
-                                                  )
-                                                }">
-                {{ contact.initials }}
-              </div>
+            <div
+              class="profile_badge"
+              [ngStyle]="{
+                'background-color': contactService.getBadgeColor(
+                  getIndexInFullList(contact)
+                )
+              }"
+            >
+              {{ contact.initials }}
+            </div>
             }
           </div>
         </div>
@@ -77,17 +91,31 @@
         <div class="choice">
           <label>Prio</label>
           <div class="btn-section">
-            <button class="btn-prio" type="button" (click)="setPriority('high')" [class.selectedHigh]="prio === 'high'">
+            <button
+              class="btn-prio"
+              type="button"
+              (click)="setPriority('high')"
+              [class.selectedHigh]="prio === 'high'"
+            >
               Urgent
               <div class="arrow-up"></div>
             </button>
 
-            <button class="btn-prio" type="button" (click)="setPriority('medium')"
-              [class.selectedMedium]="prio === 'medium'">
+            <button
+              class="btn-prio"
+              type="button"
+              (click)="setPriority('medium')"
+              [class.selectedMedium]="prio === 'medium'"
+            >
               Medium
               <div class="equal"></div>
             </button>
-            <button class="btn-prio" type="button" (click)="setPriority('low')" [class.selectedLow]="prio === 'low'">
+            <button
+              class="btn-prio"
+              type="button"
+              (click)="setPriority('low')"
+              [class.selectedLow]="prio === 'low'"
+            >
               Low
               <div class="arrow-down"></div>
             </button>
@@ -119,7 +147,13 @@
               @if(!isEditing){
               <button (click)="startEditing()">+</button>
               } @if(isEditing){
-              <button (click)="cancelEditing()">No</button>
+              <button class="btn-subtask" (click)="cancelEditing()">
+                <img
+                  class="close_subtask"
+                  src="assets/img/icons/close.svg"
+                  alt="Closing Image"
+                />
+              </button>
               |
               <button (click)="addSubtask()">Yes</button>
               }
@@ -128,22 +162,28 @@
           <ul class="subtask-list">
             @for(task of subtasks; track $index){
             <li (dblclick)="editSubtask($index)">
-              @if(task.isEditing){
-              <input [(ngModel)]="task.text" [ngModelOptions]="{ standalone: true }" class="edit-input" />
-              <div class="actions">
-                <button (click)="deleteSubtask($index)">Delete</button>
-                |
-                <button (click)="saveEdit($index)">Ok</button>
-              </div>
-              } @else {
-              <span>{{ task.text }}</span>
+              <div class="li-container">
+                @if(task.isEditing){
+                <input
+                  [(ngModel)]="task.text"
+                  [ngModelOptions]="{ standalone: true }"
+                  class="edit-input"
+                />
+                <div class="actions">
+                  <button (click)="deleteSubtask($index)">Delete</button>
+                  |
+                  <button (click)="saveEdit($index)">Ok</button>
+                </div>
+                } @else {
+                <span>{{ task.text }}</span>
 
-              <div class="actions">
-                <button (click)="editSubtask($index)">Edit</button>
-                |
-                <button (click)="deleteSubtask($index)">Delete</button>
+                <div class="actions">
+                  <button (click)="editSubtask($index)">Edit</button>
+                  |
+                  <button (click)="deleteSubtask($index)">Delete</button>
+                </div>
+                }
               </div>
-              }
             </li>
             }
           </ul>
