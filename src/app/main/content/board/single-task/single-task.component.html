@@ -81,9 +81,19 @@
     </div>
     <div class="task_card_team">
       <div class="team_left">
-        <div class="initials_icon1">AS</div>
-        <div class="initials_icon2">DE</div>
-        <div class="initials_icon3">EF</div>
+        <!-- @for (contact of contactService.getGroupedContacts() | keyvalue; track
+        $index) {
+        <div
+          class="profile_badge"
+          [ngStyle]="{
+            'background-color': contactService.getBadgeColor(
+              getIndexInFullList(contact)
+            )
+          }"
+        >
+          {{ contact }}
+        </div>
+        } -->
       </div>
       <div class="team_right">
         <div class="taskcard_priority">{{ task.prio }}</div>

@@ -242,42 +242,53 @@
 }
 
 .team_left {
-  @include dFlex($ai: center, $jc: space-between);
-  > .initials_icon1 {
-    @include font($fs: 12px, $fw: 400);
-    height: 32px;
-    width: 32px;
+  > .profile_badge {
+    @include dFlex();
+    width: 42px;
+    height: 42px;
+    border: 1px solid;
+    border-color: $white;
     border-radius: 50%;
-    border: 2px solid $white;
-    background-color: $purple;
-    color: $white;
-    text-align: center;
-    align-content: center;
-  }
-  > .initials_icon2 {
     @include font($fs: 12px, $fw: 400);
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    border: 2px solid $white;
-    background-color: $pink_soft;
-    color: $white;
-    text-align: center;
-    align-content: center;
-    margin-left: -8px;
+    color: $black;
+    min-width: 42px;
   }
-  > .initials_icon3 {
-    @include font($fs: 12px, $fw: 400);
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    border: 2px solid $white;
-    background-color: $yellow_gold;
-    color: $white;
-    text-align: center;
-    align-content: center;
-    margin-left: -8px;
-  }
+  // @include dFlex($ai: center, $jc: space-between);
+  // > .initials_icon1 {
+  //   @include font($fs: 12px, $fw: 400);
+  //   height: 32px;
+  //   width: 32px;
+  //   border-radius: 50%;
+  //   border: 2px solid $white;
+  //   background-color: $purple;
+  //   color: $white;
+  //   text-align: center;
+  //   align-content: center;
+  // }
+  // > .initials_icon2 {
+  //   @include font($fs: 12px, $fw: 400);
+  //   height: 32px;
+  //   width: 32px;
+  //   border-radius: 50%;
+  //   border: 2px solid $white;
+  //   background-color: $pink_soft;
+  //   color: $white;
+  //   text-align: center;
+  //   align-content: center;
+  //   margin-left: -8px;
+  // }
+  // > .initials_icon3 {
+  //   @include font($fs: 12px, $fw: 400);
+  //   height: 32px;
+  //   width: 32px;
+  //   border-radius: 50%;
+  //   border: 2px solid $white;
+  //   background-color: $yellow_gold;
+  //   color: $white;
+  //   text-align: center;
+  //   align-content: center;
+  //   margin-left: -8px;
+  // }
 }
 
 .cdk-drag-preview {
