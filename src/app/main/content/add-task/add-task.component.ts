@@ -22,8 +22,21 @@ export class AddTaskComponent {
   selectList = false;
   selectedContacts: any[] = []; // Array für ausgewählte Kontakte
 
+  /*Subtask content*/
+  newSubtask: string = '';
+  subtasks: { text: string; isEditing: boolean }[] = [
+    { text: 'Taste Esc suchen', isEditing: false },
+    { text: 'Schuhe zubinden', isEditing: false },
+  ];
+  isEditing: boolean = false;
+
   constructor() {}
 
+  /**
+   * Sets the priority status of the task.
+   *
+   * @param {string} status - The new priority status to be set.
+   */
   setPriority(status: string) {
     this.prio = status;
   }
@@ -84,14 +97,9 @@ export class AddTaskComponent {
     );
   }
 
-  /*Subtask content*/
-  newSubtask: string = '';
-  subtasks: { text: string; isEditing: boolean }[] = [
-    { text: 'Taste Esc suchen', isEditing: false },
-    { text: 'Schuhe zubinden', isEditing: false },
-  ];
-  isEditing: boolean = false;
-
+  /**
+   * Enables editing mode by setting the `isEditing` flag to true.
+   */
   startEditing() {
     this.isEditing = true;
   }
@@ -100,11 +108,20 @@ export class AddTaskComponent {
   //   this.isEditing = false;
   // }
 
+  /**
+   * Cancels editing mode by setting the `isEditing` flag to false
+   * and clearing the `newSubtask` field.
+   */
   cancelEditing() {
     this.isEditing = false;
     this.newSubtask = '';
   }
 
+  /**
+   * Adds a new subtask to the list if it is not empty.
+   * The subtask is initialized with the provided text and an `isEditing` flag set to false.
+   * After adding, it resets the editing state.
+   */
   addSubtask() {
     if (this.newSubtask.trim()) {
       this.subtasks.push({ text: this.newSubtask, isEditing: false });
@@ -112,14 +129,30 @@ export class AddTaskComponent {
     this.cancelEditing();
   }
 
+  /**
+   * Deletes a subtask from the list based on the given index.
+   *
+   * @param {number} index - The index of the subtask to be removed.
+   */
   deleteSubtask(index: number) {
     this.subtasks.splice(index, 1);
   }
 
+  /**
+   * Enables editing mode for a specific subtask.
+   *
+   * @param {number} index - The index of the subtask to be edited.
+   */
   editSubtask(index: number) {
     this.subtasks[index].isEditing = true;
   }
 
+  /**
+   * Saves the edited subtask. If the text is empty after trimming, it remains unchanged.
+   * Disables editing mode after saving.
+   *
+   * @param {number} index - The index of the subtask being edited.
+   */
   saveEdit(index: number) {
     if (!this.subtasks[index].text.trim()) {
       this.subtasks[index].text = this.subtasks[index].text;
