@@ -41,7 +41,8 @@ form {
   .title_field {
     @include dFlex($ai: flex-start, $g: 10px);
     flex-direction: column;
-    width: 440px;
+    // width: 440px;
+    width: 30.5vw;
 
     .title {
       @include font($fs: 20px, $fw: 400);
@@ -72,16 +73,13 @@ form {
   .description_field {
     @include dFlex($ai: flex-start, $g: 10px);
     flex-direction: column;
-    width: 440px;
+    // width: 440px;
+    width: 30.5vw;
 
     .description {
       @include font($fs: 20px, $fw: 400);
       color: $dark_blue;
       height: 24px;
-
-      > span {
-        color: $red;
-      }
     }
 
     .input {
@@ -102,9 +100,16 @@ form {
   }
 
   .assigned_field {
-    width: 440px;
+    // width: 440px;
+    width: 30.5vw;
     height: 300px;
     border-radius: 10px;
+
+    .assigned {
+      @include font($fs: 20px, $fw: 400);
+      color: $dark_blue;
+      height: 24px;
+    }
 
     .assigned_field_headline {
       @include dFlex($jc: space-between);
@@ -117,6 +122,7 @@ form {
       border-radius: 10px;
       padding-left: 16px;
       padding-right: 16px;
+      margin-top: 10px;
       cursor: pointer;
 
       .arrow_drop_down {
@@ -192,7 +198,7 @@ form {
           }
         }
       }
-    }    
+    }
 
     .contact_badge_line {
       position: relative;
@@ -257,7 +263,7 @@ form {
   width: 100%;
 
   label {
-    font-size: 20px;
+    @include font($fs: 20px, $fw: 400);
     color: $dark_blue;
   }
 
@@ -283,7 +289,7 @@ form {
 
 /* Prio button*/
 .btn-section {
-  @include dFlex($jc: space-between);
+  @include dFlex($jc: space-between, $g: 10px);
   width: 100%;
 }
 
@@ -291,7 +297,8 @@ form {
   @include dFlex($jc: space-between);
   box-sizing: border-box;
   padding: 16px;
-  font-size: 21px;
+  // font-size: 21px;
+  @include font($fs: 21px, $fw: 400);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -380,6 +387,7 @@ form {
   padding-right: 10px;
   background: $white;
 }
+
 /*Subtask*/
 .input-container {
   display: flex;
@@ -408,12 +416,12 @@ form {
   }
 }
 
-.btn-subtask{
-    img{
+.btn-subtask {
+  img {
     width: 24px;
-    height: 24px;    
+    height: 24px;
 
-    &:hover{
+    &:hover {
       background-color: $hover_gray;
       border-radius: 50%;
     }
@@ -432,7 +440,7 @@ form {
       display: flex;
       justify-content: space-between;
       align-items: center;
-    } 
+    }
 
     span {
       color: black;
@@ -479,9 +487,169 @@ ul {
 .submit-section {
   width: 100%;
   @include dFlex($jc: space-between);
+  @include font($fs: 20px, $fw: 400);
   margin-bottom: 70px;
 
-  > p span {
+  >p span {
     color: $red;
+  }
+}
+
+/*--------------------------------------------------   Mobile   --------------------------------------------------*/
+@media (max-width: 1200px) {
+  section {
+    padding: 0 20px;
+  }
+
+  form {
+    @include dFlex($jc: space-between);
+    flex-direction: column;
+    height: calc(100vh - 91px - 190px);
+  }
+
+  .fill-in-area {
+    @include dFlex();
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 587px;
+
+    .title_field,
+    .description_field,
+    .assigned_field {
+      width: 100%;
+    }
+
+    .assigned_field {
+      height: auto;
+    }
+  }
+
+  .line {
+    display: none;
+  }
+
+  .right[_ngcontent-ng-c1207757912] {
+    width: 100%;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  form {
+    height: calc(100vh - 91px - 190px - 80px);
+  }
+}
+
+@media (max-width: 500px) {
+  section {
+    padding: 0 20px;
+  }
+
+  .head-section {
+    h1 {
+      @include font($fs: 47px, $fw: 700);
+    }
+  }
+
+  .content {
+
+    .title_field {
+      width: 100%;
+
+      .title {
+        @include font($fs: 16px, $fw: 400);
+      }
+
+      .input {
+        @include font($fs: 16px, $fw: 400);
+
+        &::placeholder {
+          @include font($fs: 16px, $fw: 400);
+        }
+      }
+    }
+
+    .description_field {
+
+      .description {
+        @include font($fs: 16px, $fw: 400);
+      }
+
+      .input {
+        @include font($fs: 16px, $fw: 400);
+
+        &::placeholder {
+          @include font($fs: 16px, $fw: 400);
+        }
+      }
+    }
+
+    .assigned_field {
+
+      .assigned {
+        @include font($fs: 16px, $fw: 400);
+      }
+
+      .assigned_field_headline {
+        @include font($fs: 16px, $fw: 400);
+      }
+
+      .contact_list {
+
+        .assigned_field_contact_list {
+
+          .assigned_field_single_contact {
+            @include dFlex($g: 20px);
+
+            p {
+              @include font($fs: 16px, $fw: 400);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #dueDate {
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  .choice {
+
+    label {
+      @include font($fs: 16px, $fw: 400);
+    }
+
+    input {
+
+      &::placeholder {
+        @include font($fs: 16px, $fw: 400);
+      }
+    }
+  }
+
+  .btn-prio {
+    width: 121px;
+    height: 41px;
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  #taskType {
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  .submit-section {
+    @include font($fs: 16px, $fw: 400);
+  }
+}
+
+@media (max-width: 400px) {
+  .btn-section {
+    @include dFlex($g: 30px);
+    flex-direction: column;
   }
 }
