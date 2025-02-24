@@ -62,9 +62,9 @@ export class AddTaskComponent {
   }
 
   /**
-   * Toggles the state of the `selectList` variable. If it is currently `true`, it will be set to `false`, and vice versa.
+   * Toggles the value of the `selectList` boolean variable between `true` and `false`.
    *
-   * @returns {void} - This method does not return a value.
+   * @returns {void} - This method does not return any value.
    */
   isSelectList() {
     this.selectList = !this.selectList;

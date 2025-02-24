@@ -135,6 +135,8 @@ form {
       z-index: 3;
 
       .assigned_field_contact_list {
+        position: absolute;
+        background-color: $cream-white;
         @include dFlex($jc: flex-start, $ai: flex-start);
         flex-direction: column;
         width: 100%;
@@ -190,42 +192,10 @@ form {
           }
         }
       }
-    }
-
-    .assigned_field_contact_list {
-      @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
-      flex-direction: column;
-      width: 100%;
-      height: calc(318px - 48px);
-      border-radius: 10px;
-      padding-top: 10px;
-      padding-top: 10px;
-      overflow: auto;
-
-      .assigned_field_single_contact {
-        @include dFlex($g: 20px);
-        width: 100%;
-        height: 56px;
-        padding-left: 16px;
-        padding-right: 30px;
-        cursor: pointer;
-
-        p {
-          flex: 1;
-        }
-
-        &:hover {
-          background-color: $hover_gray;
-          border-radius: 10px;
-        }
-      }
-      .selected {
-        background-color: $blue; /* Verwende den gewünschten Farbwert für Blau */
-        color: $white; /* Optional: Falls du die Schriftfarbe ändern möchtest */
-      }
-    }
+    }    
 
     .contact_badge_line {
+      position: relative;
       @include dFlex($jc: flex-start, $g: 5px);
       margin-top: 10px;
     }
