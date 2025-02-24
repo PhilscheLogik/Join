@@ -1,82 +1,82 @@
-@import './../../../../styles.scss';
+@import "./../../../../styles.scss";
 
 section {
-    @include dFlex($ai: flex-start, $jc: flex-start);
-    flex-direction: column;
-    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
-    height: calc(100vh - 91px);
+  @include dFlex($ai: flex-start, $jc: flex-start);
+  flex-direction: column;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+  height: calc(100vh - 91px);
 }
 
 .input_field {
-    @include dFlex($ai: center, $jc: space-between, $g: 32px);
-    height: 48px;
-    max-width: 312px;
-    border-radius: 10px;
-    border-color: $gray;
-    border-style: solid;
-    border-width: 1px;
-    background-color: $white;
-    padding: 8px;
-    cursor: pointer;
+  @include dFlex($ai: center, $jc: space-between, $g: 32px);
+  height: 48px;
+  max-width: 312px;
+  border-radius: 10px;
+  border-color: $gray;
+  border-style: solid;
+  border-width: 1px;
+  background-color: $white;
+  padding: 8px;
+  cursor: pointer;
 
-    >img {
-        padding-left: 16px;
-        margin-right: 16px;
-        height: 32px;
-        width: 32px;
-        border-left: 1px solid $light_gray;
-    }
+  > img {
+    padding-left: 16px;
+    margin-right: 16px;
+    height: 32px;
+    width: 32px;
+    border-left: 1px solid $light_gray;
+  }
 }
 
 input {
-    height: 100%;
-    width: 100%;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 input::placeholder {
-    @include font($fs: 20px, $fw: 400);
-    color: $light_gray;
+  @include font($fs: 20px, $fw: 400);
+  color: $light_gray;
 }
 
 .search_btn {
-    width: 18px;
-    height: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 .add_task_btn {
-    @include font($fs: 24px, $fw: 700);
-    @include dFlex($ai: center, $jc: space-evenly);
-    height: 48px;
-    width: 170px;
-    margin-left: 32px;
-    border-radius: 10px;
-    color: $white;
-    border: none;
-    background-color: $dark_blue;
-    padding-left: 8px 16px 8px 16px;
-    
-    >img {
-        height: 18px;
-        width: 18px;
-    }
+  @include font($fs: 24px, $fw: 700);
+  @include dFlex($ai: center, $jc: space-evenly);
+  height: 48px;
+  width: 170px;
+  margin-left: 32px;
+  border-radius: 10px;
+  color: $white;
+  border: none;
+  background-color: $dark_blue;
+  padding-left: 8px 16px 8px 16px;
 
-    &:hover {
-        background-color: $light_blue;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        cursor: pointer;
-      }
+  > img {
+    height: 18px;
+    width: 18px;
+  }
+
+  &:hover {
+    background-color: $light_blue;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
 }
 
 h1 {
-    @include font($fs: 61px, $fw: 700);
+  @include font($fs: 61px, $fw: 700);
 }
 
 h2 {
-    @include font($fs: 20px, $fw: 700);
-    color: $blueish_gray;
+  @include font($fs: 20px, $fw: 700);
+  color: $blueish_gray;
 }
 
 // h3 {
@@ -84,255 +84,142 @@ h2 {
 // }
 
 .board_header {
-    @include dFlex($jc: space-between);
-    flex-direction: row;
-    height: 10%;
-    width: 100%;
-    padding: 128px 56px 56px 56px;    
+  @include dFlex($jc: space-between);
+  flex-direction: row;
+  height: 10%;
+  width: 100%;
+  padding: 128px 56px 56px 56px;
 }
 
 .board_header_left {
-    @include dFlex($jc: space-between);
-    width: 50%;
+  @include dFlex($jc: space-between);
+  width: 50%;
 }
 
 .board_header_right {
-    @include dFlex($jc: space-between);
-    width: 50%;
+  @include dFlex($jc: space-between);
+  width: 50%;
 }
 
 .board_content {
-    @include dFlex($jc: space-evenly, $g: 24px);
-    flex-direction: row;
-    height: 75%;
-    width: 100%;
-    padding: 16px 56px;
+  @include dFlex($jc: space-evenly, $g: 24px);
+  flex-direction: row;
+  height: 75%;
+  width: 100%;
+  padding: 16px 56px;
 }
 
 .board_content_header {
-    @include dFlex($jc: space-between);
-    width: 100%;
+  @include dFlex($jc: space-between);
+  width: 100%;
 
-    >button {
-        height: 25px;
-        width: 24px;
-        background-image: url('./../../../../assets/img/icons/add_task_plus.svg');
-        background-repeat: none;
-        border: none;
-        &:hover {
-            background-image: url('./../../../../assets/img/icons/add_task_plus_hover.svg');
-            cursor: pointer;
-        }
+  > button {
+    height: 25px;
+    width: 24px;
+    background-image: url("./../../../../assets/img/icons/add_task_plus.svg");
+    background-repeat: none;
+    border: none;
+    &:hover {
+      background-image: url("./../../../../assets/img/icons/add_task_plus_hover.svg");
+      cursor: pointer;
     }
+  }
 }
 
 .to_do {
-    @include dFlex($ai: flex-start, $jc: flex-start);
-    flex-direction: column;
-    height: 100%;
-    width: 22%;
-    // border: 2px solid $light_gray;
+  @include dFlex($ai: flex-start, $jc: flex-start);
+  flex-direction: column;
+  height: 100%;
+  width: 22%;
+  // border: 2px solid $light_gray;
 }
 .in_progress {
-    @include dFlex($ai: flex-start, $jc: flex-start);
-    flex-direction: column;
-    height: 100%;
-    width: 22%;
-    // border: 2px solid $light_gray;
+  @include dFlex($ai: flex-start, $jc: flex-start);
+  flex-direction: column;
+  height: 100%;
+  width: 22%;
+  // border: 2px solid $light_gray;
 }
 .await_feedback {
-    @include dFlex($ai: flex-start, $jc: flex-start);
-    flex-direction: column;
-    height: 100%;
-    width: 22%;
-    // border: 2px solid $light_gray;
+  @include dFlex($ai: flex-start, $jc: flex-start);
+  flex-direction: column;
+  height: 100%;
+  width: 22%;
+  // border: 2px solid $light_gray;
 }
 .done {
-    @include dFlex($ai: flex-start, $jc: flex-start);
-    flex-direction: column;
-    height: 100%;
-    width: 22%;
-    // border: 2px solid $light_gray;
+  @include dFlex($ai: flex-start, $jc: flex-start);
+  flex-direction: column;
+  height: 100%;
+  width: 22%;
+  // border: 2px solid $light_gray;
 }
 
 .tasks_content {
-    // @include dFlex($ai: flex-start, $jc: flex-start, $g: 10px);
-    min-height: 64px;
-    width: 100%;
-    background-color: $light_gray;
+  // @include dFlex($ai: flex-start, $jc: flex-start, $g: 10px);
+  min-height: 64px;
+  width: 100%;
+  background-color: $light_gray;
 }
 
 .empty_bg {
-    margin-top: 24px;
-    min-height: 48px;
-    width: 100%;
-    background: $mid_gray;
-    border-radius: 10px;
-    border-style: dotted;
-    border-color: $light_gray;
-    border-width: 2px;
-    overflow: auto;
+  margin-top: 24px;
+  min-height: 48px;
+  width: 100%;
+  background: $mid_gray;
+  border-radius: 10px;
+  border-style: dotted;
+  border-color: $light_gray;
+  border-width: 2px;
+  overflow: auto;
 }
 
 h3 {
-    @include font($fs: 16px, $fw: 700);
+  @include font($fs: 16px, $fw: 700);
 }
 
 /* drag & drop cards */
 
 .example-container {
-    width: 400px;
-    max-width: 100%;
-    margin: 0 25px 25px 0;
-    display: inline-block;
-    vertical-align: top;
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
 }
-  
+
 .example-list {
-    @include dFlex($ai: flex-start, $jc: center, $g: 10px);
-    flex-direction: column;
-    // border: solid 1px #ccc;
-    min-height: 60px;
-    width: 100%;
-    border-radius: 4px;
-}
-  
-.example-box {
-    @include dFlex($ai: flex-start, $jc: center, $g: 16px);
-    flex-direction: column;
-    width: 100%;
-    min-height: 160px;
-    max-height: 256px;
-    padding: 16px;
-
-    // border-bottom: solid 1px #ccc;
-    border-radius: 10px;
-    color: rgba(0, 0, 0, 0.87);
-    // display: flex;
-    // flex-direction: row;
-    // align-items: center;
-    // justify-content: space-between;
-    box-sizing: border-box;
-    cursor: move;
-    background: white;
-    font-size: 14px;
-        &:hover {
-            cursor: pointer;
-        }
+  @include dFlex($ai: flex-start, $jc: center, $g: 10px);
+  flex-direction: column;
+  // border: solid 1px #ccc;
+  min-height: 60px;
+  width: 100%;
+  border-radius: 4px;
 }
 
-.task_card_category {
-    @include font($fs: 16px, $fw: 400);
-    height: 27px;
-    min-height: 27px;
-    width: 128px;
-    border-radius: 8px;
-    background-color: $blue_deep; // dynamic color change by category needed!
-    text-align: center;
-    align-content: center;
-    color: $white; 
-}
-
-.task_card_main {
-    max-height: 84px;
-    /* 3 dots appear when content overflows div size */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-  
-.task_card_substasks {
-    @include font($fs: 12px, $fw: 400);
-    @include dFlex($ai: center, $jc: space-between);
-    width: 100%;
-    height: 16px;
-}
-
-.subtasks_progress {
-    max-width: 128px;
-    width: 65%;
-    height: 16px;
-}
-
-.progress_outer {
-    width: 100%;
-    height: 16px;
-}
-
-.progress_inner {
-    width: 50%; /* needs to be changed dynamically depending on team member count */
-    height: 8px;
-    border-radius: 4px;
-    background-color: $blue_lavender;
-
-}
-
-.task_card_team {
-    @include dFlex($ai: center, $jc: space-between);
-    height: 32px;
-    width: 100%;
-}
-
-.team_left {
-    @include dFlex($ai: center, $jc: space-between);
-    >.initials_icon1 {
-        @include font($fs: 12px, $fw: 400);
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        border: 2px solid $white;
-        background-color: $purple;
-        color: $white;
-        text-align: center;
-        align-content: center;
-    }
-    >.initials_icon2 {
-        @include font($fs: 12px, $fw: 400);
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        border: 2px solid $white;
-        background-color: $pink_soft;
-        color: $white;
-        text-align: center;
-        align-content: center;
-        margin-left: -8px;
-    }
-    >.initials_icon3 {
-        @include font($fs: 12px, $fw: 400);
-        height: 32px;
-        width: 32px;
-        border-radius: 50%;
-        border: 2px solid $white;
-        background-color: $yellow_gold;
-        color: $white;
-        text-align: center;
-        align-content: center;
-        margin-left: -8px;
-    }
+app-single-task {
+  width: 100%;
 }
 
 .cdk-drag-preview {
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-            0 8px 10px 1px rgba(0, 0, 0, 0.14),
-            0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
-  
+
 .cdk-drag-placeholder {
-    opacity: 0;
+  opacity: 0;
 }
-  
+
 .cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-  
+
 .example-box:last-child {
-    border: none;
+  border: none;
 }
-  
+
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

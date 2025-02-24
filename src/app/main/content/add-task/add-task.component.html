@@ -9,41 +9,21 @@
       <div class="content">
         <div class="title_field">
           <label class="title" name="title">Title<span>*</span></label>
-          <input
-            class="input"
-            type="text"
-            name="input"
-            placeholder="Enter a title"
-            required
-          />
+          <input class="input" type="text" name="input" placeholder="Enter a title" required />
         </div>
 
         <div class="description_field">
           <label class="description" name="description">Description</label>
-          <textarea
-            class="input"
-            type="text"
-            name="input"
-            placeholder="Enter a Description"
-          ></textarea>
+          <textarea class="input" type="text" name="input" placeholder="Enter a Description"></textarea>
         </div>
 
         <div class="assigned_field">
           <div class="assigned_field_headline" (click)="isSelectList()">
             <p>Select contacts to assign</p>
-            <img
-              class="arrow_drop_down"
-              src="assets/img/icons/arrow_drop_down_icon.svg"
-            />
-            <img
-              class="arrow_drop_up"
-              src="assets/img/icons/arrow_drop_up_icon.svg"
-            />
+            <img class="arrow_drop_down" src="assets/img/icons/arrow_drop_down_icon.svg" [ngStyle]="{ display: selectList ? 'block' : 'none' }"/>
+            <img class="arrow_drop_up" src="assets/img/icons/arrow_drop_up_icon.svg" [ngStyle]="{ display: selectList ? 'none' : 'block' }"/>
           </div>
-          <div
-            class="contact_list"
-            [ngStyle]="{ display: selectList ? 'block' : 'none' }"
-          >
+          <div class="contact_list" [ngStyle]="{ display: selectList ? 'block' : 'none' }">
             <div class="assigned_field_contact_list">
               @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
               @for (contact of group.value; track $index) {
@@ -65,14 +45,11 @@
           </div>
           <div class="contact_badge_line">
             @for (contact of selectedContacts; track $index) {
-            <div
-              class="profile_badge"
-              [ngStyle]="{
+            <div class="profile_badge" [ngStyle]="{
                 'background-color': contactService.getBadgeColor(
                   getIndexInFullList(contact)
                 )
-              }"
-            >
+              }">
               {{ contact.initials }}
             </div>
             }
@@ -91,31 +68,17 @@
         <div class="choice">
           <label>Prio</label>
           <div class="btn-section">
-            <button
-              class="btn-prio"
-              type="button"
-              (click)="setPriority('high')"
-              [class.selectedHigh]="prio === 'high'"
-            >
+            <button class="btn-prio" type="button" (click)="setPriority('high')" [class.selectedHigh]="prio === 'high'">
               Urgent
               <div class="arrow-up"></div>
             </button>
 
-            <button
-              class="btn-prio"
-              type="button"
-              (click)="setPriority('medium')"
-              [class.selectedMedium]="prio === 'medium'"
-            >
+            <button class="btn-prio" type="button" (click)="setPriority('medium')"
+              [class.selectedMedium]="prio === 'medium'">
               Medium
               <div class="equal"></div>
             </button>
-            <button
-              class="btn-prio"
-              type="button"
-              (click)="setPriority('low')"
-              [class.selectedLow]="prio === 'low'"
-            >
+            <button class="btn-prio" type="button" (click)="setPriority('low')" [class.selectedLow]="prio === 'low'">
               Low
               <div class="arrow-down"></div>
             </button>
@@ -133,15 +96,9 @@
         <div class="choice">
           <label for="subtasks">Subtasks</label>
           <div class="input-container">
-            <input
-              type="text"
-              id="subtasks"
-              name="subtasks"
-              [(ngModel)]="newSubtask"
-              [ngModelOptions]="{ standalone: true }"
-              [placeholder]="isEditing ? '' : 'Add new subtask'"
-              (focus)="startEditing()"
-            />
+            <input type="text" id="subtasks" name="subtasks" [(ngModel)]="newSubtask"
+              [ngModelOptions]="{ standalone: true }" [placeholder]="isEditing ? '' : 'Add new subtask'"
+              (focus)="startEditing()" />
 
             <div class="button-group">
               @if(!isEditing){
@@ -156,11 +113,7 @@
 
               @if(isEditing){
               <button class="btn-subtask" (click)="cancelEditing()">
-                <img
-                  class="close_subtask"
-                  src="assets/img/icons/close.svg"
-                  alt="Closing Image"
-                />
+                <img class="close_subtask" src="assets/img/icons/close.svg" alt="Closing Image" />
               </button>
               <span>|</span>
               <button class="btn-subtask" (click)="addSubtask()">
@@ -178,11 +131,7 @@
             <li (dblclick)="editSubtask($index)">
               <div class="li-container">
                 @if(task.isEditing){
-                <input
-                  [(ngModel)]="task.text"
-                  [ngModelOptions]="{ standalone: true }"
-                  class="edit-input"
-                />
+                <input [(ngModel)]="task.text" [ngModelOptions]="{ standalone: true }" class="edit-input" />
                 <div class="actions">
                   <button class="btn-subtask" (click)="deleteSubtask($index)">
                     <img
