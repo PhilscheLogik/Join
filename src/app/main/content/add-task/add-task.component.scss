@@ -37,12 +37,14 @@ form {
 .content {
   @include dFlex($ai: flex-start, $g: 30px);
   flex-direction: column;
+  width: 30.5vw;
+  max-width: 587px;
 
   .title_field {
     @include dFlex($ai: flex-start, $g: 10px);
     flex-direction: column;
     // width: 440px;
-    width: 30.5vw;
+    width: 100%;
 
     .title {
       @include font($fs: 20px, $fw: 400);
@@ -74,7 +76,7 @@ form {
     @include dFlex($ai: flex-start, $g: 10px);
     flex-direction: column;
     // width: 440px;
-    width: 30.5vw;
+    width: 100%;
 
     .description {
       @include font($fs: 20px, $fw: 400);
@@ -101,7 +103,7 @@ form {
 
   .assigned_field {
     // width: 440px;
-    width: 30.5vw;
+    width: 100%;
     height: 300px;
     border-radius: 10px;
 
@@ -440,6 +442,7 @@ form {
       @include dFlex($jc: space-between);
       min-height: 29px;
       position: relative;
+
       &:hover {
         background-color: $hover_gray;
       }
