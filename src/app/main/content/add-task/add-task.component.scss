@@ -305,7 +305,11 @@ form {
   border-radius: 12px;
   cursor: pointer;
   background: $white;
-  box-shadow: 0px 0px 7px 1px rgba($black, 0.1);
+  box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
+
+  &:hover {
+    box-shadow: 0px 3px 4px 0 rgba($black, 0.3);
+  }
 }
 
 .arrow-up,
@@ -313,7 +317,7 @@ form {
 .arrow-down {
   width: 20px;
   height: 15px;
-  margin-left: 16px;
+  margin-left: 8px;
 }
 
 .arrow-up {
@@ -342,6 +346,10 @@ form {
   color: $white;
   font-weight: 700;
 
+  &:hover {
+    box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
+  }
+
   div {
     background: url("./../../../../assets/img/icons/arrow_up_white.svg");
     background-size: contain;
@@ -355,6 +363,9 @@ form {
   background: $darker_orange;
   color: $white;
   font-weight: 700;
+  &:hover {
+    box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
+  }
 
   div {
     background: url("./../../../../assets/img/icons/equal_white.svg");
@@ -369,6 +380,9 @@ form {
   background: $light_green;
   color: $white;
   font-weight: 700;
+  &:hover {
+    box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
+  }
 
   div {
     background: url("./../../../../assets/img/icons/arrow_down_white.svg");
@@ -504,7 +518,7 @@ ul {
   @include font($fs: 20px, $fw: 400);
   margin-bottom: 70px;
 
-  >p span {
+  > p span {
     color: $red;
   }
 }
@@ -577,7 +591,6 @@ ul {
   }
 
   .content {
-
     .title_field {
       width: 100%;
 
@@ -595,7 +608,6 @@ ul {
     }
 
     .description_field {
-
       .description {
         @include font($fs: 16px, $fw: 400);
       }
@@ -610,7 +622,6 @@ ul {
     }
 
     .assigned_field {
-
       .assigned {
         @include font($fs: 16px, $fw: 400);
       }
@@ -620,9 +631,7 @@ ul {
       }
 
       .contact_list {
-
         .assigned_field_contact_list {
-
           .assigned_field_single_contact {
             @include dFlex($g: 20px);
 
@@ -640,13 +649,11 @@ ul {
   }
 
   .choice {
-
     label {
       @include font($fs: 16px, $fw: 400);
     }
 
     input {
-
       &::placeholder {
         @include font($fs: 16px, $fw: 400);
       }
