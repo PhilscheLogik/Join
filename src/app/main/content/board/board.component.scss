@@ -298,7 +298,33 @@ app-single-task {
     } 
 
     .board_content {
-      align-content: center;
+      @include dFlex($ai: flex-start, $jc: none);
+      // align-content: center;
+      // justify-content: flex-start;
       flex-direction: column;
+    }
+
+    .to_do {
+      width: 100%;
+      max-width: 320px;
+      padding-bottom: 32px;
+    }
+
+    .in_progress {
+      width: 100%;
+      max-width: 320px;
+      padding-bottom: 32px;
+    }
+
+    .await_feedback {
+      width: 100%;
+      max-width: 320px;
+      padding-bottom: 32px;
+    }
+
+    .done {
+      width: 100%;
+      max-width: 320px;
+      padding-bottom: 32px;
     }
 }
