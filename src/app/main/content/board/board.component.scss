@@ -86,17 +86,29 @@ h2 {
 .board_header {
   @include dFlex($jc: space-between);
   flex-direction: row;
-  height: 10%;
+  // height: 10%;
   width: 100%;
   padding: 128px 56px 56px 56px;
 }
 
 .board_header_left {
   @include dFlex($jc: space-between);
+  width: 100%;
+}
+
+.mobile_add_task_btn {
+  display: none;
+
+  >img {
+    // background-color: $dark_blue;
+    height: 25px;
+    width: 24px;
+  }
 }
 
 .board_header_right {
   @include dFlex($jc: space-between);
+  width: 100%;
 }
 
 .board_content {
@@ -241,10 +253,52 @@ app-single-task {
 
 @media (max-width: 1150px) {
   section {
-    padding: 0 20px;
+    padding: 0;
   }
 
   h2 {
     font-size: 16px;
   }
+}
+
+@media (max-width: 860px) {
+    .board_header {
+      @include dFlex($ai: center, $jc: flex-start, $g: 24px);
+      flex-direction: column;
+      padding: 48px 32px 24px 32px;
+    }
+
+    .board_header_left {
+      @include dFlex($ai: center, $jc: space-between);
+      >h1 {
+        font-size: 47px;
+      }
+    }
+
+    .board_header_right {
+      @include dFlex($jc: center);
+      width: 100%;
+    }
+
+    .input_field {
+      width: 100%;
+    }
+
+    .add_task_btn {
+      display: none;
+    }
+
+    .mobile_add_task_btn {
+      @include dFlex($ai: center, $jc: center);
+      background-color: $dark_blue;
+      border-radius: 10px;
+      // display: block;
+      height: 40px;
+      width: 40px;
+    } 
+
+    .board_content {
+      align-content: center;
+      flex-direction: column;
+    }
 }
