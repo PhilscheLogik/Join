@@ -25,6 +25,8 @@ export class OverlayComponent {
   phone = '';
 
   contactService = inject(ContactsService);
+  bgColor = '';
+  initials = '';
 
   constructor(private contactsService: ContactsService) {
     this.contactsService.overlayState$.subscribe((state) => {
@@ -129,6 +131,8 @@ export class OverlayComponent {
       name: this.name.trim(),
       email: this.email.trim(),
       phone: this.phone.trim(),
+      bgColor: this.bgColor.trim(),
+      initials: this.initials.trim(),
     };
 
     this.contactService.addContact(newContact);
@@ -178,15 +182,25 @@ export class OverlayComponent {
         this.phone == ''
           ? this.contactService.selectedContact?.phone
           : this.phone;
+      let newBgColor =
+        this.bgColor == ''
+          ? this.contactService.selectedContact?.bgColor
+          : this.bgColor;
+      let newInitials =
+        this.initials == ''
+          ? this.contactService.selectedContact?.initials
+          : this.initials;
 
-      this.contactService.updateContact(id, newName, newEmail, newPhone);
+      this.contactService.updateContact(id, newName, newEmail, newPhone, newBgColor, newInitials);
 
-      if (newName && newEmail && newPhone) {
+      if (newName && newEmail && newPhone && newBgColor && newInitials ) {
         this.contactService.selectedContact = {
           id: id,
           name: newName,
           email: newEmail,
           phone: newPhone,
+          bgColor: newBgColor,
+          initials: newInitials
         };
       }
     }

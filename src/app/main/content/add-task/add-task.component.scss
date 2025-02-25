@@ -394,6 +394,7 @@ form {
   }
 }
 
+/*Category*/
 #taskType {
   @include font($fs: 20px, $fw: 400);
   height: 48px;
@@ -403,6 +404,26 @@ form {
   border-radius: 10px;
   padding-right: 10px;
   background: $white;
+}
+
+.seemInput {
+  @include font($fs: 20px, $fw: 400);
+  border: 1px solid;
+  border-color: $light_gray;
+  border-radius: 10px;
+  height: 48px;
+  width: 100%;
+  padding-left: 21px;
+  background-color: $white;
+
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+  }
 }
 
 /*Subtask*/
@@ -554,14 +575,13 @@ ul {
 
     .assigned_field {
       height: auto;
-      
+
       .contact_list {
         .assigned_field_contact_list {
           position: relative;
         }
       }
     }
-
   }
 
   .line {

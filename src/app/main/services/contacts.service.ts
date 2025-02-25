@@ -9,7 +9,7 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { Contact } from '../../interfaces/contact';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, concat } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -112,18 +112,38 @@ export class ContactsService {
     id: string | undefined,
     newName: string | undefined,
     newEmail: string | undefined,
-    newPhone: string | undefined
+    newPhone: string | undefined,
+    newBgColor: string | undefined,
+    newInitials: string | undefined
   ) {
     const updateRef = doc(this.getContactRef(), id);
+    console.info(newName , newEmail , newPhone , newBgColor , newInitials)
 
-    if (newName && newEmail && newPhone) {
+    if (newName && newEmail && newPhone && newBgColor && newInitials) {
       await updateDoc(updateRef, {
         name: newName,
         email: newEmail,
         phone: newPhone,
+        bgColor: newBgColor,
+        initials: newInitials,
       });
     }
   }
+
+  // async updateContactColorInitials(
+  //   id: string | undefined,
+  //   newBgColor: string,
+  //   newInitials: string
+  // ) {
+  //   const updateRef = doc(this.getContactRef(), id);
+
+  //   if (newBgColor && newInitials) {
+  //     await updateDoc(updateRef, {
+  //       bgColor: newBgColor,
+  //       initials: newInitials,
+  //     });
+  //   }
+  // }
 
   /**
    * Returns a reference to the 'contacts' collection in Firestore.
@@ -149,6 +169,8 @@ export class ContactsService {
       name: obj.name || '',
       email: obj.email || '',
       phone: obj.phone || '',
+      bgColor: obj.bgColor || '',
+      initials: obj.initials || '',
     };
   }
 
@@ -162,7 +184,7 @@ export class ContactsService {
   getGroupedContacts() {
     let groupedContacts: { [key: string]: any[] } = {};
 
-    for (let contact of this.contactList) {
+    for (let [index, contact] of this.contactList.entries()) {
       let firstLetter = contact.name.charAt(0).toUpperCase();
 
       if (!groupedContacts[firstLetter]) {
@@ -170,6 +192,7 @@ export class ContactsService {
       }
 
       let initials = this.getInitials(contact.name);
+      let bgColor = this.getBadgeColor(index);
 
       // Push contakt to groupe
       groupedContacts[firstLetter].push({
@@ -180,7 +203,13 @@ export class ContactsService {
         type: contact.type,
         firstLetter: firstLetter,
         initials: initials,
+        bgColor: bgColor,
       });
+
+      // this.updateContactColorInitials(contact.id, bgColor,initials);
+
+      console.log(contact);
+      console.log(index);
     }
 
     return groupedContacts;

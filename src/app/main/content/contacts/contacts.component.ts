@@ -22,6 +22,8 @@ export class ContactsComponent {
   name = '';
   email = '';
   phone = '';
+  bgColor = '';
+  initials = '';
 
   constructor(private contactsService: ContactsService) {}
 
@@ -73,7 +75,7 @@ export class ContactsComponent {
    * @param {string} text - The action type ('edit' to load existing data).
    */
   openOverlay(text: string) {
-    let dummy = { name: '', email: '', phone: '' };
+    let dummy = { name: '', email: '', phone: '', bgColor: '', initials: '' };
 
     if (this.contactService.selectedContact && text == 'edit') {
       dummy = this.contactService.selectedContact;
@@ -175,7 +177,9 @@ export class ContactsComponent {
           this.contactService.selectedContact.id,
           this.name,
           this.email,
-          this.phone
+          this.phone,
+          this.bgColor,
+          this.initials
         )
         .then(() => {
           this.contactService.selectedContact = null;
