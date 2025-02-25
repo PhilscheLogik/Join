@@ -106,7 +106,16 @@
         } -->
       </div>
       <div class="team_right">
-        <div class="taskcard_priority">{{ task.prio }}</div>
+        <div class="taskcard_priority">
+            @if (task.prio === 'Urgent') {
+              <img src="assets/img/icons/arrow_up_red.svg" alt="Urgent Priority" class="priority-icon" />
+            }
+            @if (task.prio === 'Medium') {
+              <img src="assets/img/icons/equal_orange.svg" alt="Medium Priority" class="priority-icon" />
+            }
+            @if (task.prio === 'Low') {
+              <img src="assets/img/icons/arrow_down_green.svg" alt="Low Priority" class="priority-icon" />
+            }</div>
       </div>
     </div>
   </div>
