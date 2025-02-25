@@ -30,7 +30,13 @@ export class AddTaskComponent {
   ];
   isEditing: boolean = false;
 
+  openCategory = false;
+
   constructor() {}
+
+  clickCategory(){
+    this.openCategory = !this.openCategory;
+  }
 
   /**
    * Sets the priority status of the task.

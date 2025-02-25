@@ -40,8 +40,7 @@
           alt=""
         />
       </button>
-      @for (group of contactService.getGroupedContacts() | keyvalue; track
-      $index) {
+      @for (group of contactService.getGroupedContacts() | keyvalue; track $index) {
       <div class="single-contact">
         <div class="letter">
           {{ group.key }}
@@ -54,12 +53,7 @@
         >
           <div
             class="profile_badge"
-            [ngStyle]="{
-              'background-color': contactService.getBadgeColor(
-                getIndexInFullList(contact)
-              )
-            }"
-          >
+            [ngStyle]="{ 'background-color': contact.bgColor}"          >
             {{ contact.initials }}
           </div>
           <div class="info">
@@ -96,12 +90,9 @@
         <div
           class="contact_profile_badge"
           [ngStyle]="{
-            'background-color': contactService.getBadgeColor(
-              getIndexInFullList(contactService.selectedContact)
-            )
-          }"
+            'background-color': contactService.selectedContact.bgColor}"
         >
-          {{ selectedContactInitials }}
+          {{ contactService.selectedContact.initials }}
         </div>
         <div class="contact_name_section">
           <p class="name">{{ contactService.selectedContact.name }}</p>

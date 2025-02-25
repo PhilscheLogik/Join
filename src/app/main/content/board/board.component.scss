@@ -93,12 +93,10 @@ h2 {
 
 .board_header_left {
   @include dFlex($jc: space-between);
-  width: 50%;
 }
 
 .board_header_right {
   @include dFlex($jc: space-between);
-  width: 50%;
 }
 
 .board_content {
@@ -135,6 +133,7 @@ h2 {
   position: relative;
   // border: 2px solid $light_gray;
 }
+
 .in_progress {
   @include dFlex($ai: flex-start, $jc: flex-start);
   flex-direction: column;
@@ -184,6 +183,7 @@ h2 {
   position: absolute;
   top: 24px;
   left: 0;
+  z-index: -1;
 }
 
 h3 {
@@ -211,7 +211,6 @@ h3 {
 
 app-single-task {
   width: 100%;
-  z-index: 1;
 }
 
 .cdk-drag-preview {
@@ -235,4 +234,17 @@ app-single-task {
 
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
+/* Mobile  */
+
+@media (max-width: 1150px) {
+  section {
+    padding: 0 20px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
 }

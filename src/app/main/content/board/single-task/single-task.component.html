@@ -15,13 +15,23 @@
       <div class="info">
         <p>
           <span class="label">Due date:</span>
-          <span class="value">{{ selectedTask?.date }}</span>
+          <span class="value-date">{{ selectedTask?.date }}</span>
         </p>
         <br />
         <p>
           <span class="label">Priority:</span>
-          <span class="value">{{ selectedTask?.prio }}</span>
-          <span class="priority-icon"></span>
+          <span class="value-priority">
+            {{ selectedTask?.prio }}
+            @if (selectedTask?.prio === 'Urgent') {
+              <img src="assets/img/icons/arrow_up_red.svg" alt="Urgent Priority" class="priority-icon" />
+            }
+            @if (selectedTask?.prio === 'Medium') {
+              <img src="assets/img/icons/equal_orange.svg" alt="Medium Priority" class="priority-icon" />
+            }
+            @if (selectedTask?.prio === 'Low') {
+              <img src="assets/img/icons/arrow_down_green.svg" alt="Low Priority" class="priority-icon" />
+            }
+          </span>
         </p>
       </div>
 
@@ -96,7 +106,16 @@
         } -->
       </div>
       <div class="team_right">
-        <div class="taskcard_priority">{{ task.prio }}</div>
+        <div class="taskcard_priority">
+            @if (task.prio === 'Urgent') {
+              <img src="assets/img/icons/arrow_up_red.svg" alt="Urgent Priority" class="priority-icon" />
+            }
+            @if (task.prio === 'Medium') {
+              <img src="assets/img/icons/equal_orange.svg" alt="Medium Priority" class="priority-icon" />
+            }
+            @if (task.prio === 'Low') {
+              <img src="assets/img/icons/arrow_down_green.svg" alt="Low Priority" class="priority-icon" />
+            }</div>
       </div>
     </div>
   </div>
