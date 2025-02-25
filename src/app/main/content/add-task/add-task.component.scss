@@ -285,12 +285,12 @@ form {
     border-radius: 10px;
     height: 48px;
     width: 100%;
+    padding-left: 16px;
 
     &::placeholder {
       @include font($fs: 20px, $fw: 400);
       color: $light_gray;
       padding-top: 18px;
-      padding-left: 16px;
     }
   }
 }
@@ -414,6 +414,7 @@ form {
 }
 
 .seemInput {
+  @include dFlex($jc: flex-start);
   @include font($fs: 20px, $fw: 400);
   border: 1px solid;
   border-color: $light_gray;
@@ -701,6 +702,10 @@ ul {
   .submit-section {
     @include font($fs: 16px, $fw: 400);
   }
+
+    .seemInput {
+      @include font($fs: 16px, $fw: 400);
+    }
 }
 
 @media (max-width: 400px) {
