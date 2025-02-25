@@ -14,6 +14,30 @@
   h1 {
     @include font($ff: "Inter", $fs: clamp(36px, 7vw, 61px), $fw: 700);
     margin-bottom: 16px;
+    max-height: calc(1.2em * 3); /* 3 Zeilen mit einer Zeilenhöhe von 1.2em */
+    line-height: 1.2em; /* Definiert die Zeilenhöhe */
+    overflow-y: auto; /* Aktiviert die vertikale Scrollbar, falls nötig */
+    word-wrap: break-word; /* Zeilenumbruch bei langen Wörtern */
+    overflow-wrap: break-word; /* Alternative für neuere Browser */
+    white-space: normal; /* Sicherstellen, dass der Text umbricht */
+    hyphens: auto; /* Automatische Silbentrennung */
+    -webkit-hyphens: auto; /* Safari */
+    -moz-hyphens: auto; /* Firefox */
+    -ms-hyphens: auto; /* Internet Explorer/Edge */
+  }
+
+  .description {
+    max-height: calc(1.4em * 3); /* 3 Zeilen mit einer Zeilenhöhe von 1.4em */
+    line-height: 1.4em; /* Zeilenhöhe für bessere Lesbarkeit */
+    overflow-y: auto; /* Scrollbar erscheint, wenn mehr als 3 Zeilen */
+    display: block; /* Stellt sicher, dass es korrekt funktioniert */
+    word-wrap: break-word; /* Lange Wörter umbrechen */
+    overflow-wrap: break-word; /* Alternative für moderne Browser */
+    white-space: normal; /* Erlaubt Zeilenumbrüche */
+    hyphens: auto; /* Automatische Silbentrennung */
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
   }
 
   p {
@@ -26,7 +50,8 @@
     padding: 32px;
     border-radius: 24px;
     width: 500px;
-    // height: 800px;
+    min-height: 700px;
+    max-height: 930px;
 
     @media (max-width: 580px) {
       width: 85%;
@@ -79,7 +104,6 @@
       width: 17px;
       height: 12px;
     }
-    
 
     .label {
       color: $black;
