@@ -181,9 +181,14 @@ form {
           background-color: $dark_blue;
           border-radius: 10px;
           color: $white;
+          @include dFlex($jc: flex-start);
 
           .check_button_white {
             display: block;
+          }
+
+          .check_button {
+            display: none;
           }
 
           &:hover {
@@ -364,6 +369,7 @@ form {
   background: $darker_orange;
   color: $white;
   font-weight: 700;
+
   &:hover {
     box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
   }
@@ -381,6 +387,7 @@ form {
   background: $light_green;
   color: $white;
   font-weight: 700;
+
   &:hover {
     box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
   }
@@ -519,7 +526,7 @@ ul {
   @include font($fs: 20px, $fw: 400);
   margin-bottom: 70px;
 
-  > p span {
+  >p span {
     color: $red;
   }
 }
@@ -554,7 +561,7 @@ ul {
 
     .assigned_field {
       height: auto;
-      
+
       .contact_list {
         .assigned_field_contact_list {
           position: relative;
