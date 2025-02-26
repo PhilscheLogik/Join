@@ -27,14 +27,14 @@
   }
 
   .description {
-    max-height: calc(1.4em * 3); /* 3 Zeilen mit einer Zeilenhöhe von 1.4em */
-    line-height: 1.4em; /* Zeilenhöhe für bessere Lesbarkeit */
-    overflow-y: auto; /* Scrollbar erscheint, wenn mehr als 3 Zeilen */
-    display: block; /* Stellt sicher, dass es korrekt funktioniert */
-    word-wrap: break-word; /* Lange Wörter umbrechen */
-    overflow-wrap: break-word; /* Alternative für moderne Browser */
-    white-space: normal; /* Erlaubt Zeilenumbrüche */
-    hyphens: auto; /* Automatische Silbentrennung */
+    max-height: calc(1.4em * 3);
+    line-height: 1.4em;
+    overflow-y: auto;
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    hyphens: auto;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
@@ -107,7 +107,7 @@
     .priority-icon-low {
       transform: translateY(1px);
     }
-    
+
     .info,
     .assigned-to,
     .subtasks {

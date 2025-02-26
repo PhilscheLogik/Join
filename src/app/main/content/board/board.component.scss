@@ -17,7 +17,6 @@ section {
   border-width: 1px;
   background-color: $white;
   padding: 8px;
-  cursor: pointer;
 
   &:focus-within {
     border-color: $light_blue;
@@ -29,17 +28,17 @@ section {
     height: 32px;
     width: 32px;
     border-left: 1px solid $light_gray;
+    cursor: pointer;
   }
 }
 
 input {
+  @include font($fs: 20px, $fw: 400);
   height: 100%;
   width: 100%;
   outline: none;
   border: none;
   background-color: transparent;
-  cursor: pointer;
-  transform: translateY(2px);
 }
 
 input::placeholder {
