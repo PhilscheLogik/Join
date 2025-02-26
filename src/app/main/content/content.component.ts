@@ -24,7 +24,7 @@ import { HelpComponent } from '../../shared/help/help.component';
     CommonModule,
     PolicyComponent,
     ImprintComponent,
-    HelpComponent
+    HelpComponent,
   ],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
@@ -32,6 +32,15 @@ import { HelpComponent } from '../../shared/help/help.component';
 export class ContentComponent {
   navigationService = inject(NavigationService);
 
+  /**
+   * Selects an item by its index.
+   *
+   * This method sets the selected item in the navigation service based on the provided index. It updates the currently
+   * selected item to the one corresponding to the given index.
+   *
+   * @param {number} index - The index of the item to be selected.
+   * @returns {void} This method does not return anything.
+   */
   selectItem(index: number) {
     this.navigationService.setSelectedItem(index);
   }

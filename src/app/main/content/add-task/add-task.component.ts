@@ -20,8 +20,7 @@ export class AddTaskComponent {
   toDo = [];
   prio = 'medium';
   selectList = false;
-  selectedContacts: any[] = []; // Array für ausgewählte Kontakte
-
+  selectedContacts: any[] = [];
   selectedCategory = '';
 
   /*Subtask content*/
@@ -36,36 +35,69 @@ export class AddTaskComponent {
 
   constructor() {}
 
+  /**
+   * Checks if the given category is the currently selected category.
+   *
+   * This method compares the provided category with the `selectedCategory` property. If they match, it returns `true`;
+   * otherwise, it returns `false`.
+   *
+   * @param {string} category - The category to check against the currently selected category.
+   * @returns {boolean} Returns `true` if the provided category matches the selected category, otherwise `false`.
+   */
   isSelectedCategory(category: string) {
     return category == this.selectedCategory ? true : false;
   }
 
+  /**
+   * Toggles the selected category between the provided category and an empty string.
+   *
+   * This method checks if the provided category is already the selected category. If it is, the `selectedCategory` is
+   * reset to an empty string, effectively deselecting it. If the provided category is not the selected one, it updates
+   * `selectedCategory` to the new category.
+   *
+   * @param {string} category - The category to toggle as the selected category.
+   * @returns {void} This method does not return anything.
+   */
   toggleCategory(category: string) {
     category == this.selectedCategory
       ? (this.selectedCategory = '')
       : (this.selectedCategory = category);
   }
 
+  /**
+   * Sets the priority status.
+   *
+   * This method updates the `prio` property with the provided priority status.
+   *
+   * @param {string} status - The priority status to set (e.g., 'high', 'medium', 'low').
+   * @returns {void} This method does not return anything.
+   */
   clickCategory() {
     this.openCategory = !this.openCategory;
   }
 
   /**
-   * Sets the priority status of the task.
+   * Updates the priority status.
    *
-   * @param {string} status - The new priority status to be set.
+   * This method sets the `prio` property to the given status, which represents the priority level.
+   * It can be used to assign a new priority to a task or item.
+   *
+   * @param {string} status - The priority status to set (e.g., 'high', 'medium', 'low').
+   * @returns {void} This method does not return anything.
    */
   setPriority(status: string) {
     this.prio = status;
   }
 
   /**
-   * Checks if a contact is present in the list of selected contacts.
+   * Checks if a contact is selected.
    *
-   * @param {Object} contact - The contact to check.
-   * @param {string} contact.email - The email address of the contact to be checked.
+   * This method checks if the provided contact exists in the list of selected contacts
+   * by comparing the email of the provided contact with the emails of the selected contacts.
    *
-   * @returns {boolean} - Returns `true` if the contact is found in the selected contacts list, otherwise `false`.
+   * @param {any} contact - The contact to check if it's selected.
+   * @returns {boolean} Returns `true` if the provided contact is found in the selected contacts list,
+   *                    otherwise returns `false`.
    */
   isSelected(contact: any): boolean {
     return this.selectedContacts.some(
@@ -74,13 +106,14 @@ export class AddTaskComponent {
   }
 
   /**
-   * Toggles the selection status of a contact. If the contact is already selected, it will be removed from the selected contacts list.
-   * If the contact is not selected, it will be added to the list of selected contacts.
+   * Toggles the selection of a contact.
    *
-   * @param {Object} contact - The contact whose selection status is to be toggled.
-   * @param {string} contact.email - The email address of the contact to toggle.
+   * This method checks if the provided contact is currently selected. If the contact is selected,
+   * it removes the contact from the `selectedContacts` array. If the contact is not selected,
+   * it adds the contact to the `selectedContacts` array.
    *
-   * @returns {void} - This method does not return a value.
+   * @param {any} contact - The contact to toggle selection for.
+   * @returns {void} This method does not return anything.
    */
   toggleContactSelection(contact: any) {
     if (this.isSelected(contact)) {
@@ -93,21 +126,25 @@ export class AddTaskComponent {
   }
 
   /**
-   * Toggles the value of the `selectList` boolean variable between `true` and `false`.
+   * Toggles the selection state of the list.
    *
-   * @returns {void} - This method does not return any value.
+   * This method flips the value of the `selectList` property between `true` and `false`, effectively toggling
+   * whether the list is in a selected state or not.
+   *
+   * @returns {void} This method does not return anything.
    */
   isSelectList() {
     this.selectList = !this.selectList;
   }
 
   /**
-   * Finds the index of a contact in the full contact list based on the contact's email.
+   * Finds the index of a contact in the full contact list based on the email.
    *
-   * @param {Object} contact - The contact whose index is to be found.
-   * @param {string} contact.email - The email address of the contact to search for.
+   * This method searches the `contactList` for a contact with the same email as the provided contact
+   * and returns the index of the contact in the list. If the contact is not found, it returns -1.
    *
-   * @returns {number} - Returns the index of the contact in the contact list, or `-1` if the contact is not found.
+   * @param {any} contact - The contact to search for in the full contact list.
+   * @returns {number} The index of the contact in the `contactList`, or -1 if the contact is not found.
    */
   getIndexInFullList(contact: any): number {
     return this.contactService.contactList.findIndex(
@@ -116,19 +153,24 @@ export class AddTaskComponent {
   }
 
   /**
-   * Enables editing mode by setting the `isEditing` flag to true.
+   * Starts the editing process.
+   *
+   * This method sets the `isEditing` property to `true`, indicating that the user is currently editing.
+   * It can be used to enable editing features in the user interface.
+   *
+   * @returns {void} This method does not return anything.
    */
   startEditing() {
     this.isEditing = true;
   }
 
-  // stopEditing() {
-  //   this.isEditing = false;
-  // }
-
   /**
-   * Cancels editing mode by setting the `isEditing` flag to false
-   * and clearing the `newSubtask` field.
+   * Cancels the editing process.
+   *
+   * This method sets the `isEditing` property to `false`, indicating that the user has canceled
+   * the editing process. It also clears the `newSubtask` property, resetting any changes made during editing.
+   *
+   * @returns {void} This method does not return anything.
    */
   cancelEditing() {
     this.isEditing = false;
@@ -136,9 +178,13 @@ export class AddTaskComponent {
   }
 
   /**
-   * Adds a new subtask to the list if it is not empty.
-   * The subtask is initialized with the provided text and an `isEditing` flag set to false.
-   * After adding, it resets the editing state.
+   * Adds a new subtask to the list of subtasks.
+   *
+   * This method checks if the `newSubtask` is not empty or just whitespace. If valid, it adds the
+   * new subtask (with `text` and `isEditing` properties) to the `subtasks` array. After adding the
+   * subtask, it cancels the editing process by calling the `cancelEditing` method.
+   *
+   * @returns {void} This method does not return anything.
    */
   addSubtask() {
     if (this.newSubtask.trim()) {
@@ -148,28 +194,39 @@ export class AddTaskComponent {
   }
 
   /**
-   * Deletes a subtask from the list based on the given index.
+   * Deletes a subtask from the list of subtasks.
    *
-   * @param {number} index - The index of the subtask to be removed.
+   * This method removes the subtask at the specified `index` from the `subtasks` array using the `splice` method.
+   *
+   * @param {number} index - The index of the subtask to be deleted from the `subtasks` array.
+   * @returns {void} This method does not return anything.
    */
   deleteSubtask(index: number) {
     this.subtasks.splice(index, 1);
   }
 
   /**
-   * Enables editing mode for a specific subtask.
+   * Initiates editing for a specific subtask.
    *
-   * @param {number} index - The index of the subtask to be edited.
+   * This method sets the `isEditing` property of the subtask at the specified `index` to `true`,
+   * indicating that the subtask is now in an editable state.
+   *
+   * @param {number} index - The index of the subtask to be edited in the `subtasks` array.
+   * @returns {void} This method does not return anything.
    */
   editSubtask(index: number) {
     this.subtasks[index].isEditing = true;
   }
 
   /**
-   * Saves the edited subtask. If the text is empty after trimming, it remains unchanged.
-   * Disables editing mode after saving.
+   * Saves the changes made to a subtask and ends the editing process.
    *
-   * @param {number} index - The index of the subtask being edited.
+   * This method checks if the `text` of the subtask at the specified `index` is not empty or just whitespace.
+   * If the text is valid, it saves the updated text. Then, it sets the `isEditing` property of the subtask
+   * to `false`, indicating the editing process has ended.
+   *
+   * @param {number} index - The index of the subtask to save changes for in the `subtasks` array.
+   * @returns {void} This method does not return anything.
    */
   saveEdit(index: number) {
     if (!this.subtasks[index].text.trim()) {
