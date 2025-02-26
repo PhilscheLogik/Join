@@ -97,33 +97,19 @@
           <div class="progress_inner"></div>
         </div>
       </div>
-      <p>1/{{ task.subtasks?.length }}  Subtasks</p>
+      <p>1/{{ task.subtasks?.length }} Subtasks</p>
     </div>
     <div class="task_card_team">
       <div class="team_left">
-        @for (id of task.assignedTo; track $index) { 
-          @for( contact of contactService.contactList; track $index){ 
-            @if(id == contact.id){
-              <div
-                class="profile_badge"
-                [ngStyle]="{ 'background-color': contact.bgColor }"
-              >
-               {{ contact.initials }}                
-              </div>
-        } } }
-        <!-- @for (contact of contactService.getGroupedContacts() | keyvalue; track
-        $index) {
+        @for (id of task.assignedTo; track $index) { @for( contact of
+        contactService.contactList; track $index){ @if(id == contact.id){
         <div
           class="profile_badge"
-          [ngStyle]="{
-            'background-color': contactService.getBadgeColor(
-              getIndexInFullList(contact)
-            )
-          }"
+          [ngStyle]="{ 'background-color': contact.bgColor }"
         >
-          {{ contact }}
+          {{ contact.initials }}
         </div>
-        } -->
+        } } }
       </div>
       <div class="team_right">
         <div class="taskcard_priority">
