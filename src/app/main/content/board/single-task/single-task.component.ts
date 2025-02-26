@@ -132,6 +132,10 @@ export class SingleTaskComponent {
       (c) => c.email === contact.email
     );
   }
+
+  // getSub(sub: any) {
+  //   console.log("Ergebnis: ", sub);
+  // }
 }
 // test() {
 //   console.log(this.taskService.taskList);

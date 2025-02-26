@@ -6,5 +6,6 @@ export interface Task {
   date: string;
   prio: 'Urgent' | 'Medium' | 'Low';
   category: 'User Story' | 'Technical Task';
-  subtasks?: string[];  
+  // subtasks?: string[] | boolean[];  
+  subtasks?: any[];  
 }

@@ -294,9 +294,8 @@
 }
 
 .team_left {
-
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
   > .profile_badge {
     // position: relative;
@@ -311,9 +310,9 @@ flex-direction: row;
     min-width: 32px;
     margin-left: -8px;
   }
-  
+
   .profile_badge:first-child {
-    margin-left: 0; 
+    margin-left: 0;
   }
 }
 

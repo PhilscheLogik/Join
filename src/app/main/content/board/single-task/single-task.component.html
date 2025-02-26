@@ -1,4 +1,6 @@
 <section>
+  <!-- overview overlay -->
+
   @if (isOverlayOpen) {
   <div class="task-overlay">
     <div class="task-overlay-content">
@@ -72,15 +74,24 @@
         </div>
       </div>
 
+      <!-- <div class="subtasks">
+        <p>Subtasks</p>
+        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
+        track subtask) {
+        <div (click)="getSub(subtask)" class="subtask">
+          <span>{{ subtask.text }}</span>
+        </div>
+        } }
+      </div> -->
+
       <div class="subtasks">
         <p>Subtasks</p>
+        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
+        track subtask) {
         <div class="subtask">
-          <img
-            src="assets/img/icons/check_button_checked.svg"
-            alt="Completed Task"
-          />
-          <span class="subtask-text">Setup base styles</span>
+          <span>{{ subtask.text }}</span>
         </div>
+        } }
       </div>
 
       <div class="actions-buttons">
@@ -97,6 +108,8 @@
     </div>
   </div>
   }
+
+  <!-- Small card board -->
 
   <div class="example-box" (click)="openOverlay(task)" cdkDrag>
     <p
