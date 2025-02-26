@@ -11,7 +11,7 @@ section {
 form {
   @include dFlex($jc: space-between);
   flex-direction: column;
-  height: calc(100vh - 91px - 190px); //- 80px
+  height: calc(100vh - 91px - 190px);
 }
 
 .fill-in-area {
@@ -35,7 +35,7 @@ form {
 
 /*linkes Div*/
 .content {
-  @include dFlex($ai: flex-start, $g: 30px);
+  @include dFlex($ai: flex-start, $g: 20px);
   flex-direction: column;
   width: 30.5vw;
   max-width: 587px;
@@ -102,7 +102,6 @@ form {
   }
 
   .assigned_field {
-    // width: 440px;
     width: 100%;
     height: 300px;
     border-radius: 10px;
@@ -240,10 +239,10 @@ form {
 
 /*Rechtes Div*/
 .right {
-  @include dFlex($ai: flex-start, $g: 40px);
+  @include dFlex($ai: flex-start, $g: 20px);
   flex-direction: column;
   width: 30.5vw;
-  max-width: 587px;  
+  max-width: 587px;
 }
 
 /*Datum*/
@@ -305,7 +304,6 @@ form {
   @include dFlex($jc: space-between);
   box-sizing: border-box;
   padding: 16px;
-  // font-size: 21px;
   @include font($fs: 21px, $fw: 400);
   border: none;
   border-radius: 12px;
@@ -361,7 +359,6 @@ form {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    // margin-left: 10px;
   }
 }
 
@@ -379,7 +376,6 @@ form {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    // margin-left: 10px;
   }
 }
 
@@ -397,7 +393,6 @@ form {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    // margin-left: 10px;
   }
 }
 
@@ -516,7 +511,7 @@ form {
 }
 
 .subtask-list {
-  margin-top: 10px;
+  margin-top: 5px;
   max-height: 150px;
   overflow-y: auto;
   width: 100%;
@@ -584,11 +579,11 @@ ul {
 /* Submit und Clear oder Cancel Button*/
 .submit-section {
   width: 100%;
-  @include dFlex($jc: space-between);
-  @include font($fs: 20px, $fw: 400);
-  margin-bottom: 70px;
+  @include dFlex($jc: space-between, $ai: flex-end);
+  @include font($fs: 16px, $fw: 400);
+  margin-bottom: 20px;
 
-  > p span {
+  >p span {
     color: $red;
   }
 }
@@ -597,12 +592,12 @@ ul {
 .create-btn {
   padding: 16px 18px;
   border: none;
-  border-radius: 8px;  
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
 
-  > img {
+  >img {
     margin-left: 3px;
   }
 }
@@ -632,18 +627,23 @@ ul {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     img {
-      filter: invert(56%) sepia(34%) saturate(507%) hue-rotate(165deg)
-        brightness(98%) contrast(95%);
+      filter: invert(56%) sepia(34%) saturate(507%) hue-rotate(165deg) brightness(98%) contrast(95%);
     }
   }
 }
 
-.btn-submit-section{
+.btn-submit-section {
   @include dFlex($jc: space-between, $g: 30px);
   margin-top: 4px;
 }
 
 /*--------------------------------------------------   Mobile   --------------------------------------------------*/
+@media (min-width: 1200px) {
+  .fill-in-area {
+    height: 550px;
+  }
+}
+
 @media (max-width: 1200px) {
   section {
     padding: 0 20px;
@@ -699,6 +699,19 @@ ul {
 @media (max-width: 1024px) {
   form {
     height: calc(100vh - 91px - 190px - 80px);
+  }
+
+  .submit-section {
+    padding-bottom: 150px;
+  }
+
+  .btn-submit-section {
+    // @include dFlex($jc: space-between, $g: 30px);
+    // margin-top: 4px;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 10;
   }
 }
 
@@ -804,11 +817,31 @@ ul {
   .categorySelection {
     @include font($fs: 16px, $fw: 400);
   }
+
+    .btn-submit-section {
+      @include dFlex($jc: space-between, $g: 20px);
+      right: 20px;
+    }
+
+  .create-btn {
+    @include font($fs: 21px, $fw: 700);
+  }
+
+  .cancel-btn {
+    border: 1px solid $black;
+    background-color: $white;
+    @include font($fs: 20px, $fw: 400);
+  }
 }
 
 @media (max-width: 400px) {
   .btn-section {
-    @include dFlex($g: 30px);
+      @include dFlex($g: 20px);
+      flex-direction: column;
+    }
+
+  .btn-submit-section {
+    @include dFlex($ai: flex-end, $g: 20px);
     flex-direction: column;
   }
 }
