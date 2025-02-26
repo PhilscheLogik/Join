@@ -75,9 +75,16 @@
       .category {
         padding: 3px 20px;
         border-radius: 6px;
-        background-color: $blue_deep;
         color: $white;
         @include font($ff: "Inter", $fs: clamp(16px, 3vw, 23px), $fw: 400);
+
+        .user-story {
+          background-color: $blue_deep;
+        }
+
+        .technical-task {
+          background-color: $mint;
+        }
       }
 
       .close-btn {
@@ -233,10 +240,17 @@
   min-height: 27px;
   width: 128px;
   border-radius: 8px;
-  background-color: $blue_deep; // dynamic color change by category needed!
   text-align: center;
   align-content: center;
   color: $white;
+}
+
+.user-story {
+  background-color: $blue_deep;
+}
+
+.technical-task {
+  background-color: $mint;
 }
 
 .task_card_main {
@@ -280,8 +294,9 @@
 }
 
 .team_left {
-  display: flex;
-  flex-direction: row;
+
+display: flex;
+flex-direction: row;
 
   > .profile_badge {
     // position: relative;
@@ -296,9 +311,9 @@
     min-width: 32px;
     margin-left: -8px;
   }
-
+  
   .profile_badge:first-child {
-    margin-left: 0;
+    margin-left: 0; 
   }
 }
 
