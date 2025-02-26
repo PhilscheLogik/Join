@@ -39,7 +39,7 @@
             <img
               class="arrow_drop_up"
               src="assets/img/icons/arrow_drop_up_icon.svg"
-              [ngStyle]="{ display: selectList ? 'block' :'none' }"
+              [ngStyle]="{ display: selectList ? 'block' : 'none' }"
             />
           </div>
           <div
@@ -48,8 +48,7 @@
           >
             <div class="assigned_field_contact_list">
               @for (group of contactService.getGroupedContacts() | keyvalue;
-              track $index) { 
-                @for (contact of group.value; track $index) {
+              track $index) { @for (contact of group.value; track $index) {
               <div
                 class="assigned_field_single_contact"
                 [class.selected]="isSelected(contact)"
@@ -57,7 +56,7 @@
               >
                 <div
                   class="profile_badge"
-                  [ngStyle]="{ 'background-color': contact.bgColor}"
+                  [ngStyle]="{ 'background-color': contact.bgColor }"
                 >
                   {{ contact.initials }}
                 </div>
@@ -81,11 +80,7 @@
             @for (contact of selectedContacts; track $index) {
             <div
               class="profile_badge"
-              [ngStyle]="{
-                'background-color': contactService.getBadgeColor(
-                  getIndexInFullList(contact)
-                )
-              }"
+              [ngStyle]="{'background-color': contact.bgColor}"
             >
               {{ contact.initials }}
             </div>
@@ -136,26 +131,16 @@
           </div>
         </div>
 
-        <!-- <div class="choice">
-          <label for="taskType">Category<span>*</span></label>
-          <select id="taskType" name="taskType">
-            <option value="userStory">User Story</option>
-            <option value="technicalTask">Technical Task</option>
-          </select>
-        </div> -->
-
         <div class="choice">
           <label for="taskType">Category<span>*</span></label>
           <div class="seemInput" (click)="clickCategory()">
             @if(selectedCategory == ''){
-              <p>Select task category</p>
+            <p>Select task category</p>
+            } @if(selectedCategory == 'Technical Task'){
+            <p>Technical Task</p>
+            } @if(selectedCategory == 'User Story'){
+            <p>User Story</p>
             }
-            @if(selectedCategory == 'Technical Task'){
-              <p>Technical Task</p>
-            }
-            @if(selectedCategory == 'User Story'){
-              <p>User Story</p>
-            }            
             <img
               class="arrow_drop_down"
               src="assets/img/icons/arrow_drop_down_icon.svg"
@@ -173,11 +158,18 @@
               class="categorySelection"
               [ngStyle]="{ display: openCategory ? 'flex' : 'none' }"
             >
-              <p (click)="toggleCategory('Technical Task'); clickCategory()"
-              [class.selected]="isSelectedCategory('Technical Task')" >Technical Task</p>
-              <p (click)="toggleCategory('User Story'); clickCategory()"
-              [class.selected]="isSelectedCategory('User Story')"
-              >User Story</p>
+              <p
+                (click)="toggleCategory('Technical Task'); clickCategory()"
+                [class.selected]="isSelectedCategory('Technical Task')"
+              >
+                Technical Task
+              </p>
+              <p
+                (click)="toggleCategory('User Story'); clickCategory()"
+                [class.selected]="isSelectedCategory('User Story')"
+              >
+                User Story
+              </p>
             </div>
           </div>
         </div>

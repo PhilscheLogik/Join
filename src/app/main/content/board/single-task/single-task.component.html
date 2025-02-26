@@ -23,13 +23,23 @@
           <span class="value-priority">
             {{ selectedTask?.prio }}
             @if (selectedTask?.prio === 'Urgent') {
-              <img src="assets/img/icons/prio_high.svg" alt="Urgent Priority" class="priority-icon-high" />
-            }
-            @if (selectedTask?.prio === 'Medium') {
-              <img src="assets/img/icons/prio_medium.svg" alt="Medium Priority" class="priority-icon-medium" />
-            }
-            @if (selectedTask?.prio === 'Low') {
-              <img src="assets/img/icons/prio_low.svg" alt="Low Priority" class="priority-icon-low" />
+            <img
+              src="assets/img/icons/prio_high.svg"
+              alt="Urgent Priority"
+              class="priority-icon-high"
+            />
+            } @if (selectedTask?.prio === 'Medium') {
+            <img
+              src="assets/img/icons/prio_medium.svg"
+              alt="Medium Priority"
+              class="priority-icon-medium"
+            />
+            } @if (selectedTask?.prio === 'Low') {
+            <img
+              src="assets/img/icons/prio_low.svg"
+              alt="Low Priority"
+              class="priority-icon-low"
+            />
             }
           </span>
         </p>
@@ -87,10 +97,20 @@
           <div class="progress_inner"></div>
         </div>
       </div>
-      <p>1/2 Subtasks</p>
+      <p>1/{{ task.subtasks?.length }}  Subtasks</p>
     </div>
     <div class="task_card_team">
       <div class="team_left">
+        @for (id of task.assignedTo; track $index) { 
+          @for( contact of contactService.contactList; track $index){ 
+            @if(id == contact.id){
+              <div
+                class="profile_badge"
+                [ngStyle]="{ 'background-color': contact.bgColor }"
+              >
+               {{ contact.initials }}                
+              </div>
+        } } }
         <!-- @for (contact of contactService.getGroupedContacts() | keyvalue; track
         $index) {
         <div
@@ -107,15 +127,26 @@
       </div>
       <div class="team_right">
         <div class="taskcard_priority">
-            @if (task.prio === 'Urgent') {
-              <img src="assets/img/icons/prio_high.svg" alt="Urgent Priority" class="priority-icon-high" />
-            }
-            @if (task.prio === 'Medium') {
-              <img src="assets/img/icons/prio_medium.svg" alt="Medium Priority" class="priority-icon-medium" />
-            }
-            @if (task.prio === 'Low') {
-              <img src="assets/img/icons/prio_low.svg" alt="Low Priority" class="priority-icon-low" />
-            }</div>
+          @if (task.prio === 'Urgent') {
+          <img
+            src="assets/img/icons/prio_high.svg"
+            alt="Urgent Priority"
+            class="priority-icon-high"
+          />
+          } @if (task.prio === 'Medium') {
+          <img
+            src="assets/img/icons/prio_medium.svg"
+            alt="Medium Priority"
+            class="priority-icon-medium"
+          />
+          } @if (task.prio === 'Low') {
+          <img
+            src="assets/img/icons/prio_low.svg"
+            alt="Low Priority"
+            class="priority-icon-low"
+          />
+          }
+        </div>
       </div>
     </div>
   </div>
