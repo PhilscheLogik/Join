@@ -28,7 +28,7 @@ section {
     height: 32px;
     width: 32px;
     border-left: 1px solid $light_gray;
-    cursor: pointer;
+    
   }
 }
 
@@ -46,9 +46,34 @@ input::placeholder {
   color: $light_gray;
 }
 
-.search_btn {
-  width: 18px;
-  height: 18px;
+.input-search-btn {
+  @include dFlex($ai: center, $jc: center);
+  flex-direction: row;
+}
+
+.input-seperator {
+  height: 24px;
+  width: 2px;
+  background-color: $gray;
+}
+
+.search-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin: 0px 12px 0 12px;
+  padding: 4px;
+
+  >img {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    margin-left: 2px;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $light_gray;
+  }
 }
 
 .add_task_btn {
