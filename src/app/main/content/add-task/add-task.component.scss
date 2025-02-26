@@ -753,6 +753,10 @@ ul {
   .seemInput {
     @include font($fs: 16px, $fw: 400);
   }
+
+    .categorySelection {    
+      @include font($fs: 16px, $fw: 400);
+    }
 }
 
 @media (max-width: 400px) {
