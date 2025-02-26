@@ -99,14 +99,21 @@ export class ContactsService {
   }
 
   /**
-   * Asynchronously updates a contact's information in the contact list.
-   * The contact is identified by the provided ID, and its details are updated with the new values.
+   * Updates the contact information in the database.
    *
-   * @param {string | undefined} id - The ID of the contact to be updated.
-   * @param {string | undefined} newName - The new name to set for the contact.
-   * @param {string | undefined} newEmail - The new email to set for the contact.
-   * @param {string | undefined} newPhone - The new phone number to set for the contact.
-   * @throws {Error} - If the update fails, an error will be thrown.
+   * This function updates the contact details for the specified contact ID. It checks if all the new
+   * information (name, email, phone, background color, and initials) are provided. If so, it performs
+   * the update operation in the database.
+   *
+   * @async
+   * @param {string | undefined} id - The unique identifier of the contact to be updated.
+   * @param {string | undefined} newName - The new name of the contact.
+   * @param {string | undefined} newEmail - The new email of the contact.
+   * @param {string | undefined} newPhone - The new phone number of the contact.
+   * @param {string | undefined} newBgColor - The new background color for the contact.
+   * @param {string | undefined} newInitials - The new initials of the contact.
+   *
+   * @returns {Promise<void>} A promise that resolves when the contact information is updated.
    */
   async updateContact(
     id: string | undefined,
@@ -117,7 +124,7 @@ export class ContactsService {
     newInitials: string | undefined
   ) {
     const updateRef = doc(this.getContactRef(), id);
-    console.info(newName , newEmail , newPhone , newBgColor , newInitials)
+    console.info(newName, newEmail, newPhone, newBgColor, newInitials);
 
     if (newName && newEmail && newPhone && newBgColor && newInitials) {
       await updateDoc(updateRef, {
@@ -130,6 +137,19 @@ export class ContactsService {
     }
   }
 
+  /**
+   * Updates the background color and initials of a contact in the database.
+   *
+   * This function updates the background color and initials of the specified contact based on their ID.
+   * It checks if both the new background color and initials are provided before performing the update operation.
+   *
+   * @async
+   * @param {string | undefined} id - The unique identifier of the contact to be updated.
+   * @param {string} newBgColor - The new background color for the contact.
+   * @param {string} newInitials - The new initials of the contact.
+   *
+   * @returns {Promise<void>} A promise that resolves when the contact's background color and initials are updated.
+   */
   async updateContactColorInitials(
     id: string | undefined,
     newBgColor: string,
@@ -155,12 +175,16 @@ export class ContactsService {
   }
 
   /**
-   * Converts a raw object into a structured Contact object.
-   * The function maps the given properties from the raw object and assigns default values if they are missing.
+   * Creates a Contact object from the provided data.
    *
-   * @param {any} obj - The raw object containing contact data.
-   * @param {string} id - The ID to assign to the contact.
-   * @returns {Contact} - The structured Contact object.
+   * This function constructs a Contact object based on the given data (obj) and contact ID (id).
+   * It ensures that each property in the resulting object has a fallback value (empty string) in case
+   * the corresponding data is not provided.
+   *
+   * @param {any} obj - The object containing the contact information to be used for creating the Contact.
+   * @param {string} id - The unique identifier for the contact.
+   *
+   * @returns {Contact} A Contact object with the specified data and ID.
    */
   setContactObj(obj: any, id: string): Contact {
     return {
@@ -175,16 +199,16 @@ export class ContactsService {
   }
 
   /**
-   * Groups the contacts by the first letter of their name and organizes them into categories.
-   * Each group contains an array of contacts with additional details like initials.
+   * Groups contacts by the first letter of their name.
    *
-   * @returns {Object} - An object where keys are the first letters of contact names,
-   *                     and values are arrays of grouped contact objects.
+   * This function iterates through the contact list and groups the contacts based on the first letter of their name.
+   * It then creates a new object where each key is a letter, and the value is an array of contacts whose names start with that letter.
+   * The resulting grouped contacts include additional contact details such as initials and background color.
+   *
+   * @returns {Object} An object where each key is a letter (A-Z) and the value is an array of contact objects grouped by the first letter of their name.
    */
   getGroupedContacts() {
     let groupedContacts: { [key: string]: any[] } = {};
-
-    // console.info('--------- getGroupedContacts Aufruf --------');
 
     for (let [index, contact] of this.contactList.entries()) {
       let firstLetter = contact.name.charAt(0).toUpperCase();
@@ -194,9 +218,8 @@ export class ContactsService {
       }
 
       let initials = this.getInitials(contact.name);
-      // let bgColor = this.getBadgeColor(index);
 
-      // Push contakt to groupe
+      // Push contakt to group
       groupedContacts[firstLetter].push({
         id: contact.id,
         name: contact.name,
@@ -207,22 +230,20 @@ export class ContactsService {
         initials: initials,
         bgColor: contact.bgColor,
       });
-
-      // this.updateContactColorInitials(contact.id, bgColor,initials);
-      // console.log(contact);
-      // console.log(index);
     }
 
     return groupedContacts;
   }
 
   /**
-   * Extracts the initials from a given name. It returns the first letter of the first name
-   * and the first letter of the last name (if available). If the name is invalid or empty,
-   * it returns '404'.
+   * Generates the initials from a given name.
    *
-   * @param {string | undefined} name - The name from which to extract initials.
-   * @returns {string} - The initials formed from the first and last name, or '404' if the name is invalid or empty.
+   * This function takes a name as input and returns the initials derived from the first and last parts of the name.
+   * If the name consists of multiple parts, the function will take the first letter of the first and last name parts.
+   * If the name is empty or invalid, it returns a fallback value ('404').
+   *
+   * @param {string | undefined} name - The name from which initials are to be generated.
+   * @returns {string} The initials formed from the first letter of the first and last name parts, or '404' if the name is empty or invalid.
    */
   getInitials(name: string | undefined): string {
     if (name) {
@@ -247,6 +268,15 @@ export class ContactsService {
     this.overlayState.next(false);
   }
 
+  /**
+   * Notifies that a new contact has been created.
+   *
+   * This function triggers a notification that a new contact has been created by emitting a `true` value
+   * through the `contactCreatedSource` observable.
+   *
+   * @private
+   * @returns {void} This function does not return any value.
+   */
   private notifyContactCreated() {
     this.contactCreatedSource.next(true);
   }
