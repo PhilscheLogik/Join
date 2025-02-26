@@ -141,6 +141,7 @@ form {
       display: none;
       position: relative;
       z-index: 3;
+      border-radius: 0 0 10px 10px;      
 
       .assigned_field_contact_list {
         position: absolute;
@@ -149,7 +150,7 @@ form {
         flex-direction: column;
         width: 100%;
         height: calc(318px - 48px);
-        border-radius: 10px;
+        border-radius: 0 0 10px 10px;
         padding-top: 10px;
         overflow: auto;
 
