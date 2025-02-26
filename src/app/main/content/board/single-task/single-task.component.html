@@ -14,22 +14,22 @@
 
       <div class="info">
         <p>
-          <span class="label">Due date:</span>
+          <span class="label-date">Due date:</span>
           <span class="value-date">{{ selectedTask?.date }}</span>
         </p>
         <br />
         <p>
-          <span class="label">Priority:</span>
+          <span class="label-priority">Priority:</span>
           <span class="value-priority">
             {{ selectedTask?.prio }}
             @if (selectedTask?.prio === 'Urgent') {
-              <img src="assets/img/icons/arrow_up_red.svg" alt="Urgent Priority" class="priority-icon" />
+              <img src="assets/img/icons/prio_high.svg" alt="Urgent Priority" class="priority-icon-high" />
             }
             @if (selectedTask?.prio === 'Medium') {
-              <img src="assets/img/icons/equal_orange.svg" alt="Medium Priority" class="priority-icon" />
+              <img src="assets/img/icons/prio_medium.svg" alt="Medium Priority" class="priority-icon-medium" />
             }
             @if (selectedTask?.prio === 'Low') {
-              <img src="assets/img/icons/arrow_down_green.svg" alt="Low Priority" class="priority-icon" />
+              <img src="assets/img/icons/prio_low.svg" alt="Low Priority" class="priority-icon-low" />
             }
           </span>
         </p>
@@ -108,13 +108,13 @@
       <div class="team_right">
         <div class="taskcard_priority">
             @if (task.prio === 'Urgent') {
-              <img src="assets/img/icons/arrow_up_red.svg" alt="Urgent Priority" class="priority-icon" />
+              <img src="assets/img/icons/prio_high.svg" alt="Urgent Priority" class="priority-icon-high" />
             }
             @if (task.prio === 'Medium') {
-              <img src="assets/img/icons/equal_orange.svg" alt="Medium Priority" class="priority-icon" />
+              <img src="assets/img/icons/prio_medium.svg" alt="Medium Priority" class="priority-icon-medium" />
             }
             @if (task.prio === 'Low') {
-              <img src="assets/img/icons/arrow_down_green.svg" alt="Low Priority" class="priority-icon" />
+              <img src="assets/img/icons/prio_low.svg" alt="Low Priority" class="priority-icon-low" />
             }</div>
       </div>
     </div>

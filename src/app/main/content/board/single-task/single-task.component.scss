@@ -100,15 +100,14 @@
       padding-left: 41px;
     }
 
-    .taskcard_priority .priority-icon {
-      width: 17px;
-      height: 12px;
+    .priority-icon-medium {
+      transform: translateY(-2px);
     }
 
-    .label {
-      color: $black;
+    .priority-icon-low {
+      transform: translateY(1px);
     }
-
+    
     .info,
     .assigned-to,
     .subtasks {
