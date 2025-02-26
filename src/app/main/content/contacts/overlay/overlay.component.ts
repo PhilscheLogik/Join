@@ -1,8 +1,9 @@
-import { CommonModule } from '@angular/common';
 import { Component, ViewChild, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
+
 import { ContactsService } from '../../../services/contacts.service';
 import { Contact } from '../../../../interfaces/contact';
-import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-overlay',
@@ -23,10 +24,10 @@ export class OverlayComponent {
   name = '';
   email = '';
   phone = '';
-
-  contactService = inject(ContactsService);
   bgColor = '';
   initials = '';
+  
+  contactService = inject(ContactsService);
 
   /**
    * Initializes the component and subscribes to the overlay state from the `ContactsService`.

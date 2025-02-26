@@ -1,6 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { TaskServiceService } from '../../../services/task-service.service';
-import { Task } from '../../../../interfaces/task';
+import { CommonModule } from '@angular/common';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -8,8 +7,10 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
+
+import { TaskServiceService } from '../../../services/task-service.service';
 import { ContactsService } from '../../../services/contacts.service';
+import { Task } from '../../../../interfaces/task';
 
 @Component({
   selector: 'app-single-task',
@@ -19,17 +20,14 @@ import { ContactsService } from '../../../services/contacts.service';
   styleUrl: './single-task.component.scss',
 })
 export class SingleTaskComponent {
-  private taskService = inject(TaskServiceService);
-  contactService = inject(ContactsService);
-
   tasks: Task[] = [];
   selectedTask: Task | null = null;
-  isOverlayOpen: boolean = false;
-  selectedContacts: any[] = []; // Array für ausgewählte Kontakte
+  isOverlayOpen = false;
+  selectedContacts: any[] = [];
 
   @Input() task!: Task;
 
-  constructor() {
+  constructor(private taskService: TaskServiceService, public contactService: ContactsService) {
     this.tasks = this.taskService.todoList;
   }
 
@@ -132,11 +130,12 @@ export class SingleTaskComponent {
       (c) => c.email === contact.email
     );
   }
-
-  // getSub(sub: any) {
-  //   console.log("Ergebnis: ", sub);
-  // }
 }
+
 // test() {
 //   console.log(this.taskService.taskList);
+// }
+
+// getSub(sub: any) {
+//   console.log("Ergebnis: ", sub);
 // }

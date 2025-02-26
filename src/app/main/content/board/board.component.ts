@@ -1,6 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { SingleTaskComponent } from './single-task/single-task.component';
-import { TaskServiceService } from '../../services/task-service.service';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -8,7 +6,10 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
+
+import { TaskServiceService } from '../../services/task-service.service';
 import { Task } from '../../../interfaces/task';
+import { SingleTaskComponent } from './single-task/single-task.component';
 
 @Component({
   selector: 'app-board',
@@ -20,24 +21,11 @@ import { Task } from '../../../interfaces/task';
 export class BoardComponent {
   taskService = inject(TaskServiceService);
 
-  // drop(event: CdkDragDrop<string[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-  //   } else {
-  //     transferArrayItem(
-  //       event.previousContainer.data,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex,
-  //     );
-  //   }
-  // }
   tasks: Task[] = [];
   isOverlayOpen = false;
   selectedTask: Task | null = null;
-
   subtaskProgress: number = 30;
-  
+
   openOverlay(task: Task) {
     this.selectedTask = task;
     this.isOverlayOpen = true;
@@ -88,21 +76,6 @@ export class BoardComponent {
         console.log('Woher kam es: ', previousCategory);
         await this.taskService.deleteTask(previousCategory, task.id);
       }
-
-      // Aktualisiere die lokalen Arrays
-      // transferArrayItem(
-      //   event.previousContainer.data,
-      //   event.container.data,
-      //   event.previousIndex,
-      //   event.currentIndex
-      // );
-
-      // console.log(
-      //   event.previousContainer.data,
-      //   event.container.data,
-      //   event.previousIndex,
-      //   event.currentIndex,
-      // );
     }
   }
 
@@ -130,3 +103,31 @@ export class BoardComponent {
     console.log(this.taskService.doneList);
   }
 }
+
+// drop(event: CdkDragDrop<string[]>) {
+//   if (event.previousContainer === event.container) {
+//     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+//   } else {
+//     transferArrayItem(
+//       event.previousContainer.data,
+//       event.container.data,
+//       event.previousIndex,
+//       event.currentIndex,
+//     );
+//   }
+// }
+
+// Aktualisiere die lokalen Arrays
+// transferArrayItem(
+//   event.previousContainer.data,
+//   event.container.data,
+//   event.previousIndex,
+//   event.currentIndex
+// );
+
+// console.log(
+//   event.previousContainer.data,
+//   event.container.data,
+//   event.previousIndex,
+//   event.currentIndex,
+// );
