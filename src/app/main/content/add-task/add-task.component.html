@@ -34,12 +34,12 @@
             <img
               class="arrow_drop_down"
               src="assets/img/icons/arrow_drop_down_icon.svg"
-              [ngStyle]="{ display: selectList ? 'block' : 'none' }"
+              [ngStyle]="{ display: selectList ? 'none' : 'block' }"
             />
             <img
               class="arrow_drop_up"
               src="assets/img/icons/arrow_drop_up_icon.svg"
-              [ngStyle]="{ display: selectList ? 'none' : 'block' }"
+              [ngStyle]="{ display: selectList ? 'block' :'none' }"
             />
           </div>
           <div
@@ -150,22 +150,39 @@
         <div class="choice">
           <label for="taskType">Category<span>*</span></label>
           <div class="seemInput" (click)="clickCategory()">
-            <p>Select task category</p>            
+            @if(selectedCategory == ''){
+              <p>Select task category</p>
+            }
+            @if(selectedCategory == 'Technical Task'){
+              <p>Technical Task</p>
+            }
+            @if(selectedCategory == 'User Story'){
+              <p>User Story</p>
+            }            
             <img
               class="arrow_drop_down"
-              src="assets/img/icons/arrow_drop_down_icon.svg"              
+              src="assets/img/icons/arrow_drop_down_icon.svg"
               [ngStyle]="{ display: openCategory ? 'none' : 'block' }"
             />
             <img
               class="arrow_drop_up"
               src="assets/img/icons/arrow_drop_up_icon.svg"
-              [ngStyle]="{ display: openCategory ? 'block' : 'none' }"              
+              [ngStyle]="{ display: openCategory ? 'block' : 'none' }"
             />
           </div>
-          <div class="" [ngStyle]="{ display: openCategory ? 'block' : 'none' }">
-            <p>Technical Task</p>  
-            <p>User Story</p>          
-          </div>         
+
+          <div class="categoryContainer">
+            <div
+              class="categorySelection"
+              [ngStyle]="{ display: openCategory ? 'flex' : 'none' }"
+            >
+              <p (click)="toggleCategory('Technical Task'); clickCategory()"
+              [class.selected]="isSelectedCategory('Technical Task')" >Technical Task</p>
+              <p (click)="toggleCategory('User Story'); clickCategory()"
+              [class.selected]="isSelectedCategory('User Story')"
+              >User Story</p>
+            </div>
+          </div>
         </div>
 
         <div class="choice">

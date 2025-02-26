@@ -144,7 +144,7 @@ form {
 
       .assigned_field_contact_list {
         position: absolute;
-        background-color: $cream-white;
+        background-color: $white;
         @include dFlex($jc: flex-start, $ai: flex-start);
         flex-direction: column;
         width: 100%;
@@ -423,8 +423,10 @@ form {
   width: 100%;
   padding-left: 21px;
   background-color: $white;
+  z-index: 3;
 
   position: relative;
+  cursor: pointer; 
 
   img {
     position: absolute;
@@ -432,6 +434,45 @@ form {
     right: 15px;
     transform: translateY(-50%);
   }
+}
+
+.categoryContainer {
+  position: relative;
+  @include dFlex();
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+   
+}
+
+.categorySelection {
+  position: absolute;
+  top: -15px;
+  left: 0;
+
+  // @include dFlex($jc:space-between);
+  flex-direction: column;
+  justify-content: space-between;
+  gap:10px;
+
+  @include font($fs: 20px, $fw: 400);   
+  border-radius: 0 0 10px 10px; 
+  width: 100%;  
+  padding-top: 15px;
+  background-color: $white;
+  z-index: 2;
+
+  p{
+    width: 100%;
+    padding: 16px 21px ;
+    cursor: pointer;    
+  }
+}
+
+.selected {
+  background-color: $dark_blue;
+  border-radius: 10px;
+  color: $white;
+  @include dFlex($jc: flex-start);
 }
 
 /*Subtask*/
@@ -548,7 +589,7 @@ ul {
   @include font($fs: 20px, $fw: 400);
   margin-bottom: 70px;
 
-  >p span {
+  > p span {
     color: $red;
   }
 }
@@ -600,6 +641,11 @@ ul {
     width: 100%;
     margin-top: 30px;
   }
+
+  .categorySelection {
+    position: relative;
+  }
+
 }
 
 @media (max-width: 1024px) {
@@ -703,9 +749,9 @@ ul {
     @include font($fs: 16px, $fw: 400);
   }
 
-    .seemInput {
-      @include font($fs: 16px, $fw: 400);
-    }
+  .seemInput {
+    @include font($fs: 16px, $fw: 400);
+  }
 }
 
 @media (max-width: 400px) {

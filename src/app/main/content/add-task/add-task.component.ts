@@ -22,6 +22,8 @@ export class AddTaskComponent {
   selectList = false;
   selectedContacts: any[] = []; // Array für ausgewählte Kontakte
 
+  selectedCategory = '';
+
   /*Subtask content*/
   newSubtask: string = '';
   subtasks: { text: string; isEditing: boolean }[] = [
@@ -34,7 +36,17 @@ export class AddTaskComponent {
 
   constructor() {}
 
-  clickCategory(){
+  isSelectedCategory(category: string) {
+    return category == this.selectedCategory ? true : false;
+  }
+
+  toggleCategory(category: string) {
+    category == this.selectedCategory
+      ? (this.selectedCategory = '')
+      : (this.selectedCategory = category);
+  }
+
+  clickCategory() {
     this.openCategory = !this.openCategory;
   }
 

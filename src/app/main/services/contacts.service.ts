@@ -130,20 +130,20 @@ export class ContactsService {
     }
   }
 
-  // async updateContactColorInitials(
-  //   id: string | undefined,
-  //   newBgColor: string,
-  //   newInitials: string
-  // ) {
-  //   const updateRef = doc(this.getContactRef(), id);
+  async updateContactColorInitials(
+    id: string | undefined,
+    newBgColor: string,
+    newInitials: string
+  ) {
+    const updateRef = doc(this.getContactRef(), id);
 
-  //   if (newBgColor && newInitials) {
-  //     await updateDoc(updateRef, {
-  //       bgColor: newBgColor,
-  //       initials: newInitials,
-  //     });
-  //   }
-  // }
+    if (newBgColor && newInitials) {
+      await updateDoc(updateRef, {
+        bgColor: newBgColor,
+        initials: newInitials,
+      });
+    }
+  }
 
   /**
    * Returns a reference to the 'contacts' collection in Firestore.
@@ -184,6 +184,8 @@ export class ContactsService {
   getGroupedContacts() {
     let groupedContacts: { [key: string]: any[] } = {};
 
+    console.info('--------- getGroupedContacts Aufruf --------');
+
     for (let [index, contact] of this.contactList.entries()) {
       let firstLetter = contact.name.charAt(0).toUpperCase();
 
@@ -207,6 +209,7 @@ export class ContactsService {
       });
 
       // this.updateContactColorInitials(contact.id, bgColor,initials);
+
 
       console.log(contact);
       console.log(index);
