@@ -182,7 +182,7 @@ form {
           background-color: $dark_blue;
           border-radius: 10px;
           color: $white;
-          @include dFlex($jc: flex-start);
+          @include dFlex($jc: flex-start, $g: 20px);
 
           .check_button_white {
             display: block;
