@@ -48,16 +48,23 @@
       <div class="assigned-to">
         <p>Assigned To:</p>
         <div class="assignees">
-          <div class="assignee">
-            <img
-              src="assets/img/icons/user_profile_initials.svg"
-              alt="Profile Icon"
-              class="profile-pic"
-            />
-            <p class="assignee-name">Sofia Müller</p>
-          </div>
+          @for (id of selectedTask?.assignedTo; track $index) { 
+            @for(contact of contactService.contactList; track $index) {
+              @if(id == contact.id) {
+                <div class="assignee">
+                  <div 
+                    class="profile_badge" 
+                    [ngStyle]="{ 'background-color': contact.bgColor }"
+                  >
+                    {{ contact.initials }}
+                  </div>
+                  <p class="assignee-name">{{ contact.name }}</p>
+                </div>
+              } 
+            }
+          }
         </div>
-      </div>
+      </div>      
 
       <div class="subtasks">
         <p>Subtasks</p>
@@ -99,7 +106,9 @@
       </div>
       <p>1/{{ task.subtasks?.length }} Subtasks</p>
     </div>
+
     <div class="task_card_team">
+
       <div class="team_left">
         @for (id of task.assignedTo; track $index) { @for( contact of
         contactService.contactList; track $index){ @if(id == contact.id){
@@ -111,6 +120,7 @@
         </div>
         } } }
       </div>
+
       <div class="team_right">
         <div class="taskcard_priority">
           @if (task.prio === 'Urgent') {
