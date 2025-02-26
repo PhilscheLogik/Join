@@ -152,7 +152,7 @@ export class OverlayComponent {
     }
 
     this.bgColor = this.contactService.getBadgeColor(
-      Math.floor(Math.random() * 15)
+      Math.floor(Math.random() * this.contactService.colors.length)
     );
 
     this.initials = this.contactService.getInitials(this.name);

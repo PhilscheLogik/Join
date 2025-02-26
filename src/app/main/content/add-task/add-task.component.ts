@@ -23,6 +23,8 @@ export class AddTaskComponent {
   selectedContacts: any[] = [];
   selectedCategory = '';
 
+  newDate = "";
+
   /*Subtask content*/
   newSubtask: string = '';
   subtasks: { text: string; isEditing: boolean }[] = [
@@ -234,4 +236,32 @@ export class AddTaskComponent {
     }
     this.subtasks[index].isEditing = false;
   }
+
+
+  submitForm(){
+    console.log('------------------');
+    console.info('Title');
+    console.log();
+
+    console.info('Description');
+    console.log();
+
+    console.info('conctacts');
+    console.log();
+
+    console.info('Date');
+    console.log(this.newDate);
+
+    console.info('Prio');
+    console.log(this.prio);
+
+    console.info('Category');
+    console.log(this.selectedCategory);
+
+    console.info('Subtasks');
+    console.log(this.subtasks);
+    console.log('------------------');
+  }
+
+
 }
