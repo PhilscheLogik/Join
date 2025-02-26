@@ -1,9 +1,20 @@
 <section>
+  <!-- overview overlay -->
+
   @if (isOverlayOpen) {
   <div class="task-overlay">
     <div class="task-overlay-content">
       <div class="header">
-        <span class="category">{{ selectedTask?.category }}</span>
+        <span
+          class="category"
+          [ngClass]="{
+            'user-story': selectedTask?.category === 'User Story',
+            'technical-task': selectedTask?.category === 'Technical Task'
+          }"
+        >
+          {{ selectedTask?.category }}
+        </span>
+
         <button class="close-btn" (click)="closeOverlay()">
           <img src="assets/img/icons/close.svg" alt="Close" />
         </button>
@@ -48,33 +59,39 @@
       <div class="assigned-to">
         <p>Assigned To:</p>
         <div class="assignees">
-          @for (id of selectedTask?.assignedTo; track $index) { 
-            @for(contact of contactService.contactList; track $index) {
-              @if(id == contact.id) {
-                <div class="assignee">
-                  <div 
-                    class="profile_badge" 
-                    [ngStyle]="{ 'background-color': contact.bgColor }"
-                  >
-                    {{ contact.initials }}
-                  </div>
-                  <p class="assignee-name">{{ contact.name }}</p>
-                </div>
-              } 
-            }
-          }
+          @for (id of selectedTask?.assignedTo; track $index) { @for(contact of
+          contactService.contactList; track $index) { @if(id == contact.id) {
+          <div class="assignee">
+            <div
+              class="profile_badge"
+              [ngStyle]="{ 'background-color': contact.bgColor }"
+            >
+              {{ contact.initials }}
+            </div>
+            <p class="assignee-name">{{ contact.name }}</p>
+          </div>
+          } } }
         </div>
-      </div>      
+      </div>
+
+      <!-- <div class="subtasks">
+        <p>Subtasks</p>
+        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
+        track subtask) {
+        <div (click)="getSub(subtask)" class="subtask">
+          <span>{{ subtask.text }}</span>
+        </div>
+        } }
+      </div> -->
 
       <div class="subtasks">
         <p>Subtasks</p>
+        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
+        track subtask) {
         <div class="subtask">
-          <img
-            src="assets/img/icons/check_button_checked.svg"
-            alt="Completed Task"
-          />
-          <span class="subtask-text">Setup base styles</span>
+          <span>{{ subtask.text }}</span>
         </div>
+        } }
       </div>
 
       <div class="actions-buttons">
@@ -92,23 +109,34 @@
   </div>
   }
 
+  <!-- Small card board -->
+
   <div class="example-box" (click)="openOverlay(task)" cdkDrag>
-    <p class="task_card_category">{{ task.category }}</p>
+    <p
+      class="task_card_category"
+      [ngClass]="{
+        'user-story': task.category === 'User Story',
+        'technical-task': task.category === 'Technical Task'
+      }"
+    >
+      {{ task.category }}
+    </p>
+
     <div class="task_card_main">
       <h3>{{ task.title }}</h3>
       <p>{{ task.description }}</p>
     </div>
+
     <div class="task_card_substasks">
       <div class="subtasks_progress">
         <div class="progress_outer">
           <div class="progress_inner"></div>
         </div>
       </div>
-      <p>1/{{ task.subtasks?.length }} Subtasks</p>
+      <p>{{ task.subtasks?.length }} Subtasks</p>
     </div>
 
     <div class="task_card_team">
-
       <div class="team_left">
         @for (id of task.assignedTo; track $index) { @for( contact of
         contactService.contactList; track $index){ @if(id == contact.id){
