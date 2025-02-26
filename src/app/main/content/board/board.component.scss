@@ -304,6 +304,17 @@ app-single-task {
       flex-direction: column;
     }
 
+    .empty_bg {
+      display: none;
+    }
+
+    .example-list {
+      flex-direction: row;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      justify-content: flex-start;
+    }
+
     .to_do {
       width: 100%;
       max-width: 320px;
@@ -312,7 +323,6 @@ app-single-task {
 
     .in_progress {
       width: 100%;
-      max-width: 320px;
       padding-bottom: 32px;
     }
 
