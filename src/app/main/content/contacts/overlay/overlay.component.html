@@ -32,12 +32,9 @@
       <div
         class="initials"
         [ngStyle]="{
-          'background-color': contactService.getBadgeColor(
-            getIndexInFullList(contactService.selectedContact)
-          )
-        }"
+          'background-color': contactService.selectedContact?.bgColor}"
       >
-        {{ contactService.getInitials(contactService.selectedContact?.name) }}
+        {{ contactService.selectedContact?.initials }}
       </div>
       } @else {
       <img src="assets/img/icons/user-profile-image.svg" alt="User Profile" />}

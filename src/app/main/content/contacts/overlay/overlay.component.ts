@@ -127,6 +127,11 @@ export class OverlayComponent {
       return;
     }
 
+    this.bgColor = this.contactService.getBadgeColor(Math.floor(Math.random() * 15));
+
+    this.initials = this.contactService.getInitials(this.name);
+    
+
     let newContact: Contact = {
       name: this.name.trim(),
       email: this.email.trim(),
@@ -186,10 +191,7 @@ export class OverlayComponent {
         this.bgColor == ''
           ? this.contactService.selectedContact?.bgColor
           : this.bgColor;
-      let newInitials =
-        this.initials == ''
-          ? this.contactService.selectedContact?.initials
-          : this.initials;
+      let newInitials = this.contactService.getInitials(newName);
 
       this.contactService.updateContact(id, newName, newEmail, newPhone, newBgColor, newInitials);
 

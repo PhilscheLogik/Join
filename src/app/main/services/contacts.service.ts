@@ -184,7 +184,7 @@ export class ContactsService {
   getGroupedContacts() {
     let groupedContacts: { [key: string]: any[] } = {};
 
-    console.info('--------- getGroupedContacts Aufruf --------');
+    // console.info('--------- getGroupedContacts Aufruf --------');
 
     for (let [index, contact] of this.contactList.entries()) {
       let firstLetter = contact.name.charAt(0).toUpperCase();
@@ -194,7 +194,7 @@ export class ContactsService {
       }
 
       let initials = this.getInitials(contact.name);
-      let bgColor = this.getBadgeColor(index);
+      // let bgColor = this.getBadgeColor(index);
 
       // Push contakt to groupe
       groupedContacts[firstLetter].push({
@@ -205,14 +205,12 @@ export class ContactsService {
         type: contact.type,
         firstLetter: firstLetter,
         initials: initials,
-        bgColor: bgColor,
+        bgColor: contact.bgColor,
       });
 
       // this.updateContactColorInitials(contact.id, bgColor,initials);
-
-
-      console.log(contact);
-      console.log(index);
+      // console.log(contact);
+      // console.log(index);
     }
 
     return groupedContacts;
