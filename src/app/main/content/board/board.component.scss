@@ -56,11 +56,13 @@ input::placeholder {
   color: $white;
   border: none;
   background-color: $dark_blue;
-  padding-left: 8px 16px 8px 16px;
+  padding: 8px 16px;
+  white-space: nowrap;
 
   > img {
     height: 18px;
     width: 18px;
+    margin-left: 4px;
   }
 
   &:hover {
@@ -99,7 +101,7 @@ h2 {
 .mobile_add_task_btn {
   display: none;
 
-  >img {
+  > img {
     // background-color: $dark_blue;
     height: 25px;
     width: 24px;
@@ -143,6 +145,7 @@ h2 {
   height: 100%;
   width: 22%;
   position: relative;
+  height: 50vh;
   // border: 2px solid $light_gray;
 }
 
@@ -152,6 +155,7 @@ h2 {
   height: 100%;
   width: 22%;
   position: relative;
+  height: 50vh;
   // border: 2px solid $light_gray;
 }
 .await_feedback {
@@ -160,6 +164,7 @@ h2 {
   height: 100%;
   width: 22%;
   position: relative;
+  height: 50vh;
   // border: 2px solid $light_gray;
 }
 .done {
@@ -168,6 +173,7 @@ h2 {
   height: 100%;
   width: 22%;
   position: relative;
+  height: 50vh;
   // border: 2px solid $light_gray;
 }
 
@@ -213,12 +219,14 @@ h3 {
 }
 
 .example-list {
-  @include dFlex($ai: flex-start, $jc: center, $g: 10px);
+  @include dFlex($ai: flex-start, $jc: flex-start, $g: 10px);
   flex-direction: column;
   // border: solid 1px #ccc;
-  min-height: 60px;
+  min-height: 250px;
   width: 100%;
   border-radius: 4px;
+  overflow: auto;
+  // height: 50vh;
 }
 
 app-single-task {
@@ -248,7 +256,6 @@ app-single-task {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-
 /* Mobile  */
 
 @media (max-width: 1150px) {
@@ -262,79 +269,77 @@ app-single-task {
 }
 
 @media (max-width: 860px) {
-    .board_header {
-      @include dFlex($ai: center, $jc: flex-start, $g: 24px);
-      flex-direction: column;
-      padding: 48px 32px 24px 32px;
-    }
+  .board_header {
+    @include dFlex($ai: center, $jc: flex-start, $g: 24px);
+    flex-direction: column;
+    padding: 48px 32px 24px 32px;
+  }
 
-    .board_header_left {
-      @include dFlex($ai: center, $jc: space-between);
-      >h1 {
-        font-size: 47px;
-      }
+  .board_header_left {
+    @include dFlex($ai: center, $jc: space-between);
+    > h1 {
+      font-size: 47px;
     }
+  }
 
-    .board_header_right {
-      @include dFlex($jc: center);
-      width: 100%;
-    }
+  .board_header_right {
+    @include dFlex($jc: center);
+    width: 100%;
+  }
 
-    .input_field {
-      width: 100%;
-    }
+  .input_field {
+    width: 100%;
+  }
 
-    .add_task_btn {
-      display: none;
-    }
+  .add_task_btn {
+    display: none;
+  }
 
-    .mobile_add_task_btn {
-      @include dFlex($ai: center, $jc: center);
-      background-color: $dark_blue;
-      border-radius: 10px;
-      // display: block;
-      height: 40px;
-      width: 40px;
-    } 
+  .mobile_add_task_btn {
+    @include dFlex($ai: center, $jc: center);
+    background-color: $dark_blue;
+    border-radius: 10px;
+    // display: block;
+    height: 40px;
+    width: 40px;
+  }
 
-    .board_content {
-      @include dFlex($ai: flex-start, $jc: none);
-      // align-content: center;
-      // justify-content: flex-start;
-      flex-direction: column;
-    }
+  .board_content {
+    @include dFlex($ai: flex-start, $jc: space-evenly);
+    // align-content: center;
+    // justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .empty_bg {
-      display: none;
-    }
+  .empty_bg {
+    display: none;
+  }
 
-    .example-list {
-      flex-direction: row;
-      overflow-x: scroll;
-      scroll-behavior: smooth;
-      justify-content: flex-start;
-    }
+  .example-list {
+    flex-direction: row;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    justify-content: flex-start;
+  }
 
-    .to_do {
-      width: 100%;
-      max-width: 320px;
-      padding-bottom: 32px;
-    }
+  .to_do {
+    width: 100%;
+    padding-bottom: 32px;
+  }
 
-    .in_progress {
-      width: 100%;
-      padding-bottom: 32px;
-    }
+  .in_progress {
+    width: 100%;
+    padding-bottom: 32px;
+  }
 
-    .await_feedback {
-      width: 100%;
-      max-width: 320px;
-      padding-bottom: 32px;
-    }
+  .await_feedback {
+    width: 100%;
+    padding-bottom: 32px;
+  }
 
-    .done {
-      width: 100%;
-      max-width: 320px;
-      padding-bottom: 32px;
-    }
+  .done {
+    width: 100%;
+    padding-bottom: 32px;
+  }
 }
