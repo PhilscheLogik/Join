@@ -153,7 +153,7 @@ h2 {
 }
 
 .board_content {
-  @include dFlex($jc: space-evenly, $g: 24px);
+  @include dFlex($ai: flex-start, $jc: space-evenly, $g: 24px);
   flex-direction: row;
   height: 75%;
   width: 100%;
@@ -267,7 +267,7 @@ h3 {
   min-height: 250px;
   width: 100%;
   border-radius: 4px;
-  overflow: auto;
+  // overflow: auto;
   // height: 50vh;
 }
 
@@ -310,7 +310,7 @@ app-single-task {
   }
 
   .board_content {
-    @include dFlex($jc: space-evenly, $g: 10px);
+    @include dFlex($ai: flex-start, $jc: space-evenly, $g: 10px);
     padding: 16px;
   }
 }
@@ -354,8 +354,6 @@ app-single-task {
 
   .board_content {
     @include dFlex($ai: flex-start, $jc: space-evenly);
-    // align-content: center;
-    // justify-content: flex-start;
     flex-direction: column;
     width: 100%;
   }
