@@ -238,6 +238,13 @@ export class AddTaskComponent {
     this.subtasks[index].isEditing = false;
   }
 
+  getId() {
+    for (let i = 0; i < this.selectedContacts.length; i++) {
+      let id = this.selectedContacts[i].id;
+      console.log(id);
+    }
+  }
+
   submitForm() {
     console.log('------------------');
     console.info('Title');
@@ -247,7 +254,8 @@ export class AddTaskComponent {
     console.log(this.inputDescription);
 
     console.info('conctacts');
-    console.log();
+    // console.log(this.selectedContacts[0].id);
+    this.getId();
 
     console.info('Date');
     console.log(this.newDate);
