@@ -29,10 +29,11 @@ export class AddTaskComponent {
 
   /*Subtask content*/
   newSubtask: string = '';
-  subtasks: { text: string; isEditing: boolean }[] = [
-    { text: 'Taste Esc suchen', isEditing: false },
-    { text: 'Schuhe zubinden', isEditing: false },
-  ];
+  // subtasks: { text: string; isEditing: boolean }[] = [
+  //   { text: 'Taste Esc suchen', isEditing: false },
+  //   { text: 'Schuhe zubinden', isEditing: false },
+  // ];
+  subtasks: { text: string; isEditing: boolean }[] = [];
   isEditing: boolean = false;
 
   openCategory = false;
@@ -256,6 +257,8 @@ export class AddTaskComponent {
   }
 
   submitForm() {
+    let newTask: Task;
+
     console.log('------------------');
     console.info('Title');
     console.log(this.inputTitle);
@@ -280,27 +283,39 @@ export class AddTaskComponent {
     console.log(this.getText());
     console.log('------------------');
 
+    
+
     if (this.inputTitle && this.newDate && this.selectedCategory) {
+      console.log('-------- Pflichtfelder sind ready -------');
+      console.log('Prio', this.prio);
       if (
         this.prio == 'Urgent' ||
         this.prio == 'Medium' ||
         this.prio == 'Low'
       ) {
+        console.log('-------- Prio ist gut -------');
         if (
           this.selectedCategory == 'User Story' ||
           this.selectedCategory == 'Technical Task'
-        ) {
-          let newTask: Task = {
+        ) {          
+          newTask = {
             title: this.inputTitle,
+            description: this.inputDescription,
+            assignedTo: this.getId(),
             date: this.newDate,
             prio: this.prio,
             category: this.selectedCategory,
             subtasks: this.getText()
           };
+          console.log('------------------');
+          console.log(newTask);
+
+          this.taskService.addTask(this.taskService.whatIsTheType, newTask); 
+
         }
       }
 
-      // console.log(newTask);
+      
     } else {
       console.log('Du kannst nicht mal alle Pflichtfelder ausfüllen?!?');
     }

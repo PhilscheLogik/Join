@@ -16,6 +16,8 @@ import { Task } from '../../interfaces/task';
 export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
 
+  whatIsTheType='feedback';
+
   todoList: Task[] = [];
   progressList: Task[] = [];
   feedbackList: Task[] = [];
