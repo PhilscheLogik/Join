@@ -183,6 +183,28 @@ export class SingleTaskComponent {
     return this.task.subtasks.filter((subtask) => subtask.IsCompleted === true)
       .length;
   }
+
+  /**
+   * Retrieves the first four assigned contacts for a given task.
+   * Ensures that only a maximum of four participants are shown.
+   *
+   * @param {any} task - The task object containing the assigned participants.
+   * @returns {any[]} An array containing up to the first four assigned contacts.
+   */
+  getVisibleContacts(task: any): any[] {
+    return task.assignedTo.slice(0, 4);
+  }
+
+  /**
+   * Calculates the number of hidden assigned contacts that exceed the visible limit.
+   * If more than four participants are assigned, it returns the count of hidden participants.
+   *
+   * @param {any} task - The task object containing the assigned participants.
+   * @returns {number} The number of hidden assigned participants (if more than four exist).
+   */
+  getHiddenCount(task: any): number {
+    return task.assignedTo.length > 4 ? task.assignedTo.length - 4 : 0;
+  }
 }
 
 // test() {

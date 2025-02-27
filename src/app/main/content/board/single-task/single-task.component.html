@@ -101,7 +101,10 @@
       </div>
 
       <div class="actions-buttons">
-        <button (click)='deleteTask(selectedTask); closeOverlay()' class="delete-btn">
+        <button
+          (click)="deleteTask(selectedTask); closeOverlay()"
+          class="delete-btn"
+        >
           <img src="assets/img/icons/trash_icon.svg" alt="Delete Icon" />
           Delete
         </button>
@@ -136,23 +139,24 @@
     <div class="task_card_substasks">
       <div class="subtasks_progress">
         <div class="progress_outer">
-          <div class="progress_inner"
+          <div
+            class="progress_inner"
             [style.width]="getSubtasksProgress() + '%'"
-            >
-          </div>
+          ></div>
         </div>
       </div>
-      <p>@if (task.subtasks && task.subtasks.length > 0) {
+      <p>
+        @if (task.subtasks && task.subtasks.length > 0) {
         {{ getCompletedSubtasksCount() }} / {{ task.subtasks.length }} Subtasks
-      } @else {
-        0 Subtasks
-      }</p>
+        } @else { 0 Subtasks }
+      </p>
     </div>
 
     <div class="task_card_team">
       <div class="team_left">
-        @for (id of task.assignedTo; track $index) { @for( contact of
-        contactService.contactList; track $index){ @if(id == contact.id){
+        <!-- Zeigt maximal 4 Teilnehmer mit ihren Initialen -->
+        @for (id of getVisibleContacts(task); track $index) { @for (contact of
+        contactService.contactList; track $index) { @if(id == contact.id) {
         <div
           class="profile_badge"
           [ngStyle]="{ 'background-color': contact.bgColor }"
@@ -160,6 +164,11 @@
           {{ contact.initials }}
         </div>
         } } }
+
+        <!-- Falls mehr als 4 Teilnehmer vorhanden sind, zeige +x -->
+        @if (getHiddenCount(task) > 0) {
+        <div class="profile_badge more">+{{ getHiddenCount(task) }}</div>
+        }
       </div>
 
       <div class="team_right">
