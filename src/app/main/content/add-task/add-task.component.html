@@ -15,6 +15,7 @@
             name="input"
             placeholder="Enter a title"
             required
+            [(ngModel)]="inputTitle"
           />
         </div>
 
@@ -25,6 +26,7 @@
             type="text"
             name="input"
             placeholder="Enter a Description"
+            [(ngModel)]="inputDescription"
           ></textarea>
         </div>
 
@@ -237,7 +239,7 @@
                   <button class="btn-subtask" (click)="saveEdit($index)">
                     <img
                       class="close_subtask"
-                      src="./../../../../assets/img/icons/check_dark_icon.svg"
+                      src="assets/img/icons/check_dark_icon.svg"
                       alt="Ok hook Image"
                     />
                   </button>
@@ -257,7 +259,7 @@
                   <button class="btn-subtask" (click)="deleteSubtask($index)">
                     <img
                       class="close_subtask"
-                      src="./../../../../assets/img/icons/trash_icon.svg"
+                      src="assets/img/icons/trash_icon.svg"
                       alt="delete Image"
                     />
                   </button>

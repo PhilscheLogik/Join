@@ -22,8 +22,9 @@ export class AddTaskComponent {
   selectList = false;
   selectedContacts: any[] = [];
   selectedCategory = '';
-
-  newDate = "";
+  newDate = '';
+  inputTitle = '';
+  inputDescription = '';
 
   /*Subtask content*/
   newSubtask: string = '';
@@ -237,14 +238,13 @@ export class AddTaskComponent {
     this.subtasks[index].isEditing = false;
   }
 
-
-  submitForm(){
+  submitForm() {
     console.log('------------------');
     console.info('Title');
-    console.log();
+    console.log(this.inputTitle);
 
     console.info('Description');
-    console.log();
+    console.log(this.inputDescription);
 
     console.info('conctacts');
     console.log();
@@ -262,6 +262,4 @@ export class AddTaskComponent {
     console.log(this.subtasks);
     console.log('------------------');
   }
-
-
 }
