@@ -12,11 +12,18 @@ import { Task } from '../../../interfaces/task';
 import { SingleTaskComponent } from './single-task/single-task.component';
 import { CommonModule } from '@angular/common';
 import { AddTaskComponent } from '../add-task/add-task.component';
+import { NavigationService } from '../../../shared/navi/navigation.service';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [SingleTaskComponent, CdkDropList, CdkDrag, CommonModule, AddTaskComponent],
+  imports: [
+    SingleTaskComponent,
+    CdkDropList,
+    CdkDrag,
+    CommonModule,
+    AddTaskComponent,
+  ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
 })
@@ -26,6 +33,7 @@ export class BoardComponent {
   }
 
   taskService = inject(TaskServiceService);
+  naviService = inject(NavigationService);
 
   tasks: Task[] = [];
   isOverlayOpen = false;

@@ -16,7 +16,11 @@
           </div>
         </div>
       </div>
-      <button class="add_task_btn" (click)="taskService.toggleCloseButton()" >
+      <button class="add_task_btn btn_desktop" (click)="taskService.toggleCloseButton()" >
+        Add task
+        <img src="assets/img/icons/plus_icon.svg" alt="" />
+      </button>
+      <button class="add_task_btn btn_mobile" (click)="naviService.setSelectedItem(1)" >
         Add task
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </button>
