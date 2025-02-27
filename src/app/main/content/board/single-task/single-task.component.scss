@@ -171,6 +171,12 @@
       @include font($ff: "Inter", $fs: clamp(12px, 3vw, 16px), $fw: 400);
     }
 
+    .checkbox-icon {
+      width: 24px;
+      height: 25px;
+      object-fit: contain;
+    }
+
     .actions-buttons {
       @include dFlex($jc: flex-end);
       position: absolute;

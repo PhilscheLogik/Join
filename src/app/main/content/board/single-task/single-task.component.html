@@ -2,8 +2,8 @@
   <!-- overview overlay -->
 
   @if (isOverlayOpen) {
-  <div class="task-overlay">
-    <div class="task-overlay-content">
+  <div class="task-overlay" (click)="closeOverlay()">
+    <div class="task-overlay-content" (click)="$event.stopPropagation()">
       <div class="header">
         <span
           class="category"
@@ -74,16 +74,6 @@
         </div>
       </div>
 
-      <!-- <div class="subtasks">
-        <p>Subtasks</p>
-        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
-        track subtask) {
-        <div class="subtask">
-          <span>{{ subtask.text }}</span>
-        </div>
-        } }
-      </div> -->
-
       <div class="subtasks">
         <p>Subtasks</p>
         @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
@@ -102,8 +92,8 @@
             alt="Uncompleted Icon"
           />
           }
-
-          <span [ngClass]="{ 'subtask-completed': subtask.IsCompleted }">
+          <!-- <span [ngClass]="{ 'subtask-completed': subtask.IsCompleted }"> -->
+          <span>
             {{ subtask.text }}
           </span>
         </div>
