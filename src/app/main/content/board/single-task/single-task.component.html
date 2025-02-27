@@ -101,7 +101,7 @@
       </div>
 
       <div class="actions-buttons">
-        <button class="delete-btn">
+        <button (click)='deleteTask(selectedTask); closeOverlay()' class="delete-btn">
           <img src="assets/img/icons/trash_icon.svg" alt="Delete Icon" />
           Delete
         </button>

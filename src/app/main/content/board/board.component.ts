@@ -19,6 +19,14 @@ import { SingleTaskComponent } from './single-task/single-task.component';
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
+
+setType(arg0: string) {
+  this.taskService.whatIsTheType=arg0;
+}
+
+
+
+
   taskService = inject(TaskServiceService);
 
   tasks: Task[] = [];

@@ -41,7 +41,7 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (task of taskService.todoList; track $index) {
-        <app-single-task [task]="task" cdkDrag></app-single-task>
+        <app-single-task (click)="setType('todo')" [task]="task" cdkDrag></app-single-task>
         }
       </div>
     </div>
@@ -63,7 +63,7 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (task of taskService.progressList; track task) {
-        <app-single-task [task]="task" cdkDrag></app-single-task>
+        <app-single-task (click)="setType('inprogess')" [task]="task" cdkDrag></app-single-task>
         } 
       </div>
     </div>
@@ -86,7 +86,7 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (task of taskService.feedbackList; track task) {
-        <app-single-task [task]="task" cdkDrag></app-single-task>
+        <app-single-task (click)="setType('feedback')" [task]="task" cdkDrag></app-single-task>
         }
       </div>
     </div>
@@ -107,7 +107,7 @@
         (cdkDropListDropped)="drop($event)"
       >
         @for (task of taskService.doneList; track task) {
-        <app-single-task [task]="task" cdkDrag></app-single-task>
+        <app-single-task (click)="setType('done')" [task]="task" cdkDrag></app-single-task>
         }
       </div>
     </div>

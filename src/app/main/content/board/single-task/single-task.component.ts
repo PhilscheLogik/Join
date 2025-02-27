@@ -20,6 +20,18 @@ import { Task } from '../../../../interfaces/task';
   styleUrl: './single-task.component.scss',
 })
 export class SingleTaskComponent {
+  getTest(arg0: Task | null) {
+    console.log(arg0);
+    console.log('--------------');
+    console.log(this.taskService.whatIsTheType);
+  }
+
+  deleteTask(task: Task | null) {
+    if (task?.id) {
+      this.taskService.deleteTask(this.taskService.whatIsTheType, task?.id);
+    }
+  }
+
   tasks: Task[] = [];
   selectedTask: Task | null = null;
   isOverlayOpen = false;
@@ -133,18 +145,18 @@ export class SingleTaskComponent {
       (c) => c.email === contact.email
     );
   }
-  
+
   toggleSubtaskCompleted(subtask: any) {
     subtask.IsCompleted = !subtask.IsCompleted;
     // this.taskService.updateTask(this.selectedTask.id, this.selectedTask);
   }
 
   /**
- * Calculates the completion percentage of subtasks for the current task.
- * Returns 0 if there are no subtasks or if the subtasks array is undefined.
- *
- * @returns {number} The percentage of completed subtasks (0 to 100).
- */
+   * Calculates the completion percentage of subtasks for the current task.
+   * Returns 0 if there are no subtasks or if the subtasks array is undefined.
+   *
+   * @returns {number} The percentage of completed subtasks (0 to 100).
+   */
   getSubtasksProgress(): number {
     const subtasks = this.task.subtasks;
     // Check if subtasks is undefined, not an array, or empty
@@ -152,26 +164,26 @@ export class SingleTaskComponent {
       return 0;
     }
     // Now safe to use filter since we confirmed it's an array
-    const completedCount = subtasks.filter(subtask => subtask && subtask.IsCompleted === true).length;
+    const completedCount = subtasks.filter(
+      (subtask) => subtask && subtask.IsCompleted === true
+    ).length;
     return (completedCount / subtasks.length) * 100;
   }
 
-/**
- * Counts the number of completed subtasks for the current task.
- * Returns 0 if there are no subtasks or if the subtasks array is undefined.
- *
- * @returns {number} The number of subtasks marked as completed.
- */
-getCompletedSubtasksCount(): number {
-  if (!this.task.subtasks || this.task.subtasks.length === 0) {
-    return 0;
+  /**
+   * Counts the number of completed subtasks for the current task.
+   * Returns 0 if there are no subtasks or if the subtasks array is undefined.
+   *
+   * @returns {number} The number of subtasks marked as completed.
+   */
+  getCompletedSubtasksCount(): number {
+    if (!this.task.subtasks || this.task.subtasks.length === 0) {
+      return 0;
+    }
+    return this.task.subtasks.filter((subtask) => subtask.IsCompleted === true)
+      .length;
   }
-  return this.task.subtasks.filter(subtask => subtask.IsCompleted === true).length;
 }
-
-}
-
-
 
 // test() {
 //   console.log(this.taskService.taskList);
