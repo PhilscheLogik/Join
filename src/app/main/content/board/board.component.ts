@@ -10,22 +10,20 @@ import {
 import { TaskServiceService } from '../../services/task-service.service';
 import { Task } from '../../../interfaces/task';
 import { SingleTaskComponent } from './single-task/single-task.component';
+import { CommonModule } from '@angular/common';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [SingleTaskComponent, CdkDropList, CdkDrag],
+  imports: [SingleTaskComponent, CdkDropList, CdkDrag, CommonModule, AddTaskComponent],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
-
-setType(arg0: string) {
-  this.taskService.whatIsTheType=arg0;
-}
-
-
-
+  setType(arg0: string) {
+    this.taskService.whatIsTheType = arg0;
+  }
 
   taskService = inject(TaskServiceService);
 
@@ -33,6 +31,11 @@ setType(arg0: string) {
   isOverlayOpen = false;
   selectedTask: Task | null = null;
   subtaskProgress: number = 30;
+  isTaskOverlayOpen = true;
+
+  isTaskOverlay() {
+    this.isTaskOverlayOpen = !this.isTaskOverlayOpen;
+  }
 
   openOverlay(task: Task) {
     this.selectedTask = task;

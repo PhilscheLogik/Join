@@ -16,12 +16,13 @@ import { Task } from '../../interfaces/task';
 export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
 
-  whatIsTheType='feedback';
+  whatIsTheType = 'feedback';
 
   todoList: Task[] = [];
   progressList: Task[] = [];
   feedbackList: Task[] = [];
   doneList: Task[] = [];
+  showCloseButton: boolean = false; // New variable to control button visibility
 
   unsubToDo;
   unsubInProgress;
@@ -41,6 +42,10 @@ export class TaskServiceService {
     this.unsubInProgress = this.subInProgressList();
     this.unsubFeedback = this.subFeedbackList();
     this.unsubDone = this.subDoneList();
+  }
+
+  toggleCloseButton() {
+    this.showCloseButton = !this.showCloseButton;
   }
 
   /**

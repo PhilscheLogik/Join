@@ -1,7 +1,8 @@
 <section>
   <div class="head-section">
     <h1>Add Task</h1>
-    <img class="close" src="assets/img/icons/close.svg" alt="Closing Image" />
+    <img class="close-button" src="assets/img/icons/close.svg" alt="Closing Image" [ngClass]="{'show': taskService.showCloseButton}" 
+  (click)="taskService.toggleCloseButton()"/>
   </div>
 
   <form (ngSubmit)="submitForm()">
@@ -282,7 +283,7 @@
       <div class="btn-submit-section">
         <!-- <button (click)="test()">TEST</button>
         <button (click)="test()">TEST</button> -->
-        @if(true){
+        @if(taskService.showCloseButton){
         <button type="button" class="cancel-btn">
           Cancel
           <img src="assets/img/icons/cancel.svg" alt="Cancel" />

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { TaskServiceService } from '../../services/task-service.service';
 import { ContactsService } from '../../services/contacts.service';
 import { Firestore } from '@angular/fire/firestore';
@@ -35,10 +35,29 @@ export class AddTaskComponent {
   // ];
   subtasks: { text: string; isEditing: boolean }[] = [];
   isEditing: boolean = false;
-
   openCategory = false;
 
+  // showCloseButton: boolean = false; // New variable to control button visibility
+
+  // @Output() close = new EventEmitter<void>();
+  // closeOverlay() {
+  //   this.close.emit(); // Das Event wird ausgelöst, um das Overlay zu schließen
+  // }
+
   constructor() {}
+
+  /**
+   * Sets the priority status.
+   *
+   * This method updates the `prio` property with the provided priority status.
+   *
+   * @param {string} status - The priority status to set (e.g., 'high', 'medium', 'low').
+   * @returns {void} This method does not return anything.
+   */
+  clickCategory() {
+    this.openCategory = !this.openCategory;
+    // this.showCloseButton = this.openCategory; // Show the close button if the category is open
+  }
 
   /**
    * Checks if the given category is the currently selected category.
@@ -67,18 +86,6 @@ export class AddTaskComponent {
     category == this.selectedCategory
       ? (this.selectedCategory = '')
       : (this.selectedCategory = category);
-  }
-
-  /**
-   * Sets the priority status.
-   *
-   * This method updates the `prio` property with the provided priority status.
-   *
-   * @param {string} status - The priority status to set (e.g., 'high', 'medium', 'low').
-   * @returns {void} This method does not return anything.
-   */
-  clickCategory() {
-    this.openCategory = !this.openCategory;
   }
 
   /**
@@ -283,8 +290,6 @@ export class AddTaskComponent {
     console.log(this.getText());
     console.log('------------------');
 
-    
-
     if (this.inputTitle && this.newDate && this.selectedCategory) {
       console.log('-------- Pflichtfelder sind ready -------');
       console.log('Prio', this.prio);
@@ -297,7 +302,7 @@ export class AddTaskComponent {
         if (
           this.selectedCategory == 'User Story' ||
           this.selectedCategory == 'Technical Task'
-        ) {          
+        ) {
           newTask = {
             title: this.inputTitle,
             description: this.inputDescription,
@@ -305,17 +310,14 @@ export class AddTaskComponent {
             date: this.newDate,
             prio: this.prio,
             category: this.selectedCategory,
-            subtasks: this.getText()
+            subtasks: this.getText(),
           };
           console.log('------------------');
           console.log(newTask);
 
-          this.taskService.addTask(this.taskService.whatIsTheType, newTask); 
-
+          this.taskService.addTask(this.taskService.whatIsTheType, newTask);
         }
       }
-
-      
     } else {
       console.log('Du kannst nicht mal alle Pflichtfelder ausfüllen?!?');
     }
