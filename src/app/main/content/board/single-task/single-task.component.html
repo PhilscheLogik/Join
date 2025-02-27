@@ -146,10 +146,17 @@
     <div class="task_card_substasks">
       <div class="subtasks_progress">
         <div class="progress_outer">
-          <div class="progress_inner"></div>
+          <div class="progress_inner"
+            [style.width]="getSubtasksProgress() + '%'"
+            >
+          </div>
         </div>
       </div>
-      <p>{{ task.subtasks?.length }} Subtasks</p>
+      <p>@if (task.subtasks && task.subtasks.length > 0) {
+        {{ getCompletedSubtasksCount() }} / {{ task.subtasks.length }} Subtasks
+      } @else {
+        0 Subtasks
+      }</p>
     </div>
 
     <div class="task_card_team">
