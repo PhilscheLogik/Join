@@ -106,13 +106,14 @@ form {
     height: 300px;
     border-radius: 10px;
 
-    .assigned {
-      @include font($fs: 20px, $fw: 400);
-      color: $dark_blue;
-      height: 24px;
-    }
+    // .assigned {
+    //   @include font($fs: 20px, $fw: 400);
+    //   color: $dark_blue;
+    //   height: 24px;
+    // }
 
     .assigned_field_headline {
+      position: relative;
       @include dFlex($jc: space-between);
       @include font($fs: 20px, $fw: 400);
       background-color: $white;
@@ -124,6 +125,7 @@ form {
       padding-left: 16px;
       padding-right: 16px;
       margin-top: 10px;
+      z-index: 5;
       cursor: pointer;
 
       .arrow_drop_down {
@@ -144,6 +146,8 @@ form {
 
       .assigned_field_contact_list {
         position: absolute;
+        top: -5px;
+        left: 0;
         background-color: $white;
         @include dFlex($jc: flex-start, $ai: flex-start);
         flex-direction: column;
@@ -820,10 +824,10 @@ ul {
     @include font($fs: 16px, $fw: 400);
   }
 
-    .btn-submit-section {
-      @include dFlex($jc: space-between, $g: 20px);
-      right: 20px;
-    }
+  .btn-submit-section {
+    @include dFlex($jc: space-between, $g: 20px);
+    right: 20px;
+  }
 
   .create-btn {
     @include font($fs: 21px, $fw: 700);
@@ -838,9 +842,9 @@ ul {
 
 @media (max-width: 400px) {
   .btn-section {
-      @include dFlex($g: 20px);
-      flex-direction: column;
-    }
+    @include dFlex($g: 20px);
+    flex-direction: column;
+  }
 
   .btn-submit-section {
     @include dFlex($ai: flex-end, $g: 20px);
