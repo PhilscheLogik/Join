@@ -35,6 +35,7 @@ export class SingleTaskComponent {
   tasks: Task[] = [];
   selectedTask: Task | null = null;
   isOverlayOpen = false;
+  isClosing = false;
   selectedContacts: any[] = [];
 
   @Input() task!: Task;
@@ -49,10 +50,16 @@ export class SingleTaskComponent {
   openOverlay(task: Task) {
     this.selectedTask = task;
     this.isOverlayOpen = true;
+    this.isClosing = false;
   }
 
   closeOverlay() {
+    this.isClosing = true;
+
+      setTimeout(() => {
     this.isOverlayOpen = false;
+    this.isClosing = false;
+  }, 100);
   }
 
   /**

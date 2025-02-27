@@ -2,7 +2,13 @@
   <!-- overview overlay -->
 
   @if (isOverlayOpen) {
-  <div class="task-overlay" (click)="closeOverlay()">
+  <div class="task-overlay-bg"></div>
+
+  <div
+    class="task-overlay"
+    [ngClass]="{ show: isOverlayOpen, hide: isClosing }"
+    (click)="closeOverlay()"
+  >
     <div class="task-overlay-content" (click)="$event.stopPropagation()">
       <div class="header">
         <span

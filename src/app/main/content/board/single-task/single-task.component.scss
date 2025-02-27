@@ -1,15 +1,54 @@
 @import "./../../../../../styles.scss";
 
-.task-overlay {
+.task-overlay-bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 999; 
+}
+
+.task-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   @include dFlex();
   flex-direction: column;
   z-index: 1000;
+
+  &.show {
+    animation: slideIn 0.3s forwards;
+  }
+
+  &.hide {
+    animation: slideOut 0.3s forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
 
   h1 {
     @include font($ff: "Inter", $fs: clamp(36px, 7vw, 61px), $fw: 700);
@@ -355,3 +394,4 @@
     width: 252px;
   }
 }
+
