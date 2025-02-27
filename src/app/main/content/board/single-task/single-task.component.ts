@@ -20,25 +20,13 @@ import { Task } from '../../../../interfaces/task';
   styleUrl: './single-task.component.scss',
 })
 export class SingleTaskComponent {
-  getTest(arg0: Task | null) {
-    console.log(arg0);
-    console.log('--------------');
-    console.log(this.taskService.whatIsTheType);
-  }
-
-  deleteTask(task: Task | null) {
-    if (task?.id) {
-      this.taskService.deleteTask(this.taskService.whatIsTheType, task?.id);
-    }
-  }
+  @Input() task!: Task;
 
   tasks: Task[] = [];
   selectedTask: Task | null = null;
   isOverlayOpen = false;
   isClosing = false;
   selectedContacts: any[] = [];
-
-  @Input() task!: Task;
 
   constructor(
     private taskService: TaskServiceService,
@@ -47,19 +35,46 @@ export class SingleTaskComponent {
     this.tasks = this.taskService.todoList;
   }
 
+  /**
+   * Opens the overlay for a specific task.
+   * @param {Task} task - The task to be displayed in the overlay.
+   */
   openOverlay(task: Task) {
     this.selectedTask = task;
     this.isOverlayOpen = true;
     this.isClosing = false;
   }
 
+  /**
+   * Closes the overlay with a short animation.
+   */
   closeOverlay() {
     this.isClosing = true;
 
-      setTimeout(() => {
-    this.isOverlayOpen = false;
-    this.isClosing = false;
-  }, 100);
+    setTimeout(() => {
+      this.isOverlayOpen = false;
+      this.isClosing = false;
+    }, 100);
+  }
+
+  /**
+   * Deletes a task if it has a valid ID.
+   * @param {Task | null} task - The task to be deleted, or null if no task is provided.
+   */
+  deleteTask(task: Task | null) {
+    if (task?.id) {
+      this.taskService.deleteTask(this.taskService.whatIsTheType, task.id);
+    }
+  }
+
+  /**
+   * Debugging function that logs task information to the console.
+   * @param {Task | null} arg0 - The task to be logged, or null if no task is provided.
+   */
+  getTest(arg0: Task | null) {
+    console.log(arg0);
+    console.log('--------------');
+    console.log(this.taskService.whatIsTheType);
   }
 
   /**
@@ -213,11 +228,3 @@ export class SingleTaskComponent {
     return task.assignedTo.length > 4 ? task.assignedTo.length - 4 : 0;
   }
 }
-
-// test() {
-//   console.log(this.taskService.taskList);
-// }
-
-// getSub(sub: any) {
-//   console.log("Ergebnis: ", sub);
-// }
