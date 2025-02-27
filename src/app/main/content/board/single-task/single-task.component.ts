@@ -27,7 +27,10 @@ export class SingleTaskComponent {
 
   @Input() task!: Task;
 
-  constructor(private taskService: TaskServiceService, public contactService: ContactsService) {
+  constructor(
+    private taskService: TaskServiceService,
+    public contactService: ContactsService
+  ) {
     this.tasks = this.taskService.todoList;
   }
 
@@ -129,6 +132,11 @@ export class SingleTaskComponent {
     return this.contactService.contactList.findIndex(
       (c) => c.email === contact.email
     );
+  }
+
+  toggleSubtaskCompleted(subtask: any) {
+    subtask.IsCompleted = !subtask.IsCompleted;
+    // this.taskService.updateTask(this.selectedTask.id, this.selectedTask);
   }
 }
 
