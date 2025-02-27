@@ -152,7 +152,7 @@ export class SingleTaskComponent {
       return 0;
     }
     // Now safe to use filter since we confirmed it's an array
-    const completedCount = subtasks.filter(subtask => subtask && subtask.completed === true).length;
+    const completedCount = subtasks.filter(subtask => subtask && subtask.IsCompleted === true).length;
     return (completedCount / subtasks.length) * 100;
   }
 

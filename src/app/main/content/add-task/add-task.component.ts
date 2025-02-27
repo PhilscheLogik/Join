@@ -4,6 +4,7 @@ import { ContactsService } from '../../services/contacts.service';
 import { Firestore } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Task } from '../../../interfaces/task';
 
 @Component({
   selector: 'app-add-task',
@@ -18,7 +19,7 @@ export class AddTaskComponent {
   contactService = inject(ContactsService);
 
   toDo = [];
-  prio = 'medium';
+  prio = 'Medium';
   selectList = false;
   selectedContacts: any[] = [];
   selectedCategory = '';
@@ -239,10 +240,19 @@ export class AddTaskComponent {
   }
 
   getId() {
+    let myArray = [];
     for (let i = 0; i < this.selectedContacts.length; i++) {
-      let id = this.selectedContacts[i].id;
-      console.log(id);
+      myArray.push(this.selectedContacts[i].id);
     }
+    return myArray;
+  }
+
+  getText() {
+    let myArray = [];
+    for (let i = 0; i < this.subtasks.length; i++) {
+      myArray.push({ text: this.subtasks[i].text, IsCompleted: false });
+    }
+    return myArray;
   }
 
   submitForm() {
@@ -255,7 +265,7 @@ export class AddTaskComponent {
 
     console.info('conctacts');
     // console.log(this.selectedContacts[0].id);
-    this.getId();
+    console.log(this.getId());
 
     console.info('Date');
     console.log(this.newDate);
@@ -267,7 +277,32 @@ export class AddTaskComponent {
     console.log(this.selectedCategory);
 
     console.info('Subtasks');
-    console.log(this.subtasks);
+    console.log(this.getText());
     console.log('------------------');
+
+    if (this.inputTitle && this.newDate && this.selectedCategory) {
+      if (
+        this.prio == 'Urgent' ||
+        this.prio == 'Medium' ||
+        this.prio == 'Low'
+      ) {
+        if (
+          this.selectedCategory == 'User Story' ||
+          this.selectedCategory == 'Technical Task'
+        ) {
+          let newTask: Task = {
+            title: this.inputTitle,
+            date: this.newDate,
+            prio: this.prio,
+            category: this.selectedCategory,
+            subtasks: this.getText()
+          };
+        }
+      }
+
+      // console.log(newTask);
+    } else {
+      console.log('Du kannst nicht mal alle Pflichtfelder ausfüllen?!?');
+    }
   }
 }

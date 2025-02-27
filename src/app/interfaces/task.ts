@@ -7,5 +7,5 @@ export interface Task {
   prio: 'Urgent' | 'Medium' | 'Low';
   category: 'User Story' | 'Technical Task';
   // subtasks?: string[] | boolean[];  
-  subtasks?: any[];  
+  subtasks?: {text:string, IsCompleted: boolean}[];  
 }

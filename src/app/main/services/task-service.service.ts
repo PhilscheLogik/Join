@@ -282,7 +282,7 @@ export class TaskServiceService {
    * @param {any} newSubtasks - The new subtasks associated with the to-do item.
    * @returns {Promise<void>} A promise that resolves when the to-do item is updated in the database.
    */
-  async updateContact(
+  async updateTask(
     id: string,
     newTitle: string,
     newDescription: string,

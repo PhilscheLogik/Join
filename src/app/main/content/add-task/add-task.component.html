@@ -4,7 +4,7 @@
     <img class="close" src="assets/img/icons/close.svg" alt="Closing Image" />
   </div>
 
-  <form>
+  <form (ngSubmit)="submitForm()">
     <div class="fill-in-area">
       <div class="content">
         <div class="title_field">
@@ -13,9 +13,9 @@
             class="input"
             type="text"
             name="input"
-            placeholder="Enter a title"
-            required
+            placeholder="Enter a title"            
             [(ngModel)]="inputTitle"
+            required
           />
         </div>
 
@@ -96,7 +96,7 @@
       <div class="right">
         <div class="choice date-input">
           <label for="dueDate">Due date<span>*</span></label>
-          <input [(ngModel)]="newDate" type="date" id="dueDate" name="dueDate" />
+          <input [(ngModel)]="newDate" type="date" id="dueDate" name="dueDate" required />
         </div>
 
         <div class="choice">
@@ -105,8 +105,8 @@
             <button
               class="btn-prio"
               type="button"
-              (click)="setPriority('high')"
-              [class.selectedHigh]="prio === 'high'"
+              (click)="setPriority('High')"
+              [class.selectedHigh]="prio === 'High'"
             >
               Urgent
               <div class="arrow-up"></div>
@@ -115,8 +115,8 @@
             <button
               class="btn-prio"
               type="button"
-              (click)="setPriority('medium')"
-              [class.selectedMedium]="prio === 'medium'"
+              (click)="setPriority('Medium')"
+              [class.selectedMedium]="prio === 'Medium'"
             >
               Medium
               <div class="equal"></div>
@@ -124,8 +124,8 @@
             <button
               class="btn-prio"
               type="button"
-              (click)="setPriority('low')"
-              [class.selectedLow]="prio === 'low'"
+              (click)="setPriority('Low')"
+              [class.selectedLow]="prio === 'Low'"
             >
               Low
               <div class="arrow-down"></div>
@@ -293,7 +293,7 @@
           <img src="assets/img/icons/cancel.svg" alt="Cancel" /></button
         >}
 
-        <button type="submit" class="create-btn" (click)="submitForm()">
+        <button type="submit" class="create-btn" >
           Create Task <img src="assets/img/icons/check.svg" alt="Check" />
         </button>
       </div>
