@@ -75,6 +75,11 @@ form {
         @include font($fs: 20px, $fw: 400);
         color: $light_gray;
       }
+
+      &:focus {
+        border-color: $light_blue;
+        outline: none;
+      }
     }
   }
 
@@ -104,6 +109,11 @@ form {
         @include font($fs: 20px, $fw: 400);
         color: $light_gray;
       }
+
+      &:focus {
+        border-color: $light_blue;
+        outline: none;
+      }
     }
   }
 
@@ -111,12 +121,6 @@ form {
     width: 100%;
     height: 300px;
     border-radius: 10px;
-
-    // .assigned {
-    //   @include font($fs: 20px, $fw: 400);
-    //   color: $dark_blue;
-    //   height: 24px;
-    // }
 
     .assigned_field_headline {
       position: relative;
@@ -140,6 +144,11 @@ form {
 
       .arrow_drop_up {
         display: none;
+      }
+
+      &:focus {
+        border-color: $light_blue;
+        outline: none;
       }
     }
 
@@ -268,6 +277,11 @@ form {
 
   padding-right: 16px;
   cursor: pointer;
+
+  &:focus {
+      border-color: $light_blue;
+      outline: none;
+    }
 }
 
 #dueDate::-moz-date-picker-arrow {
@@ -302,6 +316,11 @@ form {
       color: $light_gray;
       padding-top: 18px;
     }
+
+    &:focus {
+        border-color: $light_blue;
+        outline: none;
+      }
   }
 }
 
