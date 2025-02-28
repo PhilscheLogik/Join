@@ -158,6 +158,7 @@ export class SingleTaskComponent {
     if (!this.task.subtasks || this.task.subtasks.length === 0) {
       return 0;
     }
+    
     return this.task.subtasks.filter((subtask) => subtask.IsCompleted === true)
       .length;
   }
