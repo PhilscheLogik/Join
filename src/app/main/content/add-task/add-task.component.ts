@@ -29,20 +29,9 @@ export class AddTaskComponent {
 
   /*Subtask content*/
   newSubtask: string = '';
-  // subtasks: { text: string; isEditing: boolean }[] = [
-  //   { text: 'Taste Esc suchen', isEditing: false },
-  //   { text: 'Schuhe zubinden', isEditing: false },
-  // ];
   subtasks: { text: string; isEditing: boolean }[] = [];
   isEditing: boolean = false;
   openCategory = false;
-
-  // showCloseButton: boolean = false; // New variable to control button visibility
-
-  // @Output() close = new EventEmitter<void>();
-  // closeOverlay() {
-  //   this.close.emit(); // Das Event wird ausgelöst, um das Overlay zu schließen
-  // }
 
   constructor() {}
 
@@ -247,6 +236,14 @@ export class AddTaskComponent {
     this.subtasks[index].isEditing = false;
   }
 
+  /**
+   * Retrieves the IDs of all selected contacts.
+   *
+   * This method iterates through the `selectedContacts` array and extracts the `id` property from each contact,
+   * returning a new array containing these IDs.
+   *
+   * @returns {Array<string>} An array of contact IDs.
+   */
   getId() {
     let myArray = [];
     for (let i = 0; i < this.selectedContacts.length; i++) {
@@ -255,6 +252,17 @@ export class AddTaskComponent {
     return myArray;
   }
 
+  /**
+   * Retrieves the text of all subtasks with a default completion status of false.
+   *
+   * This method iterates through the `subtasks` array and extracts the `text` property from each subtask,
+   * returning a new array of objects where each object contains the `text` of the subtask and
+   * sets the `IsCompleted` property to `false`.
+   *
+   * @returns {Array<Object>} An array of objects, each containing:
+   *   - {string} text: The text of the subtask.
+   *   - {boolean} IsCompleted: A default value of `false`, indicating the subtask is not completed.
+   */
   getText() {
     let myArray = [];
     for (let i = 0; i < this.subtasks.length; i++) {
@@ -263,6 +271,17 @@ export class AddTaskComponent {
     return myArray;
   }
 
+  /**
+   * Submits the form data to create a new task.
+   *
+   * This method validates the required fields (`inputTitle`, `newDate`, `selectedCategory`),
+   * checks if the priority (`prio`) and category are valid, and then constructs a new task object
+   * with the provided details. If the fields are not valid, it logs an error message.
+   * Once the new task is created, it is passed to the `taskService.addTask` method for further processing.
+   *
+   * @returns {void} This function does not return any value.
+   * @throws {Error} If the required fields are not filled out, an error message is logged.
+   */
   submitForm() {
     let newTask: Task;
 
@@ -274,7 +293,6 @@ export class AddTaskComponent {
     console.log(this.inputDescription);
 
     console.info('conctacts');
-    // console.log(this.selectedContacts[0].id);
     console.log(this.getId());
 
     console.info('Date');
@@ -321,5 +339,33 @@ export class AddTaskComponent {
     } else {
       console.log('Du kannst nicht mal alle Pflichtfelder ausfüllen?!?');
     }
+
+    this.clearForm();
+  }
+
+  /**
+   * Clears the form data by resetting all input fields and selected values to their default states.
+   *
+   * This method resets the following properties to their initial values:
+   * - `inputTitle`: Resets to an empty string.
+   * - `inputDescription`: Resets to an empty string.
+   * - `newDate`: Resets to an empty string.
+   * - `prio`: Resets to the default value 'Medium'.
+   * - `selectedCategory`: Resets to an empty string.
+   * - `selectedContacts`: Clears the selected contacts array.
+   * - `subtasks`: Clears the subtasks array.
+   *
+   * This is typically used when clearing a form after submitting or when resetting the form to its initial state.
+   *
+   * @returns {void} This method does not return any value.
+   */
+  clearForm() {
+    this.inputTitle = '';
+    this.inputDescription = '';
+    this.newDate = '';
+    this.prio = 'Medium'; // Set default priority
+    this.selectedCategory = '';
+    this.selectedContacts = [];
+    this.subtasks = [];
   }
 }
