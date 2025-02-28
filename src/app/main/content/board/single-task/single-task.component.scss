@@ -1,0 +1,431 @@
+@import "./../../../../../styles.scss";
+
+.task-overlay-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.task-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  @include dFlex();
+  flex-direction: column;
+  z-index: 1000;
+
+  &.show {
+    animation: slideIn 0.3s forwards;
+  }
+
+  &.hide {
+    animation: slideOut 0.3s forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  h1 {
+    @include font($ff: "Inter", $fs: clamp(36px, 7vw, 61px), $fw: 700);
+    margin-bottom: 16px;
+    max-height: calc(1.2em * 3); /* 3 Zeilen mit einer Zeilenhöhe von 1.2em */
+    line-height: 1.2em; /* Definiert die Zeilenhöhe */
+    overflow-y: auto; /* Aktiviert die vertikale Scrollbar, falls nötig */
+    word-wrap: break-word; /* Zeilenumbruch bei langen Wörtern */
+    overflow-wrap: break-word; /* Alternative für neuere Browser */
+    white-space: normal; /* Sicherstellen, dass der Text umbricht */
+    hyphens: auto; /* Automatische Silbentrennung */
+    -webkit-hyphens: auto; /* Safari */
+    -moz-hyphens: auto; /* Firefox */
+    -ms-hyphens: auto; /* Internet Explorer/Edge */
+  }
+
+  .description {
+    max-height: calc(1.4em * 3);
+    line-height: 1.4em;
+    overflow-y: auto;
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+
+  p {
+    @include font($ff: "Inter", $fs: clamp(14px, 3vw, 20px), $fw: 400);
+  }
+
+  .task-overlay-content {
+    position: relative;
+    background: $white;
+    padding: 32px;
+    border-radius: 24px;
+    width: 550px;
+    height: 950px;
+    // min-height: 850px;
+    // max-height: 950px;
+
+    @media (max-width: 580px) {
+      width: 85%;
+      height: 70%;
+      padding: 24px;
+    }
+
+    @media (max-width: 480px) {
+      height: 65%;
+      padding: 16px;
+    }
+
+    .header {
+      @include dFlex($jc: space-between);
+      margin-bottom: 24px;
+
+      @media (max-width: 580px) {
+        margin-bottom: 12px;
+      }
+
+      .category {
+        padding: 3px 20px;
+        border-radius: 6px;
+        color: $white;
+        @include font($ff: "Inter", $fs: clamp(16px, 3vw, 23px), $fw: 400);
+
+        .user-story {
+          background-color: $blue_deep;
+        }
+
+        .technical-task {
+          background-color: $mint;
+        }
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 50%;
+
+        &:hover {
+          background: $mid_gray;
+        }
+      }
+    }
+
+    .value-date {
+      padding-left: 30px;
+    }
+
+    .value-priority {
+      padding-left: 41px;
+    }
+
+    .priority-icon-medium {
+      transform: translateY(-2px);
+    }
+
+    .priority-icon-low {
+      transform: translateY(1px);
+    }
+
+    .info,
+    .assigned-to,
+    .subtasks {
+      margin-top: 16px;
+    }
+
+    .subtask,
+    .assignee {
+      margin-left: 16px;
+    }
+
+    .assignees {
+      display: flex;
+      flex-direction: column;
+      max-height: 170px;
+      overflow-y: auto;
+
+      .assignee {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 16px;
+
+        .profile_badge {
+          @include dFlex();
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          color: $white;
+        }
+
+        .assignee-name {
+          @include font($ff: "Inter", $fs: clamp(14px, 3vw, 20px), $fw: 400);
+        }
+      }
+    }
+
+    .subtasks {
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .subtask {
+      margin-top: 8px;
+      border-radius: 16px;
+      padding: 0px 8px;
+      line-height: 1.8;
+
+      img {
+        position: relative;
+        top: 6px;
+      }
+
+      &:hover {
+        background-color: $mid_gray;
+      }
+    }
+
+    .subtask-text {
+      margin-left: 10px;
+      @include font($ff: "Inter", $fs: clamp(12px, 3vw, 16px), $fw: 400);
+    }
+
+    .checkbox-icon {
+      width: 24px;
+      height: 25px;
+      object-fit: contain;
+    }
+
+    .actions-buttons {
+      @include dFlex($jc: flex-end);
+      position: absolute;
+      bottom: 24px;
+      right: 32px;
+
+      button {
+        color: $black;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        background: none;
+        @include font($ff: "Inter", $fs: clamp(14px, 3vw, 20px), $fw: 400);
+
+        &:hover {
+          color: $light_blue;
+
+          img {
+            filter: invert(56%) sepia(34%) saturate(507%) hue-rotate(165deg)
+              brightness(98%) contrast(95%);
+          }
+        }
+      }
+
+      .divider {
+        width: 1px;
+        height: 26px;
+        background-color: $mid_gray;
+      }
+
+      img {
+        position: relative;
+        top: 4px;
+      }
+    }
+  }
+}
+
+// small-card
+
+.example-box {
+  @include dFlex($ai: flex-start, $jc: center, $g: 16px);
+  flex-direction: column;
+  width: 100%;
+  min-height: 160px;
+  max-height: 256px;
+  padding: 16px;
+  z-index: 1;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+
+  // border-bottom: solid 1px #ccc;
+  border-radius: 10px;
+  color: rgba(0, 0, 0, 0.87);
+  // display: flex;
+  // flex-direction: row;
+  // align-items: center;
+  // justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.task_card_category {
+  @include font($fs: 16px, $fw: 400);
+  height: 27px;
+  min-height: 27px;
+  width: 128px;
+  border-radius: 8px;
+  text-align: center;
+  align-content: center;
+  color: $white;
+}
+
+.user-story {
+  background-color: $blue_deep;
+}
+
+.technical-task {
+  background-color: $mint;
+}
+
+.task_card_main {
+  max-height: 84px;
+  /* 3 dots appear when content overflows div size */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.task_card_substasks {
+  @include font($fs: 12px, $fw: 400);
+  @include dFlex($ai: center, $jc: space-between);
+  width: 100%;
+  height: 16px;
+}
+
+.subtasks_progress {
+  max-width: 128px;
+  width: 65%;
+  height: 16px;
+}
+
+.subtasks_progress {
+  >progress {
+    width: 100%; /* Matches your original progress_outer width */
+    height: 10px; /* Matches your original progress_inner height */
+    -webkit-appearance: none; /* Reset default styles in Webkit browsers */
+    appearance: none;
+  }
+
+  /* Style the progress bar's filled portion */
+  >progress::-webkit-progress-value {
+    background-color: $light_blue; /* Matches your original progress_inner color */
+    border-radius: 5px;
+  }
+  >progress::-moz-progress-bar {
+    background-color: $light_blue; /* For Firefox */
+  }
+
+  /* Style the progress bar's background */
+  >progress::-webkit-progress-bar {
+    background-color: $hover_gray; /* Matches your original progress_outer color */
+    border-radius: 5px;
+  }
+}
+
+.progress_outer {
+  width: 100%;
+  height: 16px;
+}
+
+.progress_inner {
+  width: 50%; /* needs to be changed dynamically depending on team member count */
+  height: 8px;
+  border-radius: 4px;
+  background-color: $blue_lavender;
+}
+
+.task_card_team {
+  @include dFlex($ai: center, $jc: space-between);
+  height: 32px;
+  width: 100%;
+}
+
+.team_left {
+  display: flex;
+  flex-direction: row;
+
+  > .profile_badge {
+    // position: relative;
+    @include dFlex();
+    width: 32px;
+    height: 32px;
+    border: 1px solid;
+    border-color: $white;
+    border-radius: 50%;
+    @include font($fs: 12px, $fw: 400);
+    color: $white;
+    background-color: $light_gray;
+    min-width: 32px;
+    margin-left: -8px;
+  }
+
+  .profile_badge:first-child {
+    margin-left: 0;
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Mobile */
+
+@media (max-width: 860px) {
+  .example-box {
+    width: 252px;
+    margin-top: 7px;
+    margin-left: 7px;
+  }
+}

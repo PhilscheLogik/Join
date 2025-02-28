@@ -37,7 +37,6 @@
     border-radius: 50%;
     @include font($fs: 47px, $fw: 500);
     color: $white;
-    // background-color: gray;
 }
 
   @media (max-width: 1150px) {
@@ -190,7 +189,7 @@
   border-radius: 50%;
 
   &:hover {
-    background: #f1f1f1;
+    background: $mid_gray;
   }
 }
 
@@ -243,7 +242,7 @@ p {
 .error-message {
   font-size: 12px;
   margin-top: -6px;
-  color: red;
+  color: $red_light;
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -270,7 +269,7 @@ p {
 }
 
 .cancel-btn {
-  border: 1px solid black;
+  border: 1px solid $black;
   background-color: $white;
 
   &:hover {
@@ -287,7 +286,7 @@ p {
 
 .create-btn {
   background: $dark_blue;
-  color: white;
+  color: $white;
   white-space: nowrap;
 
   &:hover {

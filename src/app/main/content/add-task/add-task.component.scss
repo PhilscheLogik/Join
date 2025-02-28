@@ -1,5 +1,905 @@
-@import './../../../../styles.scss';
+@import "./../../../../styles.scss";
 
-p{
-    background-color: lightgreen;
+section {
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+  padding: 0 70px;
+  max-height: calc(100vh - 91px);
+  min-height: auto;
+  overflow: auto;
+}
+
+form {
+  @include dFlex($jc: space-between);
+  flex-direction: column;
+  height: calc(100vh - 91px - 190px);
+}
+
+.fill-in-area {
+  @include dFlex($jc: space-between, $ai: flex-start);
+  width: 100%;
+}
+
+.head-section {
+  @include dFlex($jc: space-between);
+  padding-top: 80px;
+  padding-bottom: 30px;
+
+  h1 {
+    @include font($fs: 61px, $fw: 700);
+  }
+
+  .close-button {
+    display: none; // Standardmäßig ausgeblendet
+
+    &.show {
+      display: block; // Zeigt den Button an, wenn die Klasse "show" hinzugefügt wird
+      z-index: 10;
+      cursor: pointer;
+    }
+  }
+}
+
+.error-message {
+  @include font($fs: 10px, $fw: 400);
+  color: $red;
+}
+
+/*linkes Div*/
+.content {
+  @include dFlex($ai: flex-start, $g: 20px);
+  flex-direction: column;
+  width: 30.5vw;
+  max-width: 587px;
+
+  .title_field {
+    @include dFlex($ai: flex-start, $g: 10px);
+    flex-direction: column;
+    // width: 440px;
+    width: 100%;
+
+    .title {
+      @include font($fs: 20px, $fw: 400);
+      color: $dark_blue;
+      height: 24px;
+
+      span {
+        color: $red;
+      }
+    }
+
+    >div {
+      width: 100%;
+
+      .input {
+        @include font($fs: 20px, $fw: 400);
+        border: 1px solid;
+        border-color: $light_gray;
+        border-radius: 10px;
+        height: 48px;
+        width: 100%;
+        padding-left: 21px;
+
+        &::placeholder {
+          @include font($fs: 20px, $fw: 400);
+          color: $light_gray;
+        }
+
+        &:focus {
+          border-color: $light_blue;
+          outline: none;
+        }
+
+        &.error {
+          border-color: $red;
+        }
+      }
+    }
+  }
+
+  .description_field {
+    @include dFlex($ai: flex-start, $g: 10px);
+    flex-direction: column;
+    // width: 440px;
+    width: 100%;
+
+    .description {
+      @include font($fs: 20px, $fw: 400);
+      color: $dark_blue;
+      height: 24px;
+    }
+
+    .input {
+      @include font($fs: 20px, $fw: 400);
+      border: 1px solid;
+      border-color: $light_gray;
+      border-radius: 10px;
+      height: 120px;
+      width: 100%;
+      padding-top: 18px;
+      padding-left: 16px;
+
+      &::placeholder {
+        @include font($fs: 20px, $fw: 400);
+        color: $light_gray;
+      }
+
+      &:focus {
+        border-color: $light_blue;
+        outline: none;
+      }
+    }
+  }
+
+  .assigned_field {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+
+    .assigned {
+      @include font($fs: 20px, $fw: 400);
+        color: $dark_blue;
+        height: 24px;
+    }
+
+    .assigned_field_headline {
+      position: relative;
+      @include dFlex($jc: space-between);
+      @include font($fs: 20px, $fw: 400);
+      background-color: $white;
+      height: 48px;
+      width: 100%;
+      border: 1px solid;
+      border-color: $light_gray;
+      border-radius: 10px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 10px;
+      z-index: 5;
+      cursor: pointer;
+
+      .arrow_drop_down {
+        display: block;
+      }
+
+      .arrow_drop_up {
+        display: none;
+      }
+
+      &:focus {
+        border-color: $light_blue;
+        outline: none;
+      }
+    }
+
+    .contact_list {
+      background-color: $white;
+      display: none;
+      position: relative;
+      z-index: 3;
+      border-radius: 0 0 10px 10px;
+
+      .assigned_field_contact_list {
+        position: absolute;
+        top: -5px;
+        left: 0;
+        background-color: $white;
+        @include dFlex($jc: flex-start, $ai: flex-start);
+        flex-direction: column;
+        width: 100%;
+        height: calc(318px - 48px);
+        border-radius: 0 0 10px 10px;
+        padding-top: 10px;
+        overflow: auto;
+        box-shadow: 0px 5px 14px 3px rgba(0, 0, 0, 0.4);
+
+        .assigned_field_single_contact {
+          @include dFlex($g: 20px);
+          width: 100%;
+          padding-left: 16px;
+          padding-right: 30px;
+          cursor: pointer;
+
+          p {
+            @include dFlex($jc: flex-start);
+            @include font($fs: 20px, $fw: 400);
+            height: 56px;
+            flex: 1;
+          }
+
+          &:hover {
+            background-color: $hover_gray;
+            border-radius: 10px;
+          }
+
+          .check_button_white {
+            display: none;
+          }
+        }
+
+        .selected {
+          background-color: $dark_blue;
+          border-radius: 10px;
+          color: $white;
+          @include dFlex($jc: flex-start, $g: 20px);
+
+          .check_button_white {
+            display: block;
+          }
+
+          .check_button {
+            display: none;
+          }
+
+          &:hover {
+            background-color: $dark_dark_blue;
+            border-radius: 10px;
+
+            .check_button {
+              display: none;
+            }
+
+            .check_button_white {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    .contact_badge_line {
+      position: relative;
+      @include dFlex($jc: flex-start, $g: 5px);
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+  }
+}
+
+.profile_badge {
+  @include dFlex();
+  width: 42px;
+  height: 42px;
+  border: 1px solid;
+  border-color: $white;
+  border-radius: 50%;
+  @include font($fs: 12px, $fw: 400);
+  color: $white;
+  min-width: 42px;
+}
+
+/*Trennlinie*/
+.line {
+  width: 2px;
+  background-color: $light_gray;
+  height: 50vh;
+  min-height: 300px;
+  max-height: 600px;
+}
+
+/*Rechtes Div*/
+.right {
+  @include dFlex($ai: flex-start, $g: 20px);
+  flex-direction: column;
+  width: 30.5vw;
+  max-width: 587px;
+}
+
+/*Datum*/
+#dueDate {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-left: 16px;
+
+  color: $light_gray;
+  @include font($fs: 20px, $fw: 400);
+
+  padding-right: 16px;
+  cursor: pointer;
+
+  &:focus {
+    border-color: $light_blue;
+    outline: none;
+  }
+}
+
+#dueDate::-moz-date-picker-arrow {
+  display: none;
+}
+
+/* Allgemeine Div mit input und label*/
+.choice {
+  @include dFlex($ai: flex-start, $g: 10px);
+  flex-direction: column;
+  width: 100%;
+
+  label {
+    @include font($fs: 20px, $fw: 400);
+    color: $dark_blue;
+  }
+
+  span {
+    color: $red;
+  }
+
+  >div {
+    width: 100%;
+
+    input {
+      @include font($fs: 20px, $fw: 400);
+      border: 1px solid;
+      border-color: $light_gray;
+      border-radius: 10px;
+      height: 48px;
+      width: 100%;
+      padding-left: 16px;
+
+      &::placeholder {
+        color: $light_gray;
+        padding-top: 18px;
+      }
+
+      &:focus {
+        border-color: $light_blue;
+        outline: none;
+      }
+
+      &.error {
+        border-color: $red;
+      }
+    }
+  }
+}
+
+/* Prio button*/
+.btn-section {
+  @include dFlex($jc: space-between, $g: 10px);
+  width: 100%;
+}
+
+.btn-prio {
+  @include dFlex($jc: space-between);
+  box-sizing: border-box;
+  padding: 16px;
+  @include font($fs: 21px, $fw: 400);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: $white;
+  box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
+
+  &:hover {
+    box-shadow: 0px 3px 4px 0 rgba($black, 0.3);
+  }
+}
+
+.arrow-up,
+.equal,
+.arrow-down {
+  width: 20px;
+  height: 15px;
+  margin-left: 8px;
+}
+
+.arrow-up {
+  background: url("./../../../../assets/img/icons/arrow_up_red.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.equal {
+  background: url("./../../../../assets/img/icons/equal_orange.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.arrow-down {
+  background: url("./../../../../assets/img/icons/arrow_down_green.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.selectedHigh {
+  background: $special_red;
+  color: $white;
+  font-weight: 700;
+
+  &:hover {
+    box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
+  }
+
+  div {
+    background: url("./../../../../assets/img/icons/arrow_up_white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.selectedMedium {
+  background: $darker_orange;
+  color: $white;
+  font-weight: 700;
+
+  &:hover {
+    box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
+  }
+
+  div {
+    background: url("./../../../../assets/img/icons/equal_white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.selectedLow {
+  background: $light_green;
+  color: $white;
+  font-weight: 700;
+
+  &:hover {
+    box-shadow: 0px 0px 4px 1px rgba($black, 0.1);
+  }
+
+  div {
+    background: url("./../../../../assets/img/icons/arrow_down_white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+/*Category*/
+#taskType {
+  @include font($fs: 20px, $fw: 400);
+  height: 48px;
+  width: 100%;
+  border: 1px solid;
+  border-color: $light_gray;
+  border-radius: 10px;
+  padding-right: 10px;
+  background: $white;
+}
+
+.seemInput {
+  @include dFlex($jc: flex-start);
+  @include font($fs: 20px, $fw: 400);
+  border: 1px solid;
+  border-color: $light_gray;
+  border-radius: 10px;
+  height: 48px;
+  width: 100%;
+  padding-left: 21px;
+  background-color: $white;
+  z-index: 3;
+
+  position: relative;
+  cursor: pointer;
+
+  img {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+  }
+}
+
+.categoryContainer {
+  position: relative;
+  @include dFlex();
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+}
+
+.categorySelection {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.4);
+
+  // @include dFlex($jc:space-between);
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+
+  @include font($fs: 20px, $fw: 400);
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  padding-top: 15px;
+  background-color: $white;
+  z-index: 2;
+
+  p {
+    width: 100%;
+    padding: 16px 21px;
+    cursor: pointer;
+  }
+}
+
+.selected {
+  background-color: $dark_blue;
+  border-radius: 10px;
+  color: $white;
+  @include dFlex($jc: flex-start);
+}
+
+/*Subtask*/
+.input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  position: relative;
+  border-radius: 5px;
+}
+
+.button-group {
+  @include dFlex();
+
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+
+  span {
+    color: $light_gray;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.btn-subtask {
+  img {
+    width: 24px;
+    height: 24px;
+
+    &:hover {
+      background-color: $hover_gray;
+      border-radius: 50%;
+    }
+  }
+}
+
+.subtask-list {
+  margin-top: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 100%;
+
+  li {
+    .li-container {
+      @include dFlex($jc: space-between);
+      min-height: 29px;
+      position: relative;
+
+      &:hover {
+        background-color: $hover_gray;
+      }
+    }
+
+    span {
+      color: black;
+      display: inline-block;
+    }
+
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover .actions {
+      @include dFlex($jc: space-between);
+      color: $light_gray;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+    }
+
+    .actions {
+      display: none;
+
+      span {
+        color: $light_gray;
+      }
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .edit-input {
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: 1px;
+      border-bottom: 2px solid $line_blue;
+      background: $white;
+      padding: 3px;
+    }
+  }
+}
+
+ul {
+  max-height: 100px;
+  height: 100px;
+  overflow: auto;
+}
+
+/* Submit und Clear oder Cancel Button*/
+.submit-section {
+  width: 100%;
+  @include dFlex($jc: space-between, $ai: flex-end);
+  @include font($fs: 16px, $fw: 400);
+  margin-bottom: 20px;
+
+  >p span {
+    color: $red;
+  }
+}
+
+.cancel-btn,
+.create-btn {
+  padding: 16px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  >img {
+    margin-left: 3px;
+  }
+}
+
+.create-btn {
+  background: $dark_blue;
+  color: $white;
+  white-space: nowrap;
+  font-size: 21px;
+  font-weight: 700;
+
+
+  &:hover {
+    background-color: $light_blue;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.cancel-btn {
+  border: 1px solid $black;
+  background-color: $white;
+  font-size: 20px;
+
+  &:hover {
+    border-color: $light_blue;
+    color: $light_blue;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    img {
+      filter: invert(56%) sepia(34%) saturate(507%) hue-rotate(165deg) brightness(98%) contrast(95%);
+    }
+  }
+}
+
+.btn-submit-section {
+  @include dFlex($jc: space-between, $g: 30px);
+  margin-top: 4px;
+}
+
+/*--------------------------------------------------   Mobile   --------------------------------------------------*/
+@media (min-width: 1200px) {
+  .fill-in-area {
+    height: 550px;
+  }
+}
+
+@media (max-width: 1200px) {
+  section {
+    padding: 0 20px;
+  }
+
+  form {
+    @include dFlex($jc: space-between);
+    flex-direction: column;
+    height: calc(100vh - 91px - 190px);
+  }
+
+  .fill-in-area {
+    @include dFlex();
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 587px;
+
+    .title_field,
+    .description_field,
+    .assigned_field {
+      width: 100%;
+    }
+
+    .assigned_field {
+      height: auto;
+
+      .contact_list {
+        .assigned_field_contact_list {
+          position: relative;
+        }
+      }
+    }
+  }
+
+  .line {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .categorySelection {
+    position: relative;
+  }
+}
+
+@media (max-width: 1024px) {
+  form {
+    height: calc(100vh - 91px - 190px - 80px);
+  }
+
+  .submit-section {
+    padding-bottom: 150px;
+  }
+
+  .btn-submit-section {
+    // @include dFlex($jc: space-between, $g: 30px);
+    // margin-top: 4px;
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 10;
+  }
+}
+
+@media (max-width: 500px) {
+  section {
+    padding: 0 20px;
+  }
+
+  .head-section {
+    h1 {
+      @include font($fs: 47px, $fw: 700);
+    }
+  }
+
+  .content {
+    .title_field {
+      width: 100%;
+
+      .title {
+        @include font($fs: 16px, $fw: 400);
+      }
+
+      .input {
+        @include font($fs: 16px, $fw: 400);
+
+        &::placeholder {
+          @include font($fs: 16px, $fw: 400);
+        }
+      }
+    }
+
+    .description_field {
+      .description {
+        @include font($fs: 16px, $fw: 400);
+      }
+
+      .input {
+        @include font($fs: 16px, $fw: 400);
+
+        &::placeholder {
+          @include font($fs: 16px, $fw: 400);
+        }
+      }
+    }
+
+    .assigned_field {
+      .assigned {
+        @include font($fs: 16px, $fw: 400);
+      }
+
+      .assigned_field_headline {
+        @include font($fs: 16px, $fw: 400);
+      }
+
+      .contact_list {
+        .assigned_field_contact_list {
+          .assigned_field_single_contact {
+            @include dFlex($g: 20px);
+
+            p {
+              @include font($fs: 16px, $fw: 400);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #dueDate {
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  .choice {
+    label {
+      @include font($fs: 16px, $fw: 400);
+    }
+
+    .input-container {
+      input {
+          @include font($fs: 16px, $fw: 400);
+      }
+    }
+  }
+
+  .btn-prio {
+    width: 121px;
+    height: 41px;
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  #taskType {
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  .submit-section {
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  .seemInput {
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  .categorySelection {
+    @include font($fs: 16px, $fw: 400);
+  }
+
+  .btn-submit-section {
+    @include dFlex($jc: space-between, $g: 20px);
+    right: 20px;
+  }
+
+  .create-btn {
+    @include font($fs: 21px, $fw: 700);
+  }
+
+  .cancel-btn {
+    border: 1px solid $black;
+    background-color: $white;
+    @include font($fs: 20px, $fw: 400);
+  }
+}
+
+@media (max-width: 400px) {
+  .btn-section {
+    @include dFlex($g: 20px);
+    flex-direction: column;
+  }
+
+  .btn-submit-section {
+    @include dFlex($ai: flex-end, $g: 20px);
+    flex-direction: column;
+  }
 }

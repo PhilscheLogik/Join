@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 export class NavigationService {
 
-  selectedItem = 3; // Signal für den aktiven Menüpunkt
+  selectedItem = 1; // Signal für den aktiven Menüpunkt
   predecessor = 0;
 
 

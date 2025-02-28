@@ -1,0 +1,209 @@
+<section>
+  <!-- overview overlay -->
+
+  @if (isOverlayOpen) {
+  <div class="task-overlay-bg"></div>
+
+  <div
+    class="task-overlay"
+    [ngClass]="{ show: isOverlayOpen, hide: isClosing }"
+    (click)="closeOverlay()"
+  >
+    <div class="task-overlay-content" (click)="$event.stopPropagation()">
+      <div class="header">
+        <span
+          class="category"
+          [ngClass]="{
+            'user-story': selectedTask?.category === 'User Story',
+            'technical-task': selectedTask?.category === 'Technical Task'
+          }"
+        >
+          {{ selectedTask?.category }}
+        </span>
+
+        <button class="close-btn" (click)="closeOverlay()">
+          <img src="assets/img/icons/close.svg" alt="Close" />
+        </button>
+      </div>
+
+      <h1>{{ selectedTask?.title }}</h1>
+      <p class="description">{{ selectedTask?.description }}</p>
+
+      <div class="info">
+        <p>
+          <span class="label-date">Due date:</span>
+          <span class="value-date">{{ selectedTask?.date }}</span>
+        </p>
+        <br />
+        <p>
+          <span class="label-priority">Priority:</span>
+          <span class="value-priority">
+            {{ selectedTask?.prio }}
+            @if (selectedTask?.prio === 'Urgent') {
+            <img
+              src="assets/img/icons/prio_high.svg"
+              alt="Urgent Priority"
+              class="priority-icon-high"
+            />
+            } @if (selectedTask?.prio === 'Medium') {
+            <img
+              src="assets/img/icons/prio_medium.svg"
+              alt="Medium Priority"
+              class="priority-icon-medium"
+            />
+            } @if (selectedTask?.prio === 'Low') {
+            <img
+              src="assets/img/icons/prio_low.svg"
+              alt="Low Priority"
+              class="priority-icon-low"
+            />
+            }
+          </span>
+        </p>
+      </div>
+
+      <div class="assigned-to">
+        <p>Assigned To:</p>
+        <div class="assignees">
+          @for (id of selectedTask?.assignedTo; track $index) { @for(contact of
+          contactService.contactList; track $index) { @if(id == contact.id) {
+          <div class="assignee">
+            <div
+              class="profile_badge"
+              [ngStyle]="{ 'background-color': contact.bgColor }"
+            >
+              {{ contact.initials }}
+            </div>
+            <p class="assignee-name">{{ contact.name }}</p>
+          </div>
+          } } }
+        </div>
+      </div>
+
+      <div class="subtasks">
+        <p>Subtasks</p>
+        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
+        track subtask) {
+        <div class="subtask" (click)="toggleSubtaskCompleted(subtask)">
+          @if(subtask.IsCompleted){
+          <img
+            class="checkbox-icon"
+            src="assets/img/icons/check_button_checked.svg"
+            alt="Completed Icon"
+          />
+          } @if(!subtask.IsCompleted){
+          <img
+            class="checkbox-icon"
+            src="assets/img/icons/check_button_icon.svg"
+            alt="Uncompleted Icon"
+          />
+          }
+          <!-- <span [ngClass]="{ 'subtask-completed': subtask.IsCompleted }"> -->
+          <span>
+            {{ subtask.text }}
+          </span>
+        </div>
+        } }
+      </div>
+
+      <div class="actions-buttons">
+        <button
+          (click)="deleteTask(selectedTask); closeOverlay()"
+          class="delete-btn"
+        >
+          <img src="assets/img/icons/trash_icon.svg" alt="Delete Icon" />
+          Delete
+        </button>
+        <span class="divider"></span>
+        <button class="edit-btn">
+          <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" />
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+
+  <!-- Small card board -->
+
+  <div class="example-box" (click)="openOverlay(task)" cdkDrag>
+    <p
+      class="task_card_category"
+      [ngClass]="{
+        'user-story': task.category === 'User Story',
+        'technical-task': task.category === 'Technical Task'
+      }"
+    >
+      {{ task.category }}
+    </p>
+
+    <div class="task_card_main">
+      <h3>{{ task.title }}</h3>
+      <p>{{ task.description }}</p>
+    </div>
+
+    <div class="task_card_substasks">
+      <div class="subtasks_progress">
+        <!-- <div class="progress_outer">
+          <div
+            class="progress_inner"
+            [style.width]="getSubtasksProgress() + '%'"
+          ></div>
+        </div> -->
+        <progress 
+          [value]="getCompletedSubtasksCount()" 
+          [max]="task.subtasks?.length || 0"
+       ></progress>
+      </div>
+      <p>
+        @if (task.subtasks && task.subtasks.length > 0) {
+        {{ getCompletedSubtasksCount() }} / {{ task.subtasks.length }} Subtasks
+        } @else { 0 Subtasks }
+      </p>
+    </div>
+
+    <div class="task_card_team">
+      <div class="team_left">
+        <!-- Zeigt maximal 4 Teilnehmer mit ihren Initialen -->
+        @for (id of getVisibleContacts(task); track $index) { @for (contact of
+        contactService.contactList; track $index) { @if(id == contact.id) {
+        <div
+          class="profile_badge"
+          [ngStyle]="{ 'background-color': contact.bgColor }"
+        >
+          {{ contact.initials }}
+        </div>
+        } } }
+
+        <!-- Falls mehr als 4 Teilnehmer vorhanden sind, zeige +x -->
+        @if (getHiddenCount(task) > 0) {
+        <div class="profile_badge more">+{{ getHiddenCount(task) }}</div>
+        }
+      </div>
+
+      <div class="team_right">
+        <div class="taskcard_priority">
+          @if (task.prio === 'Urgent') {
+          <img
+            src="assets/img/icons/prio_high.svg"
+            alt="Urgent Priority"
+            class="priority-icon-high"
+          />
+          } @if (task.prio === 'Medium') {
+          <img
+            src="assets/img/icons/prio_medium.svg"
+            alt="Medium Priority"
+            class="priority-icon-medium"
+          />
+          } @if (task.prio === 'Low') {
+          <img
+            src="assets/img/icons/prio_low.svg"
+            alt="Low Priority"
+            class="priority-icon-low"
+          />
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

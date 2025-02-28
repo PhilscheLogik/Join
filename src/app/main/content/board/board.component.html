@@ -1,1 +1,167 @@
-<p>board works!</p>
+<section>
+  <div class="board_header">
+    <div class="board_header_left">
+      <h1>Board</h1>
+      <div class="mobile_add_task_btn" (click)="naviService.setSelectedItem(1)">
+        <img src="assets/img/icons/plus_icon.svg" alt="" />
+      </div>
+    </div>
+    <div class="board_header_right">
+      <div class="input_field">
+        <input
+          type="text"          
+          id="subtasks"
+          name="searchText"
+          [(ngModel)]="searchText"
+          placeholder="Find task"
+          (keydown.enter)="startSearch()"
+        />
+
+        <div class="input-search-btn" (click)="startSearch()">
+          <div class="input-seperator"></div>
+          <div class="search-btn">
+            <img src="assets/img/icons/search_icon.svg" alt="Search Icon" />
+          </div>
+        </div>
+      </div>
+      <button
+        class="add_task_btn btn_desktop"
+        (click)="taskService.toggleCloseButton()"
+      >
+        Add task
+        <img src="assets/img/icons/plus_icon.svg" alt="" />
+      </button>
+      <button
+        class="add_task_btn btn_mobile"
+        (click)="naviService.setSelectedItem(1)"
+      >
+        Add task
+        <img src="assets/img/icons/plus_icon.svg" alt="" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Add-Task-Overlay  -->
+  @if(taskService.showCloseButton) {
+  <div class="overlay_task">
+    <div class="overlay_bg_white">
+      <app-add-task></app-add-task>
+    </div>
+  </div>
+  }
+
+  <div class="board_content">
+    <div class="to_do">
+      <div class="board_content_header">
+        <h2>To do</h2>
+        <button class="to_do_add_btn"></button>
+      </div>
+      <div class="empty_bg">
+        <p>No task To do</p>
+      </div>
+      <div
+        class="tasks_content"
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="taskService.todoList"
+        [cdkDropListConnectedTo]="[progressList, feedbackList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (task of this.filterList(this.taskService.todoList); track $index) {
+        <app-single-task
+          (click)="setType('todo')"
+          [task]="task"
+          cdkDrag
+        ></app-single-task>
+        }
+      </div>
+    </div>
+    <div class="in_progress">
+      <div class="board_content_header">
+        <h2>In progress</h2>
+        <button class="in_progress_add_btn"></button>
+      </div>
+      <div class="empty_bg">
+        <p>No task in progress</p>
+      </div>
+      <div
+        class="tasks_content"
+        cdkDropList
+        #progressList="cdkDropList"
+        [cdkDropListData]="taskService.progressList"
+        [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (task of this.filterList(this.taskService.progressList); track task) {
+        <app-single-task
+          (click)="setType('inprogess')"
+          [task]="task"
+          cdkDrag
+        ></app-single-task>
+        }
+      </div>
+    </div>
+    <div class="await_feedback">
+      <div class="board_content_header">
+        <h2>Await feedback</h2>
+        <button class="await_feedback_add_btn"></button>
+      </div>
+      <div class="empty_bg">
+        <p>No task awaits feedback</p>
+      </div>
+      <div
+        class="tasks_content"
+        cdkDropList
+        #feedbackList="cdkDropList"
+        [cdkDropListData]="taskService.feedbackList"
+        [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (task of this.filterList(this.taskService.feedbackList); track task) {
+        <app-single-task
+          (click)="setType('feedback')"
+          [task]="task"
+          cdkDrag
+        ></app-single-task>
+        }
+      </div>
+    </div>
+    <div class="done">
+      <div class="board_content_header">
+        <h2>Done</h2>
+      </div>
+      <div class="empty_bg">
+        <p>No task done yet</p>
+      </div>
+      <div
+        class="tasks_content"
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="taskService.doneList"
+        [cdkDropListConnectedTo]="[todoList, progressList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (task of this.filterList(this.taskService.doneList); track task) {
+        <app-single-task
+          (click)="setType('done')"
+          [task]="task"
+          cdkDrag
+        ></app-single-task>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="taskOverlay" [(ngClass)]="{'d_none': isTaskOverlayOpen}"]> -->
+  <!-- @if(isTaskOverlayOpen) {
+      <div class="overlay_task">
+        <div>
+          <app-add-task [ngStyle]="{'border': '2px solid red'}"></app-add-task>
+        </div>
+      </div>
+    } -->
+</section>
