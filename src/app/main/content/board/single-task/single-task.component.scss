@@ -7,7 +7,7 @@
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 999; 
+  z-index: 999;
 }
 
 .task-overlay {
@@ -38,7 +38,7 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes slideOut {
     from {
       transform: translateX(0);
@@ -168,6 +168,8 @@
     .assignees {
       display: flex;
       flex-direction: column;
+      max-height: 170px; // Höhe für max. 3 Einträge anpassen
+      overflow-y: auto; // Scrollbar nur wenn nötig
 
       .assignee {
         display: flex;
@@ -187,6 +189,11 @@
           @include font($ff: "Inter", $fs: clamp(14px, 3vw, 20px), $fw: 400);
         }
       }
+    }
+
+    .subtasks {
+      max-height: 150px;
+      overflow-y: auto;
     }
 
     .subtask {
@@ -397,4 +404,3 @@
     margin-left: 7px;
   }
 }
-
