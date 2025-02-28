@@ -45,7 +45,6 @@ export class AddTaskComponent {
    */
   clickCategory() {
     this.openCategory = !this.openCategory;
-    // this.showCloseButton = this.openCategory; // Show the close button if the category is open
   }
 
   /**
@@ -283,40 +282,14 @@ export class AddTaskComponent {
    * @throws {Error} If the required fields are not filled out, an error message is logged.
    */
   submitForm() {
-    let newTask: Task;
-
-    console.log('------------------');
-    console.info('Title');
-    console.log(this.inputTitle);
-
-    console.info('Description');
-    console.log(this.inputDescription);
-
-    console.info('conctacts');
-    console.log(this.getId());
-
-    console.info('Date');
-    console.log(this.newDate);
-
-    console.info('Prio');
-    console.log(this.prio);
-
-    console.info('Category');
-    console.log(this.selectedCategory);
-
-    console.info('Subtasks');
-    console.log(this.getText());
-    console.log('------------------');
+    let newTask: Task;    
 
     if (this.inputTitle && this.newDate && this.selectedCategory) {
-      console.log('-------- Pflichtfelder sind ready -------');
-      console.log('Prio', this.prio);
       if (
         this.prio == 'Urgent' ||
         this.prio == 'Medium' ||
         this.prio == 'Low'
       ) {
-        console.log('-------- Prio ist gut -------');
         if (
           this.selectedCategory == 'User Story' ||
           this.selectedCategory == 'Technical Task'
@@ -330,8 +303,6 @@ export class AddTaskComponent {
             category: this.selectedCategory,
             subtasks: this.getText(),
           };
-          console.log('------------------');
-          console.log(newTask);
 
           this.taskService.addTask(this.taskService.whatIsTheType, newTask);
         }
