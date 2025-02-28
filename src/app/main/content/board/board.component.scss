@@ -320,23 +320,12 @@ section{
   height: auto;
 }
 
-  .board_header {
-    @include dFlex($ai: center, $jc: flex-start, $g: 24px);
-    flex-direction: column;
-    padding: 48px 32px 24px 32px;
-  }
-
-  .board_header_left {
-    @include dFlex($ai: center, $jc: space-between);
+.board_header_left {
+  @include dFlex($ai: center, $jc: space-between);
 
     >h1 {
       font-size: 47px;
     }
-  }
-
-  .board_header_right {
-    @include dFlex($jc: center);
-    width: 100%;
   }
 
   .input_field {
@@ -347,13 +336,8 @@ section{
     display: none;
   }
 
-  .mobile_add_task_btn {
-    @include dFlex($ai: center, $jc: center);
-    background-color: $dark_blue;
-    border-radius: 10px;
-    // display: block;
-    height: 40px;
-    width: 40px;
+  .btn_mobile {
+    display: none;
   }
 
   .board_content {
@@ -428,8 +412,28 @@ section{
     display: none;
   }
 
+  .board_header {
+    @include dFlex($ai: center, $jc: flex-start, $g: 24px);
+    flex-direction: column;
+    padding: 48px 32px 24px 32px;
+  }
+  
+  .board_header_right {
+    @include dFlex($jc: center);
+    width: 100%;
+  }
+
+  .mobile_add_task_btn {
+    @include dFlex($ai: center, $jc: center);
+    background-color: $dark_blue;
+    border-radius: 10px;
+    // display: block;
+    height: 40px;
+    width: 40px;
+  }
+
   .btn_mobile {
-    display: block;
+    // display: none;
   }
 
   .btn_desktop {
