@@ -42,11 +42,14 @@ export class AddTaskComponent {
   constructor() {}
 
   /**
-   * Überprüft, ob ein Feld ungültig ist und ob ein Fehler angezeigt werden soll.
-   * Gibt `true` zurück, wenn das Feld ungültig ist.
+   * Checks if the specified field is invalid based on the error state.
    *
-   * @param {string} field - Der Name des Feldes, das überprüft werden soll.
-   * @returns {boolean} Gibt `true` zurück, wenn das Feld ungültig ist, andernfalls `false`.
+   * This method evaluates the error status for a given field (title, date, etc.)
+   * and returns `true` if the field has an associated error (i.e., is invalid),
+   * or `false` if it is valid.
+   *
+   * @param {string} field - The name of the field to check for errors (e.g., 'title', 'date').
+   * @returns {boolean} Returns `true` if the field is invalid (error exists), `false` if valid.
    */
   isFieldInvalid(field: string): boolean {
     if (field === 'title') {
@@ -59,9 +62,14 @@ export class AddTaskComponent {
   }
 
   /**
-   * Setzt den Fehlerstatus für das angegebene Feld zurück, wenn es den Fokus erhält.
+   * Clears the error state for the specified field.
    *
-   * @param {string} field - Der Name des Feldes, dessen Fehler zurückgesetzt werden soll.
+   * This method sets the error status of a given field (e.g., 'title', 'date') to `false`,
+   * effectively marking the field as no longer having an error.
+   * This can be used to reset or clear validation errors for a specific field.
+   *
+   * @param {string} field - The name of the field to clear the error for (e.g., 'title', 'date').
+   * @returns {void} This method does not return anything.
    */
   clearError(field: string) {
     if (field === 'title') {
@@ -73,8 +81,14 @@ export class AddTaskComponent {
   }
 
   /**
-   * Überprüft, ob alle Pflichtfelder ausgefüllt sind und aktualisiert den Fehlerstatus.
-   * Wenn ein Fehler auftritt, wird die Fehleranzeige aktiviert.
+   * Validates the form by checking required fields for errors.
+   *
+   * This method checks whether the `inputTitle` and `newDate` fields are non-empty
+   * by trimming any whitespace. It sets the `errors` object properties (`title` and `date`)
+   * to `true` if the respective fields are empty (invalid), and `false` if they are valid.
+   * The error states can be used to display validation messages to the user.
+   *
+   * @returns {void} This method does not return any value but updates the `errors` object.
    */
   validateForm() {
     this.errors = {
@@ -325,18 +339,19 @@ export class AddTaskComponent {
   }
 
   /**
-   * Submits the form data to create a new task.
+   * Submits the form data to create a new task after validation.
    *
-   * This method validates the required fields (`inputTitle`, `newDate`, `selectedCategory`),
-   * checks if the priority (`prio`) and category are valid, and then constructs a new task object
-   * with the provided details. If the fields are not valid, it logs an error message.
-   * Once the new task is created, it is passed to the `taskService.addTask` method for further processing.
+   * This method first validates the form by checking if required fields (`inputTitle`, `newDate`, and `selectedCategory`)
+   * are filled in and if the priority and category are valid. If the validation passes, it creates a new task object
+   * with the form data (including `title`, `description`, `assignedTo`, `date`, `prio`, `category`, and `subtasks`)
+   * and passes it to the `taskService.addTask` method for further processing. If the required fields are not filled,
+   * an error message is logged to the console.
+   * After submitting the form, it clears all form data by calling the `clearForm` method.
    *
-   * @returns {void} This function does not return any value.
-   * @throws {Error} If the required fields are not filled out, an error message is logged.
+   * @returns {void} This method does not return any value but triggers the task creation process and clears the form.
    */
   submitForm() {
-    this.validateForm(); // Überprüfen der Felder
+    this.validateForm();
     let newTask: Task;
 
     if (this.inputTitle && this.newDate && this.selectedCategory) {
