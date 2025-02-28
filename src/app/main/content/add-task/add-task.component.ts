@@ -253,6 +253,12 @@ export class AddTaskComponent {
     this.subtasks.splice(index, 1);
   }
 
+  handleEnter() {
+    if (this.isEditing && this.newSubtask.trim() !== '') {
+      this.addSubtask();
+    }
+  }
+
   /**
    * Initiates editing for a specific subtask.
    *

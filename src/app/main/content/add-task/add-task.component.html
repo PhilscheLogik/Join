@@ -218,6 +218,7 @@
               [ngModelOptions]="{ standalone: true }"
               [placeholder]="isEditing ? '' : 'Add new subtask'"
               (focus)="startEditing()"
+              (keydown.enter)="handleEnter()"
             />
 
             <div class="button-group">
