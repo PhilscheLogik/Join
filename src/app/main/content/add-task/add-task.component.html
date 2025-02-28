@@ -1,23 +1,37 @@
 <section>
   <div class="head-section">
     <h1>Add Task</h1>
-    <img class="close-button" src="assets/img/icons/close.svg" alt="Closing Image" [ngClass]="{'show': taskService.showCloseButton}" 
-  (click)="taskService.toggleCloseButton()"/>
+    <img
+      class="close-button"
+      src="assets/img/icons/close.svg"
+      alt="Closing Image"
+      [ngClass]="{ show: taskService.showCloseButton }"
+      (click)="taskService.toggleCloseButton()"
+    />
   </div>
 
-  <form (ngSubmit)="submitForm()">
+  <form #taskForm="ngForm" (ngSubmit)="submitForm()">
     <div class="fill-in-area">
       <div class="content">
         <div class="title_field">
           <label class="title" name="title">Title<span>*</span></label>
-          <input
-            class="input"
-            type="text"
-            name="input"
-            placeholder="Enter a title"            
-            [(ngModel)]="inputTitle"
-            required
-          />
+          <div>
+            <input
+              class="input"
+              type="text"
+              name="input"
+              placeholder="Enter a title"
+              [class.error]="isFieldInvalid('title')"
+              [(ngModel)]="inputTitle"
+              #titleField="ngModel"
+              required
+            />
+            @if (isFieldInvalid('title')) {
+            <p class="error-message">This field is required</p>
+            } @else {
+            <p></p>
+            }
+          </div>
         </div>
 
         <div class="description_field">
@@ -97,7 +111,21 @@
       <div class="right">
         <div class="choice date-input">
           <label for="dueDate">Due date<span>*</span></label>
-          <input [(ngModel)]="newDate" type="date" id="dueDate" name="dueDate" required />
+          <div>
+            <input
+              [(ngModel)]="newDate"
+              [class.error]="isFieldInvalid('date')"
+              type="date"
+              id="dueDate"
+              name="dueDate"
+              required
+            />
+            @if (isFieldInvalid('date')) {
+            <p class="error-message">This field is required</p>
+            } @else {
+            <p></p>
+            }
+          </div>
         </div>
 
         <div class="choice">
@@ -284,21 +312,24 @@
         <!-- <button (click)="test()">TEST</button>
         <button (click)="test()">TEST</button> -->
         @if(taskService.showCloseButton){
-        <button type="button" class="cancel-btn" (click)="taskService.toggleCloseButton()">
+        <button
+          type="button"
+          class="cancel-btn"
+          (click)="taskService.toggleCloseButton()"
+        >
           Cancel
-          <img src="assets/img/icons/cancel.svg" alt="Cancel"/>
+          <img src="assets/img/icons/cancel.svg" alt="Cancel" />
         </button>
         } @else {
         <button type="button" class="cancel-btn" (click)="clearForm()">
           Clear
-          <img src="assets/img/icons/cancel.svg" alt="Cancel"/></button
+          <img src="assets/img/icons/cancel.svg" alt="Cancel" /></button
         >}
 
-        <button type="submit" class="create-btn" >
+        <button type="submit" class="create-btn">
           Create Task <img src="assets/img/icons/check.svg" alt="Check" />
         </button>
       </div>
     </div>
-
   </form>
 </section>

@@ -33,7 +33,46 @@ export class AddTaskComponent {
   isEditing: boolean = false;
   openCategory = false;
 
+  // Fehlerstatus
+  errors: { title: boolean; date: boolean; category: boolean } = {
+    title: false,
+    date: false,
+    category: false,
+  };
+
   constructor() {}
+
+  /**
+   * Überprüft, ob ein Feld ungültig ist und ob ein Fehler angezeigt werden soll.
+   * Gibt `true` zurück, wenn das Feld ungültig ist.
+   *
+   * @param {string} field - Der Name des Feldes, das überprüft werden soll.
+   * @returns {boolean} Gibt `true` zurück, wenn das Feld ungültig ist, andernfalls `false`.
+   */
+  isFieldInvalid(field: string): boolean {
+    if (field === 'title') {
+      return this.errors.title;
+    }
+    if (field === 'date') {
+      return this.errors.date;
+    }
+    if (field === 'category') {
+      return this.errors.category;
+    }
+    return false;
+  }
+
+  /**
+   * Überprüft, ob alle Pflichtfelder ausgefüllt sind und aktualisiert den Fehlerstatus.
+   * Wenn ein Fehler auftritt, wird die Fehleranzeige aktiviert.
+   */
+  validateForm() {
+    this.errors = {
+      title: !this.inputTitle.trim(),
+      date: !this.newDate.trim(),
+      category: !this.selectedCategory.trim(),
+    };
+  }
 
   /**
    * Sets the priority status.
@@ -282,7 +321,8 @@ export class AddTaskComponent {
    * @throws {Error} If the required fields are not filled out, an error message is logged.
    */
   submitForm() {
-    let newTask: Task;    
+    this.validateForm(); // Überprüfen der Felder
+    let newTask: Task;
 
     if (this.inputTitle && this.newDate && this.selectedCategory) {
       if (

@@ -39,6 +39,11 @@ form {
   }
 }
 
+.error-message {
+  @include font($fs: 10px, $fw: 400);
+  color: $red;
+}
+
 /*linkes Div*/
 .content {
   @include dFlex($ai: flex-start, $g: 20px);
@@ -62,23 +67,31 @@ form {
       }
     }
 
-    .input {
-      @include font($fs: 20px, $fw: 400);
-      border: 1px solid;
-      border-color: $light_gray;
-      border-radius: 10px;
-      height: 48px;
+    >div {
       width: 100%;
-      padding-left: 21px;
 
-      &::placeholder {
+      .input {
         @include font($fs: 20px, $fw: 400);
-        color: $light_gray;
-      }
+        border: 1px solid;
+        border-color: $light_gray;
+        border-radius: 10px;
+        height: 48px;
+        width: 100%;
+        padding-left: 21px;
 
-      &:focus {
-        border-color: $light_blue;
-        outline: none;
+        &::placeholder {
+          @include font($fs: 20px, $fw: 400);
+          color: $light_gray;
+        }
+
+        &:focus {
+          border-color: $light_blue;
+          outline: none;
+        }
+
+        &.error {
+          border-color: $red;
+        }
       }
     }
   }
@@ -279,9 +292,9 @@ form {
   cursor: pointer;
 
   &:focus {
-      border-color: $light_blue;
-      outline: none;
-    }
+    border-color: $light_blue;
+    outline: none;
+  }
 }
 
 #dueDate::-moz-date-picker-arrow {
@@ -303,24 +316,32 @@ form {
     color: $red;
   }
 
-  input {
-    border: 1px solid;
-    border-color: $light_gray;
-    border-radius: 10px;
-    height: 48px;
+  >div {
     width: 100%;
-    padding-left: 16px;
 
-    &::placeholder {
-      @include font($fs: 20px, $fw: 400);
-      color: $light_gray;
-      padding-top: 18px;
-    }
+    input {
+      border: 1px solid;
+      border-color: $light_gray;
+      border-radius: 10px;
+      height: 48px;
+      width: 100%;
+      padding-left: 16px;
 
-    &:focus {
+      &::placeholder {
+        @include font($fs: 20px, $fw: 400);
+        color: $light_gray;
+        padding-top: 18px;
+      }
+
+      &:focus {
         border-color: $light_blue;
         outline: none;
       }
+
+      &.error {
+        border-color: $red;
+      }
+    }
   }
 }
 
