@@ -34,10 +34,9 @@ export class AddTaskComponent {
   openCategory = false;
 
   // Fehlerstatus
-  errors: { title: boolean; date: boolean; category: boolean } = {
+  errors: { title: boolean; date: boolean } = {
     title: false,
     date: false,
-    category: false,
   };
 
   constructor() {}
@@ -56,10 +55,21 @@ export class AddTaskComponent {
     if (field === 'date') {
       return this.errors.date;
     }
-    if (field === 'category') {
-      return this.errors.category;
-    }
     return false;
+  }
+
+  /**
+   * Setzt den Fehlerstatus für das angegebene Feld zurück, wenn es den Fokus erhält.
+   *
+   * @param {string} field - Der Name des Feldes, dessen Fehler zurückgesetzt werden soll.
+   */
+  clearError(field: string) {
+    if (field === 'title') {
+      this.errors.title = false;
+    }
+    if (field === 'date') {
+      this.errors.date = false;
+    }
   }
 
   /**
@@ -70,7 +80,6 @@ export class AddTaskComponent {
     this.errors = {
       title: !this.inputTitle.trim(),
       date: !this.newDate.trim(),
-      category: !this.selectedCategory.trim(),
     };
   }
 

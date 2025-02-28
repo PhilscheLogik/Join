@@ -22,6 +22,7 @@
               name="input"
               placeholder="Enter a title"
               [class.error]="isFieldInvalid('title')"
+              (focus)="clearError('title')"
               [(ngModel)]="inputTitle"
               #titleField="ngModel"
               required
@@ -115,6 +116,7 @@
             <input
               [(ngModel)]="newDate"
               [class.error]="isFieldInvalid('date')"
+              (focus)="clearError('date')"
               type="date"
               id="dueDate"
               name="dueDate"
