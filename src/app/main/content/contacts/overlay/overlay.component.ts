@@ -26,7 +26,7 @@ export class OverlayComponent {
   phone = '';
   bgColor = '';
   initials = '';
-  
+
   contactService = inject(ContactsService);
 
   /**
@@ -63,34 +63,6 @@ export class OverlayComponent {
   }
 
   /**
-   * Submits the form for either creating or updating a contact.
-   *
-   * This method validates the form. If the form is invalid, it marks all fields as touched and stops further execution.
-   * If the action is 'create', it calls the `addContactList` method to add a new contact. If the action is 'update' and
-   * a valid `contactId` is provided, it calls the `updateItem` method to update the contact with the given ID.
-   * After the action is completed, it closes the overlay.
-   *
-   * @param {NgForm} form - The form to be submitted.
-   * @param {'create' | 'update'} action - The action to be performed ('create' or 'update').
-   * @param {string} [contactId] - The ID of the contact to be updated. This is required if the action is 'update'.
-   * @returns {void} This method does not return anything.
-   */
-  submitForm(form: NgForm, action: 'create' | 'update', contactId?: string) {
-    if (form.invalid) {
-      form.form.markAllAsTouched();
-      return;
-    }
-
-    if (action === 'create') {
-      this.addContactList();
-    } else if (action === 'update' && contactId) {
-      this.updateItem(contactId);
-    }
-
-    this.closeOverlay();
-  }
-
-  /**
    * Closes the overlay and resets the form fields.
    *
    * This method initiates the process of closing the overlay by setting the `isClosing` flag to `true`. It waits for 500 milliseconds
@@ -118,15 +90,33 @@ export class OverlayComponent {
     this.phone = '';
   }
 
-  // closeOverlayEdit() {
-  //   this.isClosing = true;
+  /**
+   * Submits the form for either creating or updating a contact.
+   *
+   * This method validates the form. If the form is invalid, it marks all fields as touched and stops further execution.
+   * If the action is 'create', it calls the `addContactList` method to add a new contact. If the action is 'update' and
+   * a valid `contactId` is provided, it calls the `updateItem` method to update the contact with the given ID.
+   * After the action is completed, it closes the overlay.
+   *
+   * @param {NgForm} form - The form to be submitted.
+   * @param {'create' | 'update'} action - The action to be performed ('create' or 'update').
+   * @param {string} [contactId] - The ID of the contact to be updated. This is required if the action is 'update'.
+   * @returns {void} This method does not return anything.
+   */
+  submitForm(form: NgForm, action: 'create' | 'update', contactId?: string) {
+    if (form.invalid) {
+      form.form.markAllAsTouched();
+      return;
+    }
 
-  //   setTimeout(() => {
-  //     this.isOpen = false;
-  //     this.isClosing = false;
-  //     this.contactsService.closeOverlay();
-  //   }, 500);
-  // }
+    if (action === 'create') {
+      this.addContactList();
+    } else if (action === 'update' && contactId) {
+      this.updateItem(contactId);
+    }
+
+    this.closeOverlay();
+  }
 
   /**
    * Adds a new contact to the contact list after validating the input fields.
@@ -181,34 +171,10 @@ export class OverlayComponent {
   }
 
   /**
-   * Deletes a contact based on the provided ID.
-   *
-   * This method deletes the contact with the given ID using the `deleteContact` method from the contact service. After the
-   * contact is deleted, it resets the name, email, and phone properties to empty strings and clears the selected contact
-   * by setting it to `null`.
-   *
-   * @param {string | undefined} id - The ID of the contact to be deleted. If the ID is not provided, no deletion occurs.
-   * @returns {void} This method does not return anything.
-   */
-  deleteItem(id: string | undefined) {
-    if (id) {
-      this.contactService.deleteContact(id);
-      this.name = '';
-      this.email = '';
-      this.phone = '';
-      this.contactService.selectedContact = null;
-    }
-  }
-
-  /**
    * Updates a contact's details based on the provided ID.
    *
-   * This method checks if an ID is provided and updates the contact's details (name, email, phone, background color, and initials)
-   * using either the provided values or the existing ones from the selected contact. If any of the provided details are empty,
-   * it falls back to the selected contact's existing data. After updating, it also updates the selected contact's information.
-   *
-   * @param {string | undefined} id - The ID of the contact to be updated. If the ID is not provided, no update occurs.
-   * @returns {void} This method does not return anything.
+   * @param {string | undefined} id - The ID of the contact to be updated.
+   * @returns {void}
    */
   updateItem(id: string | undefined) {
     if (id) {
@@ -251,21 +217,32 @@ export class OverlayComponent {
   }
 
   /**
-   * Finds the index of a contact in the full contact list by its email.
+   * Deletes a contact based on the provided ID.
    *
-   * This method searches for the given contact in the full contact list using the contact's email to find the corresponding
-   * index. If the contact is found, it returns the index; otherwise, it returns 404 to indicate that the contact is not found.
+   * @param {string | undefined} id - The ID of the contact to be deleted.
+   * @returns {void}
+   */
+  deleteItem(id: string | undefined) {
+    if (id) {
+      this.contactService.deleteContact(id);
+      this.name = '';
+      this.email = '';
+      this.phone = '';
+      this.contactService.selectedContact = null;
+    }
+  }
+
+  /**
+   * Finds the index of a contact in the full contact list by its email.
    *
    * @param {any} contact - The contact object to be searched in the list.
    * @returns {number} The index of the contact in the full contact list, or 404 if the contact is not found.
    */
   getIndexInFullList(contact: any): number {
-    if (contact) {
-      return this.contactService.contactList.findIndex(
-        (c) => c.email === contact.email
-      );
-    }
-
-    return 404;
+    return contact
+      ? this.contactService.contactList.findIndex(
+          (c) => c.email === contact.email
+        )
+      : 404;
   }
 }

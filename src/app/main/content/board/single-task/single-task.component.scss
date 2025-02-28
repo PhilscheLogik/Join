@@ -100,7 +100,7 @@
     }
 
     @media (max-width: 480px) {
-      height: 50%;
+      height: 65%;
       padding: 16px;
     }
 
@@ -169,8 +169,8 @@
     .assignees {
       display: flex;
       flex-direction: column;
-      max-height: 170px; // Höhe für max. 3 Einträge anpassen
-      overflow-y: auto; // Scrollbar nur wenn nötig
+      max-height: 170px;
+      overflow-y: auto;
 
       .assignee {
         display: flex;
