@@ -50,11 +50,10 @@ export class SingleTaskComponent {
    */
   closeOverlay() {
     this.isClosing = true;
-
     setTimeout(() => {
       this.isOverlayOpen = false;
       this.isClosing = false;
-    }, 100);
+    }, 300);
   }
 
   /**
@@ -67,15 +66,20 @@ export class SingleTaskComponent {
     }
   }
 
-  /**
-   * Debugging function that logs task information to the console.
-   * @param {Task | null} arg0 - The task to be logged, or null if no task is provided.
-   */
-  getTest(arg0: Task | null) {
-    console.log(arg0);
-    console.log('--------------');
-    console.log(this.taskService.whatIsTheType);
-  }
+  // Aktualisiere die lokalen Arrays
+  // transferArrayItem(
+  //   event.previousContainer.data,
+  //   event.container.data,
+  //   event.previousIndex,
+  //   event.currentIndex
+  // );
+
+  // console.log(
+  //   event.previousContainer.data,
+  //   event.container.data,
+  //   event.previousIndex,
+  //   event.currentIndex,
+  // );
 
   /**
    * Handles the drag-and-drop functionality for tasks.
@@ -90,7 +94,6 @@ export class SingleTaskComponent {
         event.previousIndex,
         event.currentIndex
       );
-      // console.log(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       const task: Task = event.previousContainer.data[event.previousIndex];
       const previousCategory = this.getCategoryFromContainer(
@@ -98,45 +101,11 @@ export class SingleTaskComponent {
       );
       const newCategory = this.getCategoryFromContainer(event.container);
 
-      console.info('----- selected Task Board TS -------');
-      console.log(task);
-      console.log('Wo soll es hin: ', newCategory);
-
-      /**
-       * Adds the task to the new category in the database.
-       * This ensures that the task is properly stored under its new status.
-       *
-       * @param {string} newCategory - The category to which the task is being moved.
-       * @param {Task} task - The task being updated.
-       */
       await this.taskService.addTask(newCategory, task);
 
-      /**
-       * Removes the task from its previous category in the database.
-       * This prevents duplicate tasks from appearing across different categories.
-       *
-       * @param {string} previousCategory - The category from which the task is being removed.
-       * @param {string} task.id - The unique identifier of the task.
-       */
       if (task.id) {
-        console.log('Woher kam es: ', previousCategory);
         await this.taskService.deleteTask(previousCategory, task.id);
       }
-
-      // Aktualisiere die lokalen Arrays
-      // transferArrayItem(
-      //   event.previousContainer.data,
-      //   event.container.data,
-      //   event.previousIndex,
-      //   event.currentIndex
-      // );
-
-      // console.log(
-      //   event.previousContainer.data,
-      //   event.container.data,
-      //   event.previousIndex,
-      //   event.currentIndex,
-      // );
     }
   }
 
@@ -155,22 +124,11 @@ export class SingleTaskComponent {
   }
 
   /**
-   * Finds the index of a contact in the full contact list based on the contact's email.
-   *
-   * @param {Object} contact - The contact whose index is to be found.
-   * @param {string} contact.email - The email address of the contact to search for.
-   *
-   * @returns {number} - Returns the index of the contact in the contact list, or `-1` if the contact is not found.
+   * Toggles the completion status of a subtask.
+   * @param {any} subtask - The subtask to toggle.
    */
-  getIndexInFullList(contact: any): number {
-    return this.contactService.contactList.findIndex(
-      (c) => c.email === contact.email
-    );
-  }
-
   toggleSubtaskCompleted(subtask: any) {
     subtask.IsCompleted = !subtask.IsCompleted;
-    // this.taskService.updateTask(this.selectedTask.id, this.selectedTask);
   }
 
   /**
@@ -181,11 +139,9 @@ export class SingleTaskComponent {
    */
   getSubtasksProgress(): number {
     const subtasks = this.task.subtasks;
-    // Check if subtasks is undefined, not an array, or empty
     if (!subtasks || !Array.isArray(subtasks) || subtasks.length === 0) {
       return 0;
     }
-    // Now safe to use filter since we confirmed it's an array
     const completedCount = subtasks.filter(
       (subtask) => subtask && subtask.IsCompleted === true
     ).length;
@@ -214,7 +170,7 @@ export class SingleTaskComponent {
    * @returns {any[]} An array containing up to the first three assigned contacts.
    */
   getVisibleContacts(task: any): any[] {
-    return task.assignedTo.slice(0, 3); // Zeige nur die ersten drei
+    return task.assignedTo.slice(0, 3);
   }
 
   /**
@@ -226,5 +182,28 @@ export class SingleTaskComponent {
    */
   getHiddenCount(task: any): number {
     return task.assignedTo.length > 3 ? task.assignedTo.length - 3 : 0;
+  }
+
+  /**
+   * Finds the index of a contact in the full contact list based on the contact's email.
+   *
+   * @param {Object} contact - The contact whose index is to be found.
+   * @param {string} contact.email - The email address of the contact to search for.
+   * @returns {number} - Returns the index of the contact in the contact list, or `-1` if the contact is not found.
+   */
+  getIndexInFullList(contact: any): number {
+    return this.contactService.contactList.findIndex(
+      (c) => c.email === contact.email
+    );
+  }
+
+  /**
+   * Debugging function that logs task information to the console.
+   * @param {Task | null} arg0 - The task to be logged, or null if no task is provided.
+   */
+  getTest(arg0: Task | null) {
+    console.log(arg0);
+    console.log('--------------');
+    console.log(this.taskService.whatIsTheType);
   }
 }
