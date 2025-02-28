@@ -47,6 +47,7 @@
         </div>
 
         <div class="assigned_field">
+          <label class="assigned" name="assigned">Assigned to</label>
           <div class="assigned_field_headline" (click)="isSelectList()">
             <p>Select contacts to assign</p>
             <img
@@ -115,15 +116,18 @@
           <div>
             <input
               [(ngModel)]="newDate"
-              [class.error]="isFieldInvalid('date')"
+              [class.error]="isFieldInvalid('date') || isPastDate()"
               (focus)="clearError('date')"
               type="date"
               id="dueDate"
               name="dueDate"
+              [min]="getCurrentDate()"
               required
             />
             @if (isFieldInvalid('date')) {
             <p class="error-message">This field is required</p>
+            }@else if(isPastDate()) {
+            <p class="error-message">Date cannot be in the past</p>
             } @else {
             <p></p>
             }

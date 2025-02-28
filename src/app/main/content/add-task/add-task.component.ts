@@ -33,13 +33,30 @@ export class AddTaskComponent {
   isEditing: boolean = false;
   openCategory = false;
 
-  // Fehlerstatus
+  // Errorstatus
   errors: { title: boolean; date: boolean } = {
     title: false,
     date: false,
   };
 
   constructor() {}
+
+  getCurrentDate(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  isPastDate(): boolean {
+    const selectedDate = new Date(this.newDate);
+    const currentDate = new Date();
+    // Set time of both dates to ensure we compare the dates only
+    selectedDate.setHours(0, 0, 0, 0);
+    currentDate.setHours(0, 0, 0, 0);
+    return selectedDate < currentDate;
+  }
 
   /**
    * Checks if the specified field is invalid based on the error state.
@@ -353,6 +370,16 @@ export class AddTaskComponent {
   submitForm() {
     this.validateForm();
     let newTask: Task;
+
+    // Validate if the selected date is in the past
+    const selectedDate = new Date(this.newDate);
+    const currentDate = new Date();
+    selectedDate.setHours(0, 0, 0, 0);
+    currentDate.setHours(0, 0, 0, 0);
+    if (selectedDate < currentDate) {
+      console.log('The selected date cannot be in the past');
+      return;
+    }
 
     if (this.inputTitle && this.newDate && this.selectedCategory) {
       if (

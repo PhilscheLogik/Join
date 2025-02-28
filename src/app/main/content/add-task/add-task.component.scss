@@ -135,6 +135,12 @@ form {
     height: 300px;
     border-radius: 10px;
 
+    .assigned {
+      @include font($fs: 20px, $fw: 400);
+        color: $dark_blue;
+        height: 24px;
+    }
+
     .assigned_field_headline {
       position: relative;
       @include dFlex($jc: space-between);
