@@ -13,6 +13,7 @@ import { SingleTaskComponent } from './single-task/single-task.component';
 import { CommonModule } from '@angular/common';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { NavigationService } from '../../../shared/navi/navigation.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-board',
@@ -23,6 +24,7 @@ import { NavigationService } from '../../../shared/navi/navigation.service';
     CdkDrag,
     CommonModule,
     AddTaskComponent,
+    FormsModule,
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
@@ -37,6 +39,12 @@ export class BoardComponent {
   selectedTask: Task | null = null;
   isOverlayOpen = false;
   isTaskOverlayOpen = false;
+
+  /** Text according to which the lists are filtered */
+  searchTerm = '';
+
+  /** Auxiliary variable for filtering after the search button has been clicked */
+  searchText = '';
 
   /**
    * Sets the task type in the task service.
@@ -117,6 +125,22 @@ export class BoardComponent {
     console.log('In Progress:', this.taskService.progressList);
     console.log('Feedback:', this.taskService.feedbackList);
     console.log('Done:', this.taskService.doneList);
+  }
+
+  filterList(list: Task[]) {
+    if (this.searchTerm.trim() == '') {
+      return list;
+    } else {
+      return list.filter(
+        (task) =>
+          task.title.includes(this.searchTerm) ||
+          task.description?.includes(this.searchTerm)
+      );
+    }
+  }
+
+  startSearch() {
+    this.searchTerm = this.searchText;
   }
 }
 

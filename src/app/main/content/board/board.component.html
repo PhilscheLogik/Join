@@ -8,19 +8,33 @@
     </div>
     <div class="board_header_right">
       <div class="input_field">
-        <input type="text" placeholder="Find task" />
-        <div class="input-search-btn">
+        <input
+          type="text"          
+          id="subtasks"
+          name="searchText"
+          [(ngModel)]="searchText"
+          placeholder="Find task"
+          (keydown.enter)="startSearch()"
+        />
+
+        <div class="input-search-btn" (click)="startSearch()">
           <div class="input-seperator"></div>
           <div class="search-btn">
-            <img src="assets/img/icons/search_icon.svg" alt="" />
+            <img src="assets/img/icons/search_icon.svg" alt="Search Icon" />
           </div>
         </div>
       </div>
-      <button class="add_task_btn btn_desktop" (click)="taskService.toggleCloseButton()" >
+      <button
+        class="add_task_btn btn_desktop"
+        (click)="taskService.toggleCloseButton()"
+      >
         Add task
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </button>
-      <button class="add_task_btn btn_mobile" (click)="naviService.setSelectedItem(1)" >
+      <button
+        class="add_task_btn btn_mobile"
+        (click)="naviService.setSelectedItem(1)"
+      >
         Add task
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </button>
@@ -28,14 +42,13 @@
   </div>
 
   <!-- Add-Task-Overlay  -->
-@if(taskService.showCloseButton) {
+  @if(taskService.showCloseButton) {
   <div class="overlay_task">
     <div class="overlay_bg_white">
       <app-add-task></app-add-task>
     </div>
   </div>
-}
-
+  }
 
   <div class="board_content">
     <div class="to_do">
@@ -55,7 +68,7 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of taskService.todoList; track $index) {
+        @for (task of this.filterList(this.taskService.todoList); track $index) {
         <app-single-task
           (click)="setType('todo')"
           [task]="task"
@@ -81,7 +94,7 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of taskService.progressList; track task) {
+        @for (task of this.filterList(this.taskService.progressList); track task) {
         <app-single-task
           (click)="setType('inprogess')"
           [task]="task"
@@ -107,7 +120,7 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of taskService.feedbackList; track task) {
+        @for (task of this.filterList(this.taskService.feedbackList); track task) {
         <app-single-task
           (click)="setType('feedback')"
           [task]="task"
@@ -132,7 +145,7 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of taskService.doneList; track task) {
+        @for (task of this.filterList(this.taskService.doneList); track task) {
         <app-single-task
           (click)="setType('done')"
           [task]="task"
@@ -144,7 +157,7 @@
   </div>
 
   <!-- <div id="taskOverlay" [(ngClass)]="{'d_none': isTaskOverlayOpen}"]> -->
-    <!-- @if(isTaskOverlayOpen) {
+  <!-- @if(isTaskOverlayOpen) {
       <div class="overlay_task">
         <div>
           <app-add-task [ngStyle]="{'border': '2px solid red'}"></app-add-task>

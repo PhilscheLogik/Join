@@ -27,9 +27,9 @@ export class SummaryComponent {
   }
 
   get2() {
-    console.info('------------ gefilterte Listen -----------------');
+    console.info(' ---------------------- gefilterte Listen ---------------------- ');
 
-    console.log('----------------------To do ---------------------');
+    console.log(' ---------------------- To do ---------------------- ');
     for(let task of this.filterList(this.taskService.todoList) ) {
       console.log(task?.id, '|', task.title, '|', task.description );
     }
@@ -50,8 +50,7 @@ export class SummaryComponent {
   }
 
   filterList(list: Task[]) {
-    if (this.searchTerm.trim() =="") {
-      // console.log(this.searchTerm.trim());
+    if (this.searchTerm.trim() == "") {      
       return list;
     } else {
       return list.filter(
