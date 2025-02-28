@@ -284,9 +284,9 @@
         <!-- <button (click)="test()">TEST</button>
         <button (click)="test()">TEST</button> -->
         @if(taskService.showCloseButton){
-        <button type="button" class="cancel-btn">
+        <button type="button" class="cancel-btn" (click)="taskService.toggleCloseButton()">
           Cancel
-          <img src="assets/img/icons/cancel.svg" alt="Cancel" />
+          <img src="assets/img/icons/cancel.svg" alt="Cancel"/>
         </button>
         } @else {
         <button type="button" class="cancel-btn" (click)="clearForm()">
