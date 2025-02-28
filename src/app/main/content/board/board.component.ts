@@ -28,23 +28,35 @@ import { NavigationService } from '../../../shared/navi/navigation.service';
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
-  setType(arg0: string) {
-    this.taskService.whatIsTheType = arg0;
-  }
-
+  /** Injected services */
   taskService = inject(TaskServiceService);
   naviService = inject(NavigationService);
 
+  /** Local component states */
   tasks: Task[] = [];
-  isOverlayOpen = false;
   selectedTask: Task | null = null;
-  subtaskProgress: number = 30;
-  isTaskOverlayOpen = true;
+  isOverlayOpen = false;
+  isTaskOverlayOpen = false;
 
-  isTaskOverlay() {
+  /**
+   * Sets the task type in the task service.
+   * @param {string} type - The type of the task.
+   */
+  setType(type: string) {
+    this.taskService.whatIsTheType = type;
+  }
+
+  /**
+   * Toggles the visibility of the task overlay.
+   */
+  toggleTaskOverlay() {
     this.isTaskOverlayOpen = !this.isTaskOverlayOpen;
   }
 
+  /**
+   * Opens the task overlay for a specific task.
+   * @param {Task} task - The task to be displayed in the overlay.
+   */
   openOverlay(task: Task) {
     this.selectedTask = task;
     this.isOverlayOpen = true;
@@ -63,7 +75,6 @@ export class BoardComponent {
         event.previousIndex,
         event.currentIndex
       );
-      // console.log(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       const task: Task = event.previousContainer.data[event.previousIndex];
       const previousCategory = this.getCategoryFromContainer(
@@ -75,22 +86,8 @@ export class BoardComponent {
       console.log(task);
       console.log('Wo soll es hin: ', newCategory);
 
-      /**
-       * Adds the task to the new category in the database.
-       * This ensures that the task is properly stored under its new status.
-       *
-       * @param {string} newCategory - The category to which the task is being moved.
-       * @param {Task} task - The task being updated.
-       */
       await this.taskService.addTask(newCategory, task);
 
-      /**
-       * Removes the task from its previous category in the database.
-       * This prevents duplicate tasks from appearing across different categories.
-       *
-       * @param {string} previousCategory - The category from which the task is being removed.
-       * @param {string} task.id - The unique identifier of the task.
-       */
       if (task.id) {
         console.log('Woher kam es: ', previousCategory);
         await this.taskService.deleteTask(previousCategory, task.id);
@@ -115,11 +112,11 @@ export class BoardComponent {
   /**
    * Logs the current state of all task lists for debugging purposes.
    */
-  get() {
-    console.log(this.taskService.todoList);
-    console.log(this.taskService.progressList);
-    console.log(this.taskService.feedbackList);
-    console.log(this.taskService.doneList);
+  logTaskLists() {
+    console.log('Todo:', this.taskService.todoList);
+    console.log('In Progress:', this.taskService.progressList);
+    console.log('Feedback:', this.taskService.feedbackList);
+    console.log('Done:', this.taskService.doneList);
   }
 }
 
