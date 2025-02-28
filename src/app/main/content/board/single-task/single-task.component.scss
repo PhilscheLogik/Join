@@ -331,6 +331,30 @@
   height: 16px;
 }
 
+.subtasks_progress {
+  >progress {
+    width: 100%; /* Matches your original progress_outer width */
+    height: 10px; /* Matches your original progress_inner height */
+    -webkit-appearance: none; /* Reset default styles in Webkit browsers */
+    appearance: none;
+  }
+
+  /* Style the progress bar's filled portion */
+  >progress::-webkit-progress-value {
+    background-color: $light_blue; /* Matches your original progress_inner color */
+    border-radius: 5px;
+  }
+  >progress::-moz-progress-bar {
+    background-color: $light_blue; /* For Firefox */
+  }
+
+  /* Style the progress bar's background */
+  >progress::-webkit-progress-bar {
+    background-color: $hover_gray; /* Matches your original progress_outer color */
+    border-radius: 5px;
+  }
+}
+
 .progress_outer {
   width: 100%;
   height: 16px;
