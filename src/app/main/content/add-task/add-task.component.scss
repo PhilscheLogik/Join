@@ -320,6 +320,7 @@ form {
     width: 100%;
 
     input {
+      @include font($fs: 20px, $fw: 400);
       border: 1px solid;
       border-color: $light_gray;
       border-radius: 10px;
@@ -328,7 +329,6 @@ form {
       padding-left: 16px;
 
       &::placeholder {
-        @include font($fs: 20px, $fw: 400);
         color: $light_gray;
         padding-top: 18px;
       }
@@ -841,9 +841,9 @@ ul {
       @include font($fs: 16px, $fw: 400);
     }
 
-    input {
-      &::placeholder {
-        @include font($fs: 16px, $fw: 400);
+    .input-container {
+      input {
+          @include font($fs: 16px, $fw: 400);
       }
     }
   }
