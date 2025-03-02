@@ -1,5 +1,12 @@
-<section>
-  @if(!taskService.isEditModusActivated){
+<section
+[ngClass]="{ maxWidth: taskService.isEditModeActivated }"
+  [ngStyle]="{
+    'box-shadow': taskService.isEditModeActivated
+      ? '0px 0px 0px 0px rgba(0, 0, 0, 0) inset'
+      : '0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset'
+  }"
+>
+  @if(!taskService.isEditModeActivated){
   <div class="head-section">
     <h1>Add Task</h1>
     <img
@@ -15,7 +22,7 @@
   <form #taskForm="ngForm">
     <div
       class="fill-in-area"
-      [ngClass]="{ column: taskService.isEditModusActivated }"
+      [ngClass]="{ column: taskService.isEditModeActivated }"
     >
       <div class="content">
         <div class="title_field">
@@ -113,7 +120,7 @@
         </div>
       </div>
 
-      @if(!taskService.isEditModusActivated){
+      @if(!taskService.isEditModeActivated){
       <div class="line"></div>
       }
 
@@ -175,7 +182,7 @@
           </div>
         </div>
 
-        @if(!taskService.isEditModusActivated){
+        @if(!taskService.isEditModeActivated){
         <div class="choice">
           <label for="taskType">Category<span>*</span></label>
           <div class="seemInput" (click)="clickCategory()">
@@ -318,7 +325,7 @@
       </div>
     </div>
 
-    @if(!taskService.isEditModusActivated){
+    @if(!taskService.isEditModeActivated){
     <div class="submit-section">
       <p>
         <span>*</span>
@@ -340,15 +347,15 @@
           <img src="assets/img/icons/cancel.svg" alt="Cancel" /></button
         >}
 
-        <button type="submit" class="create-btn" (click)="submitForm()">
+        <button type="submit" class="create-btn" (click)="submitAddForm()">
           Create Task <img src="assets/img/icons/check.svg" alt="Check" />
         </button>
       </div>
     </div>
     } @else {
-      <button type="submit" class="create-btn ok-btn" (click)="updateForm()">
-        Ok <img src="assets/img/icons/check.svg" alt="ok" />
-      </button>
+    <button type="submit" class="create-btn ok-btn" (click)="submitUpdateForm()">
+      Ok <img src="assets/img/icons/check.svg" alt="ok" />
+    </button>
     }
   </form>
 </section>

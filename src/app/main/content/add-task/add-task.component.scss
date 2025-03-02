@@ -1,7 +1,7 @@
 @import "./../../../../styles.scss";
 
 section {
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+  // box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
   padding: 0 70px;
   max-height: calc(100vh - 91px);
   min-height: auto;
@@ -697,13 +697,18 @@ ul {
 
 .column {
   @include dFlex($jc: space-between);
-  flex-direction: column !important;
+  flex-direction: column !important;  
+ 
 }
 
 .ok-btn {
   position: absolute;
   bottom: 24px;
   right: 32px;
+}
+
+.maxWidth{
+  max-width: 480px;
 }
 
 /*--------------------------------------------------   Mobile   --------------------------------------------------*/

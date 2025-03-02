@@ -17,7 +17,10 @@ export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
 
   whatIsTheType = 'feedback';
-  isEditModusActivated = false;
+  isEditModeActivated = false;
+
+  selectedTaskId="";
+  selectedTaskCategory='';
 
   todoList: Task[] = [];
   progressList: Task[] = [];
@@ -298,9 +301,10 @@ export class TaskServiceService {
     newDate: string,
     newPrio: string,
     newCategory: string,
-    newSubtasks: any
+    newSubtasks: any,
+    listCategory: string
   ) {
-    const updateRef = doc(this.getToDoRef(), id);
+    const updateRef = doc(this.getCategoryRef(listCategory), id);
     if (id) {
       await updateDoc(updateRef, {
         title: newTitle,

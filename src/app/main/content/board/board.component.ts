@@ -131,10 +131,18 @@ export class BoardComponent {
     if (this.searchTerm.trim() == '') {
       return list;
     } else {
+      console.info('--- Suche ---');
+      console.log(this.searchTerm, list);
       return list.filter(
-        (task) =>
-          task.title.includes(this.searchTerm) ||
-          task.description?.includes(this.searchTerm)
+        (task) => {          
+          console.log(task.title.includes(this.searchTerm));
+          console.log(task.description?.includes(this.searchTerm));
+          console.log('--- ---');
+
+          return task.title.includes(this.searchTerm) ||
+          task.description?.includes(this.searchTerm);
+          
+        }
       );
     }
   }

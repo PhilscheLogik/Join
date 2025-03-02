@@ -231,9 +231,10 @@ h2 {
   color: $gray;
   text-align: center;
   align-content: center;
-  margin-top: 24px;
-  min-height: 48px;
-  width: 100%;
+  margin-top: 34px; // change, before 24px%
+  min-height: 48px; 
+  width: 80%; // change, before 100%
+  
   background: $mid_gray;
   border-radius: 10px;
   border-style: dotted;
@@ -242,7 +243,10 @@ h2 {
   overflow: auto;
   position: absolute;
   top: 24px;
-  left: 0;
+
+  left: 50%; // change, before 0
+  transform: translateX(-50%); // was new
+
   z-index: -1;
 }
 
@@ -267,8 +271,11 @@ h3 {
   min-height: 250px;
   width: 100%;
   border-radius: 4px;
-  // overflow: auto;
+  overflow: auto;
   // height: 50vh;
+
+  //### NEW 02032025
+  padding: 10px;
 }
 
 app-single-task {

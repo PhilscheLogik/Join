@@ -41,7 +41,11 @@ export class SingleTaskComponent {
 
   // ### EDIT
   editTaskActivated(task: Task | null) {
-    this.taskService.isEditModusActivated = true;
+    this.taskService.isEditModeActivated = true;
+    if(task && task.id){
+      this.taskService.selectedTaskId = task.id;
+      this.taskService.selectedTaskCategory = task?.category;
+    }
     console.log(task);    
   }
 
@@ -62,7 +66,7 @@ export class SingleTaskComponent {
     this.isClosing = true;
 
     // ### EDIT
-    this.taskService.isEditModusActivated = false
+    this.taskService.isEditModeActivated = false
     setTimeout(() => {
       this.isOverlayOpen = false;
       this.isClosing = false;

@@ -14,7 +14,6 @@ import { Task } from '../../../interfaces/task';
   styleUrl: './add-task.component.scss',
 })
 export class AddTaskComponent {
-
   firestore: Firestore = inject(Firestore);
   taskService = inject(TaskServiceService);
   contactService = inject(ContactsService);
@@ -39,12 +38,13 @@ export class AddTaskComponent {
     title: false,
     date: false,
   };
+  box: any;
 
   constructor() {}
 
   updateForm() {
-     console.log('Edit Mode aktiviert')
-    }
+    console.log('Edit Mode aktiviert');
+  }
 
   getCurrentDate(): string {
     const today = new Date();
@@ -372,7 +372,7 @@ export class AddTaskComponent {
    *
    * @returns {void} This method does not return any value but triggers the task creation process and clears the form.
    */
-  submitForm() {
+  submitAddForm() {
     this.validateForm();
     let newTask: Task;
 
@@ -440,5 +440,50 @@ export class AddTaskComponent {
     this.selectedCategory = '';
     this.selectedContacts = [];
     this.subtasks = [];
+  }
+
+  submitUpdateForm() {
+    this.validateForm();
+    this.selectedCategory = this.taskService.selectedTaskCategory;
+
+    // Validate if the selected date is in the past
+    const selectedDate = new Date(this.newDate);
+    const currentDate = new Date();
+    selectedDate.setHours(0, 0, 0, 0);
+    currentDate.setHours(0, 0, 0, 0);
+    if (selectedDate < currentDate) {
+      console.log('The selected date cannot be in the past');
+      return;
+    }
+
+    if (this.inputTitle && this.newDate) {
+      console.log('Datum und Titel passt');
+      if (
+        this.prio == 'Urgent' ||
+        this.prio == 'Medium' ||
+        this.prio == 'Low'
+      ) {
+        console.log('Prio ist auch da');
+        if (this.taskService.selectedTaskId !== '') {
+          this.taskService.updateTask(
+            this.taskService.selectedTaskId,
+            this.inputTitle,
+            this.inputDescription,
+            this.getId(),
+            this.newDate,
+            this.prio,
+            this.selectedCategory,
+            this.getText(),
+            this.taskService.whatIsTheType
+          );
+          console.log('geupdatet');
+        }
+      }
+    } else {
+      console.log('Du kannst nicht mal alle Pflichtfelder ausfüllen?!?');
+    }
+
+    this.clearForm();
+    this.taskService.isEditModeActivated = false;
   }
 }
