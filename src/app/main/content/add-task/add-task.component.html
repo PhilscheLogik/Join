@@ -1,4 +1,5 @@
 <section>
+  @if(!taskService.isEditModusActivated){
   <div class="head-section">
     <h1>Add Task</h1>
     <img
@@ -9,9 +10,13 @@
       (click)="taskService.toggleCloseButton()"
     />
   </div>
+  }
 
-  <form #taskForm="ngForm" (ngSubmit)="submitForm()">
-    <div class="fill-in-area">
+  <form #taskForm="ngForm">
+    <div
+      class="fill-in-area"
+      [ngClass]="{ column: taskService.isEditModusActivated }"
+    >
       <div class="content">
         <div class="title_field">
           <label class="title" name="title">Title<span>*</span></label>
@@ -108,7 +113,9 @@
         </div>
       </div>
 
+      @if(!taskService.isEditModusActivated){
       <div class="line"></div>
+      }
 
       <div class="right">
         <div class="choice">
@@ -168,6 +175,7 @@
           </div>
         </div>
 
+        @if(!taskService.isEditModusActivated){
         <div class="choice">
           <label for="taskType">Category<span>*</span></label>
           <div class="seemInput" (click)="clickCategory()">
@@ -210,6 +218,7 @@
             </div>
           </div>
         </div>
+        }
 
         <div class="choice">
           <label for="subtasks">Subtasks</label>
@@ -309,15 +318,13 @@
       </div>
     </div>
 
+    @if(!taskService.isEditModusActivated){
     <div class="submit-section">
       <p>
         <span>*</span>
         This field is required
       </p>
-
       <div class="btn-submit-section">
-        <!-- <button (click)="test()">TEST</button>
-        <button (click)="test()">TEST</button> -->
         @if(taskService.showCloseButton){
         <button
           type="button"
@@ -333,10 +340,15 @@
           <img src="assets/img/icons/cancel.svg" alt="Cancel" /></button
         >}
 
-        <button type="submit" class="create-btn">
+        <button type="submit" class="create-btn" (click)="submitForm()">
           Create Task <img src="assets/img/icons/check.svg" alt="Check" />
         </button>
       </div>
     </div>
+    } @else {
+      <button type="submit" class="create-btn ok-btn" (click)="updateForm()">
+        Ok <img src="assets/img/icons/check.svg" alt="ok" />
+      </button>
+    }
   </form>
 </section>

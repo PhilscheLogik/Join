@@ -11,15 +11,18 @@ import {
 import { TaskServiceService } from '../../../services/task-service.service';
 import { ContactsService } from '../../../services/contacts.service';
 import { Task } from '../../../../interfaces/task';
+import { AddTaskComponent } from '../../add-task/add-task.component';
 
 @Component({
   selector: 'app-single-task',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AddTaskComponent],
   templateUrl: './single-task.component.html',
   styleUrl: './single-task.component.scss',
 })
 export class SingleTaskComponent {
+
+
   @Input() task!: Task;
 
   tasks: Task[] = [];
@@ -29,10 +32,17 @@ export class SingleTaskComponent {
   selectedContacts: any[] = [];
 
   constructor(
-    private taskService: TaskServiceService,
+    public taskService: TaskServiceService,
     public contactService: ContactsService
   ) {
     this.tasks = this.taskService.todoList;
+  }
+
+
+  // ### EDIT
+  editTaskActivated(task: Task | null) {
+    this.taskService.isEditModusActivated = true;
+    console.log(task);    
   }
 
   /**
@@ -50,6 +60,9 @@ export class SingleTaskComponent {
    */
   closeOverlay() {
     this.isClosing = true;
+
+    // ### EDIT
+    this.taskService.isEditModusActivated = false
     setTimeout(() => {
       this.isOverlayOpen = false;
       this.isClosing = false;

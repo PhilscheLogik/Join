@@ -17,6 +17,7 @@ export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
 
   whatIsTheType = 'feedback';
+  isEditModusActivated = false;
 
   todoList: Task[] = [];
   progressList: Task[] = [];

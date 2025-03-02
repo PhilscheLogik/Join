@@ -14,6 +14,7 @@ import { Task } from '../../../interfaces/task';
   styleUrl: './add-task.component.scss',
 })
 export class AddTaskComponent {
+
   firestore: Firestore = inject(Firestore);
   taskService = inject(TaskServiceService);
   contactService = inject(ContactsService);
@@ -40,6 +41,10 @@ export class AddTaskComponent {
   };
 
   constructor() {}
+
+  updateForm() {
+     console.log('Edit Mode aktiviert')
+    }
 
   getCurrentDate(): string {
     const today = new Date();

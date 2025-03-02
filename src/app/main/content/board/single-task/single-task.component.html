@@ -26,6 +26,12 @@
         </button>
       </div>
 
+      @if(taskService.isEditModusActivated){
+        <div>
+        <app-add-task></app-add-task>
+      </div>
+    } @else {     
+
       <h1>{{ selectedTask?.title }}</h1>
       <p class="description">{{ selectedTask?.description }}</p>
 
@@ -115,11 +121,14 @@
           Delete
         </button>
         <span class="divider"></span>
-        <button class="edit-btn">
+        <button 
+        (click)="editTaskActivated(selectedTask)"
+        class="edit-btn">
           <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" />
           Edit
         </button>
       </div>
+    }
     </div>
   </div>
   }
