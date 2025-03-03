@@ -36,19 +36,6 @@ export class SingleTaskComponent {
     this.tasks = this.taskService.todoList;
   }
 
-  // ### EDIT
-  editTaskActivated(task: Task | null) {
-    this.taskService.isEditModeActivated = true;
-    if (task && task.id) {
-      this.taskService.selectedTaskId = task.id;
-      this.taskService.selectedTaskCategory = task?.category;
-      
-      console.log(task);
-    this.taskService.selectedTask = task;    
-    console.log(this.taskService.selectedTask);
-    }    
-  }
-
   /**
    * Opens the overlay for a specific task.
    * @param {Task} task - The task to be displayed in the overlay.
@@ -64,15 +51,30 @@ export class SingleTaskComponent {
    */
   closeOverlay() {
     this.isClosing = true;
-
-    // ### EDIT
     this.taskService.isEditModeActivated = false;
+
     setTimeout(() => {
       this.isOverlayOpen = false;
       this.isClosing = false;
     }, 300);
 
     this.taskService.whatIsTheType = 'todo';
+  }
+
+  /**
+   * Activates edit mode for a task.
+   * @param {Task | null} task - The task to be edited, or null if no task is provided.
+   */
+  editTaskActivated(task: Task | null) {
+    this.taskService.isEditModeActivated = true;
+    if (task && task.id) {
+      this.taskService.selectedTaskId = task.id;
+      this.taskService.selectedTaskCategory = task?.category;
+
+      console.log(task);
+      this.taskService.selectedTask = task;
+      console.log(this.taskService.selectedTask);
+    }
   }
 
   /**
@@ -84,21 +86,6 @@ export class SingleTaskComponent {
       this.taskService.deleteTask(this.taskService.whatIsTheType, task.id);
     }
   }
-
-  // Aktualisiere die lokalen Arrays
-  // transferArrayItem(
-  //   event.previousContainer.data,
-  //   event.container.data,
-  //   event.previousIndex,
-  //   event.currentIndex
-  // );
-
-  // console.log(
-  //   event.previousContainer.data,
-  //   event.container.data,
-  //   event.previousIndex,
-  //   event.currentIndex,
-  // );
 
   /**
    * Handles the drag-and-drop functionality for tasks.
@@ -143,25 +130,9 @@ export class SingleTaskComponent {
   }
 
   /**
-   * getSubtaskLength()
-   *
-   * This method safely returns the length of the `subtasks` array associated with the current `task`.
-   * It checks whether `task.subtasks` is an actual array using `Array.isArray()`. If it is, it returns
-   * the length of the `subtasks` array. If `task.subtasks` is not an array (or is `null`/`undefined`),
-   * it returns `0` to avoid any errors.
-   *
-   * This is useful to safely handle cases where `subtasks` may be `null`, `undefined`, or not an array,
-   * ensuring that the code works as expected without throwing errors.
-   *
-   * @returns {number} - The number of subtasks. Returns `0` if `task.subtasks` is not a valid array.
-   */
-  getSubtaskLength(): number {
-    return Array.isArray(this.task.subtasks) ? this.task.subtasks.length : 0;
-  }
-
-  /**
    * Toggles the completion status of a subtask.
    * @param {any} subtask - The subtask to toggle.
+   * @param {Task | null} task - The parent task containing the subtask.
    */
   toggleSubtaskCompleted(subtask: any, task: Task | null) {
     subtask.IsCompleted = !subtask.IsCompleted;
@@ -183,9 +154,7 @@ export class SingleTaskComponent {
           task.subtasks,
           this.taskService.whatIsTheType
         );
-        
-      }    
-      
+      }
     }
   }
 
