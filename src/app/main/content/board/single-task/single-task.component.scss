@@ -323,6 +323,9 @@
   @include dFlex($ai: center, $jc: space-between);
   width: 100%;
   height: 16px;
+  >p {
+    margin-left: 16px;
+  }
 }
 
 .subtasks_progress {
