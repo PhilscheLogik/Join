@@ -34,7 +34,7 @@ export class TaskServiceService {
   unsubDone;
 
 
-  whichType(option: string){
+  whichTypeList(option: string){
     switch (option) {
       case 'todo':
         return this.todoList
@@ -49,7 +49,7 @@ export class TaskServiceService {
         return this.doneList
         break;
       default:
-        return 'todo'      
+        return this.todoList      
     }    
   }
 

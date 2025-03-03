@@ -26,6 +26,12 @@
         </button>
       </div>
 
+      @if(taskService.isEditModeActivated){
+        <div>
+        <app-add-task></app-add-task>
+      </div>
+    } @else {     
+
       <h1>{{ selectedTask?.title }}</h1>
       <p class="description">{{ selectedTask?.description }}</p>
 
@@ -83,8 +89,9 @@
       <div class="subtasks">
         <p>Subtasks</p>
         @if (selectedTask?.subtasks) { 
-          @for (subtask of selectedTask?.subtasks;track $index) {
-            <div class="subtask" (click)="toggleSubtaskCompleted(subtask, $index, selectedTask?.id)">
+          @for (subtask of selectedTask?.subtasks;
+        track subtask) {
+        <div class="subtask" (click)="toggleSubtaskCompleted(subtask, $index, selectedTask?.id)">
           @if(subtask.IsCompleted){
           <img
             class="checkbox-icon"
@@ -115,11 +122,14 @@
           Delete
         </button>
         <span class="divider"></span>
-        <button class="edit-btn">
+        <button 
+        (click)="editTaskActivated(selectedTask)"
+        class="edit-btn">
           <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" />
           Edit
         </button>
       </div>
+    }
     </div>
   </div>
   }

@@ -169,7 +169,11 @@ export class SingleTaskComponent {
     console.log(id);
     console.log(this.taskService.whatIsTheType);
     console.log(index);
-    console.log(this.taskService.whichType(this.taskService.whatIsTheType));
+    
+if(((this.taskService.whichTypeList(this.taskService.whatIsTheType)).filter( t => t.id == id))[0].subtasks){
+  // console.log(((this.taskService.whichTypeList(this.taskService.whatIsTheType)).filter( t => t.id == id))[0].subtasks[index].IsCompleted);
+}
+
     // if(this.taskService.selectedTaskId){
     //   this.taskService
     // }
