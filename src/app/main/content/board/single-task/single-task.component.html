@@ -26,6 +26,11 @@
         </button>
       </div>
 
+  @if(taskService.isEditModeActivated){
+      <div>
+        <app-add-task></app-add-task>
+      </div>
+    } @else {
       <h1>{{ selectedTask?.title }}</h1>
       <p class="description">{{ selectedTask?.description }}</p>
 
@@ -115,14 +120,17 @@
           Delete
         </button>
         <span class="divider"></span>
-        <button class="edit-btn">
+        <button 
+        (click)="editTaskActivated(selectedTask)"
+        class="edit-btn">
           <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" />
           Edit
         </button>
       </div>
+    }
     </div>
   </div>
-  }
+}
 
   <!-- Small card board -->
 
@@ -141,22 +149,6 @@
       <h3>{{ task.title }}</h3>
       <p>{{ task.description }}</p>
     </div>
-
-    <!-- @if(!task.subtasks || task.subtasks.length == 0) {
-    <div class="task_card_substasks" *ngIf="task.subtasks && task.subtasks.length > 0">
-      <div class="subtasks_progress">
-        <progress 
-          [value]="getCompletedSubtasksCount()" 
-          [max]="task.subtasks?.length || 0"
-       ></progress>
-      </div>
-      <p>
-        @if (task.subtasks && task.subtasks.length > 0) {
-        {{ getCompletedSubtasksCount() }} / {{ task.subtasks.length }} Subtasks
-        } @else { 0 Subtasks }
-      </p>
-    </div>
-    } -->
 
     <div class="task_card_substasks" *ngIf="task.subtasks && task.subtasks.length > 0">
       <div class="subtasks_progress">
