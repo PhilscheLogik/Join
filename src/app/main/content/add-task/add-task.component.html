@@ -1,5 +1,5 @@
 <section
-[ngClass]="{ maxWidth: taskService.isEditModeActivated }"
+  [ngClass]="{ maxWidth: taskService.isEditModeActivated }"
   [ngStyle]="{
     'box-shadow': taskService.isEditModeActivated
       ? '0px 0px 0px 0px rgba(0, 0, 0, 0) inset'
@@ -185,7 +185,11 @@
         @if(!taskService.isEditModeActivated){
         <div class="choice">
           <label for="taskType">Category<span>*</span></label>
-          <div class="seemInput" (click)="clickCategory()" [ngClass]="{ 'error-border': errors.category }">
+          <div
+            class="seemInput"
+            (click)="clickCategory()"
+            [ngClass]="{ 'error-border': errors.category }"
+          >
             @if(selectedCategory == ''){
             <p>Select task category</p>
             } @if(selectedCategory == 'Technical Task'){
@@ -205,7 +209,7 @@
             />
           </div>
           @if(errors.category) {
-            <span class="error-message">Please select a category!</span>
+          <span class="error-message">Please select a category!</span>
           }
 
           <div class="categoryContainer">
@@ -356,9 +360,20 @@
       </div>
     </div>
     } @else {
-    <button type="submit" class="create-btn ok-btn" (click)="submitUpdateForm()">
+    <button
+      type="submit"
+      class="create-btn ok-btn"
+      (click)="submitUpdateForm()"
+    >
       Ok <img src="assets/img/icons/check.svg" alt="ok" />
     </button>
     }
   </form>
+
+  @if(showSuccessMessage){
+  <div class="task-toast">
+    <span>Task added to board</span>
+    <img src="assets/img/icons/board-white.svg" alt="icon" class="toast-icon" />
+  </div>
+  }
 </section>

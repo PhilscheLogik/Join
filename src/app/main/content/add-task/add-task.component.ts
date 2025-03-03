@@ -26,6 +26,7 @@ export class AddTaskComponent {
   newDate = '';
   inputTitle = '';
   inputDescription = '';
+  showSuccessMessage = false;
 
   /*Subtask content*/
   newSubtask: string = '';
@@ -376,6 +377,7 @@ export class AddTaskComponent {
    */
   submitAddForm() {
     this.validateForm();
+    this.showTaskToast();
     let newTask: Task;
 
     // Validate if the selected date is in the past
@@ -487,5 +489,18 @@ export class AddTaskComponent {
 
     this.clearForm();
     this.taskService.isEditModeActivated = false;
+  }
+
+  /**
+   * Displays a task success message (toast) for a short duration.
+   *
+   * When called, it sets `showSuccessMessage` to `true`, making the toast visible.
+   * After 2 seconds, it automatically hides the toast by setting `showSuccessMessage` to `false`.
+   */
+  showTaskToast() {
+    this.showSuccessMessage = true;
+    setTimeout(() => {
+      this.showSuccessMessage = false;
+    }, 2000);
   }
 }
