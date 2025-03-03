@@ -9,12 +9,12 @@
     <div class="board_header_right">
       <div class="input_field">
         <input
-          type="text"          
+          type="text"
           id="subtasks"
           name="searchText"
           [(ngModel)]="searchText"
           placeholder="Find task"
-          (keydown.enter)="startSearch()"
+          (keyup.enter)="startSearch()"
         />
 
         <div class="input-search-btn" (click)="startSearch()">
@@ -24,6 +24,11 @@
           </div>
         </div>
       </div>
+      @if(noResults) {
+        <div class="error-message">
+          No results found!.
+        </div>
+      }
       <button
         class="add_task_btn btn_desktop"
         (click)="taskService.toggleCloseButton()"
@@ -68,7 +73,8 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of this.filterList(this.taskService.todoList); track $index) {
+        @for (task of this.filterList(this.taskService.todoList); track $index)
+        {
         <app-single-task
           (click)="setType('todo')"
           [task]="task"
@@ -94,7 +100,8 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of this.filterList(this.taskService.progressList); track task) {
+        @for (task of this.filterList(this.taskService.progressList); track
+        task) {
         <app-single-task
           (click)="setType('inprogess')"
           [task]="task"
@@ -120,7 +127,8 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of this.filterList(this.taskService.feedbackList); track task) {
+        @for (task of this.filterList(this.taskService.feedbackList); track
+        task) {
         <app-single-task
           (click)="setType('feedback')"
           [task]="task"

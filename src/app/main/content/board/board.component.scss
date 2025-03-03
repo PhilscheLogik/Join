@@ -28,8 +28,14 @@ section {
     height: 32px;
     width: 32px;
     border-left: 1px solid $light_gray;
-
   }
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
 }
 
 input {

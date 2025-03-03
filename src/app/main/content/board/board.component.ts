@@ -46,6 +46,8 @@ export class BoardComponent {
   /** Auxiliary variable for filtering after the search button has been clicked */
   searchText = '';
 
+  noResults = false;
+
   /**
    * Sets the task type in the task service.
    * @param {string} type - The type of the task.
@@ -127,55 +129,74 @@ export class BoardComponent {
     console.log('Done:', this.taskService.doneList);
   }
 
-  filterList(list: Task[]) {
-    if (this.searchTerm.trim() == '') {
-      return list;
-    } else {
-      console.info('--- Suche ---');
-      console.log(this.searchTerm, list);
-      return list.filter(
-        (task) => {          
-          console.log(task.title.includes(this.searchTerm));
-          console.log(task.description?.includes(this.searchTerm));
-          console.log('--- ---');
+  // filterList(list: Task[]) {
+  //   if (this.searchTerm.trim() == '') {
+  //     return list;
+  //   } else {
+  //     console.info('--- Suche ---');
+  //     console.log(this.searchTerm, list);
+  //     return list.filter((task) => {
+  //       console.log(task.title.includes(this.searchTerm));
+  //       console.log(task.description?.includes(this.searchTerm));
+  //       console.log('--- ---');
 
-          return task.title.includes(this.searchTerm) ||
-          task.description?.includes(this.searchTerm);
-          
-        }
-      );
+  //       return (
+  //         task.title.includes(this.searchTerm) ||
+  //         task.description?.includes(this.searchTerm)
+  //       );
+  //     });
+  //   }
+  // }
+
+  /**
+   * Filters the provided list of tasks based on the current search term.
+   * If the search term is empty, the original list is returned.
+   * Otherwise, the list is filtered to include tasks where the title or description
+   * contains the search term.
+   *
+   * @param {Task[]} list - The list of tasks to be filtered.
+   * @returns {Task[]} A new list of tasks that match the search term in either the title or description.
+   */
+  filterList(list: Task[]) {
+    if (this.searchTerm.trim() === '') {
+      return list;
     }
+    return list.filter(
+      (task) =>
+        task.title.includes(this.searchTerm) ||
+        task.description?.includes(this.searchTerm)
+    );
   }
 
+  /**
+   * Initiates the search by setting the search term to the current search text
+   * and then checks if there are any results.
+   */
   startSearch() {
     this.searchTerm = this.searchText;
+    this.checkForResults();
+  }
+
+  /**
+   * Checks if there are any tasks matching the current search term across all task lists.
+   * Combines the tasks from different lists (todo, progress, feedback, and done), filters
+   * them based on the search term, and updates the `noResults` flag to indicate if no
+   * matching tasks were found.
+   */
+  checkForResults() {
+    const allTasks = [
+      ...this.taskService.todoList,
+      ...this.taskService.progressList,
+      ...this.taskService.feedbackList,
+      ...this.taskService.doneList,
+    ];
+
+    const filtered = allTasks.filter(
+      (task) =>
+        task.title.includes(this.searchTerm) ||
+        task.description?.includes(this.searchTerm)
+    );
+
+    this.noResults = filtered.length === 0;
   }
 }
-
-// drop(event: CdkDragDrop<string[]>) {
-//   if (event.previousContainer === event.container) {
-//     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-//   } else {
-//     transferArrayItem(
-//       event.previousContainer.data,
-//       event.container.data,
-//       event.previousIndex,
-//       event.currentIndex,
-//     );
-//   }
-// }
-
-// Aktualisiere die lokalen Arrays
-// transferArrayItem(
-//   event.previousContainer.data,
-//   event.container.data,
-//   event.previousIndex,
-//   event.currentIndex
-// );
-
-// console.log(
-//   event.previousContainer.data,
-//   event.container.data,
-//   event.previousIndex,
-//   event.currentIndex,
-// );
