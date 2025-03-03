@@ -89,9 +89,8 @@
       <div class="subtasks">
         <p>Subtasks</p>
         @if (selectedTask?.subtasks) { 
-          @for (subtask of selectedTask?.subtasks;
-        track subtask) {
-        <div class="subtask" (click)="toggleSubtaskCompleted(subtask, $index, selectedTask?.id)">
+          @for (subtask of selectedTask?.subtasks; track subtask) {
+        <div class="subtask" (click)="toggleSubtaskCompleted(subtask, selectedTask)">
           @if(subtask.IsCompleted){
           <img
             class="checkbox-icon"
@@ -151,22 +150,6 @@
       <h3>{{ task.title }}</h3>
       <p>{{ task.description }}</p>
     </div>
-
-    <!-- @if(!task.subtasks || task.subtasks.length == 0) {
-    <div class="task_card_substasks" *ngIf="task.subtasks && task.subtasks.length > 0">
-      <div class="subtasks_progress">
-        <progress 
-          [value]="getCompletedSubtasksCount()" 
-          [max]="task.subtasks?.length || 0"
-       ></progress>
-      </div>
-      <p>
-        @if (task.subtasks && task.subtasks.length > 0) {
-        {{ getCompletedSubtasksCount() }} / {{ task.subtasks.length }} Subtasks
-        } @else { 0 Subtasks }
-      </p>
-    </div>
-    } -->
 
     <div class="task_card_substasks" *ngIf="task.subtasks && task.subtasks.length > 0">
       <div class="subtasks_progress">
