@@ -42,8 +42,11 @@ export class SingleTaskComponent {
     if (task && task.id) {
       this.taskService.selectedTaskId = task.id;
       this.taskService.selectedTaskCategory = task?.category;
-    }
-    console.log(task);
+      
+      console.log(task);
+    this.taskService.selectedTask = task;    
+    console.log(this.taskService.selectedTask);
+    }    
   }
 
   /**

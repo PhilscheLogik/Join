@@ -42,7 +42,16 @@ export class AddTaskComponent {
   };
   box: any;
 
-  constructor() {}
+  constructor() {
+    if (this.taskService.isEditModeActivated) {
+      this.inputTitle = String(this.taskService.selectedTask?.id);
+      // this.inputDescription = String(this.taskService.selectedTask?.description);
+      this.prio = String(this.taskService.selectedTask?.prio);
+      this.newDate = String(this.taskService.selectedTask?.date);      
+
+      
+    }
+  }
 
   /**
    * Activates the edit mode and logs a message to the console.

@@ -28,6 +28,8 @@ export class TaskServiceService {
   doneList: Task[] = [];
   showCloseButton: boolean = false; // New variable to control button visibility
 
+  selectedTask: Task | undefined;
+
   unsubToDo;
   unsubInProgress;
   unsubFeedback;
@@ -47,6 +49,7 @@ export class TaskServiceService {
     this.unsubFeedback = this.subFeedbackList();
     this.unsubDone = this.subDoneList();
   }
+
 
   toggleCloseButton() {
     this.showCloseButton = !this.showCloseButton;
