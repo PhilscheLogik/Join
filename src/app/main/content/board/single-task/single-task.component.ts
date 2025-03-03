@@ -161,8 +161,11 @@ export class SingleTaskComponent {
   toggleSubtaskCompleted(subtask: any, task: Task | null) {
     subtask.IsCompleted = !subtask.IsCompleted;
 
-    // console.info('--- IsCompleted ---');
+    console.info('--- IsCompleted ---');
     if (task) {
+      console.log(task);
+      console.log(this.taskService.whatIsTheType);
+      console.log(task.subtasks);
       if (task.id && task.description) {
         this.taskService.updateTask(
           task.id,
@@ -175,29 +178,9 @@ export class SingleTaskComponent {
           task.subtasks,
           this.taskService.whatIsTheType
         );
-        // console.log(task.subtasks);
-      }
-
-      // console.log(subtask);
-      // console.log(task.id);
-      // console.log(this.taskService.whatIsTheType);
-      // console.log(index);
-
-      // if (
-      //   this.taskService
-      //     .whichTypeList(this.taskService.whatIsTheType)
-      //     .filter((t) => t.id == task.id)[0].subtasks
-      // ) {
-      //   console.log(
-      //     this.taskService
-      //       .whichTypeList(this.taskService.whatIsTheType)
-      //       .filter((t) => t.id == task.id)[0].subtasks
-      //   );
-      // }
-
-      // if(this.taskService.selectedTaskId){
-      //   this.taskService
-      // }
+        
+      }    
+      
     }
   }
 

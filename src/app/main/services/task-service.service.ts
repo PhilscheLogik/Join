@@ -16,7 +16,7 @@ import { Task } from '../../interfaces/task';
 export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
 
-  whatIsTheType = 'feedback';
+  whatIsTheType = 'todo';
   isEditModeActivated = false;
 
   selectedTaskId="";
@@ -32,26 +32,6 @@ export class TaskServiceService {
   unsubInProgress;
   unsubFeedback;
   unsubDone;
-
-
-  whichTypeList(option: string){
-    switch (option) {
-      case 'todo':
-        return this.todoList
-        break;
-      case 'inprogress':
-        return this.progressList
-        break;
-      case 'feedback':
-        return this.feedbackList
-        break;
-      case 'done':
-        return this.doneList
-        break;
-      default:
-        return this.todoList      
-    }    
-  }
 
   /**
    * Initializes the component and subscribes to real-time updates for multiple collections.
@@ -336,20 +316,5 @@ export class TaskServiceService {
         subtasks: newSubtasks,
       });
     }
-  }
-
-
-  async updateTaskSubtasks(
-    id: string,
-    newSubtasks: any,
-    listCategory: string
-  ) {
-    const updateRef = doc(this.getCategoryRef(listCategory), id);
-    if (id) {
-      await updateDoc(updateRef, {        
-        subtasks: newSubtasks,
-      });
-    }
-  }
-
+  }  
 }
