@@ -140,6 +140,11 @@ export class SingleTaskComponent {
     return '';
   }
 
+
+  getSubtaskLength(): number {
+    return Array.isArray(this.task.subtasks) ? this.task.subtasks.length : 0;
+  }
+  
   /**
    * Toggles the completion status of a subtask.
    * @param {any} subtask - The subtask to toggle.
@@ -179,6 +184,7 @@ export class SingleTaskComponent {
     return this.task.subtasks.filter((subtask) => subtask.IsCompleted === true)
       .length;
   }
+
 
   /**
    * Retrieves the first three assigned contacts for a given task.

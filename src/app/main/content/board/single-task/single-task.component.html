@@ -26,12 +26,6 @@
         </button>
       </div>
 
-      @if(taskService.isEditModeActivated){
-        <div>
-        <app-add-task></app-add-task>
-      </div>
-    } @else {     
-
       <h1>{{ selectedTask?.title }}</h1>
       <p class="description">{{ selectedTask?.description }}</p>
 
@@ -121,14 +115,11 @@
           Delete
         </button>
         <span class="divider"></span>
-        <button 
-        (click)="editTaskActivated(selectedTask)"
-        class="edit-btn">
+        <button class="edit-btn">
           <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" />
           Edit
         </button>
       </div>
-    }
     </div>
   </div>
   }
@@ -151,17 +142,27 @@
       <p>{{ task.description }}</p>
     </div>
 
-    <div class="task_card_substasks">
+    <!-- @if(!task.subtasks || task.subtasks.length == 0) {
+    <div class="task_card_substasks" *ngIf="task.subtasks && task.subtasks.length > 0">
       <div class="subtasks_progress">
-        <!-- <div class="progress_outer">
-          <div
-            class="progress_inner"
-            [style.width]="getSubtasksProgress() + '%'"
-          ></div>
-        </div> -->
         <progress 
           [value]="getCompletedSubtasksCount()" 
           [max]="task.subtasks?.length || 0"
+       ></progress>
+      </div>
+      <p>
+        @if (task.subtasks && task.subtasks.length > 0) {
+        {{ getCompletedSubtasksCount() }} / {{ task.subtasks.length }} Subtasks
+        } @else { 0 Subtasks }
+      </p>
+    </div>
+    } -->
+
+    <div class="task_card_substasks" *ngIf="task.subtasks && task.subtasks.length > 0">
+      <div class="subtasks_progress">
+        <progress 
+          [value]="getCompletedSubtasksCount()" 
+          [max]="getSubtaskLength()"
        ></progress>
       </div>
       <p>
