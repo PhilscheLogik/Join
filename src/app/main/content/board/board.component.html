@@ -2,7 +2,7 @@
   <div class="board_header">
     <div class="board_header_left">
       <h1>Board</h1>
-      <div class="mobile_add_task_btn" (click)="naviService.setSelectedItem(1)">
+      <div class="mobile_add_task_btn" (click)="naviService.setSelectedItem(1); setType('todo')">
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </div>
     </div>
@@ -31,14 +31,14 @@
       }
       <button
         class="add_task_btn btn_desktop"
-        (click)="taskService.toggleCloseButton()"
+        (click)="taskService.toggleCloseButton(); setType('todo')"
       >
         Add task
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </button>
       <button
         class="add_task_btn btn_mobile"
-        (click)="naviService.setSelectedItem(1)"
+        (click)="naviService.setSelectedItem(1); setType('todo')"
       >
         Add task
         <img src="assets/img/icons/plus_icon.svg" alt="" />
@@ -59,7 +59,7 @@
     <div class="to_do">
       <div class="board_content_header">
         <h2>To do</h2>
-        <button class="to_do_add_btn"></button>
+        <button class="to_do_add_btn" (click)="taskService.toggleCloseButton(); setType('todo')"></button>
       </div>
       <div class="empty_bg">
         <p>No task To do</p>
@@ -86,7 +86,7 @@
     <div class="in_progress">
       <div class="board_content_header">
         <h2>In progress</h2>
-        <button class="in_progress_add_btn"></button>
+        <button class="in_progress_add_btn" (click)="taskService.toggleCloseButton(); setType('inprogress')"></button>
       </div>
       <div class="empty_bg">
         <p>No task in progress</p>
@@ -113,7 +113,7 @@
     <div class="await_feedback">
       <div class="board_content_header">
         <h2>Await feedback</h2>
-        <button class="await_feedback_add_btn"></button>
+        <button class="await_feedback_add_btn" (click)="taskService.toggleCloseButton(); setType('feedback')"></button>
       </div>
       <div class="empty_bg">
         <p>No task awaits feedback</p>

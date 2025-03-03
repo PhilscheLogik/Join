@@ -68,6 +68,8 @@ export class SingleTaskComponent {
       this.isOverlayOpen = false;
       this.isClosing = false;
     }, 300);
+
+    this.taskService.whatIsTheType = 'todo';
   }
 
   /**
