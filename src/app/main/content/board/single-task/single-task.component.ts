@@ -152,7 +152,7 @@ export class SingleTaskComponent {
     console.log(id);
     console.log(this.taskService.whatIsTheType);
     console.log(index);
-    console.log();
+    console.log(this.taskService.whichType(this.taskService.whatIsTheType));
     // if(this.taskService.selectedTaskId){
     //   this.taskService
     // }
