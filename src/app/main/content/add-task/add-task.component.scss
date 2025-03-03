@@ -44,6 +44,8 @@ form {
   color: $red;
 }
 
+
+
 /*linkes Div*/
 .content {
   @include dFlex($ai: flex-start, $g: 20px);
@@ -518,6 +520,10 @@ form {
     padding: 16px 21px;
     cursor: pointer;
   }
+}
+
+.error-border {
+  border-color: $red; // Wenn Fehler, rote Grenze
 }
 
 .selected {

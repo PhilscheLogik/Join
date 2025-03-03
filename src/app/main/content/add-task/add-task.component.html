@@ -185,7 +185,7 @@
         @if(!taskService.isEditModeActivated){
         <div class="choice">
           <label for="taskType">Category<span>*</span></label>
-          <div class="seemInput" (click)="clickCategory()">
+          <div class="seemInput" (click)="clickCategory()" [ngClass]="{ 'error-border': errors.category }">
             @if(selectedCategory == ''){
             <p>Select task category</p>
             } @if(selectedCategory == 'Technical Task'){
@@ -204,6 +204,9 @@
               [ngStyle]="{ display: openCategory ? 'block' : 'none' }"
             />
           </div>
+          @if(errors.category) {
+            <span class="error-message">Please select a category!</span>
+          }
 
           <div class="categoryContainer">
             <div

@@ -34,9 +34,10 @@ export class AddTaskComponent {
   openCategory = false;
 
   // Errorstatus
-  errors: { title: boolean; date: boolean } = {
+  errors: { title: boolean; date: boolean; category: boolean } = {
     title: false,
     date: false,
+    category: false,
   };
   box: any;
 
@@ -116,6 +117,7 @@ export class AddTaskComponent {
     this.errors = {
       title: !this.inputTitle.trim(),
       date: !this.newDate.trim(),
+      category: !this.selectedCategory.trim(),
     };
   }
 

@@ -141,6 +141,23 @@ export class SingleTaskComponent {
   }
 
   /**
+ * getSubtaskLength()
+ * 
+ * This method safely returns the length of the `subtasks` array associated with the current `task`.
+ * It checks whether `task.subtasks` is an actual array using `Array.isArray()`. If it is, it returns 
+ * the length of the `subtasks` array. If `task.subtasks` is not an array (or is `null`/`undefined`), 
+ * it returns `0` to avoid any errors.
+ * 
+ * This is useful to safely handle cases where `subtasks` may be `null`, `undefined`, or not an array, 
+ * ensuring that the code works as expected without throwing errors.
+ * 
+ * @returns {number} - The number of subtasks. Returns `0` if `task.subtasks` is not a valid array.
+ */
+  getSubtaskLength(): number {
+    return Array.isArray(this.task.subtasks) ? this.task.subtasks.length : 0;
+  }
+
+  /**
    * Toggles the completion status of a subtask.
    * @param {any} subtask - The subtask to toggle.
    */
@@ -190,6 +207,7 @@ export class SingleTaskComponent {
     return this.task.subtasks.filter((subtask) => subtask.IsCompleted === true)
       .length;
   }
+
 
   /**
    * Retrieves the first three assigned contacts for a given task.
