@@ -44,8 +44,8 @@ export class AddTaskComponent {
 
   constructor() {
     if (this.taskService.isEditModeActivated) {
-      this.inputTitle = String(this.taskService.selectedTask?.id);
-      // this.inputDescription = String(this.taskService.selectedTask?.description);
+      this.inputTitle = String(this.taskService.selectedTask?.title);
+      this.inputDescription = String(this.taskService.selectedTask?.description);
       this.prio = String(this.taskService.selectedTask?.prio);
       this.newDate = String(this.taskService.selectedTask?.date);      
 

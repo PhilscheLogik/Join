@@ -31,12 +31,11 @@
             <input
               class="input"
               type="text"
-              name="input"
+              name="title"
               placeholder="Enter a title"
               [class.error]="isFieldInvalid('title')"
               (focus)="clearError('title')"
-              [(ngModel)]="inputTitle"
-              #titleField="ngModel"
+              [(ngModel)]="inputTitle"              
               required
             />
             @if (isFieldInvalid('title')) {
@@ -52,7 +51,7 @@
           <textarea
             class="input"
             type="text"
-            name="input"
+            name="description"
             placeholder="Enter a Description"
             [(ngModel)]="inputDescription"
           ></textarea>
