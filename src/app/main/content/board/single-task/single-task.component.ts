@@ -144,8 +144,19 @@ export class SingleTaskComponent {
    * Toggles the completion status of a subtask.
    * @param {any} subtask - The subtask to toggle.
    */
-  toggleSubtaskCompleted(subtask: any) {
+  toggleSubtaskCompleted(subtask: any, index: number, id: string | undefined) {
     subtask.IsCompleted = !subtask.IsCompleted;
+
+    console.info('--- IsCompleted ---');
+    console.log(subtask);
+    console.log(id);
+    console.log(this.taskService.whatIsTheType);
+    console.log(index);
+    console.log();
+    // if(this.taskService.selectedTaskId){
+    //   this.taskService
+    // }
+    
   }
 
   /**

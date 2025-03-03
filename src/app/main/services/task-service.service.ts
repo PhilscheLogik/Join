@@ -33,6 +33,26 @@ export class TaskServiceService {
   unsubFeedback;
   unsubDone;
 
+
+  whichType(option: string){
+    switch (option) {
+      case 'todo':
+        return this.todoList
+        break;
+      case 'inprogress':
+        return this.progressList
+        break;
+      case 'feedback':
+        return this.feedbackList
+        break;
+      case 'done':
+        return this.doneList
+        break;
+      default:
+        return 'todo'      
+    }    
+  }
+
   /**
    * Initializes the component and subscribes to real-time updates for multiple collections.
    *
@@ -317,4 +337,19 @@ export class TaskServiceService {
       });
     }
   }
+
+
+  async updateTaskSubtasks(
+    id: string,
+    newSubtasks: any,
+    listCategory: string
+  ) {
+    const updateRef = doc(this.getCategoryRef(listCategory), id);
+    if (id) {
+      await updateDoc(updateRef, {        
+        subtasks: newSubtasks,
+      });
+    }
+  }
+
 }

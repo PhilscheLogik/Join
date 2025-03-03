@@ -88,9 +88,9 @@
 
       <div class="subtasks">
         <p>Subtasks</p>
-        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
-        track subtask) {
-        <div class="subtask" (click)="toggleSubtaskCompleted(subtask)">
+        @if (selectedTask?.subtasks) { 
+          @for (subtask of selectedTask?.subtasks;track $index) {
+            <div class="subtask" (click)="toggleSubtaskCompleted(subtask, $index, selectedTask?.id)">
           @if(subtask.IsCompleted){
           <img
             class="checkbox-icon"
