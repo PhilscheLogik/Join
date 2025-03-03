@@ -375,72 +375,121 @@ export class AddTaskComponent {
   }
 
   /**
-   * Submits the form data to create a new task after validation.
+   * Submits the form to create a new task after performing validation checks.
    *
-   * This method first validates the form by checking if required fields (`inputTitle`, `newDate`, and `selectedCategory`)
-   * are filled in and if the priority and category are valid. If the validation passes, it creates a new task object
-   * with the form data (including `title`, `description`, `assignedTo`, `date`, `prio`, `category`, and `subtasks`)
-   * and passes it to the `taskService.addTask` method for further processing. If the required fields are not filled,
-   * an error message is logged to the console.
-   * After submitting the form, it clears all form data by calling the `clearForm` method.
+   * This function validates the date, ensures that all required fields are filled, and checks
+   * if the priority and category are valid. If all validations pass, it creates the task and
+   * adds it using the task service. After submission, the form is cleared.
    *
-   * @returns {void} This method does not return any value but triggers the task creation process and clears the form.
-   */
-
-  /**
-   * Submits the new task form after validating input fields.
-   * - Ensures all required fields are filled.
-   * - Checks if the selected date is not in the past.
-   * - Creates a new task and adds it to the task service.
-   * - Displays a confirmation toast and clears the form after submission.
+   * @returns {void} - This function doesn't return any value.
    */
   submitAddForm() {
     this.validateForm();
     this.showTaskToast();
-    let newTask: Task;
 
-    // Validate if the selected date is in the past
-    const selectedDate = new Date(this.newDate);
-    const currentDate = new Date();
-    selectedDate.setHours(0, 0, 0, 0);
-    currentDate.setHours(0, 0, 0, 0);
-    if (selectedDate < currentDate) {
+    // Validate the date and fields
+    if (!this.isValidDate(this.newDate)) {
       console.log('The selected date cannot be in the past');
       return;
     }
 
-    // Check if all required fields are filled
-    if (this.inputTitle && this.newDate && this.selectedCategory) {
-      // Validate priority
-      if (
-        this.prio == 'Urgent' ||
-        this.prio == 'Medium' ||
-        this.prio == 'Low'
-      ) {
-        // Validate category
-        if (
-          this.selectedCategory == 'User Story' ||
-          this.selectedCategory == 'Technical Task'
-        ) {
-          newTask = {
-            title: this.inputTitle,
-            description: this.inputDescription,
-            assignedTo: this.getId(),
-            date: this.newDate,
-            prio: this.prio,
-            category: this.selectedCategory,
-            subtasks: this.getText(),
-          };
-
-          // Add the task to the task service
-          this.taskService.addTask(this.taskService.whatIsTheType, newTask);
-        }
-      }
-    } else {
+    if (!this.areRequiredFieldsFilled()) {
       console.log('You cannot even fill in all the required fields?!?');
+      return;
+    }
+
+    // Create and add the task if all validations passed
+    const newTask = this.createTask();
+    if (newTask) {
+      this.taskService.addTask(this.taskService.whatIsTheType, newTask);
+      this.showTaskToast();
     }
 
     this.clearForm();
+  }
+
+  /**
+   * Validates if the provided date is not in the past.
+   *
+   * @param {string} date - The date to be validated.
+   * @returns {boolean} - Returns true if the date is today or in the future, false if it's in the past.
+   */
+  isValidDate(date: string): boolean {
+    const selectedDate = new Date(date);
+    const currentDate = new Date();
+    selectedDate.setHours(0, 0, 0, 0);
+    currentDate.setHours(0, 0, 0, 0);
+    return selectedDate >= currentDate;
+  }
+
+  /**
+   * Checks if all required fields are filled and valid.
+   *
+   * This function ensures that the title, date, category, priority, and category are properly set
+   * and that the priority and category values are valid.
+   *
+   * @returns {string | boolean} - Returns true if all required fields are filled and valid, false if any field is invalid.
+   */
+  areRequiredFieldsFilled(): string | boolean {
+    return (
+      this.inputTitle &&
+      this.newDate &&
+      this.selectedCategory &&
+      this.isValidPriority() &&
+      this.isValidCategory()
+    );
+  }
+
+  /**
+   * Validates if the provided priority is one of the allowed values.
+   *
+   * This function checks if the current priority value is one of the valid options: 'Urgent', 'Medium', or 'Low'.
+   * It ensures that the priority is one of the predefined acceptable values before performing further operations.
+   *
+   * @returns {boolean} - Returns true if the priority is valid (either 'Urgent', 'Medium', or 'Low'), false otherwise.
+   */
+  isValidPriority(): boolean {
+    return ['Urgent', 'Medium', 'Low'].includes(
+      this.prio as 'Urgent' | 'Medium' | 'Low'
+    );
+  }
+
+  /**
+   * Validates if the provided priority is one of the allowed values.
+   *
+   * The allowed priorities are 'Urgent', 'Medium', and 'Low'. This function checks
+   * if the current priority value matches one of these valid options.
+   *
+   * @returns {boolean} - Returns true if the priority is valid (either 'Urgent', 'Medium', or 'Low'), false otherwise.
+   */
+  isValidCategory(): boolean {
+    return ['User Story', 'Technical Task'].includes(
+      this.selectedCategory as 'User Story' | 'Technical Task'
+    );
+  }
+
+  /**
+   * Creates a new task object if the priority and category are valid.
+   *
+   * This function constructs a task object using the current input values for title, description,
+   * assigned user, date, priority, category, and subtasks, but only if the priority and category
+   * are valid. If the validation fails, it returns null.
+   *
+   * @returns {Task | null} - Returns a new task object if valid, or null if the priority or category is invalid.
+   */
+  createTask(): Task | null {
+    if (this.isValidPriority() && this.isValidCategory()) {
+      return {
+        title: this.inputTitle,
+        description: this.inputDescription,
+        assignedTo: this.getId(),
+        date: this.newDate,
+        prio: this.prio as 'Urgent' | 'Medium' | 'Low',
+        category: this.selectedCategory as 'User Story' | 'Technical Task',
+        subtasks: this.getText(),
+      };
+    }
+    return null;
   }
 
   /**
@@ -470,60 +519,51 @@ export class AddTaskComponent {
   }
 
   /**
-   * Submits the updated task form after validating input fields.
-   * - Ensures all required fields are filled.
-   * - Checks if the selected date is not in the past.
-   * - Updates the existing task with new values.
-   * - Clears the form and exits edit mode after submission.
+   * Submits the updated task form after performing validation checks.
+   *
+   * This function validates the date, checks if the title and date are provided, validates
+   * the priority, ensures a task ID is selected, and then updates the task in the task service.
    */
   submitUpdateForm() {
     this.validateForm();
     this.selectedCategory = this.taskService.selectedTaskCategory;
 
-    // Validate if the selected date is in the past
-    const selectedDate = new Date(this.newDate);
-    const currentDate = new Date();
-    selectedDate.setHours(0, 0, 0, 0);
-    currentDate.setHours(0, 0, 0, 0);
-    if (selectedDate < currentDate) {
-      console.log('The selected date cannot be in the past');
+    // Validate the date and fields
+    if (!this.isValidDate(this.newDate)) {
+      // console.log('The selected date cannot be in the past');
       return;
     }
 
-    // Check if title and date are provided
-    if (this.inputTitle && this.newDate) {
-      console.log('Date and title are valid');
-
-      // Validate priority
-      if (
-        this.prio == 'Urgent' ||
-        this.prio == 'Medium' ||
-        this.prio == 'Low'
-      ) {
-        console.log('Priority is valid');
-
-        // Ensure a task ID is selected before updating
-        if (this.taskService.selectedTaskId !== '') {
-          this.taskService.updateTask(
-            this.taskService.selectedTaskId,
-            this.inputTitle,
-            this.inputDescription,
-            this.getId(),
-            this.newDate,
-            this.prio,
-            this.selectedCategory,
-            this.getText(),
-            this.taskService.whatIsTheType
-          );
-          console.log('Task updated successfully');
-        }
-      }
-    } else {
+    if (!this.areRequiredFieldsFilled()) {
       console.log('You cannot even fill in all the required fields?!?');
+      return;
+    }
+
+    // Check priority and task ID before updating
+    if (this.isValidPriority() && this.taskService.selectedTaskId !== '') {
+      this.updateTask();
+      this.showTaskToast();
     }
 
     this.clearForm();
     this.taskService.isEditModeActivated = false;
+  }  
+
+  /**
+   * Updates the task in the task service.
+   */
+  updateTask() {
+    this.taskService.updateTask(
+      this.taskService.selectedTaskId,
+      this.inputTitle,
+      this.inputDescription,
+      this.getId(),
+      this.newDate,
+      this.prio,
+      this.selectedCategory,
+      this.getText(),
+      this.taskService.whatIsTheType
+    );
   }
 
   /**
