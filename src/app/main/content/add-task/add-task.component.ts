@@ -44,10 +44,17 @@ export class AddTaskComponent {
 
   constructor() {}
 
+  /**
+   * Activates the edit mode and logs a message to the console.
+   */
   updateForm() {
-    console.log('Edit Mode aktiviert');
+    console.log('Edit Mode activated');
   }
 
+  /**
+   * Gets the current date in the format YYYY-MM-DD.
+   * @returns {string} The formatted current date as a string.
+   */
   getCurrentDate(): string {
     const today = new Date();
     const year = today.getFullYear();
@@ -56,10 +63,14 @@ export class AddTaskComponent {
     return `${year}-${month}-${day}`;
   }
 
+  /**
+   * Checks if the selected date is in the past.
+   * @returns {boolean} True if the selected date is in the past, otherwise false.
+   */
   isPastDate(): boolean {
     const selectedDate = new Date(this.newDate);
     const currentDate = new Date();
-    // Set time of both dates to ensure we compare the dates only
+    // Set time of both dates to ensure we compare only the dates
     selectedDate.setHours(0, 0, 0, 0);
     currentDate.setHours(0, 0, 0, 0);
     return selectedDate < currentDate;
@@ -375,6 +386,14 @@ export class AddTaskComponent {
    *
    * @returns {void} This method does not return any value but triggers the task creation process and clears the form.
    */
+
+  /**
+   * Submits the new task form after validating input fields.
+   * - Ensures all required fields are filled.
+   * - Checks if the selected date is not in the past.
+   * - Creates a new task and adds it to the task service.
+   * - Displays a confirmation toast and clears the form after submission.
+   */
   submitAddForm() {
     this.validateForm();
     this.showTaskToast();
@@ -390,12 +409,15 @@ export class AddTaskComponent {
       return;
     }
 
+    // Check if all required fields are filled
     if (this.inputTitle && this.newDate && this.selectedCategory) {
+      // Validate priority
       if (
         this.prio == 'Urgent' ||
         this.prio == 'Medium' ||
         this.prio == 'Low'
       ) {
+        // Validate category
         if (
           this.selectedCategory == 'User Story' ||
           this.selectedCategory == 'Technical Task'
@@ -410,11 +432,12 @@ export class AddTaskComponent {
             subtasks: this.getText(),
           };
 
+          // Add the task to the task service
           this.taskService.addTask(this.taskService.whatIsTheType, newTask);
         }
       }
     } else {
-      console.log('Du kannst nicht mal alle Pflichtfelder ausfüllen?!?');
+      console.log('You cannot even fill in all the required fields?!?');
     }
 
     this.clearForm();
@@ -446,6 +469,13 @@ export class AddTaskComponent {
     this.subtasks = [];
   }
 
+  /**
+   * Submits the updated task form after validating input fields.
+   * - Ensures all required fields are filled.
+   * - Checks if the selected date is not in the past.
+   * - Updates the existing task with new values.
+   * - Clears the form and exits edit mode after submission.
+   */
   submitUpdateForm() {
     this.validateForm();
     this.selectedCategory = this.taskService.selectedTaskCategory;
@@ -460,14 +490,19 @@ export class AddTaskComponent {
       return;
     }
 
+    // Check if title and date are provided
     if (this.inputTitle && this.newDate) {
-      console.log('Datum und Titel passt');
+      console.log('Date and title are valid');
+
+      // Validate priority
       if (
         this.prio == 'Urgent' ||
         this.prio == 'Medium' ||
         this.prio == 'Low'
       ) {
-        console.log('Prio ist auch da');
+        console.log('Priority is valid');
+
+        // Ensure a task ID is selected before updating
         if (this.taskService.selectedTaskId !== '') {
           this.taskService.updateTask(
             this.taskService.selectedTaskId,
@@ -480,11 +515,11 @@ export class AddTaskComponent {
             this.getText(),
             this.taskService.whatIsTheType
           );
-          console.log('geupdatet');
+          console.log('Task updated successfully');
         }
       }
     } else {
-      console.log('Du kannst nicht mal alle Pflichtfelder ausfüllen?!?');
+      console.log('You cannot even fill in all the required fields?!?');
     }
 
     this.clearForm();
