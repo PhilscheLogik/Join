@@ -142,6 +142,7 @@ export class SingleTaskComponent {
       console.log(task);
       console.log(this.taskService.whatIsTheType);
       console.log(task.subtasks);
+      setTimeout(() => {
       if (task.id && task.description) {
         this.taskService.updateTask(
           task.id,
@@ -155,6 +156,7 @@ export class SingleTaskComponent {
           this.taskService.whatIsTheType
         );
       }
+    }, 1000); // Kurzes Delay
     }
   }
 
