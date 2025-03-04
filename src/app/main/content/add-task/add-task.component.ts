@@ -50,6 +50,12 @@ export class AddTaskComponent {
   box: any;
   naviService = inject(NavigationService);
 
+  /**
+   * Listens for click events outside the select container and hides the select list if clicked outside.
+   *
+   * @param {Event} event - The click event that is triggered when the user clicks anywhere on the document.
+   * @returns {void}
+   */
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const targetElement = event.target as HTMLElement;
@@ -58,6 +64,12 @@ export class AddTaskComponent {
     }
   }
 
+  /**
+   * Constructor to initialize the component with task details when in edit mode.
+   * It checks if edit mode is activated, then populates the input fields with the task data.
+   *
+   * @returns {void}
+   */
   constructor() {
     if (this.taskService.isEditModeActivated) {
       this.inputTitle = String(this.taskService.selectedTask?.title);
@@ -76,6 +88,12 @@ export class AddTaskComponent {
     }
   }
 
+  /**
+   * Converts subtasks from the database format to the internal format used by the component.
+   *
+   * @param {Array<{ text: string; IsCompleted: boolean }>} [subtasksFromDb] - The subtasks from the database.
+   * @returns {Array<{ text: string; isEditing: boolean }>} - The formatted subtasks with 'isEditing' set to false.
+   */
   convertSubtasks(
     subtasksFromDb?: { text: string; IsCompleted: boolean }[]
   ): { text: string; isEditing: boolean }[] {
@@ -88,6 +106,12 @@ export class AddTaskComponent {
     }));
   }
 
+  /**
+   * Maps the assigned contact IDs to the corresponding contact details from the contact list.
+   *
+   * @param {string[] | undefined} assignedToIds - The array of contact IDs that are assigned to the task.
+   * @returns {any[]} - An array of contacts that match the assigned contact IDs from the contact list.
+   */
   mapAssignedToContacts(assignedToIds: string[] | undefined): any[] {
     if (!assignedToIds || !this.contactService.contactList) {
       return [];
@@ -97,13 +121,6 @@ export class AddTaskComponent {
     );
 
     return selectedContacts;
-  }
-
-  /**
-   * Activates the edit mode and logs a message to the console.
-   */
-  updateForm() {
-    console.log('Edit Mode activated');
   }
 
   /**
