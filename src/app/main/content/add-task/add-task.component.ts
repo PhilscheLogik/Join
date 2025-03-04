@@ -1,4 +1,10 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Output,
+  HostListener,
+} from '@angular/core';
 import { TaskServiceService } from '../../services/task-service.service';
 import { ContactsService } from '../../services/contacts.service';
 import { Firestore } from '@angular/fire/firestore';
@@ -42,27 +48,41 @@ export class AddTaskComponent {
     category: false,
   };
   box: any;
-  naviService = inject(NavigationService)
+  naviService = inject(NavigationService);
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    const targetElement = event.target as HTMLElement;
+    if (this.selectList && !targetElement.closest('.select-container')) {
+      this.selectList = false;
+    }
+  }
 
   constructor() {
     if (this.taskService.isEditModeActivated) {
       this.inputTitle = String(this.taskService.selectedTask?.title);
-      this.inputDescription = String(this.taskService.selectedTask?.description);
+      this.inputDescription = String(
+        this.taskService.selectedTask?.description
+      );
       this.prio = String(this.taskService.selectedTask?.prio);
-      this.newDate = String(this.taskService.selectedTask?.date); 
-      this.subtasks = this.convertSubtasks(this.taskService.selectedTask?.subtasks);      
+      this.newDate = String(this.taskService.selectedTask?.date);
+      this.subtasks = this.convertSubtasks(
+        this.taskService.selectedTask?.subtasks
+      );
     }
   }
 
-  convertSubtasks(subtasksFromDb?: { text: string; IsCompleted: boolean }[]): { text: string; isEditing: boolean }[] {
+  convertSubtasks(
+    subtasksFromDb?: { text: string; IsCompleted: boolean }[]
+  ): { text: string; isEditing: boolean }[] {
     if (!subtasksFromDb) return [];
-  
-    return subtasksFromDb.map(subtask => ({
+
+    return subtasksFromDb.map((subtask) => ({
       text: subtask.text,
       isEditing: false, // Standardmäßig false setzen
     }));
   }
-  
+
   /**
    * Activates the edit mode and logs a message to the console.
    */
@@ -403,7 +423,7 @@ export class AddTaskComponent {
    * @returns {void} - This function doesn't return any value.
    */
   submitAddForm() {
-    this.validateForm();    
+    this.validateForm();
 
     // Validate the date and fields
     if (!this.isValidDate(this.newDate)) {
@@ -421,10 +441,8 @@ export class AddTaskComponent {
     if (newTask) {
       this.taskService.addTask(this.taskService.whatIsTheType, newTask);
       this.showTaskToast();
-      
     }
     this.clearForm();
-       
   }
 
   /**
@@ -566,7 +584,7 @@ export class AddTaskComponent {
 
     this.clearForm();
     this.taskService.isEditModeActivated = false;
-  }  
+  }
 
   /**
    * Updates the task in the task service.
@@ -595,8 +613,7 @@ export class AddTaskComponent {
     this.showSuccessMessage = true;
     setTimeout(() => {
       this.showSuccessMessage = false;
-      this.naviService.setSelectedItem(2); 
+      this.naviService.setSelectedItem(2);
     }, 2000);
-    
   }
 }

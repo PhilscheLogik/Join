@@ -57,7 +57,7 @@
           ></textarea>
         </div>
 
-        <div class="assigned_field">
+        <div class="assigned_field select-container">
           <label class="assigned" name="assigned">Assigned to</label>
           <div class="assigned_field_headline" (click)="isSelectList()">
             <p>Select contacts to assign</p>
@@ -76,7 +76,7 @@
             class="contact_list"
             [ngStyle]="{ display: selectList ? 'block' : 'none' }"
           >
-            <div class="assigned_field_contact_list">
+            <div class="assigned_field_contact_list" *ngIf="selectList">
               @for (group of contactService.getGroupedContacts() | keyvalue;
               track $index) { @for (contact of group.value; track $index) {
               <div
