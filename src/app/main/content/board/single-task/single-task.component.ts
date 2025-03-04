@@ -159,6 +159,26 @@ export class SingleTaskComponent {
   }
 
   /**
+   * getSubtaskLength()
+   *
+   * This method safely returns the length of the `subtasks` array associated with the current `task`.
+   * It checks whether `task.subtasks` is an actual array using `Array.isArray()`. If it is, it returns
+   * the length of the `subtasks` array. If `task.subtasks` is not an array (or is `null`/`undefined`),
+   * it returns `0` to avoid any errors.
+   *
+   * This is useful to safely handle cases where `subtasks` may be `null`, `undefined`, or not an array,
+   * ensuring that the code works as expected without throwing errors.
+   *
+   * @returns {number} - The number of subtasks. Returns `0` if `task.subtasks` is not a valid array.
+   */
+
+
+  getSubtaskLength(): number {
+    return Array.isArray(this.task.subtasks) ? this.task.subtasks.length : 0;
+  }
+
+
+  /**
    * Calculates the completion percentage of subtasks for the current task.
    * Returns 0 if there are no subtasks or if the subtasks array is undefined.
    *
