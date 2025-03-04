@@ -35,7 +35,7 @@
               placeholder="Enter a title"
               [class.error]="isFieldInvalid('title')"
               (focus)="clearError('title')"
-              [(ngModel)]="inputTitle"              
+              [(ngModel)]="inputTitle"
               required
             />
             @if (isFieldInvalid('title')) {
@@ -76,7 +76,8 @@
             class="contact_list"
             [ngStyle]="{ display: selectList ? 'block' : 'none' }"
           >
-            <div class="assigned_field_contact_list" *ngIf="selectList">
+            @if(selectList) {
+            <div class="assigned_field_contact_list">
               @for (group of contactService.getGroupedContacts() | keyvalue;
               track $index) { @for (contact of group.value; track $index) {
               <div
@@ -102,6 +103,7 @@
               </div>
               } }
             </div>
+            }
           </div>
           <div
             class="contact_badge_line"
@@ -207,7 +209,6 @@
               [ngStyle]="{ display: openCategory ? 'block' : 'none' }"
             />
           </div>
-          
 
           <div class="categoryContainer">
             <div
@@ -228,7 +229,7 @@
               </p>
             </div>
           </div>
-          @if(errors.category) {
+          @if(errors.category && selectedCategory == '') {
           <span class="error-message">Please select a category!</span>
           }
         </div>
