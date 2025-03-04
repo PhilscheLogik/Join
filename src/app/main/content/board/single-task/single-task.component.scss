@@ -90,17 +90,18 @@
     border-radius: 24px;
     width: 550px;
     height: 950px;
-    // min-height: 850px;
-    // max-height: 950px;
+
+    @media (min-width: 1500px) { 
+        width: 640px;
+    }
 
     @media (max-width: 580px) {
       width: 85%;
-      height: 70%;
+      height: 80%;
       padding: 24px;
     }
 
     @media (max-width: 480px) {
-      height: 65%;
       padding: 16px;
     }
 
@@ -134,7 +135,7 @@
         border-radius: 50%;
 
         &:hover {
-          background: $hover_gray;
+          background: $mid_gray;
         }
       }
     }
@@ -424,6 +425,16 @@
 }
 
 /* Mobile */
+
+@media (min-width: 1500px) {
+  .task-overlay-content {
+    width: 640px;
+  }
+
+  app-add-task {
+    width: 480px;
+  }
+}
 
 @media (max-width: 860px) {
   .example-box {
