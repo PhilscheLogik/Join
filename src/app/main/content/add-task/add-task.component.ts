@@ -5,6 +5,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Task } from '../../../interfaces/task';
+import { NavigationService } from '../../../shared/navi/navigation.service';
 
 @Component({
   selector: 'app-add-task',
@@ -41,18 +42,27 @@ export class AddTaskComponent {
     category: false,
   };
   box: any;
+  naviService = inject(NavigationService)
 
   constructor() {
     if (this.taskService.isEditModeActivated) {
       this.inputTitle = String(this.taskService.selectedTask?.title);
       this.inputDescription = String(this.taskService.selectedTask?.description);
       this.prio = String(this.taskService.selectedTask?.prio);
-      this.newDate = String(this.taskService.selectedTask?.date);      
-
-      
+      this.newDate = String(this.taskService.selectedTask?.date); 
+      this.subtasks = this.convertSubtasks(this.taskService.selectedTask?.subtasks);      
     }
   }
 
+  convertSubtasks(subtasksFromDb?: { text: string; IsCompleted: boolean }[]): { text: string; isEditing: boolean }[] {
+    if (!subtasksFromDb) return [];
+  
+    return subtasksFromDb.map(subtask => ({
+      text: subtask.text,
+      isEditing: false, // Standardmäßig false setzen
+    }));
+  }
+  
   /**
    * Activates the edit mode and logs a message to the console.
    */
@@ -393,8 +403,7 @@ export class AddTaskComponent {
    * @returns {void} - This function doesn't return any value.
    */
   submitAddForm() {
-    this.validateForm();
-    this.showTaskToast();
+    this.validateForm();    
 
     // Validate the date and fields
     if (!this.isValidDate(this.newDate)) {
@@ -412,9 +421,10 @@ export class AddTaskComponent {
     if (newTask) {
       this.taskService.addTask(this.taskService.whatIsTheType, newTask);
       this.showTaskToast();
+      
     }
-
     this.clearForm();
+       
   }
 
   /**
@@ -585,6 +595,8 @@ export class AddTaskComponent {
     this.showSuccessMessage = true;
     setTimeout(() => {
       this.showSuccessMessage = false;
+      this.naviService.setSelectedItem(2); 
     }, 2000);
+    
   }
 }

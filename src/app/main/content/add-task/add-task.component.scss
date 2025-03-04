@@ -515,6 +515,12 @@ form {
     width: 100%;
     padding: 16px 21px;
     cursor: pointer;
+
+    &:hover {
+      border-radius: 10px;
+      background-color: $hover_gray;
+      color: $black;
+    }
   }
 }
 
