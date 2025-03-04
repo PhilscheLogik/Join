@@ -35,6 +35,11 @@ form {
       display: block; // Zeigt den Button an, wenn die Klasse "show" hinzugefügt wird
       z-index: 10;
       cursor: pointer;
+      border-radius: 50%;
+
+      &:hover {
+        background: $hover_gray;
+      }
     }
   }
 }
@@ -652,7 +657,7 @@ ul {
   width: 100%;
   @include dFlex($jc: space-between, $ai: flex-end);
   @include font($fs: 16px, $fw: 400);
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 
   > p span {
     color: $red;
@@ -663,7 +668,7 @@ ul {
 .create-btn {
   padding: 16px 18px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;

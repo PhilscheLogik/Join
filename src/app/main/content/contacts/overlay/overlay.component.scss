@@ -189,7 +189,7 @@
   border-radius: 50%;
 
   &:hover {
-    background: $mid_gray;
+    background: $hover_gray;
   }
 }
 
@@ -257,7 +257,7 @@ p {
 .create-btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
   display: flex;
