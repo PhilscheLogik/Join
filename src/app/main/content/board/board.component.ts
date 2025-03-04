@@ -163,8 +163,8 @@ export class BoardComponent {
     }
     return list.filter(
       (task) =>
-        task.title.includes(this.searchTerm) ||
-        task.description?.includes(this.searchTerm)
+        task.title.toUpperCase().includes(this.searchTerm.toUpperCase()) ||
+        task.description?.toUpperCase().includes(this.searchTerm.toUpperCase())
     );
   }
 
@@ -193,8 +193,8 @@ export class BoardComponent {
 
     const filtered = allTasks.filter(
       (task) =>
-        task.title.includes(this.searchTerm) ||
-        task.description?.includes(this.searchTerm)
+        task.title.toUpperCase().includes(this.searchTerm.toUpperCase()) ||
+        task.description?.toUpperCase().includes(this.searchTerm.toUpperCase())
     );
 
     this.noResults = filtered.length === 0;

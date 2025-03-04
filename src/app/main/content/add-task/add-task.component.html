@@ -207,9 +207,7 @@
               [ngStyle]="{ display: openCategory ? 'block' : 'none' }"
             />
           </div>
-          @if(errors.category) {
-          <span class="error-message">Please select a category!</span>
-          }
+          
 
           <div class="categoryContainer">
             <div
@@ -230,6 +228,9 @@
               </p>
             </div>
           </div>
+          @if(errors.category) {
+          <span class="error-message">Please select a category!</span>
+          }
         </div>
         }
 

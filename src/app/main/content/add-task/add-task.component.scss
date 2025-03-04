@@ -320,6 +320,9 @@ form {
 
   span {
     color: $red;
+    margin-top: -20px;
+    // position: relative;
+    // top: -20px;
   }
 
   > div {
@@ -555,6 +558,7 @@ form {
 
   span {
     color: $light_gray;
+    margin: 0;
   }
 
   button {
@@ -596,6 +600,7 @@ form {
     span {
       color: black;
       display: inline-block;
+      margin: 0;
     }
 
     padding: 5px;
