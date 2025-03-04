@@ -208,9 +208,13 @@ export class AddTaskComponent {
    * @returns {void} This method does not return anything.
    */
   toggleCategory(category: string) {
-    category == this.selectedCategory
-      ? (this.selectedCategory = '')
-      : (this.selectedCategory = category);
+    if (category == this.selectedCategory) {
+      this.errors.category = true;
+      return (this.selectedCategory = '');
+    } else {
+      this.errors.category = false;
+      return (this.selectedCategory = category);
+    }
   }
 
   /**
