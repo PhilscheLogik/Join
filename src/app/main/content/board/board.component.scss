@@ -109,7 +109,7 @@ input::placeholder {
   }
 }
 
-.btn_mobile {
+.btn_mobile, .btn_mobile_plus {
   display: none;
 }
 
@@ -185,37 +185,7 @@ h2 {
   }
 }
 
-.to_do {
-  @include dFlex($ai: flex-start, $jc: flex-start);
-  flex-direction: column;
-  height: 100%;
-  width: 22%;
-  position: relative;
-  height: 50vh;
-  // border: 2px solid $light_gray;
-}
-
-.in_progress {
-  @include dFlex($ai: flex-start, $jc: flex-start);
-  flex-direction: column;
-  height: 100%;
-  width: 22%;
-  position: relative;
-  height: 50vh;
-  // border: 2px solid $light_gray;
-}
-
-.await_feedback {
-  @include dFlex($ai: flex-start, $jc: flex-start);
-  flex-direction: column;
-  height: 100%;
-  width: 22%;
-  position: relative;
-  height: 50vh;
-  // border: 2px solid $light_gray;
-}
-
-.done {
+.to_do, .in_progress, .await_feedback, .done {
   @include dFlex($ai: flex-start, $jc: flex-start);
   flex-direction: column;
   height: 100%;
@@ -349,10 +319,6 @@ section{
     display: none;
   }
 
-  .btn_mobile {
-    display: none;
-  }
-
   .board_content {
     @include dFlex($ai: flex-start, $jc: space-evenly);
     flex-direction: column;
@@ -447,10 +413,11 @@ section{
     // display: block;
     height: 40px;
     width: 40px;
+    cursor: pointer;
   }
 
-  .btn_mobile {
-    // display: none;
+  .btn_mobile_plus {
+    display: block;
   }
 
   .btn_desktop {

@@ -2,7 +2,10 @@
   <div class="board_header">
     <div class="board_header_left">
       <h1>Board</h1>
-      <div class="mobile_add_task_btn" (click)="naviService.setSelectedItem(1); setType('todo')">
+      <div
+        class="mobile_add_task_btn"
+        (click)="naviService.setSelectedItem(1); setType('todo')"
+      >
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </div>
     </div>
@@ -25,9 +28,7 @@
         </div>
       </div>
       @if(noResults) {
-        <div class="error-message">
-          No results found!.
-        </div>
+      <div class="error-message">No results found!.</div>
       }
       <button
         class="add_task_btn btn_desktop"
@@ -59,7 +60,14 @@
     <div class="to_do">
       <div class="board_content_header">
         <h2>To do</h2>
-        <button class="to_do_add_btn" (click)="taskService.toggleCloseButton(); setType('todo')"></button>
+        <button
+          class="to_do_add_btn btn_desktop"
+          (click)="taskService.toggleCloseButton(); setType('todo')"
+        ></button>
+        <button
+          class="to_do_add_btn btn_mobile_plus"
+          (click)="naviService.setSelectedItem(1); setType('todo')"
+        ></button>
       </div>
       <div class="empty_bg">
         <p>No task To do</p>
@@ -86,7 +94,14 @@
     <div class="in_progress">
       <div class="board_content_header">
         <h2>In progress</h2>
-        <button class="in_progress_add_btn" (click)="taskService.toggleCloseButton(); setType('inprogress')"></button>
+        <button
+          class="in_progress_add_btn btn_desktop"
+          (click)="taskService.toggleCloseButton(); setType('inprogress')"
+        ></button>
+        <button
+          class="in_progress_add_btn btn_mobile_plus"
+          (click)="naviService.setSelectedItem(1); setType('inprogress')"
+        ></button>
       </div>
       <div class="empty_bg">
         <p>No task in progress</p>
@@ -113,7 +128,14 @@
     <div class="await_feedback">
       <div class="board_content_header">
         <h2>Await feedback</h2>
-        <button class="await_feedback_add_btn" (click)="taskService.toggleCloseButton(); setType('feedback')"></button>
+        <button
+          class="await_feedback_add_btn btn_desktop"
+          (click)="taskService.toggleCloseButton(); setType('feedback')"
+        ></button>
+        <button
+          class="await_feedback_add_btn btn_mobile_plus"
+          (click)="naviService.setSelectedItem(1); setType('feedback')"
+        ></button>
       </div>
       <div class="empty_bg">
         <p>No task awaits feedback</p>
