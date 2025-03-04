@@ -37,7 +37,7 @@ export class AddTaskComponent {
 
   /*Subtask content*/
   newSubtask: string = '';
-  subtasks: { text: string; isEditing: boolean }[] = [];
+  subtasks: { text: string; isEditing: boolean; IsCompleted?: boolean }[] = [];
   isEditing: boolean = false;
   openCategory = false;
 
@@ -83,7 +83,8 @@ export class AddTaskComponent {
 
     return subtasksFromDb.map((subtask) => ({
       text: subtask.text,
-      isEditing: false, // Standardmäßig false setzen
+      isEditing: false,
+      IsCompleted: subtask.IsCompleted,
     }));
   }
 
@@ -91,8 +92,6 @@ export class AddTaskComponent {
     if (!assignedToIds || !this.contactService.contactList) {
       return [];
     }
-
-    // Filter die Kontakte, deren ID in assignedToIds enthalten ist
     const selectedContacts = this.contactService.contactList.filter(
       (contact) => contact.id && assignedToIds.includes(contact.id)
     );
@@ -429,7 +428,10 @@ export class AddTaskComponent {
   getText() {
     let myArray = [];
     for (let i = 0; i < this.subtasks.length; i++) {
-      myArray.push({ text: this.subtasks[i].text, IsCompleted: false });
+      myArray.push({
+        text: this.subtasks[i].text,
+        IsCompleted: this.subtasks[i].IsCompleted ?? false,
+      });
     }
     return myArray;
   }
