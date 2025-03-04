@@ -69,6 +69,10 @@ export class AddTaskComponent {
       this.subtasks = this.convertSubtasks(
         this.taskService.selectedTask?.subtasks
       );
+      // this.selectedContacts = this.taskService.selectedTask?.assignedTo ?? [];
+      this.selectedContacts = this.mapAssignedToContacts(
+        this.taskService.selectedTask?.assignedTo
+      );
     }
   }
 
@@ -81,6 +85,19 @@ export class AddTaskComponent {
       text: subtask.text,
       isEditing: false, // Standardmäßig false setzen
     }));
+  }
+
+  mapAssignedToContacts(assignedToIds: string[] | undefined): any[] {
+    if (!assignedToIds || !this.contactService.contactList) {
+      return [];
+    }
+
+    // Filter die Kontakte, deren ID in assignedToIds enthalten ist
+    const selectedContacts = this.contactService.contactList.filter(
+      (contact) => contact.id && assignedToIds.includes(contact.id)
+    );
+
+    return selectedContacts;
   }
 
   /**

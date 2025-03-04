@@ -78,8 +78,9 @@
           >
             @if(selectList) {
             <div class="assigned_field_contact_list">
-              @for (group of contactService.getGroupedContacts() | keyvalue;
-              track $index) { @for (contact of group.value; track $index) {
+              @for (group of contactService.getGroupedContacts() |
+              keyvalue;track $index) { @for (contact of group.value; track
+              $index) {
               <div
                 class="assigned_field_single_contact"
                 [class.selected]="isSelected(contact)"
