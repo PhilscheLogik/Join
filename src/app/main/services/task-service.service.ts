@@ -54,9 +54,17 @@ export class TaskServiceService {
   }
 
   toggleCloseButton() {
-    this.isClosing = true;
-    this.showCloseButton = !this.showCloseButton;
-    this.isClosing = false;
+    if (this.showCloseButton) {
+      this.isClosing = true;
+
+      setTimeout(() => {
+        // this.showCloseButton = !this.showCloseButton;
+        this.showCloseButton = false;
+        this.isClosing = false;
+      }, 300);
+    } else {
+      this.showCloseButton = true;
+    }
   }
 
   /**

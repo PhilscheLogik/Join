@@ -467,12 +467,12 @@ export class AddTaskComponent {
 
     // Validate the date and fields
     if (!this.isValidDate(this.newDate)) {
-      console.log('The selected date cannot be in the past');
+      // console.log('The selected date cannot be in the past');
       return;
     }
 
     if (!this.areRequiredFieldsFilled()) {
-      console.log('You cannot even fill in all the required fields?!?');
+      // console.log('You cannot even fill in all the required fields?!?');
       return;
     }
 
@@ -612,7 +612,7 @@ export class AddTaskComponent {
     }
 
     if (!this.areRequiredFieldsFilled()) {
-      console.log('You cannot even fill in all the required fields?!?');
+      // console.log('You cannot even fill in all the required fields?!?');
       return;
     }
 

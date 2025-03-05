@@ -92,14 +92,14 @@ export class BoardComponent {
       );
       const newCategory = this.getCategoryFromContainer(event.container);
 
-      console.info('----- selected Task Board TS -------');
-      console.log(task);
-      console.log('Wo soll es hin: ', newCategory);
+      // console.info('----- selected Task Board TS -------');
+      // console.log(task);
+      // console.log('Wo soll es hin: ', newCategory);
 
       await this.taskService.addTask(newCategory, task);
 
       if (task.id) {
-        console.log('Woher kam es: ', previousCategory);
+        // console.log('Woher kam es: ', previousCategory);
         await this.taskService.deleteTask(previousCategory, task.id);
       }
     }
@@ -122,30 +122,11 @@ export class BoardComponent {
   /**
    * Logs the current state of all task lists for debugging purposes.
    */
-  logTaskLists() {
-    console.log('Todo:', this.taskService.todoList);
-    console.log('In Progress:', this.taskService.progressList);
-    console.log('Feedback:', this.taskService.feedbackList);
-    console.log('Done:', this.taskService.doneList);
-  }
-
-  // filterList(list: Task[]) {
-  //   if (this.searchTerm.trim() == '') {
-  //     return list;
-  //   } else {
-  //     console.info('--- Suche ---');
-  //     console.log(this.searchTerm, list);
-  //     return list.filter((task) => {
-  //       console.log(task.title.includes(this.searchTerm));
-  //       console.log(task.description?.includes(this.searchTerm));
-  //       console.log('--- ---');
-
-  //       return (
-  //         task.title.includes(this.searchTerm) ||
-  //         task.description?.includes(this.searchTerm)
-  //       );
-  //     });
-  //   }
+  // logTaskLists() {
+  //   console.log('Todo:', this.taskService.todoList);
+  //   console.log('In Progress:', this.taskService.progressList);
+  //   console.log('Feedback:', this.taskService.feedbackList);
+  //   console.log('Done:', this.taskService.doneList);
   // }
 
   /**

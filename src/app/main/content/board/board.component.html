@@ -53,7 +53,7 @@
     <div
       class="overlay_bg_white"
       [ngClass]="{
-        show: taskService.showCloseButton,
+        show: !taskService.isClosing,
         hide: taskService.isClosing
       }"
     >

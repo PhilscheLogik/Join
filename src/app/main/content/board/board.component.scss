@@ -111,8 +111,6 @@ input::placeholder {
 
 .btn_mobile,
 .btn_mobile_plus {
-.btn_mobile,
-.btn_mobile_plus {
   display: none;
 }
 
@@ -192,10 +190,6 @@ h2 {
 .in_progress,
 .await_feedback,
 .done {
-.to_do,
-.in_progress,
-.await_feedback,
-.done {
   @include dFlex($ai: flex-start, $jc: flex-start);
   flex-direction: column;
   height: 100%;
@@ -221,7 +215,6 @@ h2 {
   min-height: 48px;
   min-height: 48px;
   width: 80%; // change, before 100%
-
 
   background: $mid_gray;
   border-radius: 10px;
@@ -320,8 +313,6 @@ app-single-task {
 
   .board_header_left {
     @include dFlex($ai: center, $jc: space-between);
-  .board_header_left {
-    @include dFlex($ai: center, $jc: space-between);
 
     > h1 {
       font-size: 47px;
@@ -402,11 +393,11 @@ app-single-task {
   border-radius: 24px;
 
   &.show {
-    animation: slideIn 0.125s forwards;
+    animation: slideIn 0.3s forwards;
   }
 
   &.hide {
-    animation: slideOut 0.125s backwards;
+    animation: slideOut 0.3s forwards;
   }
 
   app-add-task {

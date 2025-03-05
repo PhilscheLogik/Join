@@ -73,9 +73,9 @@ export class SingleTaskComponent {
       this.taskService.selectedTaskId = task.id;
       this.taskService.selectedTaskCategory = task?.category;
 
-      console.log(task);
+      // console.log(task);
       this.taskService.selectedTask = task;
-      console.log(this.taskService.selectedTask);
+      // console.log(this.taskService.selectedTask);
     }
   }
 
@@ -270,9 +270,9 @@ export class SingleTaskComponent {
    * Debugging function that logs task information to the console.
    * @param {Task | null} arg0 - The task to be logged, or null if no task is provided.
    */
-  getTest(arg0: Task | null) {
-    console.log(arg0);
-    console.log('--------------');
-    console.log(this.taskService.whatIsTheType);
-  }
+  // getTest(arg0: Task | null) {
+  //   console.log(arg0);
+  //   console.log('--------------');
+  //   console.log(this.taskService.whatIsTheType);
+  // }
 }
