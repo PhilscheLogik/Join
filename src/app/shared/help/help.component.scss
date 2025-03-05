@@ -1,6 +1,6 @@
 @import "./../../../styles.scss";
 
-.join_aqua {
+.join-aqua {
   color: $aqua;
 }
 
@@ -10,7 +10,7 @@ section {
   padding: 128px calc(max(80px, (100% - 1920px) / 2));
 }
 
-.help_header {
+.help-header {
   @include dFlex($jc: space-between);
 
   padding: 32px 0;
@@ -28,7 +28,7 @@ section {
   }
 }
 
-.help_content {
+.help-content {
   width: 100%;
   > h2 {
     @include font($fs: 24px, $fw: 800);
@@ -69,7 +69,7 @@ li::marker  {
     font-size: 47px;
   }
 
-  .help_content {
+  .help-content {
   
   
     >ol {
