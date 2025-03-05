@@ -1,20 +1,23 @@
 <section>
-  <div class="board_header">
-    <div class="board_header_left">
+  <div class="board-header">
+    <div class="board-header-left">
       <h1>Board</h1>
-      <div class="mobile_add_task_btn" (click)="naviService.setSelectedItem(1)">
+      <div
+        class="mobile-add-task-btn"
+        (click)="naviService.setSelectedItem(1); setType('todo')"
+      >
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </div>
     </div>
-    <div class="board_header_right">
-      <div class="input_field">
+    <div class="board-header-right">
+      <div class="input-field">
         <input
-          type="text"          
+          type="text"
           id="subtasks"
           name="searchText"
           [(ngModel)]="searchText"
           placeholder="Find task"
-          (keydown.enter)="startSearch()"
+          (keyup.enter)="startSearch()"
         />
 
         <div class="input-search-btn" (click)="startSearch()">
@@ -24,16 +27,19 @@
           </div>
         </div>
       </div>
+      @if(noResults) {
+      <div class="error-message">No results found!.</div>
+      }
       <button
-        class="add_task_btn btn_desktop"
-        (click)="taskService.toggleCloseButton()"
+        class="add-task-btn btn-desktop"
+        (click)="taskService.toggleCloseButton(); setType('todo')"
       >
         Add task
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </button>
       <button
-        class="add_task_btn btn_mobile"
-        (click)="naviService.setSelectedItem(1)"
+        class="add-task-btn btn-mobile"
+        (click)="naviService.setSelectedItem(1); setType('todo')"
       >
         Add task
         <img src="assets/img/icons/plus_icon.svg" alt="" />
@@ -43,24 +49,37 @@
 
   <!-- Add-Task-Overlay  -->
   @if(taskService.showCloseButton) {
-  <div class="overlay_task">
-    <div class="overlay_bg_white">
+  <div class="overlay-task">
+    <div
+      class="overlay-bg-white"
+      [ngClass]="{
+        show: !taskService.isClosing,
+        hide: taskService.isClosing
+      }"
+    >
       <app-add-task></app-add-task>
     </div>
   </div>
   }
 
-  <div class="board_content">
-    <div class="to_do">
-      <div class="board_content_header">
+  <div class="board-content">
+    <div class="to-do">
+      <div class="board-content-header">
         <h2>To do</h2>
-        <button class="to_do_add_btn"></button>
+        <button
+          class="to-do-add-btn btn-desktop"
+          (click)="taskService.toggleCloseButton(); setType('todo')"
+        ></button>
+        <button
+          class="to-do-add-btn btn-mobile-plus"
+          (click)="naviService.setSelectedItem(1); setType('todo')"
+        ></button>
       </div>
-      <div class="empty_bg">
+      <div class="empty-bg">
         <p>No task To do</p>
       </div>
       <div
-        class="tasks_content"
+        class="tasks-content"
         cdkDropList
         #todoList="cdkDropList"
         [cdkDropListData]="taskService.todoList"
@@ -68,7 +87,7 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of this.filterList(this.taskService.todoList); track $index) {
+        @for (task of this.filterList(this.taskService.todoList); track task) {
         <app-single-task
           (click)="setType('todo')"
           [task]="task"
@@ -77,16 +96,23 @@
         }
       </div>
     </div>
-    <div class="in_progress">
-      <div class="board_content_header">
+    <div class="in-progress">
+      <div class="board-content-header">
         <h2>In progress</h2>
-        <button class="in_progress_add_btn"></button>
+        <button
+          class="in-progress-add-btn btn-desktop"
+          (click)="taskService.toggleCloseButton(); setType('inprogress')"
+        ></button>
+        <button
+          class="in-progress-add-btn btn-mobile-plus"
+          (click)="naviService.setSelectedItem(1); setType('inprogress')"
+        ></button>
       </div>
-      <div class="empty_bg">
+      <div class="empty-bg">
         <p>No task in progress</p>
       </div>
       <div
-        class="tasks_content"
+        class="tasks-content"
         cdkDropList
         #progressList="cdkDropList"
         [cdkDropListData]="taskService.progressList"
@@ -94,25 +120,33 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of this.filterList(this.taskService.progressList); track task) {
+        @for (task of this.filterList(this.taskService.progressList); track
+        task) {
         <app-single-task
-          (click)="setType('inprogess')"
+          (click)="setType('inprogress')"
           [task]="task"
           cdkDrag
         ></app-single-task>
         }
       </div>
     </div>
-    <div class="await_feedback">
-      <div class="board_content_header">
+    <div class="await-feedback">
+      <div class="board-content-header">
         <h2>Await feedback</h2>
-        <button class="await_feedback_add_btn"></button>
+        <button
+          class="await-feedback-add-btn btn-desktop"
+          (click)="taskService.toggleCloseButton(); setType('feedback')"
+        ></button>
+        <button
+          class="await-feedback-add-btn btn-mobile-plus"
+          (click)="naviService.setSelectedItem(1); setType('feedback')"
+        ></button>
       </div>
-      <div class="empty_bg">
+      <div class="empty-bg">
         <p>No task awaits feedback</p>
       </div>
       <div
-        class="tasks_content"
+        class="tasks-content"
         cdkDropList
         #feedbackList="cdkDropList"
         [cdkDropListData]="taskService.feedbackList"
@@ -120,7 +154,8 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        @for (task of this.filterList(this.taskService.feedbackList); track task) {
+        @for (task of this.filterList(this.taskService.feedbackList); track
+        task) {
         <app-single-task
           (click)="setType('feedback')"
           [task]="task"
@@ -130,14 +165,14 @@
       </div>
     </div>
     <div class="done">
-      <div class="board_content_header">
+      <div class="board-content-header">
         <h2>Done</h2>
       </div>
-      <div class="empty_bg">
+      <div class="empty-bg">
         <p>No task done yet</p>
       </div>
       <div
-        class="tasks_content"
+        class="tasks-content"
         cdkDropList
         #doneList="cdkDropList"
         [cdkDropListData]="taskService.doneList"
@@ -156,9 +191,9 @@
     </div>
   </div>
 
-  <!-- <div id="taskOverlay" [(ngClass)]="{'d_none': isTaskOverlayOpen}"]> -->
+  <!-- <div id="taskOverlay" [(ngClass)]="{'d-none': isTaskOverlayOpen}"]> -->
   <!-- @if(isTaskOverlayOpen) {
-      <div class="overlay_task">
+      <div class="overlay-task">
         <div>
           <app-add-task [ngStyle]="{'border': '2px solid red'}"></app-add-task>
         </div>

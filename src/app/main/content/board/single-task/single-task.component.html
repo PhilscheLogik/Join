@@ -26,6 +26,12 @@
         </button>
       </div>
 
+      @if(taskService.isEditModeActivated){
+      <div>
+        <app-add-task></app-add-task>
+      </div>
+      } @else {
+
       <h1>{{ selectedTask?.title }}</h1>
       <p class="description">{{ selectedTask?.description }}</p>
 
@@ -69,7 +75,7 @@
           contactService.contactList; track $index) { @if(id == contact.id) {
           <div class="assignee">
             <div
-              class="profile_badge"
+              class="profile-badge"
               [ngStyle]="{ 'background-color': contact.bgColor }"
             >
               {{ contact.initials }}
@@ -83,7 +89,7 @@
       <div class="subtasks">
         <p>Subtasks</p>
         @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
-        track subtask) {
+        track $index) {
         <div class="subtask" (click)="toggleSubtaskCompleted(subtask)">
           @if(subtask.IsCompleted){
           <img
@@ -115,11 +121,12 @@
           Delete
         </button>
         <span class="divider"></span>
-        <button class="edit-btn">
+        <button (click)="editTaskActivated(selectedTask)" class="edit-btn">
           <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" />
           Edit
         </button>
       </div>
+      }
     </div>
   </div>
   }
@@ -128,7 +135,7 @@
 
   <div class="example-box" (click)="openOverlay(task)" cdkDrag>
     <p
-      class="task_card_category"
+      class="task-card-category"
       [ngClass]="{
         'user-story': task.category === 'User Story',
         'technical-task': task.category === 'Technical Task'
@@ -137,23 +144,20 @@
       {{ task.category }}
     </p>
 
-    <div class="task_card_main">
+    <div class="task-card-main">
       <h3>{{ task.title }}</h3>
       <p>{{ task.description }}</p>
     </div>
 
-    <div class="task_card_substasks">
-      <div class="subtasks_progress">
-        <!-- <div class="progress_outer">
-          <div
-            class="progress_inner"
-            [style.width]="getSubtasksProgress() + '%'"
-          ></div>
-        </div> -->
-        <progress 
-          [value]="getCompletedSubtasksCount()" 
-          [max]="task.subtasks?.length || 0"
-       ></progress>
+    <div
+      class="task-card-substasks"
+      *ngIf="task.subtasks && task.subtasks.length > 0"
+    >
+      <div class="subtasks-progress">
+        <progress
+          [value]="getCompletedSubtasksCount()"
+          [max]="getSubtaskLength()"
+        ></progress>
       </div>
       <p>
         @if (task.subtasks && task.subtasks.length > 0) {
@@ -162,13 +166,13 @@
       </p>
     </div>
 
-    <div class="task_card_team">
-      <div class="team_left">
+    <div class="task-card-team">
+      <div class="team-left">
         <!-- Zeigt maximal 4 Teilnehmer mit ihren Initialen -->
         @for (id of getVisibleContacts(task); track $index) { @for (contact of
         contactService.contactList; track $index) { @if(id == contact.id) {
         <div
-          class="profile_badge"
+          class="profile-badge"
           [ngStyle]="{ 'background-color': contact.bgColor }"
         >
           {{ contact.initials }}
@@ -177,12 +181,12 @@
 
         <!-- Falls mehr als 4 Teilnehmer vorhanden sind, zeige +x -->
         @if (getHiddenCount(task) > 0) {
-        <div class="profile_badge more">+{{ getHiddenCount(task) }}</div>
+        <div class="profile-badge more">+{{ getHiddenCount(task) }}</div>
         }
       </div>
 
-      <div class="team_right">
-        <div class="taskcard_priority">
+      <div class="team-right">
+        <div class="taskcard-priority">
           @if (task.prio === 'Urgent') {
           <img
             src="assets/img/icons/prio_high.svg"

@@ -1,4 +1,11 @@
-<section>
+<section
+  [ngStyle]="{
+    'box-shadow': taskService.isEditModeActivated
+      ? '0px 0px 0px 0px rgba(0, 0, 0, 0) inset'
+      : '0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset'
+  }"
+>
+  @if(!taskService.isEditModeActivated){
   <div class="head-section">
     <h1>Add Task</h1>
     <img
@@ -9,9 +16,13 @@
       (click)="taskService.toggleCloseButton()"
     />
   </div>
+  }
 
-  <form #taskForm="ngForm" (ngSubmit)="submitForm()">
-    <div class="fill-in-area">
+  <form #taskForm="ngForm">
+    <div
+      class="fill-in-area"
+      [ngClass]="{ column: taskService.isEditModeActivated }"
+    >
       <div class="content">
         <div class="title_field">
           <label class="title" name="title">Title<span>*</span></label>
@@ -19,12 +30,11 @@
             <input
               class="input"
               type="text"
-              name="input"
+              name="title"
               placeholder="Enter a title"
               [class.error]="isFieldInvalid('title')"
               (focus)="clearError('title')"
               [(ngModel)]="inputTitle"
-              #titleField="ngModel"
               required
             />
             @if (isFieldInvalid('title')) {
@@ -40,13 +50,13 @@
           <textarea
             class="input"
             type="text"
-            name="input"
+            name="description"
             placeholder="Enter a Description"
             [(ngModel)]="inputDescription"
           ></textarea>
         </div>
 
-        <div class="assigned_field">
+        <div class="assigned_field select-container">
           <label class="assigned" name="assigned">Assigned to</label>
           <div class="assigned_field_headline" (click)="isSelectList()">
             <p>Select contacts to assign</p>
@@ -65,9 +75,11 @@
             class="contact_list"
             [ngStyle]="{ display: selectList ? 'block' : 'none' }"
           >
+            @if(selectList) {
             <div class="assigned_field_contact_list">
-              @for (group of contactService.getGroupedContacts() | keyvalue;
-              track $index) { @for (contact of group.value; track $index) {
+              @for (group of contactService.getGroupedContacts() |
+              keyvalue;track $index) { @for (contact of group.value; track
+              $index) {
               <div
                 class="assigned_field_single_contact"
                 [class.selected]="isSelected(contact)"
@@ -91,6 +103,7 @@
               </div>
               } }
             </div>
+            }
           </div>
           <div
             class="contact_badge_line"
@@ -108,7 +121,9 @@
         </div>
       </div>
 
+      @if(!taskService.isEditModeActivated){
       <div class="line"></div>
+      }
 
       <div class="right">
         <div class="choice">
@@ -168,9 +183,14 @@
           </div>
         </div>
 
+        @if(!taskService.isEditModeActivated){
         <div class="choice">
           <label for="taskType">Category<span>*</span></label>
-          <div class="seemInput" (click)="clickCategory()">
+          <div
+            class="seemInput"
+            (click)="clickCategory()"
+            [ngClass]="{ 'error-border': errors.category }"
+          >
             @if(selectedCategory == ''){
             <p>Select task category</p>
             } @if(selectedCategory == 'Technical Task'){
@@ -209,7 +229,11 @@
               </p>
             </div>
           </div>
+          @if(errors.category && selectedCategory == '') {
+          <span class="error-message">Please select a category!</span>
+          }
         </div>
+        }
 
         <div class="choice">
           <label for="subtasks">Subtasks</label>
@@ -309,15 +333,13 @@
       </div>
     </div>
 
+    @if(!taskService.isEditModeActivated){
     <div class="submit-section">
       <p>
         <span>*</span>
         This field is required
       </p>
-
       <div class="btn-submit-section">
-        <!-- <button (click)="test()">TEST</button>
-        <button (click)="test()">TEST</button> -->
         @if(taskService.showCloseButton){
         <button
           type="button"
@@ -333,10 +355,26 @@
           <img src="assets/img/icons/cancel.svg" alt="Cancel" /></button
         >}
 
-        <button type="submit" class="create-btn">
+        <button type="submit" class="create-btn" (click)="submitAddForm()">
           Create Task <img src="assets/img/icons/check.svg" alt="Check" />
         </button>
       </div>
     </div>
+    } @else {
+    <button
+      type="submit"
+      class="create-btn ok-btn"
+      (click)="submitUpdateForm()"
+    >
+      Ok <img src="assets/img/icons/check.svg" alt="ok" />
+    </button>
+    }
   </form>
+
+  @if(showSuccessMessage){
+  <div class="task-toast">
+    <span>Task added to board</span>
+    <img src="assets/img/icons/board-white.svg" alt="icon" class="toast-icon" />
+  </div>
+  }
 </section>

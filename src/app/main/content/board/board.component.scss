@@ -7,7 +7,7 @@ section {
   height: calc(100vh - 91px);
 }
 
-.input_field {
+.input-field {
   @include dFlex($ai: center, $jc: space-between, $g: 24px);
   height: 48px;
   max-width: 312px;
@@ -22,14 +22,20 @@ section {
     border-color: $light_blue;
   }
 
-  >img {
+  > img {
     padding-left: 16px;
     margin-right: 16px;
     height: 32px;
     width: 32px;
     border-left: 1px solid $light_gray;
-
   }
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: center;
 }
 
 input {
@@ -43,7 +49,7 @@ input {
 
 input::placeholder {
   @include font($fs: 20px, $fw: 400);
-  color: $light_gray;
+  color: $light-gray;
 }
 
 .input-search-btn {
@@ -64,7 +70,7 @@ input::placeholder {
   margin: 0px 12px 0 12px;
   padding: 4px;
 
-  >img {
+  > img {
     width: 20px;
     height: 20px;
     margin-top: 2px;
@@ -73,11 +79,11 @@ input::placeholder {
 
   &:hover {
     cursor: pointer;
-    background-color: $light_gray;
+    background-color: $hover_gray;
   }
 }
 
-.add_task_btn {
+.add-task-btn {
   @include font($fs: 24px, $fw: 700);
   @include dFlex($ai: center, $jc: space-evenly);
   height: 48px;
@@ -90,7 +96,7 @@ input::placeholder {
   padding: 8px 16px;
   white-space: nowrap;
 
-  >img {
+  > img {
     height: 18px;
     width: 18px;
     margin-left: 6px;
@@ -103,11 +109,12 @@ input::placeholder {
   }
 }
 
-.btn_mobile {
+.btn-mobile,
+.btn-mobile-plus {
   display: none;
 }
 
-.btn_desktop {
+.btn-desktop {
   display: block;
 }
 
@@ -124,7 +131,7 @@ h2 {
 //     @include font($fs: 20px, $fw: 700);
 // }
 
-.board_header {
+.board-header {
   @include dFlex($jc: space-between);
   flex-direction: row;
   // height: 10%;
@@ -132,27 +139,27 @@ h2 {
   padding: 128px 56px 56px 56px;
 }
 
-.board_header_left {
+.board-header-left {
   @include dFlex($jc: space-between);
   width: 100%;
 }
 
-.mobile_add_task_btn {
+.mobile-add-task-btn {
   display: none;
 
-  >img {
-    // background-color: $dark_blue;
+  > img {
+    // background-color: $dark-blue;
     height: 25px;
     width: 24px;
   }
 }
 
-.board_header_right {
+.board-header-right {
   @include dFlex($jc: space-between);
   width: 100%;
 }
 
-.board_content {
+.board-content {
   @include dFlex($ai: flex-start, $jc: space-evenly, $g: 24px);
   flex-direction: row;
   height: 75%;
@@ -160,12 +167,12 @@ h2 {
   padding: 16px 56px;
 }
 
-.board_content_header {
+.board-content-header {
   @include dFlex($jc: space-between);
   width: 100%;
   margin-bottom: 23px;
 
-  >button {
+  > button {
     height: 25px;
     width: 24px;
     background-image: url("./../../../../assets/img/icons/add_task_plus.svg");
@@ -179,36 +186,9 @@ h2 {
   }
 }
 
-.to_do {
-  @include dFlex($ai: flex-start, $jc: flex-start);
-  flex-direction: column;
-  height: 100%;
-  width: 22%;
-  position: relative;
-  height: 50vh;
-  // border: 2px solid $light_gray;
-}
-
-.in_progress {
-  @include dFlex($ai: flex-start, $jc: flex-start);
-  flex-direction: column;
-  height: 100%;
-  width: 22%;
-  position: relative;
-  height: 50vh;
-  // border: 2px solid $light_gray;
-}
-
-.await_feedback {
-  @include dFlex($ai: flex-start, $jc: flex-start);
-  flex-direction: column;
-  height: 100%;
-  width: 22%;
-  position: relative;
-  height: 50vh;
-  // border: 2px solid $light_gray;
-}
-
+.to-do,
+.in-progress,
+.await-feedback,
 .done {
   @include dFlex($ai: flex-start, $jc: flex-start);
   flex-direction: column;
@@ -216,24 +196,26 @@ h2 {
   width: 22%;
   position: relative;
   height: 50vh;
-  // border: 2px solid $light_gray;
+  // border: 2px solid $light-gray;
 }
 
-.tasks_content {
+.tasks-content {
   // @include dFlex($ai: flex-start, $jc: flex-start, $g: 10px);
   min-height: 64px;
   width: 100%;
   background-color: $light_gray;
 }
 
-.empty_bg {
+.empty-bg {
   @include font($fs: 16px, $fw: 400);
   color: $gray;
   text-align: center;
   align-content: center;
-  margin-top: 24px;
+  margin-top: 34px; // change, before 24px%
   min-height: 48px;
-  width: 100%;
+  min-height: 48px;
+  width: 80%; // change, before 100%
+
   background: $mid_gray;
   border-radius: 10px;
   border-style: dotted;
@@ -242,7 +224,10 @@ h2 {
   overflow: auto;
   position: absolute;
   top: 24px;
-  left: 0;
+
+  left: 50%; // change, before 0
+  transform: translateX(-50%); // was new
+
   z-index: -1;
 }
 
@@ -267,8 +252,11 @@ h3 {
   min-height: 250px;
   width: 100%;
   border-radius: 4px;
-  // overflow: auto;
+  overflow: auto;
   // height: 50vh;
+
+  //### NEW 02032025
+  padding: 10px;
 }
 
 app-single-task {
@@ -309,44 +297,43 @@ app-single-task {
     font-size: 16px;
   }
 
-  .board_content {
+  .board-content {
     @include dFlex($ai: flex-start, $jc: space-evenly, $g: 10px);
     padding: 16px;
   }
 }
 
 @media (max-width: 860px) {
-section{
-  height: auto;
-}
+  section {
+    height: auto;
+  }
+  section {
+    height: auto;
+  }
 
-.board_header_left {
-  @include dFlex($ai: center, $jc: space-between);
+  .board-header-left {
+    @include dFlex($ai: center, $jc: space-between);
 
-    >h1 {
+    > h1 {
       font-size: 47px;
     }
   }
 
-  .input_field {
+  .input-field {
     width: 100%;
   }
 
-  .add_task_btn {
+  .add-task-btn {
     display: none;
   }
 
-  .btn_mobile {
-    display: none;
-  }
-
-  .board_content {
+  .board-content {
     @include dFlex($ai: flex-start, $jc: space-evenly);
     flex-direction: column;
     width: 100%;
   }
 
-  .empty_bg {
+  .empty-bg {
     display: none;
   }
 
@@ -361,19 +348,19 @@ section{
     justify-content: flex-start;
   }
 
-  .to_do {
+  .to-do {
     width: 100%;
     padding-bottom: 32px;
     height: auto;
   }
 
-  .in_progress {
+  .in-progress {
     width: 100%;
     padding-bottom: 32px;
     height: auto;
   }
 
-  .await_feedback {
+  .await-feedback {
     width: 100%;
     padding-bottom: 32px;
     height: auto;
@@ -387,7 +374,7 @@ section{
 }
 
 /*-------------------------------------------------- Overlay Add-Task --------------------------------------------------*/
-.overlay_task {
+.overlay-task {
   @include dFlex();
   position: fixed;
   top: 0;
@@ -395,15 +382,23 @@ section{
   width: 100%;
   height: 100vh;
   z-index: 100;
-  background-color: rgba($black, 0.87)
+  background-color: rgba($black, 0.5);
 }
 
-.overlay_bg_white {
+.overlay-bg-white {
   @include dFlex();
   background-color: $white;
   width: 77vw;
   height: 85vh;
   border-radius: 24px;
+
+  &.show {
+    animation: slideIn 0.3s forwards;
+  }
+
+  &.hide {
+    animation: slideOut 0.3s forwards;
+  }
 
   app-add-task {
     width: 100%;
@@ -411,36 +406,61 @@ section{
   }
 }
 
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 1200px) {
-  .overlay_task {
+  .overlay-task {
     display: none;
   }
 
-  .board_header {
+  .board-header {
     @include dFlex($ai: center, $jc: flex-start, $g: 24px);
     flex-direction: column;
     padding: 48px 32px 24px 32px;
   }
 
-  .board_header_right {
+  .board-header-right {
     @include dFlex($jc: center);
     width: 100%;
   }
 
-  .mobile_add_task_btn {
+  .mobile-add-task-btn {
     @include dFlex($ai: center, $jc: center);
     background-color: $dark_blue;
     border-radius: 10px;
     // display: block;
     height: 40px;
     width: 40px;
+    cursor: pointer;
   }
 
-  .btn_mobile {
-    // display: none;
+  .btn-mobile-plus {
+    display: block;
   }
 
-  .btn_desktop {
+  .btn-desktop {
     display: none;
   }
 }

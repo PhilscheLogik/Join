@@ -1,7 +1,7 @@
 @import "./../../../../styles.scss";
 
 section {
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+  // box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
   padding: 0 70px;
   max-height: calc(100vh - 91px);
   min-height: auto;
@@ -35,6 +35,11 @@ form {
       display: block; // Zeigt den Button an, wenn die Klasse "show" hinzugefügt wird
       z-index: 10;
       cursor: pointer;
+      border-radius: 50%;
+
+      &:hover {
+        background: $hover_gray;
+      }
     }
   }
 }
@@ -67,7 +72,7 @@ form {
       }
     }
 
-    >div {
+    > div {
       width: 100%;
 
       .input {
@@ -132,13 +137,13 @@ form {
 
   .assigned_field {
     width: 100%;
-    height: 300px;
+    height: 220px;
     border-radius: 10px;
 
     .assigned {
       @include font($fs: 20px, $fw: 400);
-        color: $dark_blue;
-        height: 24px;
+      color: $dark_blue;
+      height: 24px;
     }
 
     .assigned_field_headline {
@@ -320,9 +325,12 @@ form {
 
   span {
     color: $red;
+    margin-top: -20px;
+    // position: relative;
+    // top: -20px;
   }
 
-  >div {
+  > div {
     width: 100%;
 
     input {
@@ -500,8 +508,6 @@ form {
   top: -15px;
   left: 0;
   box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.4);
-
-  // @include dFlex($jc:space-between);
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
@@ -517,7 +523,17 @@ form {
     width: 100%;
     padding: 16px 21px;
     cursor: pointer;
+
+    &:hover {
+      border-radius: 10px;
+      background-color: $hover_gray;
+      color: $black;
+    }
   }
+}
+
+.error-border {
+  border-color: $red;
 }
 
 .selected {
@@ -547,6 +563,7 @@ form {
 
   span {
     color: $light_gray;
+    margin: 0;
   }
 
   button {
@@ -588,6 +605,7 @@ form {
     span {
       color: black;
       display: inline-block;
+      margin: 0;
     }
 
     padding: 5px;
@@ -639,9 +657,9 @@ ul {
   width: 100%;
   @include dFlex($jc: space-between, $ai: flex-end);
   @include font($fs: 16px, $fw: 400);
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 
-  >p span {
+  > p span {
     color: $red;
   }
 }
@@ -650,12 +668,12 @@ ul {
 .create-btn {
   padding: 16px 18px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
 
-  >img {
+  > img {
     margin-left: 3px;
   }
 }
@@ -666,7 +684,6 @@ ul {
   white-space: nowrap;
   font-size: 21px;
   font-weight: 700;
-
 
   &:hover {
     background-color: $light_blue;
@@ -685,7 +702,8 @@ ul {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     img {
-      filter: invert(56%) sepia(34%) saturate(507%) hue-rotate(165deg) brightness(98%) contrast(95%);
+      filter: invert(56%) sepia(34%) saturate(507%) hue-rotate(165deg)
+        brightness(98%) contrast(95%);
     }
   }
 }
@@ -693,6 +711,21 @@ ul {
 .btn-submit-section {
   @include dFlex($jc: space-between, $g: 30px);
   margin-top: 4px;
+}
+
+.column {
+  @include dFlex($jc: space-between);
+  flex-direction: column !important;
+}
+
+.ok-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 32px;
+}
+
+.maxWidth {
+  max-width: 480px;
 }
 
 /*--------------------------------------------------   Mobile   --------------------------------------------------*/
@@ -708,7 +741,6 @@ ul {
   }
 
   form {
-    @include dFlex($jc: space-between);
     flex-direction: column;
     height: calc(100vh - 91px - 190px);
   }
@@ -849,7 +881,7 @@ ul {
 
     .input-container {
       input {
-          @include font($fs: 16px, $fw: 400);
+        @include font($fs: 16px, $fw: 400);
       }
     }
   }
@@ -901,5 +933,67 @@ ul {
   .btn-submit-section {
     @include dFlex($ai: flex-end, $g: 20px);
     flex-direction: column;
+  }
+}
+
+// Add task to board
+
+.task-toast {
+  @include dFlex($g: 16px);
+  position: fixed;
+  bottom: 250px;
+  right: 40%;
+  background-color: $dark_blue;
+  color: $white;
+  padding: 24px 24px;
+  border-radius: 24px;
+  font-size: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 30;
+  opacity: 0;
+  transform: translateX(150%);
+  animation: slide-in 0.125s ease-in forwards,
+    slide-out 0.125s ease-out 1.5s forwards;
+
+  > img {
+    height: 24px;
+    width: 24px;
+  }
+
+  @media (max-width: 768px) {
+    right: 25%;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    right: 15%;
+  }
+
+  @media (max-width: 375px) {
+    right: 12%;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(250%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(250%);
+    opacity: 0;
   }
 }

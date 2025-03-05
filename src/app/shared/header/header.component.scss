@@ -11,7 +11,7 @@ section {
     min-height: 91px;
 }
 
-.header_left {
+.header-left {
     position: relative;
     background-color: $white;
     padding: 32px 64px;
@@ -31,12 +31,12 @@ img {
     width: 32px;
 }
 
-.header_right {
+.header-right {
     @include dFlex($jc: center);
     background-color: $white;
     // overflow-x: hidden;
     
-    >.help_link {
+    >.help-link {
         height: 32px;
         width: 32px;
         background-image: url('./../../../assets/img/icons/help_button.svg');
@@ -49,11 +49,11 @@ img {
     }
 }
 
-.d_none {
+.d-none {
     display: none; 
 }
 
-.initials_btn {
+.initials-btn {
     @include dFlex($ai: center);
 
     height: 64px;
@@ -82,7 +82,7 @@ img {
 
 /* Burger-Overlay */
 
-.toggleOff_container {
+.toggleOff-container {
     height: 100%;
     width: 100%;
     position: fixed;
@@ -91,13 +91,13 @@ img {
     z-index: 15;
 }
 
-.header_overlay {
+.header-overlay {
     position: fixed;
     top: 92px;
     right: -160px; 
     height: auto;
     width: 160px;
-    background-color: $dark_blue;
+    background-color: $dark-blue;
     border-radius: 20px 0 20px 20px;
     transition: all 0.3s ease-in-out; 
     visibility: hidden; 
@@ -111,7 +111,7 @@ img {
     }
   }
 
-.inner_overlay {
+.inner-overlay {
     @include dFlex($ai: start);
     flex-direction: column;
     padding: 16px 8px;
@@ -123,12 +123,12 @@ img {
         width: 100%;
 
         &:hover {
-            background-color: $button_hover_blue;
+            background-color: $button-hover-blue;
         }
     }
 }
 
-.burger_help_link {
+.burger-help-link {
     display: none;
     padding: 16px 16px;
     text-decoration: none;
@@ -198,22 +198,22 @@ img {
 
 @media (max-width: 720px) {
 
-    .help_link {
+    .help-link {
       display: none;
     }
 
-    .responsive_header_logo {
+    .responsive-header-logo {
             display: block;
     }
 
-    .header_left {
+    .header-left {
 
         >h1 {
             display: none;
         }
     }
 
-    .initials_btn {
+    .initials-btn {
         height: 40px;
         width: 40px;
 
@@ -222,7 +222,7 @@ img {
         }
     }
 
-    .burger_help_link {
+    .burger-help-link {
         display: block;
     }
 
@@ -231,7 +231,7 @@ img {
         left: 24px;
     }
 
-    .header_overlay {
+    .header-overlay {
         top: 68px;
         right: -300px;
     }

@@ -1,11 +1,11 @@
 <section>
   @if(!contactService.selectedContact) {
-  <div class="new_contact_mobile_icon" (click)="openOverlay('add')">
+  <div class="new-contact-mobile-icon" (click)="openOverlay('add')">
     <img src="assets/img/icons/person_add_icon.svg" alt="" />
   </div>
   } @if(contactService.selectedContact) {
   <div
-    class="new_contact_mobile_icon"
+    class="new-contact-mobile-icon"
     (click)="openOverlayEditContactMobile('edit')"
   >
     <img src="assets/img/icons/edit_vert_icon.svg" alt="" />
@@ -18,12 +18,12 @@
     <div class="overlay">
       <div class="overlay-content" (click)="$event.stopPropagation()">
         <div (click)="openOverlay('edit')">
-          <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg" />
+          <img class="pencil-icon" src="assets/img/icons/pencil_icon.svg" />
           <p>Edit</p>
         </div>
 
         <div (click)="deleteContact(); mobileDisplay()">
-          <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
+          <img class="trash-icon" src="assets/img/icons/trash_icon.svg" />
           <p>Delete</p>
         </div>
       </div>
@@ -35,7 +35,7 @@
       <button class="add-new-contact" (click)="openOverlay('add')">
         <span>Add new Contact</span>
         <img
-          class="person_add_icon"
+          class="person-add-icon"
           src="assets/img/icons/person_add_icon.svg"
           alt=""
         />
@@ -52,7 +52,7 @@
           [class.active]="contactService.selectedContact?.id === contact.id"
         >
           <div
-            class="profile_badge"
+            class="profile-badge"
             [ngStyle]="{ 'background-color': contact.bgColor}"          >
             {{ contact.initials }}
           </div>
@@ -72,7 +72,7 @@
         <h1>Contacts</h1>
         @if(contactService.selectedContact) {
         <img
-          class="arrow_left"
+          class="arrow-left"
           src="assets/img/icons/arrow_left.svg"
           (click)="
             selectContact(contactService.selectedContact); mobileDisplay()
@@ -82,33 +82,33 @@
       </div>
       <img src="assets/img/icons/or_icon.svg" />
       <p>Better with a team</p>
-      <div class="border_blue"></div>
+      <div class="border-blue"></div>
     </div>
     @if(contactService.selectedContact) {    
-    <div class="contact_content" [ngClass]="{ show: showContactContent }">
-      <div class="contact_content_head">
+    <div class="contact-content" [ngClass]="{ show: showContactContent }">
+      <div class="contact-content-head">
         <div
-          class="contact_profile_badge"
+          class="contact-profile-badge"
           [ngStyle]="{
             'background-color': contactService.selectedContact.bgColor}"
         >
           {{ contactService.selectedContact.initials }}
         </div>
-        <div class="contact_name_section">
+        <div class="contact-name-section">
           <p class="name">{{ contactService.selectedContact.name }}</p>
-          <div class="editing_section">
+          <div class="editing-section">
             <div (click)="openOverlay('edit')" class="edit">
-              <img class="pencil_icon" src="assets/img/icons/pencil_icon.svg" />
+              <img class="pencil-icon" src="assets/img/icons/pencil_icon.svg" />
               <img
-                class="pencil_icon_hover_blue"
+                class="pencil-icon-hover-blue"
                 src="assets/img/icons/pencil_icon_hover_blue.svg"
               />
               <p>Edit</p>
             </div>
             <div (click)="deleteContact(); mobileDisplay()" class="delete">
-              <img class="trash_icon" src="assets/img/icons/trash_icon.svg" />
+              <img class="trash-icon" src="assets/img/icons/trash_icon.svg" />
               <img
-                class="trash_icon_hover_blue"
+                class="trash-icon-hover-blue"
                 src="assets/img/icons/trash_icon_hover_blue.svg"
               />
               <p>Delete</p>
@@ -117,12 +117,12 @@
         </div>
       </div>
 
-      <div class="contact_detail_section">
-        <p class="information_headline">Contact Information</p>
+      <div class="contact-detail-section">
+        <p class="information-headline">Contact Information</p>
         <div class="information">
-          <p class="email_headline">Email</p>
+          <p class="email-headline">Email</p>
           <p class="email">{{ contactService.selectedContact.email }}</p>
-          <p class="phone_headline">Phone</p>
+          <p class="phone-headline">Phone</p>
           <p class="phone">{{ contactService.selectedContact.phone }}</p>
         </div>
       </div>

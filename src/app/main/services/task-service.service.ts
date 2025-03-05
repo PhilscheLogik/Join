@@ -16,13 +16,22 @@ import { Task } from '../../interfaces/task';
 export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
 
-  whatIsTheType = 'feedback';
+  whatIsTheType = 'todo';
+  isEditModeActivated = false;
+
+  selectedTaskId = '';
+  selectedTaskCategory = '';
 
   todoList: Task[] = [];
   progressList: Task[] = [];
   feedbackList: Task[] = [];
   doneList: Task[] = [];
   showCloseButton: boolean = false; // New variable to control button visibility
+  isClosing: boolean = false;
+
+  selectedTask: Task | undefined;
+
+  hasBeenUpdated = false;
 
   unsubToDo;
   unsubInProgress;
@@ -45,7 +54,17 @@ export class TaskServiceService {
   }
 
   toggleCloseButton() {
-    this.showCloseButton = !this.showCloseButton;
+    if (this.showCloseButton) {
+      this.isClosing = true;
+
+      setTimeout(() => {
+        // this.showCloseButton = !this.showCloseButton;
+        this.showCloseButton = false;
+        this.isClosing = false;
+      }, 300);
+    } else {
+      this.showCloseButton = true;
+    }
   }
 
   /**
@@ -297,9 +316,10 @@ export class TaskServiceService {
     newDate: string,
     newPrio: string,
     newCategory: string,
-    newSubtasks: any
+    newSubtasks: any,
+    listCategory: string
   ) {
-    const updateRef = doc(this.getToDoRef(), id);
+    const updateRef = doc(this.getCategoryRef(listCategory), id);
     if (id) {
       await updateDoc(updateRef, {
         title: newTitle,

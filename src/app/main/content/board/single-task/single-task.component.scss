@@ -90,18 +90,27 @@
     border-radius: 24px;
     width: 550px;
     height: 950px;
-    // min-height: 850px;
-    // max-height: 950px;
+
+    @media (min-width: 1500px) {
+      width: 700px;
+    }
+
+    @media (min-width: 1200px) {
+      height: 1050px;
+    }
 
     @media (max-width: 580px) {
       width: 85%;
-      height: 70%;
+      height: 80%;
       padding: 24px;
     }
 
     @media (max-width: 480px) {
-      height: 65%;
       padding: 16px;
+    }
+
+    @media only screen and (max-height: 680px) and (max-width: 400px) and (orientation: portrait) {
+      height: 95%;
     }
 
     .header {
@@ -172,13 +181,17 @@
       max-height: 170px;
       overflow-y: auto;
 
+      @media only screen and (max-height: 680px) and (max-width: 400px) and (orientation: portrait) {
+        max-height: 100px;
+      }
+
       .assignee {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-top: 16px;
 
-        .profile_badge {
+        .profile-badge {
           @include dFlex();
           width: 40px;
           height: 40px;
@@ -290,7 +303,7 @@
   }
 }
 
-.task_card_category {
+.task-card-category {
   @include font($fs: 16px, $fw: 400);
   height: 27px;
   min-height: 27px;
@@ -309,7 +322,7 @@
   background-color: $mint;
 }
 
-.task_card_main {
+.task-card-main {
   max-height: 84px;
   /* 3 dots appear when content overflows div size */
   display: -webkit-box;
@@ -318,21 +331,24 @@
   overflow: hidden;
 }
 
-.task_card_substasks {
+.task-card-substasks {
   @include font($fs: 12px, $fw: 400);
   @include dFlex($ai: center, $jc: space-between);
   width: 100%;
   height: 16px;
+  > p {
+    margin-left: 16px;
+  }
 }
 
-.subtasks_progress {
+.subtasks-progress {
   max-width: 128px;
   width: 65%;
   height: 16px;
 }
 
-.subtasks_progress {
-  >progress {
+.subtasks-progress {
+  > progress {
     width: 100%; /* Matches your original progress_outer width */
     height: 10px; /* Matches your original progress_inner height */
     -webkit-appearance: none; /* Reset default styles in Webkit browsers */
@@ -340,44 +356,44 @@
   }
 
   /* Style the progress bar's filled portion */
-  >progress::-webkit-progress-value {
+  > progress::-webkit-progress-value {
     background-color: $light_blue; /* Matches your original progress_inner color */
     border-radius: 5px;
   }
-  >progress::-moz-progress-bar {
+  > progress::-moz-progress-bar {
     background-color: $light_blue; /* For Firefox */
   }
 
   /* Style the progress bar's background */
-  >progress::-webkit-progress-bar {
+  > progress::-webkit-progress-bar {
     background-color: $hover_gray; /* Matches your original progress_outer color */
     border-radius: 5px;
   }
 }
 
-.progress_outer {
+.progress-outer {
   width: 100%;
   height: 16px;
 }
 
-.progress_inner {
+.progress-inner {
   width: 50%; /* needs to be changed dynamically depending on team member count */
   height: 8px;
   border-radius: 4px;
   background-color: $blue_lavender;
 }
 
-.task_card_team {
+.task-card-team {
   @include dFlex($ai: center, $jc: space-between);
   height: 32px;
   width: 100%;
 }
 
-.team_left {
+.team-left {
   display: flex;
   flex-direction: row;
 
-  > .profile_badge {
+  > .profile-badge {
     // position: relative;
     @include dFlex();
     width: 32px;
@@ -392,7 +408,7 @@
     margin-left: -8px;
   }
 
-  .profile_badge:first-child {
+  .profile-badge:first-child {
     margin-left: 0;
   }
 }
@@ -422,10 +438,26 @@
 
 /* Mobile */
 
+@media (min-width: 1500px) {
+  .task-overlay-content {
+    width: 700px;
+  }
+
+  app-add-task {
+    width: 480px;
+  }
+}
+
 @media (max-width: 860px) {
   .example-box {
     width: 252px;
     margin-top: 7px;
     margin-left: 7px;
+  }
+}
+
+@media only screen and (max-height: 680px) and (orientation: portrait) {
+  .task-overlay-content {
+    height: 95%;
   }
 }

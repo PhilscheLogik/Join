@@ -7,7 +7,7 @@ section {
   position: relative;
 }
 
-.new_contact_mobile_icon {
+.new-contact-mobile-icon {
   display: none;
 }
 
@@ -43,7 +43,7 @@ section {
         background-color: transparent;
       }
 
-      .person_add_icon {
+      .person-add-icon {
         background-color: transparent;
       }
 
@@ -72,7 +72,7 @@ section {
         width: 352px;
         padding: 15px 24px;
 
-        .profile_badge {
+        .profile-badge {
           @include dFlex();
           width: 42px;
           height: 42px;
@@ -101,7 +101,7 @@ section {
         }
 
         &:hover {
-          background-color: $cream-white;
+          background-color: $cream_white;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
           border-radius: 10px;
         }
@@ -141,7 +141,7 @@ section {
         @include font($fs: 61px, $fw: 700);
       }
 
-      .arrow_left {
+      .arrow-left {
         display: none;
         cursor: pointer;
       }
@@ -153,17 +153,17 @@ section {
     }
   }
 
-  .contact_content {
+  .contact-content {
     @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
     flex-direction: column;
     width: 100%;
     min-height: 500px;
     background-color: transparent;
 
-    .contact_content_head {
+    .contact-content-head {
       @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
 
-      .contact_profile_badge {
+      .contact-profile-badge {
         @include dFlex();
         width: 120px;
         height: 120px;
@@ -174,7 +174,7 @@ section {
         color: $white;
       }
 
-      .contact_name_section {
+      .contact-name-section {
         @include dFlex($ai: flex-start, $g: 10px);
         flex-direction: column;
 
@@ -182,7 +182,7 @@ section {
           @include font($fs: 47px, $fw: 500);
         }
 
-        .editing_section {
+        .editing-section {
           @include dFlex($g: 30px);
 
           .edit,
@@ -192,13 +192,13 @@ section {
             @include font($fs: 16px, $fw: 400);
             width: 70px;
 
-            .pencil_icon,
-            .trash_icon {
+            .pencil-icon,
+            .trash-icon {
               display: block;
             }
 
-            .pencil_icon_hover_blue,
-            .trash_icon_hover_blue {
+            .pencil-icon-hover-blue,
+            .trash-icon-hover-blue {
               display: none;
             }
 
@@ -206,13 +206,13 @@ section {
               color: $light_blue;
               @include font($fs: 16px, $fw: 700);
 
-              .pencil_icon,
-              .trash_icon {
+              .pencil-icon,
+              .trash-icon {
                 display: none;
               }
 
-              .pencil_icon_hover_blue,
-              .trash_icon_hover_blue {
+              .pencil-icon-hover-blue,
+              .trash-icon-hover-blue {
                 display: block;
               }
             }
@@ -221,11 +221,11 @@ section {
       }
     }
 
-    .contact_detail_section {
+    .contact-detail-section {
       @include dFlex($ai: flex-start, $g: 50px);
       flex-direction: column;
 
-      .information_headline {
+      .information-headline {
         @include font($fs: 20px, $fw: 400);
       }
 
@@ -233,8 +233,8 @@ section {
         @include dFlex($ai: flex-start, $g: 15px);
         flex-direction: column;
 
-        .email_headline,
-        .phone_headline {
+        .email-headline,
+        .phone-headline {
           @include font($fs: 16px, $fw: 700);
         }
 
@@ -295,24 +295,24 @@ section {
       }
     }
 
-    .contact_content {
+    .contact-content {
       @include dFlex($jc: flex-start, $ai: flex-start, $g: 50px);
       flex-direction: column;
       width: 100%;
       min-height: 500px;
       background-color: transparent;
 
-      .contact_content_head {
+      .contact-content-head {
         @include dFlex($jc: flex-start, $ai: flex-start, $g: 20px);
 
-        .contact_profile_badge {
+        .contact-profile-badge {
           @include dFlex();
           width: 80px;
           height: 80px;
           @include font($fs: 27px, $fw: 400);
         }
 
-        .contact_name_section {
+        .contact-name-section {
           .name {
             @include font($fs: 36px, $fw: 700);
           }
@@ -380,7 +380,7 @@ section {
     width: 100%;
     @include dFlex($jc: flex-start, $g: 50px);
     position: absolute;
-    background-color: $cream-white;
+    background-color: $cream_white;
 
     .headline {
       @include dFlex($jc: flex-start, $ai: flex-start, $g: 10px);
@@ -391,12 +391,12 @@ section {
         width: 100%;
         padding-right: 50px;
 
-        .arrow_left {
+        .arrow-left {
           display: block;
         }
       }
 
-      .border_blue {
+      .border-blue {
         width: 90px;
         border: 3px solid;
         border-color: $light_blue;
@@ -410,7 +410,7 @@ section {
 }
 
 @media (max-width: 500px) {
-  .new_contact_mobile_icon {
+  .new-contact-mobile-icon {
     cursor: pointer;
     @include dFlex();
     border: 1px solid;
@@ -523,7 +523,7 @@ section {
         }
       }
 
-      .border_blue {
+      .border-blue {
         width: 90px;
         border: 3px solid;
         border-color: $light_blue;
@@ -534,23 +534,23 @@ section {
       }
     }
 
-    .contact_content {
-      .contact_content_head {
+    .contact-content {
+      .contact-content-head {
         @include dFlex($ai: center, $g: 20px);
 
-        .contact_profile_badge {
+        .contact-profile-badge {
           @include dFlex();
           width: 60px;
           height: 60px;
           @include font($fs: 20px, $fw: 400);
         }
 
-        .contact_name_section {
+        .contact-name-section {
           .name {
             @include font($fs: 24px, $fw: 700);
           }
 
-          .editing_section {
+          .editing-section {
             display: none;
           }
         }

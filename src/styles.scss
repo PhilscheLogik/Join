@@ -9,7 +9,38 @@
   font-family: "Inter", Arial, Helvetica, sans-serif;
   // outline: 2px solid lime;
   // background: hsl(0 100% 50% / 0.1);
+  
+  // scrollbar-width: thin;
+  // scrollbar-color: $gray $cream_white;  
 }
+
+/* Für Firefox */
+@-moz-document url-prefix() {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: $gray $cream_white;
+  }
+}
+
+/* Für Chrome, Edge, Safari (alle WebKit/Chromium-Browser) */
+@supports (-webkit-appearance: none) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+    margin-top: 20px;    // Oben Abstand lassen
+    margin-bottom: 20px; // Unten Abstand lassen
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 4px;
+  }
+}
+
 
 body {
   color: $black;
@@ -30,21 +61,23 @@ a {
   display: none;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+// /* Scrollbar Styling */
+// ::-webkit-scrollbar {
+//   width: 8px;
+//   height: 8px;
+// }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
+// ::-webkit-scrollbar-track {
+//   background: #f1f1f1;
+//   border-radius: 4px;
+//   margin-top: 20px;   // Oben Abstand lassen
+//   margin-bottom: 20px; // Unten Abstand lassen
+// }
 
-::-webkit-scrollbar-thumb {
-  background: #A8A8A8;
-  border-radius: 4px;
-}
+// ::-webkit-scrollbar-thumb {
+//   background: #A8A8A8;
+//   border-radius: 4px;
+// }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

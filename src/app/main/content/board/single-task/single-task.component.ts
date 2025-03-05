@@ -11,11 +11,12 @@ import {
 import { TaskServiceService } from '../../../services/task-service.service';
 import { ContactsService } from '../../../services/contacts.service';
 import { Task } from '../../../../interfaces/task';
+import { AddTaskComponent } from '../../add-task/add-task.component';
 
 @Component({
   selector: 'app-single-task',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AddTaskComponent],
   templateUrl: './single-task.component.html',
   styleUrl: './single-task.component.scss',
 })
@@ -29,7 +30,7 @@ export class SingleTaskComponent {
   selectedContacts: any[] = [];
 
   constructor(
-    private taskService: TaskServiceService,
+    public taskService: TaskServiceService,
     public contactService: ContactsService
   ) {
     this.tasks = this.taskService.todoList;
@@ -50,10 +51,32 @@ export class SingleTaskComponent {
    */
   closeOverlay() {
     this.isClosing = true;
+    this.taskService.isEditModeActivated = false;
+
+    this.updateSubtaskCompleted();
+
     setTimeout(() => {
       this.isOverlayOpen = false;
       this.isClosing = false;
     }, 300);
+
+    this.taskService.whatIsTheType = 'todo';
+  }
+
+  /**
+   * Activates edit mode for a task.
+   * @param {Task | null} task - The task to be edited, or null if no task is provided.
+   */
+  editTaskActivated(task: Task | null) {
+    this.taskService.isEditModeActivated = true;
+    if (task && task.id) {
+      this.taskService.selectedTaskId = task.id;
+      this.taskService.selectedTaskCategory = task?.category;
+
+      // console.log(task);
+      this.taskService.selectedTask = task;
+      // console.log(this.taskService.selectedTask);
+    }
   }
 
   /**
@@ -65,21 +88,6 @@ export class SingleTaskComponent {
       this.taskService.deleteTask(this.taskService.whatIsTheType, task.id);
     }
   }
-
-  // Aktualisiere die lokalen Arrays
-  // transferArrayItem(
-  //   event.previousContainer.data,
-  //   event.container.data,
-  //   event.previousIndex,
-  //   event.currentIndex
-  // );
-
-  // console.log(
-  //   event.previousContainer.data,
-  //   event.container.data,
-  //   event.previousIndex,
-  //   event.currentIndex,
-  // );
 
   /**
    * Handles the drag-and-drop functionality for tasks.
@@ -124,11 +132,71 @@ export class SingleTaskComponent {
   }
 
   /**
+   * Updates the selected task's subtask completion status if the task has been updated.
+   *
+   * This function checks if a task is selected and if the task service indicates that
+   * an update has occurred. If both conditions are met, it proceeds to update the
+   * task using the task service's `updateTask` method.
+   *
+   * The function also resets the `hasBeenUpdated` flag in the task service after
+   * attempting to update the task.
+   *
+   * @remarks
+   * This function relies on `this.selectedTask` to be properly set and
+   * `this.taskService` to be an instance of a service that handles task updates.
+   *
+   * @function updateSubtaskCompleted
+   * @memberof YourComponent
+   *
+   * @returns {void}
+   */
+  updateSubtaskCompleted(): void {
+    if (this.selectedTask && this.taskService.hasBeenUpdated) {
+      // console.log(this.selectedTask);
+      // console.log(this.taskService.whatIsTheType);
+      // console.log(this.selectedTask.subtasks);
+      if (this.selectedTask.id && this.selectedTask.description) {
+        this.taskService.updateTask(
+          this.selectedTask.id,
+          this.selectedTask.title,
+          this.selectedTask.description,
+          this.selectedTask.assignedTo,
+          this.selectedTask.date,
+          this.selectedTask.prio,
+          this.selectedTask.category,
+          this.selectedTask.subtasks,
+          this.taskService.whatIsTheType
+        );
+      }
+    }
+    this.taskService.hasBeenUpdated = false;
+  }
+
+  /**
    * Toggles the completion status of a subtask.
    * @param {any} subtask - The subtask to toggle.
    */
   toggleSubtaskCompleted(subtask: any) {
     subtask.IsCompleted = !subtask.IsCompleted;
+    this.taskService.hasBeenUpdated = true;
+  }
+
+  /**
+   * getSubtaskLength()
+   *
+   * This method safely returns the length of the `subtasks` array associated with the current `task`.
+   * It checks whether `task.subtasks` is an actual array using `Array.isArray()`. If it is, it returns
+   * the length of the `subtasks` array. If `task.subtasks` is not an array (or is `null`/`undefined`),
+   * it returns `0` to avoid any errors.
+   *
+   * This is useful to safely handle cases where `subtasks` may be `null`, `undefined`, or not an array,
+   * ensuring that the code works as expected without throwing errors.
+   *
+   * @returns {number} - The number of subtasks. Returns `0` if `task.subtasks` is not a valid array.
+   */
+
+  getSubtaskLength(): number {
+    return Array.isArray(this.task.subtasks) ? this.task.subtasks.length : 0;
   }
 
   /**
@@ -158,7 +226,7 @@ export class SingleTaskComponent {
     if (!this.task.subtasks || this.task.subtasks.length === 0) {
       return 0;
     }
-    
+
     return this.task.subtasks.filter((subtask) => subtask.IsCompleted === true)
       .length;
   }
@@ -202,9 +270,9 @@ export class SingleTaskComponent {
    * Debugging function that logs task information to the console.
    * @param {Task | null} arg0 - The task to be logged, or null if no task is provided.
    */
-  getTest(arg0: Task | null) {
-    console.log(arg0);
-    console.log('--------------');
-    console.log(this.taskService.whatIsTheType);
-  }
+  // getTest(arg0: Task | null) {
+  //   console.log(arg0);
+  //   console.log('--------------');
+  //   console.log(this.taskService.whatIsTheType);
+  // }
 }
