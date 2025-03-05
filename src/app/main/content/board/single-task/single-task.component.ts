@@ -53,6 +53,8 @@ export class SingleTaskComponent {
     this.isClosing = true;
     this.taskService.isEditModeActivated = false;
 
+    this.updateSubtaskCompleted();
+
     setTimeout(() => {
       this.isOverlayOpen = false;
       this.isClosing = false;
@@ -130,34 +132,53 @@ export class SingleTaskComponent {
   }
 
   /**
-   * Toggles the completion status of a subtask.
-   * @param {any} subtask - The subtask to toggle.
-   * @param {Task | null} task - The parent task containing the subtask.
+   * Updates the selected task's subtask completion status if the task has been updated.
+   *
+   * This function checks if a task is selected and if the task service indicates that
+   * an update has occurred. If both conditions are met, it proceeds to update the
+   * task using the task service's `updateTask` method.
+   *
+   * The function also resets the `hasBeenUpdated` flag in the task service after
+   * attempting to update the task.
+   *
+   * @remarks
+   * This function relies on `this.selectedTask` to be properly set and
+   * `this.taskService` to be an instance of a service that handles task updates.
+   *
+   * @function updateSubtaskCompleted
+   * @memberof YourComponent
+   *
+   * @returns {void}
    */
-  toggleSubtaskCompleted(subtask: any, task: Task | null) {
-    subtask.IsCompleted = !subtask.IsCompleted;
-
-    console.info('--- IsCompleted ---');
-    if (task) {
-      console.log(task);
-      console.log(this.taskService.whatIsTheType);
-      console.log(task.subtasks);
-      setTimeout(() => {
-      if (task.id && task.description) {
+  updateSubtaskCompleted(): void {
+    if (this.selectedTask && this.taskService.hasBeenUpdated) {
+      // console.log(this.selectedTask);
+      // console.log(this.taskService.whatIsTheType);
+      // console.log(this.selectedTask.subtasks);
+      if (this.selectedTask.id && this.selectedTask.description) {
         this.taskService.updateTask(
-          task.id,
-          task.title,
-          task.description,
-          task.assignedTo,
-          task.date,
-          task.prio,
-          task.category,
-          task.subtasks,
+          this.selectedTask.id,
+          this.selectedTask.title,
+          this.selectedTask.description,
+          this.selectedTask.assignedTo,
+          this.selectedTask.date,
+          this.selectedTask.prio,
+          this.selectedTask.category,
+          this.selectedTask.subtasks,
           this.taskService.whatIsTheType
         );
       }
-    }, 1000); // Kurzes Delay
     }
+    this.taskService.hasBeenUpdated = false;
+  }
+
+  /**
+   * Toggles the completion status of a subtask.
+   * @param {any} subtask - The subtask to toggle.
+   */
+  toggleSubtaskCompleted(subtask: any) {
+    subtask.IsCompleted = !subtask.IsCompleted;
+    this.taskService.hasBeenUpdated = true;
   }
 
   /**
@@ -174,11 +195,9 @@ export class SingleTaskComponent {
    * @returns {number} - The number of subtasks. Returns `0` if `task.subtasks` is not a valid array.
    */
 
-
   getSubtaskLength(): number {
     return Array.isArray(this.task.subtasks) ? this.task.subtasks.length : 0;
   }
-
 
   /**
    * Calculates the completion percentage of subtasks for the current task.

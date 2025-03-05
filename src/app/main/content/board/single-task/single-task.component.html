@@ -27,10 +27,10 @@
       </div>
 
       @if(taskService.isEditModeActivated){
-        <div>
+      <div>
         <app-add-task></app-add-task>
       </div>
-    } @else {     
+      } @else {
 
       <h1>{{ selectedTask?.title }}</h1>
       <p class="description">{{ selectedTask?.description }}</p>
@@ -71,10 +71,8 @@
       <div class="assigned-to">
         <p>Assigned To:</p>
         <div class="assignees">
-          @for (id of selectedTask?.assignedTo; track $index) { 
-            @for(contact of
-          contactService.contactList; track $index) { 
-            @if(id == contact.id) {
+          @for (id of selectedTask?.assignedTo; track $index) { @for(contact of
+          contactService.contactList; track $index) { @if(id == contact.id) {
           <div class="assignee">
             <div
               class="profile_badge"
@@ -90,9 +88,9 @@
 
       <div class="subtasks">
         <p>Subtasks</p>
-        @if (selectedTask?.subtasks) { 
-          @for (subtask of selectedTask?.subtasks; track $index) {
-        <div class="subtask" (click)="toggleSubtaskCompleted(subtask, selectedTask)">
+        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
+        track $index) {
+        <div class="subtask" (click)="toggleSubtaskCompleted(subtask)">
           @if(subtask.IsCompleted){
           <img
             class="checkbox-icon"
@@ -123,14 +121,12 @@
           Delete
         </button>
         <span class="divider"></span>
-        <button 
-        (click)="editTaskActivated(selectedTask)"
-        class="edit-btn">
+        <button (click)="editTaskActivated(selectedTask)" class="edit-btn">
           <img src="assets/img/icons/pencil_icon.svg" alt="Edit Icon" />
           Edit
         </button>
       </div>
-    }
+      }
     </div>
   </div>
   }
@@ -153,12 +149,15 @@
       <p>{{ task.description }}</p>
     </div>
 
-    <div class="task_card_substasks" *ngIf="task.subtasks && task.subtasks.length > 0">
+    <div
+      class="task_card_substasks"
+      *ngIf="task.subtasks && task.subtasks.length > 0"
+    >
       <div class="subtasks_progress">
-        <progress 
-          [value]="getCompletedSubtasksCount()" 
+        <progress
+          [value]="getCompletedSubtasksCount()"
           [max]="getSubtaskLength()"
-       ></progress>
+        ></progress>
       </div>
       <p>
         @if (task.subtasks && task.subtasks.length > 0) {

@@ -19,8 +19,8 @@ export class TaskServiceService {
   whatIsTheType = 'todo';
   isEditModeActivated = false;
 
-  selectedTaskId="";
-  selectedTaskCategory='';
+  selectedTaskId = '';
+  selectedTaskCategory = '';
 
   todoList: Task[] = [];
   progressList: Task[] = [];
@@ -29,6 +29,8 @@ export class TaskServiceService {
   showCloseButton: boolean = false; // New variable to control button visibility
 
   selectedTask: Task | undefined;
+
+  hasBeenUpdated = false;
 
   unsubToDo;
   unsubInProgress;
@@ -49,7 +51,6 @@ export class TaskServiceService {
     this.unsubFeedback = this.subFeedbackList();
     this.unsubDone = this.subDoneList();
   }
-
 
   toggleCloseButton() {
     this.showCloseButton = !this.showCloseButton;
@@ -319,5 +320,5 @@ export class TaskServiceService {
         subtasks: newSubtasks,
       });
     }
-  }  
+  }
 }
