@@ -92,7 +92,12 @@
     height: 950px;
 
     @media (min-width: 1500px) { 
-        width: 640px;
+      width: 640px;
+    }
+
+    @media (min-width: 1200px) {
+      width: 640px;
+      height: 1050px;
     }
 
     @media (max-width: 580px) {
