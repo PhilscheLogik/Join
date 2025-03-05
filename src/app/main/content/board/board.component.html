@@ -53,8 +53,8 @@
     <div
       class="overlay_bg_white"
       [ngClass]="{
-        show: !taskService.showCloseButton,
-        hide: taskService.showCloseButton
+        show: taskService.showCloseButton,
+        hide: !taskService.showCloseButton
       }"
     >
       <app-add-task></app-add-task>
