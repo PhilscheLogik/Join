@@ -49,14 +49,14 @@
 
   <!-- Add-Task-Overlay  -->
   @if(taskService.showCloseButton) {
-  <div
-    class="overlay_task"
-    [ngClass]="{
-      show: taskService.showCloseButton,
-      hide: taskService.isClosing
-    }"
-  >
-    <div class="overlay_bg_white">
+  <div class="overlay_task">
+    <div
+      class="overlay_bg_white"
+      [ngClass]="{
+        show: taskService.showCloseButton,
+        hide: taskService.isClosing
+      }"
+    >
       <app-add-task></app-add-task>
     </div>
   </div>

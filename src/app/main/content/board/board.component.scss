@@ -111,6 +111,8 @@ input::placeholder {
 
 .btn_mobile,
 .btn_mobile_plus {
+.btn_mobile,
+.btn_mobile_plus {
   display: none;
 }
 
@@ -190,6 +192,10 @@ h2 {
 .in_progress,
 .await_feedback,
 .done {
+.to_do,
+.in_progress,
+.await_feedback,
+.done {
   @include dFlex($ai: flex-start, $jc: flex-start);
   flex-direction: column;
   height: 100%;
@@ -213,7 +219,9 @@ h2 {
   align-content: center;
   margin-top: 34px; // change, before 24px%
   min-height: 48px;
+  min-height: 48px;
   width: 80%; // change, before 100%
+
 
   background: $mid_gray;
   border-radius: 10px;
@@ -306,7 +314,12 @@ app-single-task {
   section {
     height: auto;
   }
+  section {
+    height: auto;
+  }
 
+  .board_header_left {
+    @include dFlex($ai: center, $jc: space-between);
   .board_header_left {
     @include dFlex($ai: center, $jc: space-between);
 
@@ -378,37 +391,7 @@ app-single-task {
   width: 100%;
   height: 100vh;
   z-index: 100;
-  background-color: rgba($black, 0.87);
-
-  &.show {
-    animation: slideIn 0.3s forwards;
-  }
-
-  &.hide {
-    animation: slideOut 0.3s forwards;
-  }
-
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
+  background-color: rgba($black, 0.5);
 }
 
 .overlay_bg_white {
@@ -418,9 +401,41 @@ app-single-task {
   height: 85vh;
   border-radius: 24px;
 
+  &.show {
+    animation: slideIn 0.125s forwards;
+  }
+
+  &.hide {
+    animation: slideOut 0.125s backwards;
+  }
+
   app-add-task {
     width: 100%;
     padding-bottom: 50px;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
   }
 }
 
