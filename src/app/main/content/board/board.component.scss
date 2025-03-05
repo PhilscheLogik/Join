@@ -19,7 +19,7 @@ section {
   padding: 8px;
 
   &:focus-within {
-    border-color: $light-blue;
+    border-color: $light_blue;
   }
 
   > img {
@@ -27,7 +27,7 @@ section {
     margin-right: 16px;
     height: 32px;
     width: 32px;
-    border-left: 1px solid $light-gray;
+    border-left: 1px solid $light_gray;
   }
 }
 
@@ -79,7 +79,7 @@ input::placeholder {
 
   &:hover {
     cursor: pointer;
-    background-color: $light-gray;
+    background-color: $light_gray;
   }
 }
 
@@ -92,7 +92,7 @@ input::placeholder {
   border-radius: 10px;
   color: $white;
   border: none;
-  background-color: $dark-blue;
+  background-color: $dark_blue;
   padding: 8px 16px;
   white-space: nowrap;
 
@@ -103,7 +103,7 @@ input::placeholder {
   }
 
   &:hover {
-    background-color: $light-blue;
+    background-color: $light_blue;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
   }
@@ -124,7 +124,7 @@ h1 {
 
 h2 {
   @include font($fs: 20px, $fw: 700);
-  color: $blueish-gray;
+  color: $blueish_gray;
 }
 
 // h3 {
@@ -203,7 +203,7 @@ h2 {
   // @include dFlex($ai: flex-start, $jc: flex-start, $g: 10px);
   min-height: 64px;
   width: 100%;
-  background-color: $light-gray;
+  background-color: $light_gray;
 }
 
 .empty-bg {
@@ -216,10 +216,10 @@ h2 {
   min-height: 48px;
   width: 80%; // change, before 100%
 
-  background: $mid-gray;
+  background: $mid_gray;
   border-radius: 10px;
   border-style: dotted;
-  border-color: $light-gray;
+  border-color: $light_gray;
   border-width: 2px;
   overflow: auto;
   position: absolute;
@@ -448,7 +448,7 @@ app-single-task {
 
   .mobile-add-task-btn {
     @include dFlex($ai: center, $jc: center);
-    background-color: $dark-blue;
+    background-color: $dark_blue;
     border-radius: 10px;
     // display: block;
     height: 40px;
