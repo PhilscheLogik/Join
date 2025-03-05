@@ -27,6 +27,7 @@ export class TaskServiceService {
   feedbackList: Task[] = [];
   doneList: Task[] = [];
   showCloseButton: boolean = false; // New variable to control button visibility
+  isClosing: boolean = false;
 
   selectedTask: Task | undefined;
 
@@ -53,7 +54,9 @@ export class TaskServiceService {
   }
 
   toggleCloseButton() {
+    this.isClosing = true;
     this.showCloseButton = !this.showCloseButton;
+    this.isClosing = false;
   }
 
   /**

@@ -91,7 +91,7 @@
     width: 550px;
     height: 950px;
 
-    @media (min-width: 1500px) { 
+    @media (min-width: 1500px) {
       width: 640px;
     }
 
@@ -108,6 +108,10 @@
 
     @media (max-width: 480px) {
       padding: 16px;
+    }
+
+    @media only screen and (max-height: 680px) and (max-width: 400px) and (orientation: portrait) {
+      height: 95%;
     }
 
     .header {
@@ -177,6 +181,10 @@
       flex-direction: column;
       max-height: 170px;
       overflow-y: auto;
+
+      @media only screen and (max-height: 680px) and (max-width: 400px) and (orientation: portrait) {
+        max-height: 100px;
+      }
 
       .assignee {
         display: flex;
@@ -293,7 +301,7 @@
   font-size: 14px;
   &:hover {
     cursor: pointer;
-  }  
+  }
 }
 
 .task_card_category {
@@ -329,7 +337,7 @@
   @include dFlex($ai: center, $jc: space-between);
   width: 100%;
   height: 16px;
-  >p {
+  > p {
     margin-left: 16px;
   }
 }
@@ -433,7 +441,7 @@
 
 @media (min-width: 1500px) {
   .task-overlay-content {
-    width: 640px;
+    width: 700px;
   }
 
   app-add-task {
@@ -446,5 +454,11 @@
     width: 252px;
     margin-top: 7px;
     margin-left: 7px;
+  }
+}
+
+@media only screen and (max-height: 680px) and (orientation: portrait) {
+  .task-overlay-content {
+    height: 95%;
   }
 }
