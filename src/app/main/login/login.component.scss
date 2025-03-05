@@ -1,1 +1,115 @@
 @import "./../../../styles.scss";
+
+section {
+    @include dFlex($jc: flex-start, $g: 80px);
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+
+}
+
+.header-section {
+    @include dFlex($jc: space-between, $ai: flex-start);
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
+
+    .logo {
+        width: 100.03px;
+        height: 121.97px;
+    }
+}
+
+.sign-in {
+    @include dFlex($jc: space-between, $g: 20px);
+
+    >p {
+        @include font($fs: 20px, $fw: 400);
+    }
+
+    >button {
+        width: 91px;
+        height: 49px;
+        padding: 15px 16px;
+        border: unset;
+        border-radius: 8px;
+        background-color: $dark_blue;
+        @include font($fs: 16px, $fw: 700);
+        color: $white;
+        cursor: pointer;
+    }
+}
+
+.logIn-section {
+    @include dFlex($g: 30px);
+    flex-direction: column;
+    width: 93%;
+    height: 449px;
+    background-color: $white;
+    border: unset;
+    border-radius: 30px;
+    padding: 48px 115px;
+
+    >h1 {
+        @include font($fs: 47px, $fw: 700);
+    }
+
+    form {
+        @include dFlex($g: 20px);
+        flex-direction: column;
+    }
+    .input-email, .input-password {
+        @include dFlex($jc: space-between, $g: 10px);
+        width: 64.72vw;
+        max-width: 422px;
+        height: 48px;
+        border: 1px solid $light_gray;
+        border-radius: 10px;
+        padding: 12px 21px;
+        cursor: text;
+
+        >img {
+            width: 24px;
+            height: 24px;
+        }
+
+        >input {
+            // flex: 1;
+            width: 80%;
+            border: unset;
+            height: 24px;
+            @include font($fs: 20px, $fw: 400);
+        }
+    }
+}
+
+
+
+.footer-section {
+    @include dFlex($g: 40px);
+    padding-bottom: 30px;
+
+    >p {
+        @include font($fs: 16px, $fw: 400);
+        color: $gray;
+    }
+}
+
+/*--------------------------------------------------   Desktop   --------------------------------------------------*/
+@media (min-width: 1024px) {
+
+    .logIn-section {       
+        width: 45.28vw;
+
+        >h1 {
+            @include font($fs: 61px, $fw: 700);
+        }
+    }
+
+    .sign-in {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+    }
+}
