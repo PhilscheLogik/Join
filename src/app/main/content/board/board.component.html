@@ -1,16 +1,16 @@
 <section>
-  <div class="board_header">
-    <div class="board_header_left">
+  <div class="board-header">
+    <div class="board-header-left">
       <h1>Board</h1>
       <div
-        class="mobile_add_task_btn"
+        class="mobile-add-task-btn"
         (click)="naviService.setSelectedItem(1); setType('todo')"
       >
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </div>
     </div>
-    <div class="board_header_right">
-      <div class="input_field">
+    <div class="board-header-right">
+      <div class="input-field">
         <input
           type="text"
           id="subtasks"
@@ -31,14 +31,14 @@
       <div class="error-message">No results found!.</div>
       }
       <button
-        class="add_task_btn btn_desktop"
+        class="add-task-btn btn-desktop"
         (click)="taskService.toggleCloseButton(); setType('todo')"
       >
         Add task
         <img src="assets/img/icons/plus_icon.svg" alt="" />
       </button>
       <button
-        class="add_task_btn btn_mobile"
+        class="add-task-btn btn-mobile"
         (click)="naviService.setSelectedItem(1); setType('todo')"
       >
         Add task
@@ -49,9 +49,9 @@
 
   <!-- Add-Task-Overlay  -->
   @if(taskService.showCloseButton) {
-  <div class="overlay_task">
+  <div class="overlay-task">
     <div
-      class="overlay_bg_white"
+      class="overlay-bg-white"
       [ngClass]="{
         show: !taskService.isClosing,
         hide: taskService.isClosing
@@ -62,24 +62,24 @@
   </div>
   }
 
-  <div class="board_content">
-    <div class="to_do">
-      <div class="board_content_header">
+  <div class="board-content">
+    <div class="to-do">
+      <div class="board-content-header">
         <h2>To do</h2>
         <button
-          class="to_do_add_btn btn_desktop"
+          class="to-do-add-btn btn-desktop"
           (click)="taskService.toggleCloseButton(); setType('todo')"
         ></button>
         <button
-          class="to_do_add_btn btn_mobile_plus"
+          class="to-do-add-btn btn-mobile-plus"
           (click)="naviService.setSelectedItem(1); setType('todo')"
         ></button>
       </div>
-      <div class="empty_bg">
+      <div class="empty-bg">
         <p>No task To do</p>
       </div>
       <div
-        class="tasks_content"
+        class="tasks-content"
         cdkDropList
         #todoList="cdkDropList"
         [cdkDropListData]="taskService.todoList"
@@ -96,23 +96,23 @@
         }
       </div>
     </div>
-    <div class="in_progress">
-      <div class="board_content_header">
+    <div class="in-progress">
+      <div class="board-content-header">
         <h2>In progress</h2>
         <button
-          class="in_progress_add_btn btn_desktop"
+          class="in-progress-add-btn btn-desktop"
           (click)="taskService.toggleCloseButton(); setType('inprogress')"
         ></button>
         <button
-          class="in_progress_add_btn btn_mobile_plus"
+          class="in-progress-add-btn btn-mobile-plus"
           (click)="naviService.setSelectedItem(1); setType('inprogress')"
         ></button>
       </div>
-      <div class="empty_bg">
+      <div class="empty-bg">
         <p>No task in progress</p>
       </div>
       <div
-        class="tasks_content"
+        class="tasks-content"
         cdkDropList
         #progressList="cdkDropList"
         [cdkDropListData]="taskService.progressList"
@@ -130,23 +130,23 @@
         }
       </div>
     </div>
-    <div class="await_feedback">
-      <div class="board_content_header">
+    <div class="await-feedback">
+      <div class="board-content-header">
         <h2>Await feedback</h2>
         <button
-          class="await_feedback_add_btn btn_desktop"
+          class="await-feedback-add-btn btn-desktop"
           (click)="taskService.toggleCloseButton(); setType('feedback')"
         ></button>
         <button
-          class="await_feedback_add_btn btn_mobile_plus"
+          class="await-feedback-add-btn btn-mobile-plus"
           (click)="naviService.setSelectedItem(1); setType('feedback')"
         ></button>
       </div>
-      <div class="empty_bg">
+      <div class="empty-bg">
         <p>No task awaits feedback</p>
       </div>
       <div
-        class="tasks_content"
+        class="tasks-content"
         cdkDropList
         #feedbackList="cdkDropList"
         [cdkDropListData]="taskService.feedbackList"
@@ -165,14 +165,14 @@
       </div>
     </div>
     <div class="done">
-      <div class="board_content_header">
+      <div class="board-content-header">
         <h2>Done</h2>
       </div>
-      <div class="empty_bg">
+      <div class="empty-bg">
         <p>No task done yet</p>
       </div>
       <div
-        class="tasks_content"
+        class="tasks-content"
         cdkDropList
         #doneList="cdkDropList"
         [cdkDropListData]="taskService.doneList"
@@ -191,9 +191,9 @@
     </div>
   </div>
 
-  <!-- <div id="taskOverlay" [(ngClass)]="{'d_none': isTaskOverlayOpen}"]> -->
+  <!-- <div id="taskOverlay" [(ngClass)]="{'d-none': isTaskOverlayOpen}"]> -->
   <!-- @if(isTaskOverlayOpen) {
-      <div class="overlay_task">
+      <div class="overlay-task">
         <div>
           <app-add-task [ngStyle]="{'border': '2px solid red'}"></app-add-task>
         </div>
