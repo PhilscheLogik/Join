@@ -1,11 +1,3 @@
-<p>summary works!</p>
-
-<button (click)="get()">Ausgabe Listen</button>
-<button (click)="get2()">Gefiltert</button>
-
-<input
-type="text"
-id="subtasks"
-name="searchTerm"
-[(ngModel)]="searchTerm"
-/>
+<section>
+  <div>Anzahl der Aufgaben: {{ taskService.todoList.length }}</div>
+</section>

@@ -71,8 +71,11 @@
       <div class="assigned-to">
         <p>Assigned To:</p>
         <div class="assignees">
-          @for (id of selectedTask?.assignedTo; track $index) { @for(contact of
-          contactService.contactList; track $index) { @if(id == contact.id) {
+          @for (id of selectedTask?.assignedTo; track $index) {
+          <!--  -->
+          @for(contact of contactService.contactList; track $index) {
+          <!--  -->
+          @if(id == contact.id) {
           <div class="assignee">
             <div
               class="profile-badge"
@@ -88,8 +91,9 @@
 
       <div class="subtasks">
         <p>Subtasks</p>
-        @if (selectedTask?.subtasks) { @for (subtask of selectedTask?.subtasks;
-        track $index) {
+        @if (selectedTask?.subtasks) {
+        <!--  -->
+        @for (subtask of selectedTask?.subtasks; track $index) {
         <div class="subtask" (click)="toggleSubtaskCompleted(subtask)">
           @if(subtask.IsCompleted){
           <img
