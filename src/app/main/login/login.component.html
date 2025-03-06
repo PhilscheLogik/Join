@@ -1,9 +1,12 @@
-<section [ngClass]="{'page-loaded': isPageLoaded}">
+<section [ngClass]="{ 'page-loaded': isPageLoaded }">
+  <img
+    class="animated-logo"
+    [ngClass]="{ 'logo-final-position': isLogoShifted }"
+    src="assets/img/join_logo.svg"
+    alt="Logo"
+  />
 
-    <img class="animated-logo"  [ngClass]="{ 'logo-final-position': isLogoShifted }" src="assets/img/join_logo.svg" alt="Logo" />
-
-  <div class="header-section">
-  </div>
+  <div class="header-section"></div>
 
   <div class="login-section">
     <h1>Log in</h1>
@@ -27,14 +30,16 @@
           placeholder="Password"
           pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{8,20}$"
           (focus)="onFocus()"
-          
         />
-        <img class="lock" src="assets/img/icons/lock_icon.svg" 
-        [ngClass]="{ 'd_none': passwordFieldActive }"/>
+        <img
+          class="lock"
+          src="assets/img/icons/lock_icon.svg"
+          [ngClass]="{ d_none: passwordFieldActive }"
+        />
         <img
           class="visibility_off"
           src="assets/img/icons/visibility_off_icon.svg"
-          [ngClass]="{ 'd_none': !passwordFieldActive}"
+          [ngClass]="{ d_none: !passwordFieldActive }"
           (click)="togglePasswordVisibility()"
         />
       </div>

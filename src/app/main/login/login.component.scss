@@ -1,245 +1,243 @@
 @import "./../../../styles.scss";
 
 section {
-    @include dFlex($jc: space-between, $g: 32px);
-    flex-direction: column;
-    height: 100vh;
-    position: relative;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+  @include dFlex($jc: space-between, $g: 32px);
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 
-    &.page-loaded {
-        opacity: 1;
+  &.page-loaded {
+    opacity: 1;
+  }
+
+  .animated-logo {
+    position: absolute;
+    width: 10vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(3);
+    transition: all 1s ease-in-out;
+    z-index: 100;
+
+    &.logo-final-position {
+      top: 64px;
+      left: 64px;
+      transform: translate(0%, 0%) scale(1);
     }
-
-    .animated-logo {
-        position: absolute;
-        width: 10vh;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(3);
-        transition: all 1s ease-in-out;
-        z-index: 100;
-
-        &.logo-final-position {
-            top: 4rem;
-            left: 4rem;
-            transform: translate(0%, 0%) scale(1);
-        }
-    }
+  }
 }
 
 .header-section {
-    @include dFlex($jc: space-between, $ai: flex-start);
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 100%;
+  @include dFlex($jc: space-between, $ai: flex-start);
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
 
-    // .logo {
-    //     width: 64px;
-    //     height: 78.03px;
-    // }
+  // .logo {
+  //     width: 64px;
+  //     height: 78.03px;
+  // }
 }
 
 .sign-up {
-    @include dFlex($jc: space-between, $g: 20px);
+  @include dFlex($jc: space-between, $g: 20px);
 
-    >p {
-        @include font($fs: 20px, $fw: 400);
-    }
+  > p {
+    @include font($fs: 20px, $fw: 400);
+  }
 
-    >button {
-        padding: 15px 16px;
-        border: unset;
-        border-radius: 8px;
-        background-color: $dark_blue;
-        @include font($fs: 16px, $fw: 700);
-        color: $white;
-        cursor: pointer;
-    }
+  > button {
+    padding: 15px 16px;
+    border: unset;
+    border-radius: 8px;
+    background-color: $dark_blue;
+    @include font($fs: 16px, $fw: 700);
+    color: $white;
+    cursor: pointer;
+  }
 }
 
 .login-section {
+  @include dFlex($g: 30px);
+  flex-direction: column;
+  width: 93%;
+  max-width: 652px;
+  background-color: $white;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  border: unset;
+  border-radius: 30px;
+  padding: 32px 32px;
+
+  > h1 {
+    @include font($fs: 47px, $fw: 700);
+    width: 139px;
+    height: 59px;
+  }
+
+  .border-blue {
+    width: 88px;
+    border-bottom: 3px solid $aqua;
+    border-radius: 3px;
+  }
+
+  form {
     @include dFlex($g: 30px);
     flex-direction: column;
-    width: 93%;
-    max-width: 652px;
-    background-color: $white;
-    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
-    border: unset;
-    border-radius: 30px;
-    padding: 32px 32px;
+  }
 
-    >h1 {
-        @include font($fs: 47px, $fw: 700);
-        width: 139px;
+  .input-email,
+  .input-password {
+    @include dFlex($jc: space-between, $g: 10px);
+    width: 92vw; //64.72vw;
+    max-width: 422px;
+    height: 48px;
+    border: 1px solid $light_gray;
+    border-radius: 10px;
+    padding: 12px 21px;
+
+    > img {
+      width: 24px;
+      height: 24px;
+    }
+
+    > input {
+      // flex: 1;
+      width: 80%;
+      border: unset;
+      height: 24px;
+      @include font($fs: 20px, $fw: 400);
+
+      &:focus {
+        border: unset;
+        outline: none;
+      }
+
+      &::placeholder {
+        @include font($fs: 20px, $fw: 400);
+        color: $light_gray;
+      }
+    }
+
+    .visibility_off {
+      cursor: pointer;
+    }
+
+    > img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .btn-section {
+    @include dFlex($g: 30px);
+    flex-direction: column;
+    margin-top: 20px;
+
+    .btn-login,
+    .btn-guest-login {
+      @include dFlex();
+      @include font($fs: 21px, $fw: 700);
+      width: 180px;
+      height: 48px;
+      color: $white;
+      padding: 15px 24px;
+      border: unset;
+      border-radius: 8px;
+      background-color: $dark_blue;
+      cursor: pointer;
+    }
+
+    .btn-login {
+      &:hover {
+        background-color: $light_blue;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: unset;
+      }
+    }
+
+    .btn-guest-login {
+      color: $dark_blue;
+      background-color: $white;
+      border: 1px solid $dark_blue;
+
+      &:hover {
+        border-color: $light_blue;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        color: $light_blue;
+      }
+    }
+  }
+
+  .footer-section {
+    @include dFlex($g: 40px);
+    padding-bottom: 50px;
+
+    > a {
+      @include font($fs: 16px, $fw: 400);
+      color: $gray;
+      cursor: pointer;
+
+      &:hover {
+        @include font($fs: 16px, $fw: 700);
+        color: $light_blue;
+      }
+    }
+  }
+
+  /*--------------------------------------------------   Desktop   --------------------------------------------------*/
+  @media (min-width: 1024px) {
+    .header-section {
+      @include dFlex($g: 50px);
+
+      // .logo {
+      //     width: 100.03px;
+      //     height: 121.97px;
+      //     padding: 48px 115px;
+      // }
+    }
+
+    .sign-up {
+      position: absolute;
+      top: 50px;
+      right: 50px;
+
+      > button {
+        &:hover {
+          background-color: $light_blue;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+
+    .login-section {
+      // width: 45.28vw;
+      width: 652px;
+      height: 449px;
+
+      > h1 {
+        @include dFlex();
+        @include font($fs: 61px, $fw: 700);
+        width: 100%;
         height: 59px;
-    }
+      }
 
-    .border-blue {
-        width: 88px;
-        border-bottom: 3px solid $aqua;
-        border-radius: 3px;
-    }
+      .border-blue {
+        width: 150px;
+      }
 
-    form {
+      .btn-section {
         @include dFlex($g: 30px);
-        flex-direction: column;
-    }
-
-    .input-email,
-    .input-password {
-        @include dFlex($jc: space-between, $g: 10px);
-        width: 92vw; //64.72vw;
-        max-width: 422px;
-        height: 48px;
-        border: 1px solid $light_gray;
-        border-radius: 10px;
-        padding: 12px 21px;
-
-        >img {
-            width: 24px;
-            height: 24px;
-        }
-
-        >input {
-            // flex: 1;
-            width: 80%;
-            border: unset;
-            height: 24px;
-            @include font($fs: 20px, $fw: 400);
-
-            &:focus {
-                border: unset;
-                outline: none;
-            }
-
-            &::placeholder {
-                @include font($fs: 20px, $fw: 400);
-                color: $light_gray;
-            }
-        }
-
-        .visibility_off {
-            cursor: pointer;
-        }
-
-        >img {
-            width: 24px;
-            height: 24px;
-        }
-
-    }
-
-    .btn-section {
-        @include dFlex($g: 30px);
-        flex-direction: column;
-        margin-top: 20px;
+        flex-direction: row;
+        margin-top: 50px;
 
         .btn-login,
         .btn-guest-login {
-            @include dFlex();
-            @include font($fs: 21px, $fw: 700);
-            width: 180px;
-            height: 48px;
-            color: $white;
-            padding: 15px 24px;
-            border: unset;
-            border-radius: 8px;
-            background-color: $dark_blue;
-            cursor: pointer;
+          width: auto;
         }
-
-        .btn-login {
-            &:hover {
-                background-color: $light_blue;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border: unset;
-            }
-        }
-
-        .btn-guest-login {
-            color: $dark_blue;
-            background-color: $white;
-            border: 1px solid $dark_blue;
-
-            &:hover {
-                border-color: $light_blue;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                color: $light_blue;
-            }
-        }
-
+      }
     }
-
-    .footer-section {
-        @include dFlex($g: 40px);
-        padding-bottom: 50px;
-
-        >a {
-            @include font($fs: 16px, $fw: 400);
-            color: $gray;
-            cursor: pointer;
-
-            &:hover {
-                @include font($fs: 16px, $fw: 700);
-                color: $light_blue;
-            }
-        }
-    }
-
-    /*--------------------------------------------------   Desktop   --------------------------------------------------*/
-    @media (min-width: 1024px) {
-        .header-section {
-            @include dFlex($g: 50px);
-
-            // .logo {
-            //     width: 100.03px;
-            //     height: 121.97px;
-            //     padding: 48px 115px;
-            // }
-        }
-
-        .sign-up {
-            position: absolute;
-            top: 50px;
-            right: 50px;
-
-            >button {
-                &:hover {
-                    background-color: $light_blue;
-                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                }
-            }
-        }
-
-        .login-section {
-            // width: 45.28vw;
-            width: 652px;
-            height: 449px;
-
-            >h1 {
-                @include dFlex();
-                @include font($fs: 61px, $fw: 700);
-                width: 100%;
-                height: 59px;
-            }
-
-            .border-blue {
-                width: 150px;
-            }
-
-            .btn-section {
-                @include dFlex($g: 30px);
-                flex-direction: row;
-                margin-top: 50px;
-
-                .btn-login,
-                .btn-guest-login {
-                    width: auto;
-                }
-            }
-        }
-    }
+  }
 }
