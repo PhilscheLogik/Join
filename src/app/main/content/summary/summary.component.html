@@ -9,19 +9,25 @@
     <div class="left">
       <div class="box">
         <div>ICON</div>
-        <div>{{ taskService.todoList.length }} <span>To-do</span></div>
+        <div class="among-each-other">
+          {{ taskService.todoList.length }} <span>To-do</span>
+        </div>
       </div>
       <div class="box">
         <div>ICON</div>
-        <div>{{ taskService.doneList.length }} <span>Done</span></div>
+        <div class="among-each-other">
+          {{ taskService.doneList.length }} <span>Done</span>
+        </div>
       </div>
       <div class="box">
         <div>ICON</div>
-        <div>{{ taskService.todoList.length }} <span>Urgent</span></div>
+        <div class="among-each-other">
+          {{ taskService.todoList.length }} <span>Urgent</span>
+        </div>
       </div>
       <div class="box">
         <div>ICON</div>
-        <div>
+        <div class="among-each-other">
           {{
             taskService.todoList.length +
               taskService.progressList.length +
@@ -32,13 +38,13 @@
       </div>
       <div class="box">
         <div>ICON</div>
-        <div>
+        <div class="among-each-other">
           {{ taskService.progressList.length }} <span>Tasks In Progress</span>
         </div>
       </div>
       <div class="box">
         <div>ICON</div>
-        <div>
+        <div class="among-each-other">
           {{ taskService.feedbackList.length }} <span>Awaiting Feedback</span>
         </div>
       </div>

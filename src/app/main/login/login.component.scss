@@ -1,7 +1,7 @@
 @import "./../../../styles.scss";
 
 section {
-    @include dFlex($jc: flex-start, $g: 80px);
+    @include dFlex($jc: space-between, $g: 50px);
     flex-direction: column;
     height: 100vh;
     position: relative;
@@ -55,8 +55,14 @@ section {
         @include font($fs: 47px, $fw: 700);
     }
 
+    .border-blue {
+        width: 150px;
+        border-bottom: 3px solid $aqua;
+        border-radius: 3px;
+    }
+
     form {
-        @include dFlex($g: 20px);
+        @include dFlex($g: 30px);
         flex-direction: column;
     }
 
@@ -87,6 +93,11 @@ section {
                 border: unset;
                 outline: none;
             }
+
+            &::placeholder {
+                @include font($fs: 20px, $fw: 400);
+                color: $light_gray;
+            }
         }
     }
 
@@ -94,21 +105,38 @@ section {
         @include dFlex($g: 30px);
         margin-top: 50px;
 
-        .btn-login, .btn-guest-login {
+        .btn-login,
+        .btn-guest-login {
             @include dFlex();
             @include font($fs: 21px, $fw: 700);
             height: 48px;
             color: $white;
             padding: 15px 24px;
+            border: unset;
             border-radius: 8px;
             background-color: $dark_blue;
             cursor: pointer;
+        }
+
+        .btn-login {
+
+            &:hover {
+                background-color: $light_blue;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border: unset;
+            }
         }
 
         .btn-guest-login {
             color: $dark_blue;
             background-color: $white;
             border: 1px solid $dark_blue;
+
+            &:hover {
+                border-color: $light_blue;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                color: $light_blue;
+            }
         }
     }
 }
@@ -119,9 +147,10 @@ section {
     @include dFlex($g: 40px);
     padding-bottom: 30px;
 
-    >p {
+    >a {
         @include font($fs: 16px, $fw: 400);
         color: $gray;
+        cursor: pointer;
     }
 }
 

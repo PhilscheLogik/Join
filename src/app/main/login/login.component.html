@@ -5,6 +5,7 @@
 
   <div class="login-section">
     <h1>Log in</h1>
+    <div class="border-blue"></div>
     <form>
       <div class="input-email">
         <input
@@ -21,7 +22,7 @@
           type="text"
           id="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{8,20}$"
         />
         <img src="assets/img/icons/lock_icon.svg" />
@@ -39,7 +40,13 @@
   </div>
 
   <div class="footer-section">
-    <p>Privacy Policy</p>
-    <p>Legal Notice</p>
+    <a
+      [ngClass]="{ active: navigationService.selectedItem === 4 }"
+      (click)="selectItem(4)"
+      >Privacy Policy</a
+    >
+    <a [ngClass]="{ active: navigationService.selectedItem === 5 }"
+    (click)="selectItem(5)"
+    >Legal Notice</a>
   </div>
 </section>

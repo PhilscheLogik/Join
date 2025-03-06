@@ -4,18 +4,23 @@ section {
   height: calc(100vh - 91px);
   box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
   padding: 0 70px;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .headline {
   @include dFlex($jc: space-between);
   padding-top: 80px;
   padding-bottom: 30px;
-  width: 43.4vw;
+  width: 625px;
   max-width: 650px;
-}
-
-h1 {
-  font-size: 61px;
+  h1 {
+    font-size: 61px;
+  }
+  > p {
+    font-size: 27px;
+  }
 }
 
 .border-blue {
@@ -35,16 +40,76 @@ h1 {
 }
 
 .content {
-  @include dFlex($ai: flex-start);
+  @include dFlex();
   width: 100%;
+  flex: 1;
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.left,
+.right {
+  width: 50%;
+  flex: 1;
+}
+
+.left {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto auto auto;
+  gap: 10px;
 }
 
 .box {
   background-color: $white;
   box-shadow: 0 0 4px 0px rgba($black, 0.1);
   border-radius: 10px;
+  @include dFlex();
+  cursor: pointer;
+
+  &:hover {
+    background-color: $dark_blue;
+    color: $white;
+  }
 }
 
+.box:nth-child(1) {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+}
+
+.box:nth-child(2) {
+  grid-column: 4 / span 3;
+  grid-row: 1;
+}
+
+.box:nth-child(3) {
+  grid-column: 1 / span 6;
+  grid-row: 2;
+}
+
+.box:nth-child(4) {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+}
+
+.box:nth-child(5) {
+  grid-column: 3 / span 2;
+  grid-row: 3;
+}
+
+.box:nth-child(6) {
+  grid-column: 5 / span 2;
+  grid-row: 3;
+}
+
+.among-each-other {
+  @include dFlex();
+  flex-direction: column;
+}
+
+/*---------------------------------------------------------- MEDIA Mobile ---------------------------------------------------------- */
+/*---------------------------------------------------------------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   section {
     padding: 0 16px;
@@ -55,9 +120,12 @@ h1 {
     align-items: flex-start;
     gap: 16px;
     width: 225px;
-  }
-  h1 {
-    font-size: 47px;
+    h1 {
+      font-size: 47px;
+    }
+    > p {
+      font-size: 20px;
+    }
   }
 
   .vertical {
