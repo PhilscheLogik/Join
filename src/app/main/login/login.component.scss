@@ -29,8 +29,6 @@ section {
     }
 
     >button {
-        width: 91px;
-        height: 49px;
         padding: 15px 16px;
         border: unset;
         border-radius: 8px;
@@ -169,5 +167,12 @@ section {
         position: absolute;
         top: 50px;
         right: 50px;
+
+        >button {
+            &:hover {
+                background-color: $light_blue;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+        }
     }
 }
