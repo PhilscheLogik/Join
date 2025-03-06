@@ -21,7 +21,7 @@ section {
     }
 }
 
-.sign-in {
+.sign-up {
     @include dFlex($jc: space-between, $g: 20px);
 
     >p {
@@ -41,7 +41,7 @@ section {
     }
 }
 
-.logIn-section {
+.login-section {
     @include dFlex($g: 30px);
     flex-direction: column;
     width: 93%;
@@ -59,7 +59,9 @@ section {
         @include dFlex($g: 20px);
         flex-direction: column;
     }
-    .input-email, .input-password {
+
+    .input-email,
+    .input-password {
         @include dFlex($jc: space-between, $g: 10px);
         width: 64.72vw;
         max-width: 422px;
@@ -80,6 +82,33 @@ section {
             border: unset;
             height: 24px;
             @include font($fs: 20px, $fw: 400);
+
+            &:focus {
+                border: unset;
+                outline: none;
+            }
+        }
+    }
+
+    .btn-section {
+        @include dFlex($g: 30px);
+        margin-top: 50px;
+
+        .btn-login, .btn-guest-login {
+            @include dFlex();
+            @include font($fs: 21px, $fw: 700);
+            height: 48px;
+            color: $white;
+            padding: 15px 24px;
+            border-radius: 8px;
+            background-color: $dark_blue;
+            cursor: pointer;
+        }
+
+        .btn-guest-login {
+            color: $dark_blue;
+            background-color: $white;
+            border: 1px solid $dark_blue;
         }
     }
 }
@@ -99,7 +128,7 @@ section {
 /*--------------------------------------------------   Desktop   --------------------------------------------------*/
 @media (min-width: 1024px) {
 
-    .logIn-section {       
+    .login-section {
         width: 45.28vw;
 
         >h1 {
@@ -107,7 +136,7 @@ section {
         }
     }
 
-    .sign-in {
+    .sign-up {
         position: absolute;
         top: 50px;
         right: 50px;
