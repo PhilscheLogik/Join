@@ -1,0 +1,145 @@
+@import "./../../../../styles.scss";
+
+section {
+    @include dFlex($jc: space-between, $g: 50px);
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+
+}
+
+.header-section {
+    @include dFlex($jc: space-between, $ai: flex-start);
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
+
+    .logo {
+        width: 100.03px;
+        height: 121.97px;
+    }
+}
+
+.signUp-section {
+    @include dFlex($g: 30px);
+    flex-direction: column;
+    width: 93%;
+    max-width: 652px;
+    height: 640px;
+    background-color: $white;
+    border: unset;
+    border-radius: 30px;
+    padding: 48px 115px;
+
+    >h1 {
+        @include font($fs: 47px, $fw: 700);
+    }
+
+    .border-blue {
+        width: 150px;
+        border-bottom: 3px solid $aqua;
+        border-radius: 3px;
+    }
+
+    form {
+        @include dFlex($g: 30px);
+        flex-direction: column;
+    }
+
+    .signUp-name,
+    .signUp-email,
+    .signUp-password,
+    .confirm-password {
+        @include dFlex($jc: space-between, $g: 10px);
+        width: 64.72vw;
+        max-width: 422px;
+        height: 48px;
+        border: 1px solid $light_gray;
+        border-radius: 10px;
+        padding: 12px 21px;
+        cursor: text;
+
+        >img {
+            width: 24px;
+            height: 24px;
+        }
+
+        >input {
+            // flex: 1;
+            width: 80%;
+            border: unset;
+            height: 24px;
+            @include font($fs: 20px, $fw: 400);
+
+            &:focus {
+                border: unset;
+                outline: none;
+            }
+
+            &::placeholder {
+                @include font($fs: 20px, $fw: 400);
+                color: $light_gray;
+            }
+        }
+    }  
+}
+
+.btn-section {
+    @include dFlex($g: 30px);
+    margin-top: 50px;
+
+    .btn_signUp {
+        @include dFlex();
+        @include font($fs: 21px, $fw: 700);
+        height: 48px;
+        color: $white;
+        padding: 15px 24px;
+        border: unset;
+        border-radius: 8px;
+        background-color: $dark_blue;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $light_blue;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border: unset;
+        }
+    }
+}
+
+.footer-section {
+    @include dFlex($g: 40px);
+    padding-bottom: 30px;
+
+    >a {
+        @include font($fs: 16px, $fw: 400);
+        color: $gray;
+        cursor: pointer;
+    }
+}
+
+/*--------------------------------------------------   Desktop   --------------------------------------------------*/
+@media (min-width: 1024px) {
+
+    .login-section {
+        width: 45.28vw;
+
+        >h1 {
+            @include font($fs: 61px, $fw: 700);
+        }
+    }
+
+    .sign-up {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+
+        >button {
+            &:hover {
+                background-color: $light_blue;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+        }
+    }
+}
