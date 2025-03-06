@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavigationService } from '../../shared/navi/navigation.service';
 import { AuthService } from '../services/auth.service';
 
@@ -10,9 +10,11 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
+  isPageLoaded: boolean = false;
+  isLogoShifted: boolean = false;
 
   /**
    * Selects an item by its index.
@@ -33,5 +35,16 @@ export class LoginComponent {
 
   getTestLogin() {
     this.authService.loginUser();
+  }
+
+  ngOnInit() {
+  
+    setTimeout(() => {
+      this.isPageLoaded = true;
+    }, 200);
+
+    setTimeout(() => {
+      this.isLogoShifted = true;
+    }, 600);
   }
 }

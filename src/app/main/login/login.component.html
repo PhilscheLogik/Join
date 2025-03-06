@@ -1,6 +1,8 @@
-<section>
+<section [ngClass]="{'page-loaded': isPageLoaded}">
+
+    <img class="animated-logo"  [ngClass]="{ 'logo-final-position': isLogoShifted }" src="assets/img/join_logo.svg" alt="Logo" />
+
   <div class="header-section">
-    <img class="logo" src="assets/img/join_logo.svg" alt="Logo" />
   </div>
 
   <div class="login-section">
