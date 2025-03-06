@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavigationService } from '../../shared/navi/navigation.service';
 import { AuthService } from '../services/auth.service';
 
@@ -10,9 +10,32 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  /** Inject Services */
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
+  /** UI States */
+  isPageLoaded: boolean = false;
+  isLogoShifted: boolean = false;
+
+  /**
+   * Lifecycle hook that is called after component initialization.
+   *
+   * This method triggers a delayed animation effect:
+   * - First, it sets `isPageLoaded` to `true` after 200ms, making the page visible.
+   * - Then, it shifts the logo after an additional 400ms (total 600ms).
+   *
+   * @returns {void} This method does not return anything.
+   */
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isPageLoaded = true;
+    }, 200);
+
+    setTimeout(() => {
+      this.isLogoShifted = true;
+    }, 600);
+  }
 
   passwordVisible: boolean = false;
   passwordFieldActive: boolean = false;
