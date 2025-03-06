@@ -19,13 +19,22 @@
       </div>
       <div class="input-password">
         <input
-          type="text"
+          [type]="passwordVisible ? 'text' : 'password'"
           id="password"
           name="password"
           placeholder="Password"
           pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{8,20}$"
+          (focus)="onFocus()"
+          
         />
-        <img src="assets/img/icons/lock_icon.svg" />
+        <img class="lock" src="assets/img/icons/lock_icon.svg" 
+        [ngClass]="{ 'd_none': passwordFieldActive }"/>
+        <img
+          class="visibility_off"
+          src="assets/img/icons/visibility_off_icon.svg"
+          [ngClass]="{ 'd_none': !passwordFieldActive}"
+          (click)="togglePasswordVisibility()"
+        />
       </div>
       <div class="btn-section">
         <button class="btn-login">Log in</button>

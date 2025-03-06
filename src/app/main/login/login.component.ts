@@ -14,6 +14,21 @@ export class LoginComponent {
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
 
+  passwordVisible: boolean = false;
+  passwordFieldActive: boolean = false;
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
+  onFocus() {
+    this.passwordFieldActive = !this.passwordFieldActive; // Aktiviert das Passwortfeld
+  }
+
+  // onBlur() {
+  //   this.passwordFieldActive = false; // Deaktiviert das Passwortfeld
+  // }
+
   /**
    * Selects an item by its index.
    *

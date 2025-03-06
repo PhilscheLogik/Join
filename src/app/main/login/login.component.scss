@@ -1,7 +1,7 @@
 @import "./../../../styles.scss";
 
 section {
-    @include dFlex($jc: space-between, $g: 50px);
+    @include dFlex($jc: space-between, $g: 32px);
     flex-direction: column;
     height: 100vh;
     position: relative;
@@ -10,14 +10,14 @@ section {
 
 .header-section {
     @include dFlex($jc: space-between, $ai: flex-start);
-    padding-top: 50px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 100%;
 
     .logo {
-        width: 100.03px;
-        height: 121.97px;
+        width: 64px;
+        height: 78.03px;
     }
 }
 
@@ -43,18 +43,22 @@ section {
     @include dFlex($g: 30px);
     flex-direction: column;
     width: 93%;
-    height: 449px;
+    max-width: 652px;
+    // max-height: 475px;
     background-color: $white;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border: unset;
     border-radius: 30px;
-    padding: 48px 115px;
+    padding: 32px 32px;
 
     >h1 {
         @include font($fs: 47px, $fw: 700);
+        width: 139px;
+        height: 59px;
     }
 
     .border-blue {
-        width: 150px;
+        width: 88px;
         border-bottom: 3px solid $aqua;
         border-radius: 3px;
     }
@@ -67,18 +71,13 @@ section {
     .input-email,
     .input-password {
         @include dFlex($jc: space-between, $g: 10px);
-        width: 64.72vw;
+        width: 92vw; //64.72vw;
         max-width: 422px;
         height: 48px;
         border: 1px solid $light_gray;
         border-radius: 10px;
         padding: 12px 21px;
-        cursor: text;
-
-        >img {
-            width: 24px;
-            height: 24px;
-        }
+        
 
         >input {
             // flex: 1;
@@ -86,6 +85,7 @@ section {
             border: unset;
             height: 24px;
             @include font($fs: 20px, $fw: 400);
+            cursor: text;
 
             &:focus {
                 border: unset;
@@ -97,16 +97,27 @@ section {
                 color: $light_gray;
             }
         }
+        
+        .visibility_off {
+            cursor: pointer;
+        }
+
+        >img {
+            width: 24px;
+            height: 24px;
+        }
     }
 
     .btn-section {
         @include dFlex($g: 30px);
-        margin-top: 50px;
+        flex-direction: column;
+        margin-top: 20px;
 
         .btn-login,
         .btn-guest-login {
             @include dFlex();
             @include font($fs: 21px, $fw: 700);
+            width: 180px;
             height: 48px;
             color: $white;
             padding: 15px 24px;
@@ -143,23 +154,29 @@ section {
 
 .footer-section {
     @include dFlex($g: 40px);
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 
     >a {
         @include font($fs: 16px, $fw: 400);
         color: $gray;
         cursor: pointer;
+
+        &:hover {
+            @include font($fs: 16px, $fw: 700);
+            color: $light_blue;
+        }
     }
 }
 
 /*--------------------------------------------------   Desktop   --------------------------------------------------*/
 @media (min-width: 1024px) {
+    .header-section {
+        @include dFlex($g: 50px);
 
-    .login-section {
-        width: 45.28vw;
-
-        >h1 {
-            @include font($fs: 61px, $fw: 700);
+        .logo {
+            width: 100.03px;
+            height: 121.97px;
+            padding: 48px 115px;
         }
     }
 
@@ -175,4 +192,36 @@ section {
             }
         }
     }
+
+    .login-section {
+        // width: 45.28vw;
+        width: 652px;
+        height: 449px;
+
+        >h1 {
+            @include dFlex();
+            @include font($fs: 61px, $fw: 700);
+            width: 100%;
+            height: 59px;
+        }
+
+        .border-blue {
+            width: 150px;
+        }
+
+        .btn-section {
+            @include dFlex($g: 30px);
+            flex-direction: row;
+            margin-top: 50px;
+
+            .btn-login,
+            .btn-guest-login {
+                width: auto;
+            }
+        }
+    }
+
+
+
+
 }
