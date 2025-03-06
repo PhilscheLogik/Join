@@ -1,5 +1,70 @@
-@import './../../../../styles.scss';
+@import "./../../../../styles.scss";
+section {
+  width: 100%;
+  height: calc(100vh - 91px);
+  box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
+  padding: 0 70px;
+}
 
-p{
-    background-color: lightblue;
+.headline {
+  @include dFlex($jc: space-between);
+  padding-top: 80px;
+  padding-bottom: 30px;
+  width: 43.4vw;
+  max-width: 650px;
+}
+
+h1 {
+  font-size: 61px;
+}
+
+.border-blue {
+  border: 3px solid;
+  border-color: $light_blue;
+}
+
+.vertical {
+  width: 90px;
+  height: 3px;
+  display: none;
+}
+
+.horizontal {
+  width: 3px;
+  height: 59px;
+}
+
+.content {
+  @include dFlex($ai: flex-start);
+  width: 100%;
+}
+
+.box {
+  background-color: $white;
+  box-shadow: 0 0 4px 0px rgba($black, 0.1);
+  border-radius: 10px;
+}
+
+@media (max-width: 1024px) {
+  section {
+    padding: 0 16px;
+  }
+
+  .headline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 225px;
+  }
+  h1 {
+    font-size: 47px;
+  }
+
+  .vertical {
+    display: inline-block;
+  }
+
+  .horizontal {
+    display: none;
+  }
 }

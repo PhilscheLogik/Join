@@ -1,3 +1,50 @@
 <section>
-  <div>Anzahl der Aufgaben: {{ taskService.todoList.length }}</div>
+  <div class="headline">
+    <h1>Join 360</h1>
+    <div class="border-blue horizontal"></div>
+    <p>Key Metrics at a Glance</p>
+    <div class="border-blue vertical"></div>
+  </div>
+  <div class="content">
+    <div class="left">
+      <div class="box">
+        <div>ICON</div>
+        <div>{{ taskService.todoList.length }} <span>To-do</span></div>
+      </div>
+      <div class="box">
+        <div>ICON</div>
+        <div>{{ taskService.doneList.length }} <span>Done</span></div>
+      </div>
+      <div class="box">
+        <div>ICON</div>
+        <div>{{ taskService.todoList.length }} <span>Urgent</span></div>
+      </div>
+      <div class="box">
+        <div>ICON</div>
+        <div>
+          {{
+            taskService.todoList.length +
+              taskService.progressList.length +
+              taskService.feedbackList.length
+          }}
+          <span>Tasks in Board</span>
+        </div>
+      </div>
+      <div class="box">
+        <div>ICON</div>
+        <div>
+          {{ taskService.progressList.length }} <span>Tasks In Progress</span>
+        </div>
+      </div>
+      <div class="box">
+        <div>ICON</div>
+        <div>
+          {{ taskService.feedbackList.length }} <span>Awaiting Feedback</span>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <span>Guten Tag</span>
+    </div>
+  </div>
 </section>
