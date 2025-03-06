@@ -27,5 +27,11 @@ export class LoginComponent {
     this.navigationService.setSelectedItem(index);
   }
 
-  getTest() {}
+  getTestCreate() {
+    this.authService.createUser();
+  }
+
+  getTestLogin() {
+    this.authService.loginUser();
+  }
 }

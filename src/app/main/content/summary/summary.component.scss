@@ -23,9 +23,9 @@ section {
   }
 }
 
-.border-blue {
-  border: 3px solid;
-  border-color: $light_blue;
+.border-blue {  
+  background-color: $light_blue;
+  width: 3px;  
 }
 
 .vertical {

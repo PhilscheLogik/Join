@@ -29,14 +29,16 @@
       </div>
       <div class="btn-section">
         <button class="btn-login">Log in</button>
-        <button class="btn-guest-login">Guest Log in</button>
+        <button class="btn-guest-login" (click)="getTestLogin()">
+          Guest Log in
+        </button>
       </div>
     </form>
   </div>
 
   <div class="sign-up">
     <p>Not a Join user?</p>
-    <button>Sign up</button>
+    <button (click)="getTestCreate()">Sign up</button>
   </div>
 
   <div class="footer-section">
@@ -45,8 +47,10 @@
       (click)="selectItem(4)"
       >Privacy Policy</a
     >
-    <a [ngClass]="{ active: navigationService.selectedItem === 5 }"
-    (click)="selectItem(5)"
-    >Legal Notice</a>
+    <a
+      [ngClass]="{ active: navigationService.selectedItem === 5 }"
+      (click)="selectItem(5)"
+      >Legal Notice</a
+    >
   </div>
 </section>
