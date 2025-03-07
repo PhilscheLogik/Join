@@ -4,6 +4,7 @@
     </div>
   
     <div class="signUp-section">
+      <a (click)="selectItem(navigationService.getSelectedItem())"></a> 
       <h1>Sign up</h1>
       <div class="border-blue"></div>
       <form>
@@ -47,8 +48,12 @@
           />
           <img src="assets/img/icons/lock_icon.svg" />
         </div>
+        <div class="policy-checkbox_container">
+          <input class="policy-checkbox" classtype="checkbox">
+            <p>I accept the <span class="join-aqua">Privacy policy</span></p>
+        </div>
         <div class="btn-section">
-            <button class="btn_signUp">Sign up</button>
+            <button class="btn-signUp">Sign up</button>
         </div>
       </form>
     </div>
