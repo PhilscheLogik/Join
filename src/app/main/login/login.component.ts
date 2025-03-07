@@ -39,14 +39,14 @@ export class LoginComponent implements OnInit {
 
   passwordVisible: boolean = false;
   passwordFieldActive: boolean = false;
-  lockIconVisable: boolean = true;
+  isVisibility: boolean = true;
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
 
-  toggleLockIcon() {
-    this.lockIconVisable = !this.lockIconVisable;
+  toggleVisibilityIcon() {
+    this.isVisibility = !this.isVisibility;
   }
 
   onFocus() {

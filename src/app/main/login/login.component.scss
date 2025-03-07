@@ -1,13 +1,12 @@
 @import "./../../../styles.scss";
 
 section {
-    @include dFlex($jc: space-between, $g: 20px);
+    @include dFlex($g: 50px);
     flex-direction: column;
     height: 100vh;
     position: relative;
     opacity: 0;
     transition: opacity 1s ease-in-out;
-    padding-top: 250px;
 
     &.page-loaded {
         opacity: 1;
@@ -27,37 +26,6 @@ section {
             left: 48px;
             transform: translate(0%, 0%) scale(1);
         }
-    }
-}
-
-// .header-section {
-//     @include dFlex($jc: space-between, $ai: flex-start);
-//     padding-top: 20px;
-//     padding-left: 20px;
-//     padding-right: 20px;
-//     width: 100%;
-
-//     // .logo {
-//     //     width: 64px;
-//     //     height: 78.03px;
-//     // }
-// }
-
-.sign-up {
-    @include dFlex($jc: space-between, $g: 20px);
-
-    >p {
-        @include font($fs: 20px, $fw: 400);
-    }
-
-    >button {
-        padding: 15px 16px;
-        border: unset;
-        border-radius: 8px;
-        background-color: $dark_blue;
-        @include font($fs: 16px, $fw: 700);
-        color: $white;
-        cursor: pointer;
     }
 }
 
@@ -92,7 +60,7 @@ section {
     .input-email,
     .input-password {
         @include dFlex($jc: space-between, $g: 10px);
-        width: 92vw; //64.72vw;
+        width: 92vw; 
         max-width: 422px;
         height: 48px;
         border: 1px solid $light_gray;
@@ -174,9 +142,31 @@ section {
     }
 }
 
+.sign-up {
+    @include dFlex($jc: space-between, $g: 20px);
+    position: absolute;
+    bottom: 96px;
+
+
+    >p {
+        @include font($fs: 20px, $fw: 400);
+    }
+
+    >button {
+        padding: 15px 16px;
+        border: unset;
+        border-radius: 8px;
+        background-color: $dark_blue;
+        @include font($fs: 16px, $fw: 700);
+        color: $white;
+        cursor: pointer;
+    }
+}
+
 .footer-section {
     @include dFlex($g: 40px);
-    padding-bottom: 50px;
+    position: absolute;
+    bottom: 48px;
 
     >a {
         @include font($fs: 16px, $fw: 400);
@@ -192,20 +182,32 @@ section {
 
 /*--------------------------------------------------   Desktop   --------------------------------------------------*/
 @media (min-width: 1024px) {
-    .header-section {
-        @include dFlex($g: 50px);
 
-        // .logo {
-        //     width: 100.03px;
-        //     height: 121.97px;
-        //     padding: 48px 115px;
-        // }
+    section {
+
+        .animated-logo {
+                position: absolute;
+                width: 10vh;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(3);
+                transition: all 1s ease-in-out;
+                z-index: 100;
+        
+                &.logo-final-position {
+                    top: 48px;
+                    left: 48px;
+                    transform: translate(0%, 0%) scale(1);
+                }
+            }
+
     }
 
     .sign-up {
         position: absolute;
         top: 48px;
         right: 108px;
+        bottom: auto;
 
         >button {
             &:hover {
@@ -216,7 +218,6 @@ section {
     }
 
     .login-section {
-        // width: 45.28vw;
         width: 652px;
         height: 449px;
 
