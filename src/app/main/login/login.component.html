@@ -38,18 +38,22 @@
           src="assets/img/icons/lock_icon.svg"
           [ngClass]="{ d_none: passwordFieldActive }"
         />
-        <img
-          class="visibility_off"
-          src="assets/img/icons/visibility_off_icon.svg"
-          [ngClass]="{ d_none: !passwordFieldActive }"
-          (click)="togglePasswordVisibility()"
-        />
-        <img
-          class="visibility_off"
-          src="assets/img/icons/visibility_icon.svg"
-          [ngClass]="{ d_none: !passwordFieldActive }"
-          (click)="toggleVisibilityIcon()"
-        />
+        @if(passwordFieldActive) {
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_off_icon.svg"
+            [ngClass]="{ d_none: !passwordFieldActive }"
+            [ngClass]="{ d_none: !isVisibility }"
+            (click)="toggleVisibility()"
+          />
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_icon.svg"
+            [ngClass]="{ d_none: !passwordFieldActive }"
+            [ngClass]="{ d_none: isVisibility }"
+            (click)="toggleVisibility()"
+          />
+        }
       </div>
       <div class="btn-section">
         <button

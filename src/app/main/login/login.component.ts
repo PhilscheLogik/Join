@@ -42,16 +42,13 @@ export class LoginComponent implements OnInit {
   passwordFieldActive: boolean = false;
   isVisibility: boolean = true;
 
-  togglePasswordVisibility() {
+  toggleVisibility() {
     this.passwordVisible = !this.passwordVisible;
-  }
-
-  toggleVisibilityIcon() {
     this.isVisibility = !this.isVisibility;
   }
 
   onFocus() {
-    this.passwordFieldActive = !this.passwordFieldActive; // Aktiviert das Passwortfeld
+    this.passwordFieldActive = !this.passwordFieldActive;
   }
 
   /**
