@@ -11,7 +11,7 @@
   <div class="login-section">
     <h1>Log in</h1>
     <div class="border-blue"></div>
-    <form #contactForm="ngForm" >
+    <form #contactForm="ngForm">
       <div class="input-email">
         <input
           type="text"
@@ -39,20 +39,20 @@
           [ngClass]="{ d_none: passwordFieldActive }"
         />
         @if(passwordFieldActive) {
-          <img
-            class="visibility_off"
-            src="assets/img/icons/visibility_off_icon.svg"
-            [ngClass]="{ d_none: !passwordFieldActive }"
-            [ngClass]="{ d_none: !isVisibility }"
-            (click)="toggleVisibility()"
-          />
-          <img
-            class="visibility_off"
-            src="assets/img/icons/visibility_icon.svg"
-            [ngClass]="{ d_none: !passwordFieldActive }"
-            [ngClass]="{ d_none: isVisibility }"
-            (click)="toggleVisibility()"
-          />
+        <img
+          class="visibility_off"
+          src="assets/img/icons/visibility_off_icon.svg"
+          [ngClass]="{ d_none: !passwordFieldActive }"
+          [ngClass]="{ d_none: !isVisibility }"
+          (click)="toggleVisibility()"
+        />
+        <img
+          class="visibility_off"
+          src="assets/img/icons/visibility_icon.svg"
+          [ngClass]="{ d_none: !passwordFieldActive }"
+          [ngClass]="{ d_none: isVisibility }"
+          (click)="toggleVisibility()"
+        />
         }
       </div>
       <div class="btn-section">
