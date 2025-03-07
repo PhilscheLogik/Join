@@ -21,6 +21,12 @@ export class LoginComponent implements OnInit {
   passwordVisible: boolean = false;
   passwordFieldActive: boolean = false;
   isVisibility: boolean = true;
+  email: string = '';
+  password: string = '';
+  isEmailValid: boolean = true;
+  isPasswordValid: boolean = true;
+
+  focusedInput: string = '';
 
   /**
    * Lifecycle hook that is called after component initialization.
@@ -42,28 +48,59 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Toggles the visibility of the password input field.
+   * This method is called when an input field receives focus.
+   * It sets the focused input field name and toggles the visibility of the password field.
    *
-   * This method switches between showing and hiding the password by toggling the `passwordVisible`
-   * and `isVisibility` properties.
+   * @param {string} inputName - The name of the input field that is being focused.
+   * It updates the `focusedInput` variable with the given `inputName`,
+   * and toggles the `passwordFieldActive` boolean to manage the visual state of the password field.
    *
-   * @returns {void} This method does not return anything.
+   * @returns {void} - This method doesn't return any value.
+   */
+  onFocus(inputName: string) {
+    this.focusedInput = inputName;
+    this.passwordFieldActive = !this.passwordFieldActive;
+  }
+
+  /**
+   * This method is called when an input field loses focus.
+   * It clears the `focusedInput` variable to indicate that no input field is currently focused.
+   *
+   * @returns {void} - This method doesn't return any value.
+   */
+  onBlur() {
+    this.focusedInput = '';
+  }
+
+  /**
+   * This method is triggered when the login button is clicked.
+   * It checks whether the email and password fields are valid (i.e., not empty).
+   * The validity is stored in `isEmailValid` and `isPasswordValid` variables.
+   *
+   * The method assigns `true` to `isEmailValid` if `email` is not empty, otherwise `false`.
+   * Similarly, it assigns `true` to `isPasswordValid` if `password` is not empty, otherwise `false`.
+   *
+   * @returns {void} - This method doesn't return any value.
+   */
+  onLoginClick() {
+    this.isEmailValid = !!this.email;
+    this.isPasswordValid = !!this.password;
+  }
+
+  /**
+   * This method toggles the visibility of the password input field.
+   * When called, it switches the value of `passwordVisible` and `isVisibility` properties.
+   *
+   * - If `passwordVisible` is `false`, it will be set to `true` to display the password.
+   * - If `passwordVisible` is `true`, it will be set to `false` to hide the password.
+   *
+   * Similarly, `isVisibility` is toggled to control additional visual elements related to password visibility.
+   *
+   * @returns {void} - This method doesn't return any value.
    */
   toggleVisibility() {
     this.passwordVisible = !this.passwordVisible;
     this.isVisibility = !this.isVisibility;
-  }
-
-  /**
-   * Toggles the active state of the password input field on focus.
-   *
-   * This method updates the `passwordFieldActive` property, which can be used for styling or
-   * UI changes when the password input field is focused.
-   *
-   * @returns {void} This method does not return anything.
-   */
-  onFocus() {
-    this.passwordFieldActive = !this.passwordFieldActive;
   }
 
   /**

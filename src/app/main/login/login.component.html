@@ -12,25 +12,38 @@
     <h1>Log in</h1>
     <div class="border-blue"></div>
     <form #contactForm="ngForm">
-      <div class="input-email">
+      <div
+        class="input-email"
+        [ngClass]="{ 'input-focused': focusedInput === 'email' }"
+        [ngClass]="{ 'input-invalid': !isEmailValid }"
+      >
         <input
           type="text"
           id="email"
           name="email"
           placeholder="Email"
           pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-          #emailLogin
+          (focus)="onFocus('email')"
+          (blur)="onBlur()"
+          [(ngModel)]="email"
+          #emailLogin="ngModel"
         />
         <img src="assets/img/icons/mail.svg" />
       </div>
-      <div class="input-password">
+      <div
+        class="input-password"
+        [ngClass]="{ 'input-focused': focusedInput === 'password' }"
+        [ngClass]="{ 'input-invalid': !isPasswordValid }"
+      >
         <input
           [type]="passwordVisible ? 'text' : 'password'"
           id="password"
           name="password"
           placeholder="Password"
           pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{8,20}$"
-          (focus)="onFocus()"
+          (focus)="onFocus('password')"
+          (blur)="onBlur()"
+          [(ngModel)]="password"
           #pwLogin
         />
         <img
@@ -58,7 +71,7 @@
       <div class="btn-section">
         <button
           class="btn-login"
-          (click)="authService.login(emailLogin.value, pwLogin.value)"
+          (click)="onLoginClick(); authService.login(emailLogin.value, pwLogin.value)"
         >
           Log in
         </button>

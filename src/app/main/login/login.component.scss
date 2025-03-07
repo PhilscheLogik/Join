@@ -40,7 +40,7 @@ section {
   border-radius: 30px;
   padding: 32px 32px;
 
-  > h1 {
+  >h1 {
     @include font($fs: 47px, $fw: 700);
     width: 139px;
     height: 59px;
@@ -67,13 +67,20 @@ section {
     border-radius: 10px;
     padding: 12px 21px;
 
-    > img {
+    >img {
       width: 24px;
       height: 24px;
     }
 
-    > input {
-      // flex: 1;
+    &.input-invalid {
+      border: 1px solid $red;
+    }
+
+    &.input-focused {
+      border: 1px solid $light_blue;
+    }
+
+    >input {
       width: 80%;
       border: unset;
       height: 24px;
@@ -142,11 +149,11 @@ section {
   position: absolute;
   bottom: 96px;
 
-  > p {
+  >p {
     @include font($fs: 20px, $fw: 400);
   }
 
-  > button {
+  >button {
     padding: 15px 16px;
     border: unset;
     border-radius: 8px;
@@ -162,7 +169,7 @@ section {
   position: absolute;
   bottom: 48px;
 
-  > a {
+  >a {
     @include font($fs: 16px, $fw: 400);
     color: $gray;
     cursor: pointer;
@@ -177,6 +184,7 @@ section {
 /*--------------------------------------------------   Desktop   --------------------------------------------------*/
 @media (min-width: 500px) {
   .login-section {
+
     .input-email,
     .input-password {
       width: 92vw;
@@ -209,7 +217,7 @@ section {
     right: 108px;
     bottom: auto;
 
-    > button {
+    >button {
       &:hover {
         background-color: $light_blue;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -221,7 +229,7 @@ section {
     width: 652px;
     height: 449px;
 
-    > h1 {
+    >h1 {
       @include dFlex();
       @include font($fs: 61px, $fw: 700);
       width: 100%;
