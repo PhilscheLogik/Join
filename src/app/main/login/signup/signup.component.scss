@@ -34,7 +34,7 @@ section {
 
     position: relative;
     
-    >a {
+    >.back-btn {
         position: absolute;
         top: 64px;
         left: 56px;
@@ -99,6 +99,12 @@ section {
             }
         }
     }  
+}
+
+.back-btn {
+    background-image: url("./../../../../assets/img/icons/arrow_left.svg");
+    height: 37px;
+    width: 37px;
 }
 
 .btn-section {
