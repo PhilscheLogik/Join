@@ -1,6 +1,10 @@
 <section>
   <div class="header-left">
-    <img class="responsive-header-logo" src="assets/img/icons/logo_desktop.svg" alt="">
+    <img
+      class="responsive-header-logo"
+      src="assets/img/icons/logo_desktop.svg"
+      alt=""
+    />
     <h1>Kanban Project Management Tool</h1>
   </div>
   <div class="header-right">
@@ -14,24 +18,28 @@
       <p>ID</p>
     </div>
     <div *ngIf="isOpen" (click)="closeOverlay()" class="toggleOff-container">
-      <div
-        id="overlay"
-        [class.open]="isOpen"
-        class="header-overlay"
-        >
+      <div id="overlay" [class.open]="isOpen" class="header-overlay">
         <div class="inner-overlay">
+          <a
+            class="burger-help-link"
+            [ngClass]="{ active: navigationService.selectedItem === 6 }"
+            (click)="selectItem(6)"
+            >Help</a
+          >
 
-          <a class="burger-help-link" 
-          [ngClass]="{ active: navigationService.selectedItem === 6 }"
-            (click)="selectItem(6)">Help</a>
+          <a
+            [ngClass]="{ active: navigationService.selectedItem === 5 }"
+            (click)="selectItem(5)"
+            >Legal Notice</a
+          >
 
-          <a  [ngClass]="{ active: navigationService.selectedItem === 5 }"
-              (click)="selectItem(5)">Legal Notice</a>
+          <a
+            [ngClass]="{ active: navigationService.selectedItem === 4 }"
+            (click)="selectItem(4)"
+            >Privacy Policy</a
+          >
 
-          <a [ngClass]="{ active: navigationService.selectedItem === 4 }"
-            (click)="selectItem(4)">Privacy Policy</a>
-
-          <a href="">Log out</a>
+          <a (click)="authService.logout()">Log out</a>
         </div>
       </div>
     </div>

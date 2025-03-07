@@ -4,6 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -62,6 +63,16 @@ export class AuthService {
         console.log('auth Service login error');
         console.log(email, pw);
         console.log(errorCode, errorMessage);
+      });
+  }
+
+  logout() {
+    signOut(auth)
+      .then(() => {
+        console.log('User wurde ausgeloggt');
+      })
+      .catch((error) => {
+        console.log('Mist, ist schief gelaufen');
       });
   }
 }
