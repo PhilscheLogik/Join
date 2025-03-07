@@ -32,6 +32,22 @@ section {
     border-radius: 30px;
     padding: 48px 115px;
 
+    position: relative;
+    
+    >a {
+        position: absolute;
+        top: 64px;
+        left: 56px;
+        background-image: url("./../../../../assets/img/icons/arrow_left.svg");
+        height: 32px;
+        width: 32px;
+        &:hover {
+            border-radius: 16px;
+            background-color: $hover_gray;
+            transform: scale(1.15);
+        } 
+    }
+
     >h1 {
         @include font($fs: 47px, $fw: 700);
     }
@@ -89,7 +105,7 @@ section {
     @include dFlex($g: 30px);
     margin-top: 50px;
 
-    .btn_signUp {
+    .btn-signUp {
         @include dFlex();
         @include font($fs: 21px, $fw: 700);
         height: 48px;
@@ -106,6 +122,27 @@ section {
             border: unset;
         }
     }
+}
+
+.join-aqua {
+    color: $aqua;
+}
+
+.policy-checkbox_container {
+    @include dFlex($jc: space-between);
+    max-width: 240px;
+    gap: 10px;
+
+    >p {
+        color: $light_gray;
+    }
+}
+
+.policy-checkbox {
+    height: 20px;
+    width: 20px;
+    padding: 4px;
+    cursor: pointer;
 }
 
 .footer-section {
