@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
   /** UI States */
   isPageLoaded: boolean = false;
   isLogoShifted: boolean = false;
+  passwordVisible: boolean = false;
+  passwordFieldActive: boolean = false;
+  isVisibility: boolean = true;
 
   /**
    * Lifecycle hook that is called after component initialization.
@@ -38,15 +41,27 @@ export class LoginComponent implements OnInit {
     }, 600);
   }
 
-  passwordVisible: boolean = false;
-  passwordFieldActive: boolean = false;
-  isVisibility: boolean = true;
-
+  /**
+   * Toggles the visibility of the password input field.
+   *
+   * This method switches between showing and hiding the password by toggling the `passwordVisible`
+   * and `isVisibility` properties.
+   *
+   * @returns {void} This method does not return anything.
+   */
   toggleVisibility() {
     this.passwordVisible = !this.passwordVisible;
     this.isVisibility = !this.isVisibility;
   }
 
+  /**
+   * Toggles the active state of the password input field on focus.
+   *
+   * This method updates the `passwordFieldActive` property, which can be used for styling or
+   * UI changes when the password input field is focused.
+   *
+   * @returns {void} This method does not return anything.
+   */
   onFocus() {
     this.passwordFieldActive = !this.passwordFieldActive;
   }
