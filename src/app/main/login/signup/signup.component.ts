@@ -1,6 +1,7 @@
 import { Component ,inject } from '@angular/core';
 import { NavigationService } from '../../../shared/navi/navigation.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SignupComponent {
   navigationService = inject(NavigationService);
+  authService = inject(AuthService)
 
   /**
    * Selects an item by its index.

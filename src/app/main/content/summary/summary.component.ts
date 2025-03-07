@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { TaskServiceService } from '../../services/task-service.service';
-import { Task } from '../../../interfaces/task';
 import { NavigationService } from '../../../shared/navi/navigation.service';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss',
 })

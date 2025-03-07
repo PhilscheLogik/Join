@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { NavigationService } from '../../shared/navi/navigation.service';
 import { AuthService } from '../services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -64,13 +65,5 @@ export class LoginComponent implements OnInit {
    */
   selectItem(index: number) {
     this.navigationService.setSelectedItem(index);
-  }
-
-  getTestCreate() {
-    this.authService.createUser();
-  }
-
-  getTestLogin() {
-    this.authService.loginUser();
   }
 }

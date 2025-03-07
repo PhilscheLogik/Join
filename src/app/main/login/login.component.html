@@ -11,7 +11,7 @@
   <div class="login-section">
     <h1>Log in</h1>
     <div class="border-blue"></div>
-    <form>
+    <form #contactForm="ngForm" >
       <div class="input-email">
         <input
           type="text"
@@ -19,6 +19,7 @@
           name="email"
           placeholder="Email"
           pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+          #emailLogin
         />
         <img src="assets/img/icons/mail.svg" />
       </div>
@@ -30,6 +31,7 @@
           placeholder="Password"
           pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{8,20}$"
           (focus)="onFocus()"
+          #pwLogin
         />
         <img
           class="lock"
@@ -50,17 +52,22 @@
         />
       </div>
       <div class="btn-section">
-        <button class="btn-login">Log in</button>
-        <button class="btn-guest-login" (click)="getTestLogin()">
-          Guest Log in
+        <button
+          class="btn-login"
+          (click)="authService.login(emailLogin.value, pwLogin.value)"
+        >
+          Log in
         </button>
+        <button class="btn-guest-login">Guest Log in</button>
       </div>
     </form>
   </div>
 
   <div class="sign-up">
     <p>Not a Join user?</p>
-    <button (click)="getTestCreate()">Sign up</button>
+    <button (click)="authService.login(emailLogin.value, pwLogin.value)">
+      Sign up
+    </button>
   </div>
 
   <div class="footer-section">

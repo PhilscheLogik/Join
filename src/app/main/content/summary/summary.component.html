@@ -24,7 +24,10 @@
         <div class="among-each-other">
           {{ countUrgentTasks() }} <span>Urgent</span>
         </div>
-        <div>{{ getDeadlineDate() }} <span>Upcoming Deadline</span></div>
+        <div class="">
+          {{ dateDeadline | date : "EEEE, dd. MMM yyyy" }}
+          <span>Upcoming Deadline</span>
+        </div>
       </div>
       <div class="box" (click)="this.navigationService.setSelectedItem(2)">
         <div class="among-each-other">

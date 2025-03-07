@@ -16,54 +16,51 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  auth = getAuth(app);
-  email = 'conan@tester.de';
+  email = 'conan@edo.de';
   password = 'D1#tester';
   name = 'Ingo Düsenjäger';
 
   constructor() {}
 
-  createUser() {
-    createUserWithEmailAndPassword(this.auth, this.email, this.password)
+  signUp(email: string, pw: string, name: string) {
+    createUserWithEmailAndPassword(auth, email, pw)
       .then((userCredential) => {
-        // Signed up
         const user = userCredential.user;
-        // ...
 
         console.log('auth Service create works');
-        console.log(user, this.email, this.password);
+        console.log(email, pw);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
 
         console.log('auth Service create error');
-        console.log(this.email, this.password);
+        console.log(email, pw);
         console.log(errorCode, errorMessage);
         // ..
       });
   }
 
-  loginUser() {
-    signInWithEmailAndPassword(this.auth, this.email, this.password)
+  login(email: string, pw: string) {
+    signInWithEmailAndPassword(auth, email, pw)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        // ...
+
         console.log('auth Service login works');
-        console.log(user, this.email, this.password);
+        console.log(email, pw);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
 
         console.log('auth Service login error');
-        console.log(this.email, this.password);
+        console.log(email, pw);
         console.log(errorCode, errorMessage);
       });
   }

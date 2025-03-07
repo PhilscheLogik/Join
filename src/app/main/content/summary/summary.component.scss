@@ -15,10 +15,10 @@ section {
   width: 625px;
   max-width: 650px;
   h1 {
-    font-size: 61px;
+    font-size: clamp(47px, 5vw, 61px);
   }
   > p {
-    font-size: 27px;
+    font-size: clamp(20px, 2.5vw, 27px);
   }
 }
 
@@ -44,6 +44,7 @@ section {
   flex: 1;
   display: flex;
   margin-bottom: 8px;
+  position: relative;
 }
 
 .left,
@@ -165,9 +166,6 @@ section {
     align-items: flex-start;
     gap: 16px;
     width: 225px;
-    h1 {
-      font-size: 47px;
-    }
     > p {
       font-size: 20px;
     }
