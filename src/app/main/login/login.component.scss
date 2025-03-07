@@ -7,7 +7,7 @@ section {
     position: relative;
     opacity: 0;
     transition: opacity 1s ease-in-out;
-    padding-top: 200px;
+    padding-top: 250px;
 
     &.page-loaded {
         opacity: 1;
@@ -23,8 +23,8 @@ section {
         z-index: 100;
 
         &.logo-final-position {
-            top: 64px;
-            left: 64px;
+            top: 48px;
+            left: 48px;
             transform: translate(0%, 0%) scale(1);
         }
     }
@@ -204,8 +204,8 @@ section {
 
     .sign-up {
         position: absolute;
-        top: 50px;
-        right: 50px;
+        top: 48px;
+        right: 108px;
 
         >button {
             &:hover {
