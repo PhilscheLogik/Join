@@ -128,7 +128,7 @@ section {
     color: $aqua;
 }
 
-.policy-checkbox_container {
+.policy-checkbox-container {
     @include dFlex($jc: space-between);
     max-width: 240px;
     gap: 10px;
