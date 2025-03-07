@@ -7,25 +7,26 @@
   </div>
   <div class="content">
     <div class="left">
-      <div class="box">
+      <div class="box" (click)="this.navigationService.setSelectedItem(2)">
         <div>ICON</div>
         <div class="among-each-other">
           {{ taskService.todoList.length }} <span>To-do</span>
         </div>
       </div>
-      <div class="box">
+      <div class="box" (click)="this.navigationService.setSelectedItem(2)">
         <div>ICON</div>
         <div class="among-each-other">
           {{ taskService.doneList.length }} <span>Done</span>
         </div>
       </div>
-      <div class="box">
+      <div class="box" (click)="this.navigationService.setSelectedItem(2)">
         <div>ICON</div>
         <div class="among-each-other">
-          {{ taskService.todoList.length }} <span>Urgent</span>
+          {{ countUrgentTasks() }} <span>Urgent</span>
         </div>
+        <div>{{ getDeadlineDate() }} <span>Upcoming Deadline</span></div>
       </div>
-      <div class="box">        
+      <div class="box" (click)="this.navigationService.setSelectedItem(2)">
         <div class="among-each-other">
           {{
             taskService.todoList.length +
@@ -35,19 +36,24 @@
           <span>Tasks in Board</span>
         </div>
       </div>
-      <div class="box">        
+      <div class="box" (click)="this.navigationService.setSelectedItem(2)">
         <div class="among-each-other">
           {{ taskService.progressList.length }} <span>Tasks In Progress</span>
         </div>
       </div>
-      <div class="box">        
+      <div class="box" (click)="this.navigationService.setSelectedItem(2)">
         <div class="among-each-other">
           {{ taskService.feedbackList.length }} <span>Awaiting Feedback</span>
         </div>
       </div>
     </div>
     <div class="right">
-      <span>Guten Tag</span>
+      @if(authService.name && authService.name !== 'Guest'){
+      <span class="greeting">{{ getGreeting() }},</span>
+      <span class="greetingName">{{ authService.name }}</span>
+      } @else {
+      <span class="greeting">{{ getGreeting() }}</span>
+      }
     </div>
   </div>
 </section>
