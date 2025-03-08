@@ -8,24 +8,30 @@
   <div class="content">
     <div class="left">
       <div class="box" (click)="this.navigationService.setSelectedItem(2)">
-        <div>ICON</div>
+        <div class="circle dark-bg"><div class="pencil"></div></div>
         <div class="among-each-other">
           {{ taskService.todoList.length }} <span>To-do</span>
         </div>
       </div>
       <div class="box" (click)="this.navigationService.setSelectedItem(2)">
-        <div>ICON</div>
+        <div class="circle dark-bg"><div class="checkmark"></div></div>
         <div class="among-each-other">
           {{ taskService.doneList.length }} <span>Done</span>
         </div>
       </div>
-      <div class="box" (click)="this.navigationService.setSelectedItem(2)">
-        <div>ICON</div>
-        <div class="among-each-other">
-          {{ countUrgentTasks() }} <span>Urgent</span>
+      <div
+        class="box middle"
+        (click)="this.navigationService.setSelectedItem(2)"
+      >
+        <div class="urgent">
+          <div class="circle red-bg"><div class="arrow-up"></div></div>
+          <div class="among-each-other">
+            {{ countUrgentTasks() }} <span>Urgent</span>
+          </div>
         </div>
-        <div class="">
-          {{ dateDeadline | date : "EEEE, dd. MMM yyyy" }}
+        <div class="border-grey"></div>
+        <div class="among-each-other-dealine">
+          {{ dateDeadline | date : "EE, dd. MMM yyyy" }}
           <span>Upcoming Deadline</span>
         </div>
       </div>

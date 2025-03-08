@@ -20,11 +20,10 @@ export class SummaryComponent {
 
   dateDeadline = '2100-12-31';
 
-  getGreeting(username = '') {
+  getGreeting() {
     const now = new Date();
     const hour = now.getHours();
     let greeting = '';
-
     if (hour >= 6 && hour < 12) {
       greeting = 'Good Morning';
     } else if (hour >= 12 && hour < 18) {
@@ -48,12 +47,10 @@ export class SummaryComponent {
     let feedbackUrgent = this.taskService.feedbackList?.filter(
       (item) => item.prio === 'Urgent'
     );
-
-    this.dateDeadline = '2100-12-31';
+    this.dateDeadline = '3000-12-31';
     this.findNextDeadline(toDoUrgent);
     this.findNextDeadline(progressUrgent);
     this.findNextDeadline(feedbackUrgent);
-
     sum += toDoUrgent.length ?? 0;
     sum += progressUrgent.length ?? 0;
     sum += feedbackUrgent.length ?? 0;
