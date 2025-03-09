@@ -20,6 +20,8 @@ export class SummaryComponent {
 
   dateDeadline = '2100-12-31';
 
+  hideRight = false;
+
   getGreeting() {
     const now = new Date();
     const hour = now.getHours();
@@ -71,5 +73,5 @@ export class SummaryComponent {
 
   getDeadlineDate() {
     return new Date(this.dateDeadline);
-  }
+  } 
 }

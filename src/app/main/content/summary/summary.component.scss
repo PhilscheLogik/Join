@@ -44,7 +44,7 @@ section {
   flex: 1;
   display: flex;
   margin-bottom: 8px;
-  position: relative;
+  // position: relative;
 }
 
 .left,
@@ -58,6 +58,9 @@ section {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto auto auto;
   gap: 32px;
+  //  justify-items: center;
+  // align-items: center;
+  // place-items: center;
 }
 
 .box {
@@ -186,12 +189,11 @@ section {
 .among-each-other {
   @include dFlex();
   flex-direction: column;
-
-  font-size: 64px;
+  font-size: clamp(47px, 5vw, 64px);
   font-weight: 600;
 
   > span {
-    font-size: 20px;
+    font-size: clamp(14px, 2.5vw, 20px);
     color: $dark_blue;
     font-weight: 400;
     text-align: center;
@@ -202,10 +204,10 @@ section {
 .among-each-other-dealine {
   @include dFlex($ai: flex-start);
   flex-direction: column;
-  font-size: 21px;
+  font-size: clamp(16px, 2.5vw, 21px);
   font-weight: 700;
   > span {
-    font-size: 16px;
+    font-size: clamp(14px, 2.5vw, 16px);
     color: $dark_blue;
     font-weight: 400;
     text-align: center;
@@ -233,7 +235,7 @@ section {
 
 .greeting {
   color: $dark_blue;
-  font-size: 47px;
+  font-size: clamp(36px, 5vw, 47px);
   font-weight: 500;
   text-align: center;
 }
@@ -249,19 +251,26 @@ section {
 
 /*---------------------------------------------------------- MEDIA Mobile ---------------------------------------------------------- */
 /*---------------------------------------------------------------------------------------------------------------------------------- */
-@media (max-width: 1024px) {
+
+@media (max-width: 1200px) {
   section {
     padding: 0 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  section {
+    // padding-bottom: 80px;
+    height: calc(100vh - 91px);
+    position: relative;
+    background-color: $cream_white;
   }
 
   .headline {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
-    width: 225px;
-    > p {
-      font-size: 20px;
-    }
+    width: 100%;
   }
 
   .vertical {
@@ -270,5 +279,90 @@ section {
 
   .horizontal {
     display: none;
+  }
+
+  .content {
+    flex-direction: column;
+    // flex: unset;
+    padding-top: 8px;
+    margin-bottom: 80px;
+    height: 100%;
+  }
+
+  .right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $cream_white;
+    z-index: -2;
+  }
+
+  .fade-out {
+    animation: fadeInOut 7s ease;
+  }
+  @keyframes fadeInOut {
+    0% {
+      z-index: 2;
+      opacity: 1;
+    }
+
+    50% {
+      z-index: 2;
+      opacity: 1;
+    }
+
+    95% {
+      z-index: 2;
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrow-up {
+    width: 23px;
+    height: 17px;
+  }
+
+  .pencil {
+    width: 19px;
+    height: 19px;
+  }
+
+  .checkmark {
+    width: 17px;
+    height: 13px;
+  }
+}
+
+@media (max-width: 800px) {
+  .left {
+    width: 65%;
+    // height: 100%;
+  }
+
+  .box {
+    max-height: 116px;
+  }
+}
+
+@media (max-width: 650px) {
+  .left {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .left {
+    width: 100%;
   }
 }

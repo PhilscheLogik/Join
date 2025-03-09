@@ -26,6 +26,7 @@ export class AuthService {
   email = 'conan@edo.de';
   password = 'D1#tester';
   name = 'Ingo Düsenjäger';
+  isUserLoggedIn = false;
 
   constructor() {}
 
@@ -44,7 +45,6 @@ export class AuthService {
         console.log('auth Service create error');
         console.log(email, pw);
         console.log(errorCode, errorMessage);
-        // ..
       });
   }
 
@@ -55,6 +55,7 @@ export class AuthService {
 
         console.log('auth Service login works');
         console.log(email, pw);
+        this.isUserLoggedIn = true;
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -70,6 +71,7 @@ export class AuthService {
     signOut(auth)
       .then(() => {
         console.log('User wurde ausgeloggt');
+        this.isUserLoggedIn = false;
       })
       .catch((error) => {
         console.log('Mist, ist schief gelaufen');

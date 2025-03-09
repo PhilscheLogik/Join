@@ -56,12 +56,12 @@
         </div>
       </div>
     </div>
-    <div class="right">
+    <div class="right fade-out">
       @if(authService.name && authService.name !== 'Guest'){
       <span class="greeting">{{ getGreeting() }},</span>
       <span class="greetingName">{{ authService.name }}</span>
       } @else {
-      <span class="greeting">{{ getGreeting() }}</span>
+      <span class="greeting">{{ getGreeting() }}!</span>
       }
     </div>
   </div>
