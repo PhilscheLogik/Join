@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   focusedInput: string = '';
   loginAttempted: boolean = false;
   eMailPattern = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/;
-  pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{8,20}/;
+  pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}/;
 
   /**
    * Lifecycle hook that is called after component initialization.
@@ -89,10 +89,6 @@ export class LoginComponent implements OnInit {
     this.loginAttempted = true;
     this.isEmailValid = !!this.email;
     this.isPasswordValid = !!this.password;
-
-    console.log('eMail: ', this.email, 'PW: ', this.password);
-    console.log('eMail: ', this.eMailPattern.test(this.email));
-    console.log('PW: ', this.pwPattern.test(this.password));
   }
 
   /**
@@ -124,6 +120,10 @@ export class LoginComponent implements OnInit {
     this.navigationService.setSelectedItem(index);
   }
 
+  /**
+   * Handles navigation from the sign-up view to the login view.
+   * Hides the sign-up form and displays the login form.
+   */
   linkSignUp() {
     this.navigationService.isSignUpVisible = false;
     this.navigationService.isLoginVisible = true;

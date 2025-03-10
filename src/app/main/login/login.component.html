@@ -23,7 +23,6 @@
             id="email"
             name="email"
             placeholder="Email"
-            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
             (focus)="onFocus('email')"
             (blur)="onBlur()"
             [(ngModel)]="email"
@@ -41,7 +40,6 @@
             id="password"
             name="password"
             placeholder="Password"
-            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}$"
             (focus)="onFocus('password')"
             (blur)="onBlur()"
             [(ngModel)]="password"
@@ -70,6 +68,7 @@
           }
         </div>
       </div>
+      <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
       @if(loginAttempted && (eMailPattern.test(this.email) != true || pwPattern.test(this.password) != true) ) {
         <div class="error-message">
           <p>Check your email and password! Please try again.<br>(min 6 character - min 1 special character, 1 capital letter, 1 number).</p>
