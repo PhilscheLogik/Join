@@ -127,7 +127,6 @@ export class LoginComponent implements OnInit {
    * This method hides the sign-up section and shows the login section.
    *
    * @function linkSignUp
-   * @memberof YourClassName
    */
   linkSignUp() {
     this.navigationService.isSignUpVisible = false;
@@ -139,7 +138,6 @@ export class LoginComponent implements OnInit {
    * This method hides the content section and shows the login section.
    *
    * @function linkContent
-   * @memberof YourClassName
    */
   linkContent() {
     this.navigationService.isContentVisible = false;
@@ -153,7 +151,6 @@ export class LoginComponent implements OnInit {
    * If the login fails or the input is invalid, it logs an appropriate message to the console.
    *
    * @function validateInput
-   * @memberof YourClassName
    * @returns {void}
    */
   validateInput() {
