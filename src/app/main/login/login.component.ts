@@ -123,26 +123,45 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Handles navigation from the sign-up view to the login view.
-   * Hides the sign-up form and displays the login form.
+   * Toggles the visibility between the sign-up and login sections in the navigation.
+   * This method hides the sign-up section and shows the login section.
+   *
+   * @function linkSignUp
+   * @memberof YourClassName
    */
   linkSignUp() {
     this.navigationService.isSignUpVisible = false;
     this.navigationService.isLoginVisible = true;
   }
 
+  /**
+   * Toggles the visibility of content and login sections in the navigation.
+   * This method hides the content section and shows the login section.
+   *
+   * @function linkContent
+   * @memberof YourClassName
+   */
   linkContent() {
     this.navigationService.isContentVisible = false;
     this.navigationService.isLoginVisible = true;
   }
 
+  /**
+   * Validates the user's input (email and password) and attempts to log in.
+   * If the email and password match the specified patterns, the method calls
+   * the login service and proceeds with additional actions if the login is successful.
+   * If the login fails or the input is invalid, it logs an appropriate message to the console.
+   *
+   * @function validateInput
+   * @memberof YourClassName
+   * @returns {void}
+   */
   validateInput() {
     if (
       this.eMailPattern.test(this.email) &&
       this.pwPattern.test(this.password)
     ) {
-      this.authService.login(this.email, this.password)
-      .then((isLoggedIn) => {
+      this.authService.login(this.email, this.password).then((isLoggedIn) => {
         if (isLoggedIn) {
           this.linkContent(); // Nur bei erfolgreicher Anmeldung ausführen
           this.checkSummaryAnimation();
