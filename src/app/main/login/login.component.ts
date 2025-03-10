@@ -164,7 +164,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.email, this.password).then((isLoggedIn) => {
         if (isLoggedIn) {
           this.linkContent(); // Nur bei erfolgreicher Anmeldung ausführen
-          this.checkSummaryAnimation();
+          
         } else {
           console.log('Login fehlgeschlagen! Überprüfe die Eingaben.');
         }
@@ -172,10 +172,5 @@ export class LoginComponent implements OnInit {
     } else {
       console.log('Eingaben sind nicht gültig!');
     }
-  }
-
-  checkSummaryAnimation() {
-    setTimeout(() => {}, 10000);
-    this.navigationService.isAnimationSummarydone = true;
-  }
+  }  
 }

@@ -58,7 +58,8 @@
     </div>
     <div
       class="right"
-      [ngClass]="{ 'fade-out': !navigationService.isAnimationSummarydone }"
+      [class.fade-out]="!navigationService.isAnimationSummarydone"
+      (animationend)="navigationService.onAnimationEnd()"
     >
       @if(authService.name && authService.name !== 'Guest'){
       <span class="greeting">{{ getGreeting() }},</span>
