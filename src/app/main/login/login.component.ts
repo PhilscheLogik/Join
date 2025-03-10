@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   /** UI States */
   isPageLoaded: boolean = false;
   isLogoShifted: boolean = false;
+  isContentVisible: boolean = false;
   passwordVisible: boolean = false;
   passwordFieldActive: boolean = false;
   isVisibility: boolean = true;
@@ -32,13 +33,16 @@ export class LoginComponent implements OnInit {
   pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}/;
 
   /**
-   * Lifecycle hook that is called after component initialization.
+   * Angular lifecycle hook that runs after component initialization.
    *
-   * This method triggers a delayed animation effect:
-   * - First, it sets `isPageLoaded` to `true` after 200ms, making the page visible.
-   * - Then, it shifts the logo after an additional 400ms (total 600ms).
+   * This method orchestrates a delayed animation sequence for the login page:
+   * - **Step 1**: Sets `isPageLoaded` to `true` after 200ms, making the page visible.
+   * - **Step 2**: Moves the logo to its final position after an additional 400ms (total 600ms).
+   * - **Step 3**: Displays the login content smoothly after another 400ms (total 1000ms).
    *
-   * @returns {void} This method does not return anything.
+   * The staggered timing ensures a visually appealing entrance effect.
+   *
+   * @returns {void} This method does not return a value.
    */
   ngOnInit(): void {
     setTimeout(() => {
@@ -48,6 +52,10 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.isLogoShifted = true;
     }, 600);
+
+    setTimeout(() => {
+      this.isContentVisible = true;
+    }, 1000);
   }
 
   /**
