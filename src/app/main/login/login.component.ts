@@ -12,23 +12,29 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  /** Inject Services */
+  /** Injected Services */
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
+
   /** UI States */
   isPageLoaded: boolean = false;
   isLogoShifted: boolean = false;
   isContentVisible: boolean = false;
-  passwordVisible: boolean = false;
-  passwordFieldActive: boolean = false;
-  isVisibility: boolean = true;
+
+  /** Authentication & Input States */
   email: string = '';
   password: string = '';
   isEmailValid: boolean = true;
   isPasswordValid: boolean = true;
-
   focusedInput: string = '';
   loginAttempted: boolean = false;
+
+  /** Password Visibility */
+  passwordVisible: boolean = false;
+  passwordFieldActive: boolean = false;
+  isVisibility: boolean = true;
+
+  /** Validation Patterns */
   eMailPattern = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/;
   pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}/;
 
