@@ -1,12 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,  ViewChild } from '@angular/core';
 import { NavigationService } from '../../../shared/navi/navigation.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })
@@ -14,18 +15,31 @@ export class SignupComponent {
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
 
+  @ViewChild('signupForm') signupForm!: NgForm;
+
   isSignUpActive = false; // activate if all required inputs are filled properly
 
   passwordVisible: boolean = false;
+  confirmPasswordVisible: boolean = false;
   passwordFieldActive: boolean = false;
   isVisibility: boolean = true;
+  name: string = '';
   email: string = '';
   password: string = '';
+  confirmPassword: string = '';
+
+  isNameValid: boolean = true;
   isEmailValid: boolean = true;
   isPasswordValid: boolean = true;
-  isPasswordEqual: string = '';
+  isPasswordEqual: boolean = true;
 
   focusedInput: string = '';
+  signUpAttempted: boolean = false;
+  namePattern = /[a-zA-ZäüößÄÜÖ\s]{3,}/;
+  eMailPattern = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/;
+  pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}/;
+
+  
   /**
    * Selects an item by its index.
    *
@@ -75,8 +89,13 @@ export class SignupComponent {
    * @returns {void} - This method doesn't return any value.
    */
   onSignUpClick() {
+    this.signUpAttempted = true;
+    this.isNameValid = !!this.name;
     this.isEmailValid = !!this.email;
     this.isPasswordValid = !!this.password;
+    this.isPasswordEqual = !!this.confirmPassword;
+
+    this.validateInput();
   }
 
   /**
@@ -99,4 +118,29 @@ export class SignupComponent {
     this.navigationService.isSignUpVisible = true;
     this.navigationService.isLoginVisible = false;
   }
+
+  validateInput() {
+    if (
+      this.eMailPattern.test(this.email) &&
+      this.pwPattern.test(this.password) && this.namePattern.test(this.name)
+    ) {
+      this.authService.signUp(this.email, this.password, this.name);
+      // this.checkSummaryAnimation();
+      this.linkLogin();      
+    }
+  }
+
+   // Check if passwords match
+  //  passwordsMatch(): boolean {
+  //   return this.password === this.confirmPassword;
+  // }
+
+  // Handle form submission
+  // onSignUpClick() {
+  //   if (this.signupForm.valid && this.passwordsMatch()) {
+  //     this.authService.signUp(this.email, this.password, this.name);
+  //   } else {
+  //     console.log('Form is invalid or passwords do not match');
+  //   }
+  // }
 }
