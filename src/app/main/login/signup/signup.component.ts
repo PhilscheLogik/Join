@@ -22,7 +22,9 @@ export class SignupComponent {
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
   passwordFieldActive: boolean = false;
+  confirmPasswordFieldActive: boolean = false;
   isVisibility: boolean = true;
+  isConfirmVisibility: boolean = true;
   name: string = '';
   email: string = '';
   password: string = '';
@@ -65,7 +67,8 @@ export class SignupComponent {
    */
   onFocus(inputName: string) {
     this.focusedInput = inputName;
-    this.passwordFieldActive = !this.passwordFieldActive;
+    this.passwordFieldActive = inputName === 'password';
+    this.confirmPasswordFieldActive = inputName === 'confirm-password';
   }
 
   /**
@@ -112,6 +115,22 @@ export class SignupComponent {
   toggleVisibility() {
     this.passwordVisible = !this.passwordVisible;
     this.isVisibility = !this.isVisibility;
+  }
+
+  /**
+   * This method toggles the visibility of the password input field.
+   * When called, it switches the value of `passwordVisible` and `isVisibility` properties.
+   *
+   * - If `passwordVisible` is `false`, it will be set to `true` to display the password.
+   * - If `passwordVisible` is `true`, it will be set to `false` to hide the password.
+   *
+   * Similarly, `isVisibility` is toggled to control additional visual elements related to password visibility.
+   *
+   * @returns {void} - This method doesn't return any value.
+   */
+  toggleConfirmVisibility() {
+    this.confirmPasswordVisible = !this.confirmPasswordVisible;
+    this.isConfirmVisibility = !this.isConfirmVisibility;
   }
 
   linkLogin() {

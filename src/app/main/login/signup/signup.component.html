@@ -87,7 +87,7 @@
       }
       <div
         class="confirm-password"
-        [ngClass]="{ 'input-focused': focusedInput === 'password' }"
+        [ngClass]="{ 'input-focused': focusedInput === 'confirm-password' }"
         [ngClass]="{ 'input-invalid': !isPasswordValid }"
       >
         <input
@@ -95,7 +95,7 @@
           id="confirm-password"
           name="confirm-password"
           placeholder="Confirm Password"
-          (focus)="onFocus('password')"
+          (focus)="onFocus('confirm-password')"
           (blur)="onBlur()"
           [(ngModel)]="confirmPassword"
           #pwConfirmSignUp
@@ -103,22 +103,22 @@
         <img
           class="lock"
           src="assets/img/icons/lock_icon.svg"
-          [ngClass]="{ d_none: passwordFieldActive }"
+          [ngClass]="{ d_none: confirmPasswordFieldActive }"
         />
-        @if(passwordFieldActive) {
+        @if(confirmPasswordFieldActive) {
         <img
           class="visibility_off"
           src="assets/img/icons/visibility_off_icon.svg"
-          [ngClass]="{ d_none: !passwordFieldActive }"
-          [ngClass]="{ d_none: !isVisibility }"
-          (click)="toggleVisibility()"
+          [ngClass]="{ d_none: !confirmPasswordFieldActive }"
+          [ngClass]="{ d_none: !isConfirmVisibility }"
+          (click)="toggleConfirmVisibility()"
         />
         <img
           class="visibility_off"
           src="assets/img/icons/visibility_icon.svg"
-          [ngClass]="{ d_none: !passwordFieldActive }"
-          [ngClass]="{ d_none: isVisibility }"
-          (click)="toggleVisibility()"
+          [ngClass]="{ d_none: !confirmPasswordFieldActive }"
+          [ngClass]="{ d_none: isConfirmVisibility }"
+          (click)="toggleConfirmVisibility()"
         />
         }
       </div>
