@@ -68,8 +68,8 @@ export class AuthService {
       });
   }
 
-  login(email: string, pw: string) {
-    signInWithEmailAndPassword(auth, email, pw)
+  login(email: string, pw: string): Promise<boolean> {
+    return signInWithEmailAndPassword(auth, email, pw)
       .then((userCredential) => {
         const user = userCredential.user;
 
@@ -77,6 +77,7 @@ export class AuthService {
         console.log(email, pw);
 
         this.isUserLoggedIn = true;
+        return true;
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -85,6 +86,7 @@ export class AuthService {
         console.log('auth Service login error');
         console.log(email, pw);
         console.log(errorCode, errorMessage);
+        return false;
       });
   }
 

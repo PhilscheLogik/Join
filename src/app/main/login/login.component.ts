@@ -141,9 +141,17 @@ export class LoginComponent implements OnInit {
       this.eMailPattern.test(this.email) &&
       this.pwPattern.test(this.password)
     ) {
-      this.authService.login(this.email, this.password);
-      this.checkSummaryAnimation();
-      this.linkContent();      
+      this.authService.login(this.email, this.password)
+      .then((isLoggedIn) => {
+        if (isLoggedIn) {
+          this.linkContent(); // Nur bei erfolgreicher Anmeldung ausführen
+          this.checkSummaryAnimation();
+        } else {
+          console.log('Login fehlgeschlagen! Überprüfe die Eingaben.');
+        }
+      });
+    } else {
+      console.log('Eingaben sind nicht gültig!');
     }
   }
 
