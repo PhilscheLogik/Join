@@ -6,16 +6,15 @@ import { AuthService } from '../../main/services/auth.service';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule ],
+  imports: [CommonModule],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  navigationService = inject(NavigationService);  
-  authService = inject(AuthService)
+  navigationService = inject(NavigationService);
+  authService = inject(AuthService);
 
   selectItem(index: number) {
     this.navigationService.setSelectedItem(index);
   }
-
 }

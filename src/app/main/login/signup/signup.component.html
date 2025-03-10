@@ -4,7 +4,7 @@
   </div>
 
   <div class="signUp-section">
-    <a class="back-btn"></a>
+    <a class="back-btn" (click)="linkLogin()"></a>
     <h1>Sign up</h1>
     <div class="border-blue"></div>
     <form>
@@ -19,7 +19,7 @@
         />
         <img src="assets/img/icons/person.svg" />
       </div>
-      <div 
+      <div
         class="signUp-email"
         [ngClass]="{ 'input-focused': focusedInput === 'email' }"
         [ngClass]="{ 'input-invalid': !isEmailValid }"
@@ -36,7 +36,7 @@
         />
         <img src="assets/img/icons/mail.svg" />
       </div>
-      <div 
+      <div
         class="signUp-password"
         [ngClass]="{ 'input-focused': focusedInput === 'password' }"
         [ngClass]="{ 'input-invalid': !isPasswordValid }"
@@ -51,7 +51,7 @@
         />
         <img src="assets/img/icons/lock_icon.svg" />
       </div>
-      <div 
+      <div
         class="confirm-password"
         [ngClass]="{ 'input-focused': focusedInput === 'password' }"
         [ngClass]="{ 'input-invalid': !isPasswordValid }"
@@ -66,30 +66,30 @@
           (blur)="onBlur()"
           #pwConfirmSignUp
         />
-        <img 
+        <img
           class="lock"
           src="assets/img/icons/lock_icon.svg"
           [ngClass]="{ d_none: passwordFieldActive }"
         />
         @if(passwordFieldActive) {
-          <img
-            class="visibility_off"
-            src="assets/img/icons/visibility_off_icon.svg"
-            [ngClass]="{ d_none: !passwordFieldActive }"
-            [ngClass]="{ d_none: !isVisibility }"
-            (click)="toggleVisibility()"
-          />
-          <img
-            class="visibility_off"
-            src="assets/img/icons/visibility_icon.svg"
-            [ngClass]="{ d_none: !passwordFieldActive }"
-            [ngClass]="{ d_none: isVisibility }"
-            (click)="toggleVisibility()"
-          />
-          }
+        <img
+          class="visibility_off"
+          src="assets/img/icons/visibility_off_icon.svg"
+          [ngClass]="{ d_none: !passwordFieldActive }"
+          [ngClass]="{ d_none: !isVisibility }"
+          (click)="toggleVisibility()"
+        />
+        <img
+          class="visibility_off"
+          src="assets/img/icons/visibility_icon.svg"
+          [ngClass]="{ d_none: !passwordFieldActive }"
+          [ngClass]="{ d_none: isVisibility }"
+          (click)="toggleVisibility()"
+        />
+        }
       </div>
       <div class="policy-checkbox-container">
-        <input type="checkbox">
+        <input type="checkbox" />
         <p>I accept the <span class="join-aqua">Privacy policy</span></p>
       </div>
       <div class="btn-section">

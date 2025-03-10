@@ -123,4 +123,9 @@ export class LoginComponent implements OnInit {
   selectItem(index: number) {
     this.navigationService.setSelectedItem(index);
   }
+
+  linkSignUp() {
+    this.navigationService.isSignUpVisible = false;
+    this.navigationService.isLoginVisible = true;
+  }
 }

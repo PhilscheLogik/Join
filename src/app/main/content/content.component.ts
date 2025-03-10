@@ -10,6 +10,7 @@ import { NavigationService } from '../../shared/navi/navigation.service';
 import { PolicyComponent } from '../../shared/policy/policy.component';
 import { ImprintComponent } from '../../shared/imprint/imprint.component';
 import { HelpComponent } from '../../shared/help/help.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-content',
@@ -31,7 +32,7 @@ import { HelpComponent } from '../../shared/help/help.component';
 })
 export class ContentComponent {
   navigationService = inject(NavigationService);
-
+  authService = inject(AuthService);
   /**
    * Selects an item by its index.
    *

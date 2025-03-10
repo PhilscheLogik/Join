@@ -1,4 +1,4 @@
-import { Component ,inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavigationService } from '../../../shared/navi/navigation.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
@@ -8,14 +8,13 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
   navigationService = inject(NavigationService);
-  authService = inject(AuthService)
+  authService = inject(AuthService);
 
   isSignUpActive = false; // activate if all required inputs are filled properly
-
 
   passwordVisible: boolean = false;
   passwordFieldActive: boolean = false;
@@ -79,7 +78,7 @@ export class SignupComponent {
     this.isEmailValid = !!this.email;
     this.isPasswordValid = !!this.password;
   }
-  
+
   /**
    * This method toggles the visibility of the password input field.
    * When called, it switches the value of `passwordVisible` and `isVisibility` properties.
@@ -94,5 +93,10 @@ export class SignupComponent {
   toggleVisibility() {
     this.passwordVisible = !this.passwordVisible;
     this.isVisibility = !this.isVisibility;
+  }
+
+  linkLogin() {
+    this.navigationService.isSignUpVisible = true;
+    this.navigationService.isLoginVisible = false;
   }
 }
