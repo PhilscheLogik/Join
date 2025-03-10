@@ -251,6 +251,12 @@ section {
 
 /*---------------------------------------------------------- MEDIA Mobile ---------------------------------------------------------- */
 /*---------------------------------------------------------------------------------------------------------------------------------- */
+@media (max-height: 800px) {
+  section {
+    overflow-y: auto;
+    margin-bottom: 8px;
+  }
+}
 
 @media (max-width: 1200px) {
   section {
@@ -297,6 +303,9 @@ section {
     height: 100%;
     background-color: $cream_white;
     z-index: -2;
+  }
+  .box {
+    padding: 8px;
   }
 
   .fade-out {
@@ -348,6 +357,11 @@ section {
   .left {
     width: 65%;
     // height: 100%;
+    gap: 8px;
+  }
+
+  .border-grey {
+    height: 7vh;
   }
 
   .box {

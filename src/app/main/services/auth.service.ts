@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -25,7 +26,7 @@ const auth = getAuth(app);
 export class AuthService {
   email = 'conan@edo.de';
   password = 'D1#tester';
-  name = 'Ingo Düsenjäger';
+  name = '';
   isUserLoggedIn = false;
 
   constructor() {}
@@ -36,7 +37,26 @@ export class AuthService {
         const user = userCredential.user;
 
         console.log('auth Service create works');
-        console.log(email, pw);
+        console.log(email, pw, name);
+
+        if (auth.currentUser) {
+          updateProfile(auth.currentUser, {
+            displayName: name,
+          })
+            .then(() => {
+              console.log('auth Service signup change name');
+              console.log(name);
+              this.name = name;
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+
+              console.log('auth Service change name error');
+              console.log(email, pw);
+              console.log(errorCode, errorMessage);
+            });
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -55,6 +75,7 @@ export class AuthService {
 
         console.log('auth Service login works');
         console.log(email, pw);
+
         this.isUserLoggedIn = true;
       })
       .catch((error) => {
@@ -72,6 +93,7 @@ export class AuthService {
       .then(() => {
         console.log('User wurde ausgeloggt');
         this.isUserLoggedIn = false;
+        this.name = '';
       })
       .catch((error) => {
         console.log('Mist, ist schief gelaufen');

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { NavigationService } from '../navi/navigation.service';
+import { AuthService } from '../../main/services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,6 +12,7 @@ import { NavigationService } from '../navi/navigation.service';
 })
 export class FooterComponent {
   navigationService = inject(NavigationService);  
+  authService = inject(AuthService)
 
   selectItem(index: number) {
     this.navigationService.setSelectedItem(index);
