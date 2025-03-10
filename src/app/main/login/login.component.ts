@@ -27,6 +27,9 @@ export class LoginComponent implements OnInit {
   isPasswordValid: boolean = true;
 
   focusedInput: string = '';
+  loginAttempted: boolean = false;
+  eMailPattern = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/;
+  pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{8,20}/;
 
   /**
    * Lifecycle hook that is called after component initialization.
@@ -59,7 +62,7 @@ export class LoginComponent implements OnInit {
    */
   onFocus(inputName: string) {
     this.focusedInput = inputName;
-    this.passwordFieldActive = !this.passwordFieldActive;
+    this.passwordFieldActive = inputName === 'password';
   }
 
   /**
@@ -83,8 +86,13 @@ export class LoginComponent implements OnInit {
    * @returns {void} - This method doesn't return any value.
    */
   onLoginClick() {
+    this.loginAttempted = true;
     this.isEmailValid = !!this.email;
     this.isPasswordValid = !!this.password;
+
+    console.log('eMail: ', this.email, 'PW: ', this.password);
+    console.log('eMail: ', this.eMailPattern.test(this.email));
+    console.log('PW: ', this.pwPattern.test(this.password));
   }
 
   /**

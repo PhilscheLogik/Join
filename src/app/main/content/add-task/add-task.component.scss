@@ -44,10 +44,10 @@ form {
   }
 }
 
-.error-message {
-  @include font($fs: 10px, $fw: 400);
-  color: $red;
-}
+// .error-message {
+//   @include font($fs: 10px, $fw: 400);
+//   color: $red;
+// }
 
 /*linkes Div*/
 .content {

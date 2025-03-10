@@ -81,3 +81,8 @@ a {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error-message {
+  @include font($fs: 10px, $fw: 400);
+  color: $red;
+}

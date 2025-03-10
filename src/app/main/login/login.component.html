@@ -12,66 +12,75 @@
     <h1>Log in</h1>
     <div class="border-blue"></div>
     <form #contactForm="ngForm">
-      <div
-        class="input-email"
-        [ngClass]="{ 'input-focused': focusedInput === 'email' }"
-        [ngClass]="{ 'input-invalid': !isEmailValid }"
-      >
-        <input
-          type="text"
-          id="email"
-          name="email"
-          placeholder="Email"
-          pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-          (focus)="onFocus('email')"
-          (blur)="onBlur()"
-          [(ngModel)]="email"
-          #emailLogin="ngModel"
-        />
-        <img src="assets/img/icons/mail.svg" />
+      <div class="form-section">
+        <div
+          class="input-email"
+          [ngClass]="{ 'input-focused': focusedInput === 'email' }"
+          [ngClass]="{ 'input-invalid': !isEmailValid }"
+        >
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+            (focus)="onFocus('email')"
+            (blur)="onBlur()"
+            [(ngModel)]="email"
+            #emailLogin="ngModel"
+          />
+          <img src="assets/img/icons/mail.svg" />
+        </div>
+        <div
+          class="input-password"
+          [ngClass]="{ 'input-focused': focusedInput === 'password' }"
+          [ngClass]="{ 'input-invalid': !isPasswordValid }"
+        >
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            id="password"
+            name="password"
+            placeholder="Password"
+            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}$"
+            (focus)="onFocus('password')"
+            (blur)="onBlur()"
+            [(ngModel)]="password"
+            #pwLogin
+          />
+          <img
+            class="lock"
+            src="assets/img/icons/lock_icon.svg"
+            [ngClass]="{ d_none: passwordFieldActive }"
+          />
+          @if(passwordFieldActive) {
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_off_icon.svg"
+            [ngClass]="{ d_none: !passwordFieldActive }"
+            [ngClass]="{ d_none: !isVisibility }"
+            (click)="toggleVisibility()"
+          />
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_icon.svg"
+            [ngClass]="{ d_none: !passwordFieldActive }"
+            [ngClass]="{ d_none: isVisibility }"
+            (click)="toggleVisibility()"
+          />
+          }
+        </div>
       </div>
-      <div
-        class="input-password"
-        [ngClass]="{ 'input-focused': focusedInput === 'password' }"
-        [ngClass]="{ 'input-invalid': !isPasswordValid }"
-      >
-        <input
-          [type]="passwordVisible ? 'text' : 'password'"
-          id="password"
-          name="password"
-          placeholder="Password"
-          pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{8,20}$"
-          (focus)="onFocus('password')"
-          (blur)="onBlur()"
-          [(ngModel)]="password"
-          #pwLogin
-        />
-        <img
-          class="lock"
-          src="assets/img/icons/lock_icon.svg"
-          [ngClass]="{ d_none: passwordFieldActive }"
-        />
-        @if(passwordFieldActive) {
-        <img
-          class="visibility_off"
-          src="assets/img/icons/visibility_off_icon.svg"
-          [ngClass]="{ d_none: !passwordFieldActive }"
-          [ngClass]="{ d_none: !isVisibility }"
-          (click)="toggleVisibility()"
-        />
-        <img
-          class="visibility_off"
-          src="assets/img/icons/visibility_icon.svg"
-          [ngClass]="{ d_none: !passwordFieldActive }"
-          [ngClass]="{ d_none: isVisibility }"
-          (click)="toggleVisibility()"
-        />
-        }
-      </div>
+      @if(loginAttempted && (eMailPattern.test(this.email) != true || pwPattern.test(this.password) != true) ) {
+        <div class="error-message">
+          <p>Check your email and password! Please try again.<br>(min 6 character - min 1 special character, 1 capital letter, 1 number).</p>
+        </div>
+      }
       <div class="btn-section">
         <button
           class="btn-login"
-          (click)="onLoginClick(); authService.login(emailLogin.value, pwLogin.value)"
+          (click)="
+            onLoginClick(); authService.login(emailLogin.value, pwLogin.value)
+          "
         >
           Log in
         </button>

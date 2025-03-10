@@ -55,7 +55,7 @@ section {
     border-radius: 3px;
   }
 
-  form {
+  .form-section {
     @include dFlex($g: 30px);
     flex-direction: column;
   }
@@ -100,7 +100,6 @@ section {
       }
     }
 
-    .lock,
     .visibility_off {
       cursor: pointer;
     }
@@ -186,20 +185,20 @@ section {
 
 /*--------------------------------------------------   Desktop   --------------------------------------------------*/
 @media (min-width: 480px) {
-    .animated-logo {
-   
-      width: 274px !important;
-      height: 334px !important;
-     
+  .animated-logo {
 
-      &.logo-final-position {
-        width: 100px !important;
-        height: 122px !important;
-        top: 48px !important;
-        left: 48px !important;
-      }
+    width: 274px !important;
+    height: 334px !important;
+
+
+    &.logo-final-position {
+      width: 100px !important;
+      height: 122px !important;
+      top: 48px !important;
+      left: 48px !important;
     }
   }
+}
 
 @media (min-width: 500px) {
   .login-section {
