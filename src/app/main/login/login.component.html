@@ -69,20 +69,17 @@
         </div>
       </div>
       <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
-      @if(loginAttempted && (eMailPattern.test(this.email) != true || pwPattern.test(this.password) != true) ) {
-        <div class="error-message">
-          <p>Check your email and password! Please try again.<br>(min 6 character - min 1 special character, 1 capital letter, 1 number).</p>
-        </div>
+      @if(loginAttempted && (eMailPattern.test(this.email) != true ||
+      pwPattern.test(this.password) != true) ) {
+      <div class="error-message">
+        <p>
+          Check your email and password! Please try again.<br />(min 6 character
+          - min 1 special character, 1 capital letter, 1 number).
+        </p>
+      </div>
       }
       <div class="btn-section">
-        <button
-          class="btn-login"
-          (click)="
-            onLoginClick(); authService.login(emailLogin.value, pwLogin.value)
-          "
-        >
-          Log in
-        </button>
+        <button class="btn-login" (click)="onLoginClick()">Log in</button>
         <button class="btn-guest-login">Guest Log in</button>
       </div>
     </form>
@@ -90,20 +87,18 @@
 
   <div class="sign-up">
     <p>Not a Join user?</p>
-    <button (click)="linkSignUp()">
-      Sign up
-    </button>
+    <button (click)="linkSignUp()">Sign up</button>
   </div>
 
   <div class="footer-section">
     <a
       [ngClass]="{ active: navigationService.selectedItem === 4 }"
-      (click)="selectItem(4)"
+      (click)="selectItem(4); linkContent()"
       >Privacy Policy</a
     >
     <a
       [ngClass]="{ active: navigationService.selectedItem === 5 }"
-      (click)="selectItem(5)"
+      (click)="selectItem(5); linkContent()"
       >Legal Notice</a
     >
   </div>

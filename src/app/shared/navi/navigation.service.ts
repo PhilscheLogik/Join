@@ -11,6 +11,8 @@ export class NavigationService {
   isLoginVisible = false;
   isContentVisible = true;
 
+  isAnimationSummarydone = false;
+
   setSelectedItem(index: number) {
     this.predecessor = this.selectedItem;
     this.selectedItem = index;

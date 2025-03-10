@@ -89,6 +89,8 @@ export class LoginComponent implements OnInit {
     this.loginAttempted = true;
     this.isEmailValid = !!this.email;
     this.isPasswordValid = !!this.password;
+
+    this.validateInput();
   }
 
   /**
@@ -127,5 +129,26 @@ export class LoginComponent implements OnInit {
   linkSignUp() {
     this.navigationService.isSignUpVisible = false;
     this.navigationService.isLoginVisible = true;
+  }
+
+  linkContent() {
+    this.navigationService.isContentVisible = false;
+    this.navigationService.isLoginVisible = true;
+  }
+
+  validateInput() {
+    if (
+      this.eMailPattern.test(this.email) &&
+      this.pwPattern.test(this.password)
+    ) {
+      this.authService.login(this.email, this.password);
+      this.checkSummaryAnimation();
+      this.linkContent();      
+    }
+  }
+
+  checkSummaryAnimation() {
+    setTimeout(() => {}, 10000);
+    this.navigationService.isAnimationSummarydone = true;
   }
 }

@@ -17,4 +17,9 @@ export class FooterComponent {
   selectItem(index: number) {
     this.navigationService.setSelectedItem(index);
   }
+
+  linkLogin() {
+    this.navigationService.isContentVisible = true;
+    this.navigationService.isLoginVisible = false;
+  }
 }
