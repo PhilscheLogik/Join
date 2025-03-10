@@ -38,98 +38,102 @@
         />
         <img src="assets/img/icons/mail.svg" />
       </div>
-      <div
-        class="signUp-password"
-        [ngClass]="{ 'input-focused': focusedInput === 'password' }"
-        [ngClass]="{ 'input-invalid': !isPasswordValid }"
-      >
-        <input
-          [type]="passwordVisible ? 'text' : 'password'"
-          id="signUp-password"
-          name="password"
-          placeholder="Password"
-          (focus)="onFocus('password')"
-          (blur)="onBlur()"
-          [(ngModel)]="password"
-          #pwSignUp
-        />
-        <img
-          class="lock" 
-          src="assets/img/icons/lock_icon.svg"
-          [ngClass]="{ d_none: passwordFieldActive }" 
-        />
-        @if(passwordFieldActive) {
+      <div class="password-container">
+        <div
+          class="signUp-password"
+          [ngClass]="{ 'input-focused': focusedInput === 'password' }"
+          [ngClass]="{ 'input-invalid': !isPasswordValid }"
+        >
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            id="signUp-password"
+            name="password"
+            placeholder="Password"
+            (focus)="onFocus('password')"
+            (blur)="onBlur()"
+            [(ngModel)]="password"
+            #pwSignUp
+          />
+          <img
+            class="lock" 
+            src="assets/img/icons/lock_icon.svg"
+            [ngClass]="{ d_none: passwordFieldActive }" 
+          />
+          @if(passwordFieldActive) {
+            <img
+              class="visibility_off"
+              src="assets/img/icons/visibility_off_icon.svg"
+              [ngClass]="{ d_none: !passwordFieldActive }"
+              [ngClass]="{ d_none: !isVisibility }"
+              (click)="toggleVisibility()"
+            />
+            <img
+              class="visibility_off"
+              src="assets/img/icons/visibility_icon.svg"
+              [ngClass]="{ d_none: !passwordFieldActive }"
+              [ngClass]="{ d_none: isVisibility }"
+              (click)="toggleVisibility()"
+            />
+            }
+        </div>
+        <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
+        @if(signUpAttempted && (eMailPattern.test(this.email) != true ||
+        pwPattern.test(this.password) != true || namePattern.test(this.name)) ) {
+        <div class="error-message">
+          <p>
+            Check your name, email and password! Please try again.<br />(min 6 character
+            - min 1 special character, 1 capital letter, 1 number).
+          </p>
+        </div>
+        }
+      </div>
+      <div class="confirm-password-container">
+        <div
+          class="confirm-password"
+          [ngClass]="{ 'input-focused': focusedInput === 'confirm-password' }"
+          [ngClass]="{ 'input-invalid': !isPasswordValid }"
+        >
+          <input
+          [type]="confirmPasswordVisible ? 'text' : 'password'"
+            id="confirm-password"
+            name="confirm-password"
+            placeholder="Confirm Password"
+            (focus)="onFocus('confirm-password')"
+            (blur)="onBlur()"
+            [(ngModel)]="confirmPassword"
+            #pwConfirmSignUp
+          />
+          <img
+            class="lock"
+            src="assets/img/icons/lock_icon.svg"
+            [ngClass]="{ d_none: confirmPasswordFieldActive }"
+          />
+          @if(confirmPasswordFieldActive) {
           <img
             class="visibility_off"
             src="assets/img/icons/visibility_off_icon.svg"
-            [ngClass]="{ d_none: !passwordFieldActive }"
-            [ngClass]="{ d_none: !isVisibility }"
-            (click)="toggleVisibility()"
+            [ngClass]="{ d_none: !confirmPasswordFieldActive }"
+            [ngClass]="{ d_none: !isConfirmVisibility }"
+            (click)="toggleConfirmVisibility()"
           />
           <img
             class="visibility_off"
             src="assets/img/icons/visibility_icon.svg"
-            [ngClass]="{ d_none: !passwordFieldActive }"
-            [ngClass]="{ d_none: isVisibility }"
-            (click)="toggleVisibility()"
+            [ngClass]="{ d_none: !confirmPasswordFieldActive }"
+            [ngClass]="{ d_none: isConfirmVisibility }"
+            (click)="toggleConfirmVisibility()"
           />
           }
-      </div>
-      <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
-      @if(signUpAttempted && (eMailPattern.test(this.email) != true ||
-      pwPattern.test(this.password) != true || namePattern.test(this.name)) ) {
-      <div class="error-message">
-        <p>
-          Check your name, email and password! Please try again.<br />(min 6 character
-          - min 1 special character, 1 capital letter, 1 number).
-        </p>
-      </div>
-      }
-      <div
-        class="confirm-password"
-        [ngClass]="{ 'input-focused': focusedInput === 'confirm-password' }"
-        [ngClass]="{ 'input-invalid': !isPasswordValid }"
-      >
-        <input
-        [type]="confirmPasswordVisible ? 'text' : 'password'"
-          id="confirm-password"
-          name="confirm-password"
-          placeholder="Confirm Password"
-          (focus)="onFocus('confirm-password')"
-          (blur)="onBlur()"
-          [(ngModel)]="confirmPassword"
-          #pwConfirmSignUp
-        />
-        <img
-          class="lock"
-          src="assets/img/icons/lock_icon.svg"
-          [ngClass]="{ d_none: confirmPasswordFieldActive }"
-        />
-        @if(confirmPasswordFieldActive) {
-        <img
-          class="visibility_off"
-          src="assets/img/icons/visibility_off_icon.svg"
-          [ngClass]="{ d_none: !confirmPasswordFieldActive }"
-          [ngClass]="{ d_none: !isConfirmVisibility }"
-          (click)="toggleConfirmVisibility()"
-        />
-        <img
-          class="visibility_off"
-          src="assets/img/icons/visibility_icon.svg"
-          [ngClass]="{ d_none: !confirmPasswordFieldActive }"
-          [ngClass]="{ d_none: isConfirmVisibility }"
-          (click)="toggleConfirmVisibility()"
-        />
+        </div>
+        @if(signUpAttempted && (eMailPattern.test(this.email) != true ||
+        pwPattern.test(this.password) != true || namePattern.test(this.name) != true) ) {
+        <div class="error-message">
+          <p>
+            Your passwords don't match. Please try again..
+          </p>
+        </div>
         }
       </div>
-      @if(signUpAttempted && (eMailPattern.test(this.email) != true ||
-      pwPattern.test(this.password) != true || namePattern.test(this.name) != true) ) {
-      <div class="error-message">
-        <p>
-          Your passwords don't match. Please try again..
-        </p>
-      </div>
-      }
       <div class="policy-checkbox-container">
         <input type="checkbox" />
         <p>I accept the <span class="join-aqua">Privacy policy</span></p>
@@ -144,10 +148,6 @@
       </div>
     </form>
   </div>
-
-  <!--<div class="sign-up">
-      
-    </div> -->
 
   <div class="footer-section">
     <a
