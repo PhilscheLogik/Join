@@ -42,6 +42,11 @@ section {
   border: unset;
   border-radius: 30px;
   padding: 32px 32px;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+
+  &.content-visible {
+    opacity: 1;
+  }
 
   >h1 {
     @include font($fs: 47px, $fw: 700);

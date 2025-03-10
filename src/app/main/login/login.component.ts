@@ -12,33 +12,43 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  /** Inject Services */
+  /** Injected Services */
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
+
   /** UI States */
   isPageLoaded: boolean = false;
   isLogoShifted: boolean = false;
-  passwordVisible: boolean = false;
-  passwordFieldActive: boolean = false;
-  isVisibility: boolean = true;
+  isContentVisible: boolean = false;
+
+  /** Authentication & Input States */
   email: string = '';
   password: string = '';
   isEmailValid: boolean = true;
   isPasswordValid: boolean = true;
-
   focusedInput: string = '';
   loginAttempted: boolean = false;
+
+  /** Password Visibility */
+  passwordVisible: boolean = false;
+  passwordFieldActive: boolean = false;
+  isVisibility: boolean = true;
+
+  /** Validation Patterns */
   eMailPattern = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/;
   pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}/;
 
   /**
-   * Lifecycle hook that is called after component initialization.
+   * Angular lifecycle hook that runs after component initialization.
    *
-   * This method triggers a delayed animation effect:
-   * - First, it sets `isPageLoaded` to `true` after 200ms, making the page visible.
-   * - Then, it shifts the logo after an additional 400ms (total 600ms).
+   * This method orchestrates a delayed animation sequence for the login page:
+   * - **Step 1**: Sets `isPageLoaded` to `true` after 200ms, making the page visible.
+   * - **Step 2**: Moves the logo to its final position after an additional 400ms (total 600ms).
+   * - **Step 3**: Displays the login content smoothly after another 400ms (total 1000ms).
    *
-   * @returns {void} This method does not return anything.
+   * The staggered timing ensures a visually appealing entrance effect.
+   *
+   * @returns {void} This method does not return a value.
    */
   ngOnInit(): void {
     setTimeout(() => {
@@ -48,6 +58,10 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.isLogoShifted = true;
     }, 600);
+
+    setTimeout(() => {
+      this.isContentVisible = true;
+    }, 1000);
   }
 
   /**
@@ -127,7 +141,6 @@ export class LoginComponent implements OnInit {
    * This method hides the sign-up section and shows the login section.
    *
    * @function linkSignUp
-   * @memberof YourClassName
    */
   linkSignUp() {
     this.navigationService.isSignUpVisible = false;
@@ -139,7 +152,6 @@ export class LoginComponent implements OnInit {
    * This method hides the content section and shows the login section.
    *
    * @function linkContent
-   * @memberof YourClassName
    */
   linkContent() {
     this.navigationService.isContentVisible = false;
@@ -153,7 +165,6 @@ export class LoginComponent implements OnInit {
    * If the login fails or the input is invalid, it logs an appropriate message to the console.
    *
    * @function validateInput
-   * @memberof YourClassName
    * @returns {void}
    */
   validateInput() {
