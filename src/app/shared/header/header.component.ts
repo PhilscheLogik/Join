@@ -14,20 +14,30 @@ export class HeaderComponent {
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
 
+  overlayState = true;
+  isOpen = false;
+  isClosing = false;
+  // isOverlayVisible: boolean = false;
+
+  /**
+   * Setzt das aktuell ausgewählte Navigations-Item.
+   * @param {number} index - Der Index des auszuwählenden Elements.
+   */
   selectItem(index: number) {
     this.navigationService.setSelectedItem(index);
   }
 
-  // isOverlayVisible: boolean = false;
-  overlayState = true;
-  isOpen = false;
-  isClosing = false;
-
+  /**
+   * Öffnet oder schließt das Overlay.
+   */
   toggleOverlay() {
     this.isOpen = !this.isOpen;
     this.overlayState = !this.overlayState;
   }
 
+  /**
+   * Schließt das Overlay.
+   */
   closeOverlay() {
     this.isOpen = false;
   }
