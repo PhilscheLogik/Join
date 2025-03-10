@@ -21,6 +21,16 @@ section {
     }
 }
 
+h1 {
+    @include font($fs: 47px, $fw: 700);
+}
+
+.border-blue {
+    width: 150px;
+    border-bottom: 3px solid $aqua;
+    border-radius: 3px;
+}
+
 .signUp-section {
     @include dFlex($g: 30px);
     flex-direction: column;
@@ -46,16 +56,6 @@ section {
             background-color: $hover_gray;
             transform: scale(1.15);
         } 
-    }
-
-    >h1 {
-        @include font($fs: 47px, $fw: 700);
-    }
-
-    .border-blue {
-        width: 150px;
-        border-bottom: 3px solid $aqua;
-        border-radius: 3px;
     }
 
     form {
@@ -139,9 +139,28 @@ section {
     max-width: 240px;
     gap: 10px;
 
+    >input {
+        border-color: $dark_blue;
+        border-width: 4px;
+        border-style: solid;
+        height: 16px;
+        padding: 0;
+        &:hover {
+            cursor: pointer;
+            background-color: $gray;
+        }
+    }
+
     >p {
         color: $light_gray;
+        >span {
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
+
+    
 }
 
 .policy-checkbox {
@@ -162,10 +181,14 @@ section {
     }
 }
 
+.lock,
+    .visibility_off {
+      cursor: pointer;
+    }
 /*--------------------------------------------------   Desktop   --------------------------------------------------*/
 @media (min-width: 1024px) {
 
-    .login-section {
+    .signUp-section {
         width: 45.28vw;
 
         >h1 {
@@ -184,5 +207,15 @@ section {
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             }
         }
+    }
+}
+
+@media (max-width: 480px) {
+    h1{
+        font-size: 32px;
+    }
+
+    .border-blue {
+        width: 100px;
     }
 }
