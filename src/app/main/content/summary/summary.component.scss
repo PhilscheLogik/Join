@@ -3,7 +3,8 @@ section {
   width: 100%;
   height: calc(100vh - 91px);
   box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
-  padding: 0 70px;
+  padding: 0 70px 8px;
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
@@ -70,6 +71,7 @@ section {
   @include dFlex();
   cursor: pointer;
   box-shadow: 0 4px 4px 0 rgba($black, 0.25);
+  padding: 4px;
 
   transition: transform 0.1s;
 }
@@ -251,13 +253,6 @@ section {
 
 /*---------------------------------------------------------- MEDIA Mobile ---------------------------------------------------------- */
 /*---------------------------------------------------------------------------------------------------------------------------------- */
-@media (max-height: 800px) {
-  section {
-    overflow-y: auto;
-    margin-bottom: 8px;
-  }
-}
-
 @media (max-width: 1200px) {
   section {
     padding: 0 16px;
@@ -309,7 +304,7 @@ section {
   }
 
   .fade-out {
-    animation: fadeInOut 7s ease;
+    animation: fadeInOut 3s ease;
   }
   @keyframes fadeInOut {
     0% {

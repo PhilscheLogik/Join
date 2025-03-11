@@ -174,7 +174,7 @@ export class LoginComponent implements OnInit {
     ) {
       this.loginUser(this.email, this.password);
     } else {
-      console.log('Eingaben sind nicht gültig!');
+      // console.log('Eingaben sind nicht gültig!');
     }
   }
 
@@ -196,7 +196,7 @@ export class LoginComponent implements OnInit {
         this.password = '';
         this.loginAttempted = false;
       } else {
-        console.log('Login fehlgeschlagen! Überprüfe die Eingaben.');
+        // console.log('Login fehlgeschlagen! Überprüfe die Eingaben.');
       }
     });
   }

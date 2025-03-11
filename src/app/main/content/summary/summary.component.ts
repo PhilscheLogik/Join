@@ -19,9 +19,18 @@ export class SummaryComponent {
   authService = inject(AuthService);
 
   dateDeadline = '2100-12-31';
-
   hideRight = false;
 
+  /**
+   * Returns a greeting message based on the current time of day.
+   *
+   * - "Good Morning" for hours between 6 and 11:59.
+   * - "Good day" for hours between 12 and 17:59.
+   * - "Good evening" for hours between 18 and 21:59.
+   * - "Welcome" for all other hours (late night/early morning).
+   *
+   * @returns {string} A greeting message corresponding to the current time.
+   */
   getGreeting() {
     const now = new Date();
     const hour = now.getHours();
@@ -38,6 +47,19 @@ export class SummaryComponent {
     return greeting;
   }
 
+  /**
+   * Counts the total number of tasks with "Urgent" priority across different task lists
+   * and finds the earliest deadline date among them.
+   *
+   * Task lists considered:
+   * - To-do list
+   * - In-progress list
+   * - Feedback list
+   *
+   * The function updates the `dateDeadline` property with the closest upcoming deadline.
+   *
+   * @returns {number} The total count of urgent tasks across all lists.
+   */
   countUrgentTasks(): number {
     let sum = 0;
     let toDoUrgent = this.taskService.todoList?.filter(
@@ -59,6 +81,11 @@ export class SummaryComponent {
     return sum;
   }
 
+  /**
+   * Finds the earliest deadline date in a given array of tasks and updates the `dateDeadline`.
+   *
+   * @param {any[]} array - The array of tasks to check for deadlines.
+   */
   findNextDeadline(array: any) {
     if (!array || array.length === 0) {
       return;
@@ -71,7 +98,12 @@ export class SummaryComponent {
     });
   }
 
+  /**
+   * Converts the current deadline string to a Date object.
+   *
+   * @returns {Date} The current deadline as a Date object.
+   */
   getDeadlineDate() {
     return new Date(this.dateDeadline);
-  } 
+  }
 }
