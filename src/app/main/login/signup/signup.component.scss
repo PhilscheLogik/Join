@@ -149,8 +149,8 @@ h1 {
       background-color: $gray;
     }
   }
-  
-  >div p{
+
+  > div p {
     color: $light_gray;
     span {
       &:hover {
@@ -231,5 +231,50 @@ h1 {
       width: 64px;
       height: 78px;
     }
+  }
+}
+
+.toast-message {
+  @include dFlex($g: 16px);
+  position: fixed;
+  bottom: 160px;
+  background-color: $dark_blue;
+  color: $white;
+  padding: 24px 24px;
+  border-radius: 20px;
+  font-size: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 30;
+  opacity: 1;
+  transform: translateX(150%);
+  animation: slide-in 0.125s ease-in forwards,
+    slide-out 0.125s ease-out 1.5s forwards;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(250%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(250%);
+    opacity: 0;
   }
 }
