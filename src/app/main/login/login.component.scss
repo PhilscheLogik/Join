@@ -4,9 +4,11 @@ section {
   @include dFlex($g: 50px);
   flex-direction: column;
   height: 100vh;
+  min-height: 750px;
   position: relative;
   opacity: 0;
   transition: opacity 1s ease-in-out;
+  overflow: auto;
 
   &.page-loaded {
     opacity: 1;
