@@ -7,7 +7,7 @@
     <a class="back-btn" (click)="linkLogin()"></a>
     <h1>Sign up</h1>
     <div class="border-blue"></div>
-    <form #contactForm="ngForm">
+    <form #signUpForm="ngForm">
       <div class="signUp-name">
         <input
           type="text"
@@ -76,16 +76,6 @@
             />
             }
         </div>
-        <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
-        @if(signUpAttempted && (eMailPattern.test(this.email) != true ||
-        pwPattern.test(this.password) != true || namePattern.test(this.name)) ) {
-        <div class="error-message">
-          <p>
-            Check your name, email and password! Please try again.<br />(min 6 character
-            - min 1 special character, 1 capital letter, 1 number).
-          </p>
-        </div>
-        }
       </div>
       <div class="confirm-password-container">
         <div
@@ -125,8 +115,20 @@
           />
           }
         </div>
+        <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
         @if(signUpAttempted && (eMailPattern.test(this.email) != true ||
         pwPattern.test(this.password) != true || namePattern.test(this.name) != true) ) {
+        <div class="error-message">
+          <p>
+            Check your name, email and password! Please try again.<br /> 
+            Name: (min 3character) <br>
+            Password: (min 6 character
+            - min 1 special character, 1 capital letter, 1 number). 
+          </p>
+        </div>
+        }
+        @if(signUpAttempted && (
+        pwPattern.test(this.password) != true || this.confirmPassword != this.password) ) {
         <div class="error-message">
           <p>
             Your passwords don't match. Please try again..
@@ -135,12 +137,22 @@
         }
       </div>
       <div class="policy-checkbox-container">
-        <input type="checkbox" />
-        <p>I accept the <span class="join-aqua">Privacy policy</span></p>
+        <input 
+          type="checkbox"
+          [(ngModel)]="acceptedPolicy"
+          name="policy"
+          #policyCheck="ngModel"
+        />
+        <div>
+          <p>I accept the <span class="join-aqua">Privacy policy</span></p>
+        </div>
       </div>
+      
       <div class="btn-section">
         <button
           class="btn-signUp"
+          [disabled]="!isFormValid()"
+          [ngClass]="{ 'btn-disabled': !isFormValid() }"
           (click)="onSignUpClick()"
         >
           Sign up

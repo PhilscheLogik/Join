@@ -167,6 +167,12 @@ h1 {
   cursor: pointer;
 }
 
+.btn-disabled {
+  background-color: $hover_gray;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .footer-section {
   @include dFlex($g: 40px);
   padding-bottom: 30px;

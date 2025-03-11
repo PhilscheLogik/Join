@@ -27,12 +27,14 @@ export class SignupComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  acceptedPolicy: boolean = false; // New property for checkbox
 
   /** Validation States */
   isNameValid: boolean = true;
   isEmailValid: boolean = true;
   isPasswordValid: boolean = true;
   isPasswordEqual: boolean = true;
+  isPolicyAccepted: boolean = true; // New validation state for checkbox
 
   /** Password Visibility States */
   passwordVisible: boolean = false;
@@ -91,23 +93,59 @@ export class SignupComponent {
   }
 
   /**
-   * This method is triggered when the login button is clicked.
-   * It checks whether the email and password fields are valid (i.e., not empty).
-   * The validity is stored in `isEmailValid` and `isPasswordValid` variables.
-   *
-   * The method assigns `true` to `isEmailValid` if `email` is not empty, otherwise `false`.
-   * Similarly, it assigns `true` to `isPasswordValid` if `password` is not empty, otherwise `false`.
-   *
-   * @returns {void} - This method doesn't return any value.
+   * Checks if all form fields are valid and the privacy policy is accepted
+   * @returns {boolean} Returns true if all validation conditions are met, false otherwise
    */
-  onSignUpClick() {
-    this.signUpAttempted = true;
-    this.isNameValid = !!this.name;
-    this.isEmailValid = !!this.email;
-    this.isPasswordValid = !!this.password;
-    this.isPasswordEqual = !!this.confirmPassword;
+  isFormValid(): boolean {
+    return (
+      // this.namePattern.test(this.name) &&          // Name matches pattern
+      // this.eMailPattern.test(this.email) &&        // Email matches pattern
+      // this.pwPattern.test(this.password) &&        // Password matches pattern
+      !!this.name &&
+      !!this.email &&
+      !!this.password &&
+      // this.password === this.confirmPassword &&    // Passwords match
+      this.acceptedPolicy                          // Privacy policy checkbox is checked
+    );
+  }
 
-    this.validateInput();
+  // /**
+  //  * This method is triggered when the login button is clicked.
+  //  * It checks whether the email and password fields are valid (i.e., not empty).
+  //  * The validity is stored in `isEmailValid` and `isPasswordValid` variables.
+  //  *
+  //  * The method assigns `true` to `isEmailValid` if `email` is not empty, otherwise `false`.
+  //  * Similarly, it assigns `true` to `isPasswordValid` if `password` is not empty, otherwise `false`.
+  //  *
+  //  * @returns {void} - This method doesn't return any value.
+  //  */
+  // onSignUpClick() {
+  //   this.signUpAttempted = true;
+  //   this.isNameValid = !!this.name;
+  //   this.isEmailValid = !!this.email;
+  //   this.isPasswordValid = !!this.password;
+  //   this.isPasswordEqual = !!this.confirmPassword;
+
+  //   this.validateInput();
+  // }
+
+  /**
+   * Handles the sign up button click event and form validation
+   * @returns {void}
+   */
+  onSignUpClick(): void {
+    this.signUpAttempted = true;
+    
+    // Update validation states
+    this.isNameValid = this.namePattern.test(this.name);
+    this.isEmailValid = this.eMailPattern.test(this.email);
+    this.isPasswordValid = this.pwPattern.test(this.password);
+    this.isPasswordEqual = this.password === this.confirmPassword;
+
+    // If form is valid, proceed with signup
+    if (this.isFormValid()) {
+      this.validateInput();
+    }
   }
 
   /**
@@ -159,17 +197,14 @@ export class SignupComponent {
     }
   }
 
-  // Check if passwords match
-  //  passwordsMatch(): boolean {
-  //   return this.password === this.confirmPassword;
-  // }
-
-  // Handle form submission
-  // onSignUpClick() {
-  //   if (this.signupForm.valid && this.passwordsMatch()) {
+  // /**
+  //  * Validates input and triggers signup if all conditions are met
+  //  * @returns {void}
+  //  */
+  // validateInput(): void {
+  //   if (this.isFormValid()) {
   //     this.authService.signUp(this.email, this.password, this.name);
-  //   } else {
-  //     console.log('Form is invalid or passwords do not match');
+  //     this.linkLogin();
   //   }
   // }
 }
