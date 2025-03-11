@@ -172,12 +172,22 @@ export class LoginComponent implements OnInit {
       this.eMailPattern.test(this.email) &&
       this.pwPattern.test(this.password)
     ) {
-      this.loginUser(this.email, this.password);      
+      this.loginUser(this.email, this.password);
     } else {
       console.log('Eingaben sind nicht gültig!');
     }
   }
 
+  /**
+   * Attempts to log in a user with the provided email and password.
+   * If the login is successful, the `linkContent` method is called,
+   * and the email and password fields are cleared.
+   * In case of a failed login, an error message is logged.
+   *
+   * @param {string} email - The email address of the user attempting to log in.
+   * @param {string} pw - The password of the user attempting to log in.
+   * @returns {void} This method does not return any value.
+   */
   loginUser(email: string, pw: string) {
     this.authService.login(email, pw).then((isLoggedIn) => {
       if (isLoggedIn) {
