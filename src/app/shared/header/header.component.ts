@@ -11,40 +11,63 @@ import { ContactsService } from '../../main/services/contacts.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
+/**
+ * HeaderComponent manages navigation, authentication, and overlay state.
+ * It provides methods to toggle and close the overlay, navigate between sections,
+ * and update the selected navigation item.
+ */
 export class HeaderComponent {
+  /** Injected Services */
   contactService = inject(ContactsService);
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
 
-  overlayState = true;
-  isOpen = false;
-  isClosing = false;
-  // isOverlayVisible: boolean = false;
+  /** Overlay State */
+  overlayState: boolean = true;
+  isOpen: boolean = false;
+  isClosing: boolean = false;
 
   /**
-   * Setzt das aktuell ausgewählte Navigations-Item.
-   * @param {number} index - Der Index des auszuwählenden Elements.
+   * Sets the currently selected navigation item.
+   *
+   * @param {number} index - The index of the navigation item to select.
+   * @returns {void} This method does not return anything.
    */
-  selectItem(index: number) {
+  selectItem(index: number): void {
     this.navigationService.setSelectedItem(index);
   }
 
   /**
-   * Öffnet oder schließt das Overlay.
+   * Toggles the overlay state.
+   *
+   * - If the overlay is open, it will be closed.
+   * - If the overlay is closed, it will be opened.
+   *
+   * @returns {void} This method does not return anything.
    */
-  toggleOverlay() {
+  toggleOverlay(): void {
     this.isOpen = !this.isOpen;
     this.overlayState = !this.overlayState;
   }
 
   /**
-   * Schließt das Overlay.
+   * Closes the overlay.
+   *
+   * @returns {void} This method does not return anything.
    */
-  closeOverlay() {
+  closeOverlay(): void {
     this.isOpen = false;
   }
 
-  linkLogin() {
+  /**
+   * Navigates to the login page by updating visibility states.
+   *
+   * - Sets `isContentVisible` to `true`, making the main content visible.
+   * - Sets `isLoginVisible` to `false`, hiding the login section.
+   *
+   * @returns {void} This method does not return anything.
+   */
+  linkLogin(): void {
     this.navigationService.isContentVisible = true;
     this.navigationService.isLoginVisible = false;
   }

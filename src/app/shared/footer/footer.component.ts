@@ -11,14 +11,29 @@ import { AuthService } from '../../main/services/auth.service';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
+  /** Injected Services */
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
 
-  selectItem(index: number) {
+  /**
+   * Sets the selected navigation item.
+   *
+   * @param {number} index - The index of the selected navigation item.
+   * @returns {void} This method does not return anything.
+   */
+  selectItem(index: number): void {
     this.navigationService.setSelectedItem(index);
   }
 
-  linkLogin() {
+  /**
+   * Handles navigation to the login page by updating visibility states.
+   *
+   * - Sets `isContentVisible` to `true`, making the main content visible.
+   * - Sets `isLoginVisible` to `false`, hiding the login section.
+   *
+   * @returns {void} This method does not return anything.
+   */
+  linkLogin(): void {
     this.navigationService.isContentVisible = true;
     this.navigationService.isLoginVisible = false;
   }
