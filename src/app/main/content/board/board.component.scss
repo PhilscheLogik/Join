@@ -3,7 +3,6 @@
 section {
   @include dFlex($ai: flex-start, $jc: flex-start);
   flex-direction: column;
-  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
   height: calc(100vh - 91px);
 }
 

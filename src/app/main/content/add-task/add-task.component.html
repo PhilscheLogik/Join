@@ -1,9 +1,4 @@
 <section
-  [ngStyle]="{
-    'box-shadow': taskService.isEditModeActivated
-      ? '0px 0px 0px 0px rgba(0, 0, 0, 0) inset'
-      : '0px 4px 6px 0px rgba(0, 0, 0, 0.1) inset'
-  }"
 >
   @if(!taskService.isEditModeActivated){
   <div class="head-section">
