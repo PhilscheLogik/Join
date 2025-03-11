@@ -19,6 +19,7 @@ app-policy,
 app-imprint,
 app-help {
   display: none;
+  max-width: calc(1920px - 230px);
 }
 
 app-policy,

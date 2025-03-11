@@ -11,6 +11,12 @@ section {
     min-height: 91px;
 }
 
+.parent {
+    @include dFlex($jc: space-between);
+    width: 100%;
+    max-width: calc(1920px - 230px);
+}
+
 .header-left {
     position: relative;
     background-color: $white;
@@ -34,6 +40,7 @@ img {
 .header-right {
     @include dFlex($jc: center);
     background-color: $white;
+    position: relative;
     // overflow-x: hidden;
     
     >.help-link {
