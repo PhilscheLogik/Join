@@ -21,6 +21,7 @@ export class SignupComponent {
 
   /** UI State */
   isSignUpActive: boolean = false; // Activated when all required inputs are filled properly
+  showSignUpSuccess: boolean = false;
 
   /** User Input */
   name: string = '';
@@ -104,27 +105,44 @@ export class SignupComponent {
       !!this.name &&
       !!this.email &&
       !!this.password &&
-      !!this.confirmPassword &&    // Passwords match
-      this.acceptedPolicy                          // Privacy policy checkbox is checked
+      !!this.confirmPassword && // Passwords match
+      this.acceptedPolicy // Privacy policy checkbox is checked
     );
   }
 
   /**
-   * Handles the sign up button click event and form validation
-   * @returns {void}
+   * Handles the sign-up button click event and validates the form input fields.
+   *
+   * The function performs the following steps:
+   * 1. Marks the sign-up attempt as initiated.
+   * 2. Validates the user's name, email, password, and password confirmation using predefined patterns.
+   * 3. If all fields are valid:
+   *    - Calls `validateInput()` for further validation.
+   *    - Displays a toast message indicating successful registration.
+   *    - Hides the toast message automatically after 2 seconds.
+   *
+   * @returns {void} This function does not return any value.
    */
   onSignUpClick(): void {
     this.signUpAttempted = true;
-    
-    // Update validation states
+
     this.isNameValid = this.namePattern.test(this.name);
     this.isEmailValid = this.eMailPattern.test(this.email);
     this.isPasswordValid = this.pwPattern.test(this.password);
     this.isPasswordEqual = this.password === this.confirmPassword;
 
-    // If form is valid, proceed with signup
-    if (this.isNameValid && this.isEmailValid && this.isPasswordValid && this.isPasswordEqual) {
+    if (
+      this.isNameValid &&
+      this.isEmailValid &&
+      this.isPasswordValid &&
+      this.isPasswordEqual
+    ) {
       this.validateInput();
+      this.showSignUpSuccess = true;
+
+      setTimeout(() => {
+        this.showSignUpSuccess = false;
+      }, 2000);
     }
   }
 
