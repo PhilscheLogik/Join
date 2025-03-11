@@ -178,12 +178,26 @@ export class SignupComponent {
     this.isConfirmVisibility = !this.isConfirmVisibility;
   }
 
-  linkLogin() {
+  /**
+   * Redirects the user to the login page after signing up.
+   * This method updates the navigation state to display the login view.
+   *
+   * @returns {void} This function does not return any value.
+   */
+  linkLogin(): void {
     this.navigationService.isSignUpVisible = true;
     this.navigationService.isLoginVisible = false;
   }
 
-  validateInput() {
+  /**
+   * Validates user input fields (email, password, and name).
+   *
+   * - If all fields match their respective patterns, the user is signed up via `authService.signUp()`.
+   * - After a successful sign-up, the user is redirected to the login page after a 3-second delay.
+   *
+   * @returns {void} This function does not return any value.
+   */
+  validateInput(): void {
     if (
       this.eMailPattern.test(this.email) &&
       this.pwPattern.test(this.password) &&
@@ -197,7 +211,12 @@ export class SignupComponent {
     }
   }
 
-  linkContent() {
+  /**
+   * Updates the navigation state to show the sign-up page and hide other content.
+   *
+   * @returns {void} This function does not return any value.
+   */
+  linkContent(): void {
     this.navigationService.isContentVisible = false;
     this.navigationService.isSignUpVisible = true;
   }
