@@ -1,4 +1,4 @@
-import { Component, inject,  ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { NavigationService } from '../../../shared/navi/navigation.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
@@ -12,36 +12,45 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
+  /** Injected Services */
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
 
+  /** Form Reference */
   @ViewChild('signupForm') signupForm!: NgForm;
 
-  isSignUpActive = false; // activate if all required inputs are filled properly
+  /** UI State */
+  isSignUpActive: boolean = false; // Activated when all required inputs are filled properly
 
+  /** User Input */
+  name: string = '';
+  email: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+
+  /** Validation States */
+  isNameValid: boolean = true;
+  isEmailValid: boolean = true;
+  isPasswordValid: boolean = true;
+  isPasswordEqual: boolean = true;
+
+  /** Password Visibility States */
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
   passwordFieldActive: boolean = false;
   confirmPasswordFieldActive: boolean = false;
   isVisibility: boolean = true;
   isConfirmVisibility: boolean = true;
-  name: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
 
-  isNameValid: boolean = true;
-  isEmailValid: boolean = true;
-  isPasswordValid: boolean = true;
-  isPasswordEqual: boolean = true;
-
+  /** Input Focus State */
   focusedInput: string = '';
   signUpAttempted: boolean = false;
+
+  /** Validation Patterns */
   namePattern = /[a-zA-ZäüößÄÜÖ\s]{3,}/;
   eMailPattern = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/;
   pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}/;
 
-  
   /**
    * Selects an item by its index.
    *
@@ -141,15 +150,16 @@ export class SignupComponent {
   validateInput() {
     if (
       this.eMailPattern.test(this.email) &&
-      this.pwPattern.test(this.password) && this.namePattern.test(this.name)
+      this.pwPattern.test(this.password) &&
+      this.namePattern.test(this.name)
     ) {
       this.authService.signUp(this.email, this.password, this.name);
       // this.checkSummaryAnimation();
-      this.linkLogin();      
+      this.linkLogin();
     }
   }
 
-   // Check if passwords match
+  // Check if passwords match
   //  passwordsMatch(): boolean {
   //   return this.password === this.confirmPassword;
   // }
