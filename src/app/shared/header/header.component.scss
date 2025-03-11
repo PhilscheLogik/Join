@@ -7,7 +7,7 @@ section {
 
     width: 100%;
     background-color: $white;
-    position: relative;
+    // position: relative;
     min-height: 91px;
 }
 
@@ -18,7 +18,7 @@ section {
 }
 
 .header-left {
-    position: relative;
+    // position: relative;
     background-color: $white;
     padding: 32px 64px;
 
@@ -99,7 +99,7 @@ img {
 }
 
 .header-overlay {
-    position: fixed;
+    position: absolute;
     top: 92px;
     right: -160px; 
     height: auto;
