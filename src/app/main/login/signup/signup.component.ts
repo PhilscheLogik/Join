@@ -190,8 +190,10 @@ export class SignupComponent {
       this.namePattern.test(this.name)
     ) {
       this.authService.signUp(this.email, this.password, this.name);
-      // this.checkSummaryAnimation();
-      this.linkLogin();
+
+      setTimeout(() => {
+        this.linkLogin();
+      }, 3000);
     }
   }
 
