@@ -149,10 +149,10 @@ h1 {
       background-color: $gray;
     }
   }
-
-  > p {
+  
+  >div p{
     color: $light_gray;
-    > span {
+    span {
       &:hover {
         cursor: pointer;
       }

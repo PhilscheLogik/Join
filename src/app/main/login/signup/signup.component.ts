@@ -104,30 +104,10 @@ export class SignupComponent {
       !!this.name &&
       !!this.email &&
       !!this.password &&
-      // this.password === this.confirmPassword &&    // Passwords match
+      !!this.confirmPassword &&    // Passwords match
       this.acceptedPolicy                          // Privacy policy checkbox is checked
     );
   }
-
-  // /**
-  //  * This method is triggered when the login button is clicked.
-  //  * It checks whether the email and password fields are valid (i.e., not empty).
-  //  * The validity is stored in `isEmailValid` and `isPasswordValid` variables.
-  //  *
-  //  * The method assigns `true` to `isEmailValid` if `email` is not empty, otherwise `false`.
-  //  * Similarly, it assigns `true` to `isPasswordValid` if `password` is not empty, otherwise `false`.
-  //  *
-  //  * @returns {void} - This method doesn't return any value.
-  //  */
-  // onSignUpClick() {
-  //   this.signUpAttempted = true;
-  //   this.isNameValid = !!this.name;
-  //   this.isEmailValid = !!this.email;
-  //   this.isPasswordValid = !!this.password;
-  //   this.isPasswordEqual = !!this.confirmPassword;
-
-  //   this.validateInput();
-  // }
 
   /**
    * Handles the sign up button click event and form validation
@@ -143,7 +123,7 @@ export class SignupComponent {
     this.isPasswordEqual = this.password === this.confirmPassword;
 
     // If form is valid, proceed with signup
-    if (this.isFormValid()) {
+    if (this.isNameValid && this.isEmailValid && this.isPasswordValid && this.isPasswordEqual) {
       this.validateInput();
     }
   }
@@ -196,15 +176,4 @@ export class SignupComponent {
       this.linkLogin();
     }
   }
-
-  // /**
-  //  * Validates input and triggers signup if all conditions are met
-  //  * @returns {void}
-  //  */
-  // validateInput(): void {
-  //   if (this.isFormValid()) {
-  //     this.authService.signUp(this.email, this.password, this.name);
-  //     this.linkLogin();
-  //   }
-  // }
 }
