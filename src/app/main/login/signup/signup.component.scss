@@ -67,7 +67,7 @@ h1 {
   .signUp-password,
   .confirm-password {
     @include dFlex($jc: space-between, $g: 10px);
-    width: 64.72vw;
+    width: 80vw;
     max-width: 422px;
     height: 48px;
     border: 1px solid $light_gray;
@@ -80,6 +80,14 @@ h1 {
       height: 24px;
     }
 
+    &.input-invalid {
+      border: 1px solid $red;
+    }
+
+    &.input-focused {
+      border: 1px solid $light_blue;
+    }
+    
     > input {
       // flex: 1;
       width: 80%;
@@ -181,6 +189,11 @@ h1 {
     @include font($fs: 16px, $fw: 400);
     color: $gray;
     cursor: pointer;
+
+    &:hover {
+      @include font($fs: 16px, $fw: 700);
+      color: $light_blue;
+    }
   }
 }
 
@@ -210,6 +223,47 @@ h1 {
       }
     }
   }
+}
+
+@media (min-width: 500px) {
+  .signUp-section{
+    .signUp-name,
+    .signUp-email,
+    .signUp-password,
+    .confirm-password {
+      width: 92vw;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .signUp-section {
+
+    .back-btn {
+      left: 40px;
+    }
+
+    .signUp-name,
+    .signUp-email,
+    .signUp-password,
+    .confirm-password {
+      >input {
+        @include font($fs: 16px, $fw: 400);
+        // flex: 1;
+        width: 80%;
+        border: unset;
+        height: 24px;
+
+        &::placeholder {
+          @include font($fs: 16px, $fw: 400);
+        }
+      }
+    }
+  }
+
+  
+  
+  
 }
 
 @media (max-width: 480px) {

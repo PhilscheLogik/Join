@@ -40,6 +40,7 @@ export class SignupComponent {
   /** Password Visibility States */
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
+  nameFieldActive: boolean = false;
   passwordFieldActive: boolean = false;
   confirmPasswordFieldActive: boolean = false;
   isVisibility: boolean = true;
@@ -79,6 +80,7 @@ export class SignupComponent {
    */
   onFocus(inputName: string) {
     this.focusedInput = inputName;
+    this.nameFieldActive = inputName === 'name';
     this.passwordFieldActive = inputName === 'password';
     this.confirmPasswordFieldActive = inputName === 'confirm-password';
   }
