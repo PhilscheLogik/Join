@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
     this.isEmailValid = !!this.email;
     this.isPasswordValid = !!this.password;
 
-    this.validateInput();
+    this.validateInput();    
   }
 
   /**
@@ -175,6 +175,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.email, this.password).then((isLoggedIn) => {
         if (isLoggedIn) {
           this.linkContent(); // Nur bei erfolgreicher Anmeldung ausführen
+          this.email = '';
+          this.password = '';
+          this.loginAttempted = false;
           
         } else {
           console.log('Login fehlgeschlagen! Überprüfe die Eingaben.');
