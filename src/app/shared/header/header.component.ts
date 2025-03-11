@@ -41,4 +41,9 @@ export class HeaderComponent {
   closeOverlay() {
     this.isOpen = false;
   }
+
+  linkLogin() {
+    this.navigationService.isContentVisible = true;
+    this.navigationService.isLoginVisible = false;
+  }
 }

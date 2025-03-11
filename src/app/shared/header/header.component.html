@@ -39,7 +39,14 @@
             (click)="selectItem(4)"
             >Privacy Policy</a
           >
-          <a (click)="authService.logout()">Log out</a>
+          <a
+            (click)="
+              authService.logout();
+              linkLogin();
+              navigationService.isAnimationSummarydone = false
+            "
+            >Log out</a
+          >
         </div>
       </div>
     </div>
