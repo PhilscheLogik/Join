@@ -80,10 +80,18 @@
       </div>
       }
       <div class="btn-section">
-        <button class="btn-login" (click)="onLoginClick()">Log in</button>
+        <button
+          class="btn-login"
+          (click)="onLoginClick(); this.navigationService.setSelectedItem(0)"
+        >
+          Log in
+        </button>
         <button
           class="btn-guest-login"
-          (click)="loginUser('guest@test.de', 'Guest1?')"
+          (click)="
+            loginUser('guest@test.de', 'Guest1?');
+            this.navigationService.setSelectedItem(0)
+          "
         >
           Guest Log in
         </button>
