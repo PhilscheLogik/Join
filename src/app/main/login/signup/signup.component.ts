@@ -176,4 +176,9 @@ export class SignupComponent {
       this.linkLogin();
     }
   }
+
+  linkContent() {
+    this.navigationService.isContentVisible = false;
+    this.navigationService.isSignUpVisible = true;
+  }
 }

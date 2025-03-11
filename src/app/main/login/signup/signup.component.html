@@ -144,7 +144,9 @@
           #policyCheck="ngModel"
         />
         <div>
-          <p>I accept the <span class="join-aqua">Privacy policy</span></p>
+          <p>I accept the <span class="join-aqua" 
+            [ngClass]="{ active: navigationService.selectedItem === 4 }"
+            (click)="selectItem(4); linkContent()">Privacy policy</span></p>
         </div>
       </div>
       
@@ -164,12 +166,12 @@
   <div class="footer-section">
     <a
       [ngClass]="{ active: navigationService.selectedItem === 4 }"
-      (click)="selectItem(4)"
+      (click)="selectItem(4); linkContent()"
       >Privacy Policy</a
     >
     <a
       [ngClass]="{ active: navigationService.selectedItem === 5 }"
-      (click)="selectItem(5)"
+      (click)="selectItem(5); linkContent()"
       >Legal Notice</a
     >
   </div>
