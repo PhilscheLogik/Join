@@ -108,7 +108,7 @@ h1 {
 
 .btn-section {
   @include dFlex($g: 30px);
-  margin-top: 50px;
+  margin-top: 8px;
 
   .btn-signUp {
     @include dFlex();
