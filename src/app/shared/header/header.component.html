@@ -16,7 +16,7 @@
     ></a>
 
     <div (click)="toggleOverlay()" [class.open]="isOpen" class="initials-btn">
-      <p>ID</p>
+      <p>{{contactService.getInitials(authService.name)}}</p>
     </div>
 
     @if (isOpen) {

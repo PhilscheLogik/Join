@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationService } from '../navi/navigation.service';
 import { AuthService } from '../../main/services/auth.service';
+import { ContactsService } from '../../main/services/contacts.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +12,7 @@ import { AuthService } from '../../main/services/auth.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  contactService = inject(ContactsService);
   navigationService = inject(NavigationService);
   authService = inject(AuthService);
 

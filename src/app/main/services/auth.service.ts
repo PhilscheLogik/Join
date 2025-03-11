@@ -72,6 +72,7 @@ export class AuthService {
     return signInWithEmailAndPassword(auth, email, pw)
       .then((userCredential) => {
         const user = userCredential.user;
+        this.name = user.displayName ?? '';
 
         console.log('auth Service login works');
         console.log(email, pw);
