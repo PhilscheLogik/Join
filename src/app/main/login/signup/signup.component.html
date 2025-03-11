@@ -8,57 +8,54 @@
     <h1>Sign up</h1>
     <div class="border-blue"></div>
     <form #signUpForm="ngForm">
-      <!-- Name Input -->
-      <div 
-        class="signUp-name"
-        [ngClass]="{ 'input-focused': focusedInput === 'name', 'input-invalid': !isNameValid && signUpAttempted }"
-      >
-        <input
-          type="text"
-          id="signUp-name"
-          name="name"
-          placeholder="Name"
-          (focus)="onFocus('name')"
-          (blur)="onBlur()"
-          (input)="validateField('name')"
-          [(ngModel)]="name"
-          #nameSignUp
-        />
-        <img src="assets/img/icons/person.svg" />
-      </div>
-      <!-- Name Error Message -->
-      @if (!isNameValid && signUpAttempted) {
-        <div class="error-message">
-          <p>Name must be at least 3 characters long.</p>
+      <div class="signUp-contaier">
+        <div 
+          class="signUp-name"
+          [ngClass]="{ 'input-focused': focusedInput === 'name', 'input-invalid': !isNameValid && signUpAttempted }"
+        >
+          <input
+            type="text"
+            id="signUp-name"
+            name="name"
+            placeholder="Name"
+            (focus)="onFocus('name')"
+            (blur)="onBlur()"
+            (input)="validateField('name')"
+            [(ngModel)]="name"
+            #nameSignUp
+          />
+          <img src="assets/img/icons/person.svg" />
         </div>
-      }
-
-      <!-- Email Input -->
-      <div
-        class="signUp-email"
-        [ngClass]="{ 'input-focused': focusedInput === 'email', 'input-invalid': !isEmailValid && signUpAttempted }"
-      >
-        <input
-          type="text"
-          id="signUp-email"
-          name="email"
-          placeholder="Email"
-          (focus)="onFocus('email')"
-          (blur)="onBlur()"
-          (input)="validateField('email')"
-          [(ngModel)]="email"
-          #emailSignUp
-        />
-        <img src="assets/img/icons/mail.svg" />
+        @if (!isNameValid && signUpAttempted) {
+          <div class="error-message">
+            <p>Name must be at least 3 characters long.</p>
+          </div>
+        }
       </div>
-      <!-- Email Error Message -->
-      @if (!isEmailValid && signUpAttempted) {
-        <div class="error-message">
-          <p>Please enter a valid email address.</p>
+      <div class="email-container">
+        <div
+          class="signUp-email"
+          [ngClass]="{ 'input-focused': focusedInput === 'email', 'input-invalid': !isEmailValid && signUpAttempted }"
+        >
+          <input
+            type="text"
+            id="signUp-email"
+            name="email"
+            placeholder="Email"
+            (focus)="onFocus('email')"
+            (blur)="onBlur()"
+            (input)="validateField('email')"
+            [(ngModel)]="email"
+            #emailSignUp
+          />
+          <img src="assets/img/icons/mail.svg" />
         </div>
-      }
-
-      <!-- Password Input -->
+        @if (!isEmailValid && signUpAttempted) {
+          <div class="error-message">
+            <p>Please enter a valid email address.</p>
+          </div>
+        }
+      </div>
       <div class="password-container">
         <div
           class="signUp-password"
@@ -95,15 +92,12 @@
             />
           }
         </div>
-        <!-- Password Error Message -->
         @if (!isPasswordValid && signUpAttempted) {
           <div class="error-message">
             <p>Password must be 6-20 characters, with 1 capital letter, 1 number, and 1 special character.</p>
           </div>
         }
       </div>
-
-      <!-- Confirm Password Input -->
       <div class="confirm-password-container">
         <div
           class="confirm-password"
@@ -140,10 +134,7 @@
             />
           }
         </div>
-        <!-- No error message under confirm password as per request -->
       </div>
-
-      <!-- Policy Checkbox -->
       <div class="policy-checkbox-container">
         <input 
           type="checkbox"
@@ -157,8 +148,6 @@
             (click)="selectItem(4); linkContent()">Privacy policy</span></p>
         </div>
       </div>
-      
-      <!-- Sign Up Button -->
       <div class="btn-section">
         <button
           class="btn-signUp"
