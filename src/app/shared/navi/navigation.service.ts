@@ -27,6 +27,6 @@ export class NavigationService {
   onAnimationEnd() {
     // Zähler erst nach der Animation erhöhen
     this.isAnimationSummarydone = true;
-    console.log('Animation abgeschlossen!');
+    // console.log('Animation abgeschlossen!');
   }
 }

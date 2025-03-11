@@ -1,147 +1,146 @@
-@import './../../../styles.scss';
+@import "./../../../styles.scss";
 
 /* Tags and Classes */
 
 section {
-    @include dFlex($jc: space-between);
+  @include dFlex($jc: space-between);
 
-    width: 100%;
-    background-color: $white;
-    // position: relative;
-    min-height: 91px;
-    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  background-color: $white;
+  // position: relative;
+  min-height: 91px;
+  box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
 }
 
 .parent {
-    @include dFlex($jc: space-between);
-    width: 100%;
-    max-width: calc(1920px - 230px);
+  @include dFlex($jc: space-between);
+  width: 100%;
+  max-width: calc(1920px - 230px);
 }
 
 .header-left {
-    // position: relative;
-    background-color: $white;
-    padding: 32px 64px;
+  // position: relative;
+  background-color: $white;
+  padding: 32px 64px;
 
-    >h1 {
-        @include font($fs: 20px, $fw: 400);
-        background-color: $white;
-    }
+  > h1 {
+    @include font($fs: 20px, $fw: 400);
+    background-color: $white;
+  }
 }
 
 img {
-    display: none;
-    position: absolute;
-    top: 32px;
-    left: 64px;
-    height: 39px;
-    width: 32px;
+  display: none;
+  position: absolute;
+  top: 32px;
+  left: 64px;
+  height: 39px;
+  width: 32px;
 }
 
 .header-right {
-    @include dFlex($jc: center);
-    background-color: $white;
-    position: relative;
-    // overflow-x: hidden;
-    
-    >.help-link {
-        height: 32px;
-        width: 32px;
-        background-image: url('./../../../assets/img/icons/help_button.svg');
-        background-color: $white;
-        margin-right: 32px;
+  @include dFlex($jc: center);
+  background-color: $white;
+  position: relative;
+  // overflow-x: hidden;
 
-        &:hover {
-            transform: scale(1.1);
-        }
+  > .help-link {
+    height: 32px;
+    width: 32px;
+    background-image: url("./../../../assets/img/icons/help_button.svg");
+    background-color: $white;
+    margin-right: 32px;
+
+    &:hover {
+      transform: scale(1.1);
     }
+  }
 }
 
 .d-none {
-    display: none; 
+  display: none;
 }
 
 .initials-btn {
-    @include dFlex($ai: center);
+  @include dFlex($ai: center);
 
-    height: 64px;
-    width: 64px;
-    border-radius: 50%;
-    border: 3px solid $black;
-    background-color: $white;
-    margin-right: 40px;
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  border: 3px solid $black;
+  background-color: $white;
+  margin-right: 40px;
+
+  &:hover {
+    background-color: rgba($gray, 0.5);
+    cursor: pointer;
+  }
+
+  > p {
+    @include font($fs: 32px, $fw: 600);
+    background-color: transparent;
+    color: $aqua;
 
     &:hover {
-
-        background-color: rgba($gray, 0.5);
-        cursor: pointer;
+      pointer-events: none;
     }
-
-    >p {
-        @include font($fs: 32px, $fw: 600);
-        background-color: transparent;
-        color: $aqua;
-
-        &:hover {
-            pointer-events: none;
-        }
-    } 
+  }
 }
 
 /* Burger-Overlay */
 
 .toggleOff-container {
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 15;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 15;
 }
 
 .header-overlay {
-    position: absolute;
-    top: 92px;
-    right: -160px; 
-    height: auto;
-    width: 160px;
-    background-color: $dark-blue;
-    border-radius: 20px 0 20px 20px;
-    transition: all 0.3s ease-in-out; 
-    visibility: hidden; 
-    opacity: 0; 
-    z-index: 5;
-    
-    &.open {
-      right: 20px; 
-      visibility: visible; 
-      opacity: 1; 
-    }
+  position: absolute;
+  top: 84px;
+  right: -160px;
+  height: auto;
+  width: 160px;
+  background-color: $dark-blue;
+  border-radius: 20px 0 20px 20px;
+  transition: all 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 5;
+
+  &.open {
+    right: 20px;
+    visibility: visible;
+    opacity: 1;
   }
-
-.inner-overlay {
-    @include dFlex($ai: start);
-    flex-direction: column;
-    padding: 16px 8px;
-
-    >a {
-        padding: 16px 16px;
-        text-decoration: none;
-        color: $white;
-        width: 100%;
-
-        &:hover {
-            background-color: $button-hover-blue;
-        }
-    }
 }
 
-.burger-help-link {
-    display: none;
+.inner-overlay {
+  @include dFlex($ai: start);
+  flex-direction: column;
+  padding: 16px 8px;
+
+  > a {
     padding: 16px 16px;
     text-decoration: none;
     color: $white;
     width: 100%;
+
+    &:hover {
+      background-color: $button-hover-blue;
+    }
+  }
+}
+
+.burger-help-link {
+  display: none;
+  padding: 16px 16px;
+  text-decoration: none;
+  color: $white;
+  width: 100%;
 }
 
 // .slideIn {
@@ -151,34 +150,33 @@ img {
 /* Animations */
 
 .show {
-    animation: slide-right 125ms ease-in;
+  animation: slide-right 125ms ease-in;
 }
 
 .hide {
-    animation: slide-left 125ms ease-in;
+  animation: slide-left 125ms ease-in;
 }
 
 /* animation slide-right*/
 @keyframes slide-right {
-0% {
+  0% {
     transform: translateX(100%);
-}
+  }
 
-100% {
+  100% {
     transform: translateX(0%);
-}
+  }
 }
 
 @keyframes slide-left {
-0% {
+  0% {
     transform: translateX(100%);
-}
+  }
 
-100% {
+  100% {
     transform: translateX(0%);
+  }
 }
-}
-
 
 //  @keyframes slide-in {
 //      0% {
@@ -190,7 +188,7 @@ img {
 //        opacity: 1;
 //      }
 //    }
-  
+
 //    @keyframes slide-out {
 //      0% {
 //        transform: translate(-50%, -50%) translateX(0%);
@@ -205,42 +203,40 @@ img {
 /* Media query's */
 
 @media (max-width: 720px) {
+  .help-link {
+    display: none;
+  }
 
-    .help-link {
+  .responsive-header-logo {
+    display: block;
+  }
+
+  .header-left {
+    > h1 {
       display: none;
     }
+  }
 
-    .responsive-header-logo {
-            display: block;
+  .initials-btn {
+    height: 40px;
+    width: 40px;
+
+    > p {
+      @include font($fs: 16px, $fw: 600);
     }
+  }
 
-    .header-left {
+  .burger-help-link {
+    display: block;
+  }
 
-        >h1 {
-            display: none;
-        }
-    }
+  img {
+    top: 12px;
+    left: 24px;
+  }
 
-    .initials-btn {
-        height: 40px;
-        width: 40px;
-
-        >p {
-            @include font($fs: 16px, $fw: 600);
-        }
-    }
-
-    .burger-help-link {
-        display: block;
-    }
-
-    img {
-        top: 12px;
-        left: 24px;
-    }
-
-    .header-overlay {
-        top: 68px;
-        right: -300px;
-    }
+  .header-overlay {
+    top: 68px;
+    right: -300px;
+  }
 }
