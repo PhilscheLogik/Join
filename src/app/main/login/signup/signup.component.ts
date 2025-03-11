@@ -28,14 +28,13 @@ export class SignupComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
-  acceptedPolicy: boolean = false; // New property for checkbox
+  acceptedPolicy: boolean = false;
 
   /** Validation States */
   isNameValid: boolean = true;
   isEmailValid: boolean = true;
   isPasswordValid: boolean = true;
   isPasswordEqual: boolean = true;
-  isPolicyAccepted: boolean = true; // New validation state for checkbox
 
   /** Password Visibility States */
   passwordVisible: boolean = false;
@@ -57,91 +56,80 @@ export class SignupComponent {
 
   /**
    * Selects an item by its index.
-   *
-   * This method sets the selected item in the navigation service based on the provided index. It updates the currently
-   * selected item to the one corresponding to the given index.
-   *
    * @param {number} index - The index of the item to be selected.
-   * @returns {void} This method does not return anything.
+   * @returns {void}
    */
   selectItem(index: number) {
     this.navigationService.setSelectedItem(index);
   }
 
   /**
-   * This method is called when an input field receives focus.
-   * It sets the focused input field name and toggles the visibility of the password field.
-   *
-   * @param {string} inputName - The name of the input field that is being focused.
-   * It updates the `focusedInput` variable with the given `inputName`,
-   * and toggles the `passwordFieldActive` boolean to manage the visual state of the password field.
-   *
-   * @returns {void} - This method doesn't return any value.
+   * Sets the focused input field and updates field active states.
+   * @param {string} inputName - The name of the input field being focused.
+   * @returns {void}
    */
   onFocus(inputName: string) {
     this.focusedInput = inputName;
     this.nameFieldActive = inputName === 'name';
     this.passwordFieldActive = inputName === 'password';
     this.confirmPasswordFieldActive = inputName === 'confirm-password';
+    this.signUpAttempted = true; // Trigger validation on focus
+    this.validateField(inputName); // Validate immediately on focus
   }
 
   /**
-   * This method is called when an input field loses focus.
-   * It clears the `focusedInput` variable to indicate that no input field is currently focused.
-   *
-   * @returns {void} - This method doesn't return any value.
+   * Clears the focused input state when an input loses focus.
+   * @returns {void}
    */
   onBlur() {
     this.focusedInput = '';
   }
 
   /**
-   * Checks if all form fields are valid and the privacy policy is accepted
-   * @returns {boolean} Returns true if all validation conditions are met, false otherwise
+   * Validates a specific input field in real-time.
+   * @param {string} field - The name of the field to validate ('name', 'email', 'password', 'confirm-password').
+   * @returns {void}
+   */
+  validateField(field: string): void {
+    if (field === 'name') {
+      this.isNameValid = this.namePattern.test(this.name);
+    } else if (field === 'email') {
+      this.isEmailValid = this.eMailPattern.test(this.email);
+    } else if (field === 'password') {
+      this.isPasswordValid = this.pwPattern.test(this.password);
+    } else if (field === 'confirm-password') {
+      this.isPasswordEqual = this.password === this.confirmPassword && this.pwPattern.test(this.password);
+    }
+  }
+
+  /**
+   * Checks if all form fields are valid and the privacy policy is accepted.
+   * @returns {boolean} True if all validation conditions are met, false otherwise.
    */
   isFormValid(): boolean {
     return (
-      // this.namePattern.test(this.name) &&          // Name matches pattern
-      // this.eMailPattern.test(this.email) &&        // Email matches pattern
-      // this.pwPattern.test(this.password) &&        // Password matches pattern
-      !!this.name &&
-      !!this.email &&
-      !!this.password &&
-      !!this.confirmPassword && // Passwords match
-      this.acceptedPolicy // Privacy policy checkbox is checked
+      this.namePattern.test(this.name) &&
+      this.eMailPattern.test(this.email) &&
+      this.pwPattern.test(this.password) &&
+      this.password === this.confirmPassword &&
+      this.acceptedPolicy
     );
   }
 
   /**
-   * Handles the sign-up button click event and validates the form input fields.
-   *
-   * The function performs the following steps:
-   * 1. Marks the sign-up attempt as initiated.
-   * 2. Validates the user's name, email, password, and password confirmation using predefined patterns.
-   * 3. If all fields are valid:
-   *    - Calls `validateInput()` for further validation.
-   *    - Displays a toast message indicating successful registration.
-   *    - Hides the toast message automatically after 2 seconds.
-   *
-   * @returns {void} This function does not return any value.
+   * Handles the sign-up button click event and validates all fields.
+   * @returns {void}
    */
   onSignUpClick(): void {
     this.signUpAttempted = true;
+    this.validateField('name');
+    this.validateField('email');
+    this.validateField('password');
+    this.validateField('confirm-password');
 
-    this.isNameValid = this.namePattern.test(this.name);
-    this.isEmailValid = this.eMailPattern.test(this.email);
-    this.isPasswordValid = this.pwPattern.test(this.password);
-    this.isPasswordEqual = this.password === this.confirmPassword;
-
-    if (
-      this.isNameValid &&
-      this.isEmailValid &&
-      this.isPasswordValid &&
-      this.isPasswordEqual
-    ) {
+    if (this.isFormValid()) {
       this.validateInput();
       this.showSignUpSuccess = true;
-
       setTimeout(() => {
         this.showSignUpSuccess = false;
       }, 2000);
@@ -149,15 +137,8 @@ export class SignupComponent {
   }
 
   /**
-   * This method toggles the visibility of the password input field.
-   * When called, it switches the value of `passwordVisible` and `isVisibility` properties.
-   *
-   * - If `passwordVisible` is `false`, it will be set to `true` to display the password.
-   * - If `passwordVisible` is `true`, it will be set to `false` to hide the password.
-   *
-   * Similarly, `isVisibility` is toggled to control additional visual elements related to password visibility.
-   *
-   * @returns {void} - This method doesn't return any value.
+   * Toggles the visibility of the password input field.
+   * @returns {void}
    */
   toggleVisibility() {
     this.passwordVisible = !this.passwordVisible;
@@ -165,15 +146,8 @@ export class SignupComponent {
   }
 
   /**
-   * This method toggles the visibility of the password input field.
-   * When called, it switches the value of `passwordVisible` and `isVisibility` properties.
-   *
-   * - If `passwordVisible` is `false`, it will be set to `true` to display the password.
-   * - If `passwordVisible` is `true`, it will be set to `false` to hide the password.
-   *
-   * Similarly, `isVisibility` is toggled to control additional visual elements related to password visibility.
-   *
-   * @returns {void} - This method doesn't return any value.
+   * Toggles the visibility of the confirm password input field.
+   * @returns {void}
    */
   toggleConfirmVisibility() {
     this.confirmPasswordVisible = !this.confirmPasswordVisible;
@@ -181,10 +155,8 @@ export class SignupComponent {
   }
 
   /**
-   * Redirects the user to the login page after signing up.
-   * This method updates the navigation state to display the login view.
-   *
-   * @returns {void} This function does not return any value.
+   * Redirects the user to the login page.
+   * @returns {void}
    */
   linkLogin(): void {
     this.navigationService.isSignUpVisible = true;
@@ -192,21 +164,17 @@ export class SignupComponent {
   }
 
   /**
-   * Validates user input fields (email, password, and name).
-   *
-   * - If all fields match their respective patterns, the user is signed up via `authService.signUp()`.
-   * - After a successful sign-up, the user is redirected to the login page after a 3-second delay.
-   *
-   * @returns {void} This function does not return any value.
+   * Validates all input fields and signs up the user if valid.
+   * @returns {void}
    */
   validateInput(): void {
     if (
       this.eMailPattern.test(this.email) &&
       this.pwPattern.test(this.password) &&
-      this.namePattern.test(this.name)
+      this.namePattern.test(this.name) &&
+      this.password === this.confirmPassword
     ) {
       this.authService.signUp(this.email, this.password, this.name);
-
       setTimeout(() => {
         this.linkLogin();
       }, 3000);
@@ -214,9 +182,8 @@ export class SignupComponent {
   }
 
   /**
-   * Updates the navigation state to show the sign-up page and hide other content.
-   *
-   * @returns {void} This function does not return any value.
+   * Updates navigation state to show the sign-up page.
+   * @returns {void}
    */
   linkContent(): void {
     this.navigationService.isContentVisible = false;

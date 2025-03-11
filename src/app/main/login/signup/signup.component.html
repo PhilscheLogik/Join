@@ -8,10 +8,10 @@
     <h1>Sign up</h1>
     <div class="border-blue"></div>
     <form #signUpForm="ngForm">
+      <!-- Name Input -->
       <div 
         class="signUp-name"
-        [ngClass]="{ 'input-focused': focusedInput === 'name' }"
-        [ngClass]="{ 'input-invalid': !isNameValid }"
+        [ngClass]="{ 'input-focused': focusedInput === 'name', 'input-invalid': !isNameValid && signUpAttempted }"
       >
         <input
           type="text"
@@ -20,15 +20,23 @@
           placeholder="Name"
           (focus)="onFocus('name')"
           (blur)="onBlur()"
+          (input)="validateField('name')"
           [(ngModel)]="name"
           #nameSignUp
         />
         <img src="assets/img/icons/person.svg" />
       </div>
+      <!-- Name Error Message -->
+      @if (!isNameValid && signUpAttempted) {
+        <div class="error-message">
+          <p>Name must be at least 3 characters long.</p>
+        </div>
+      }
+
+      <!-- Email Input -->
       <div
         class="signUp-email"
-        [ngClass]="{ 'input-focused': focusedInput === 'email' }"
-        [ngClass]="{ 'input-invalid': !isEmailValid }"
+        [ngClass]="{ 'input-focused': focusedInput === 'email', 'input-invalid': !isEmailValid && signUpAttempted }"
       >
         <input
           type="text"
@@ -37,16 +45,24 @@
           placeholder="Email"
           (focus)="onFocus('email')"
           (blur)="onBlur()"
+          (input)="validateField('email')"
           [(ngModel)]="email"
           #emailSignUp
         />
         <img src="assets/img/icons/mail.svg" />
       </div>
+      <!-- Email Error Message -->
+      @if (!isEmailValid && signUpAttempted) {
+        <div class="error-message">
+          <p>Please enter a valid email address.</p>
+        </div>
+      }
+
+      <!-- Password Input -->
       <div class="password-container">
         <div
           class="signUp-password"
-          [ngClass]="{ 'input-focused': focusedInput === 'password' }"
-          [ngClass]="{ 'input-invalid': !isPasswordValid }"
+          [ngClass]="{ 'input-focused': focusedInput === 'password', 'input-invalid': !isPasswordValid && signUpAttempted }"
         >
           <input
             [type]="passwordVisible ? 'text' : 'password'"
@@ -55,6 +71,7 @@
             placeholder="Password"
             (focus)="onFocus('password')"
             (blur)="onBlur()"
+            (input)="validateField('password')"
             [(ngModel)]="password"
             #pwSignUp
           />
@@ -67,33 +84,39 @@
             <img
               class="visibility_off"
               src="assets/img/icons/visibility_off_icon.svg"
-              [ngClass]="{ d_none: !passwordFieldActive }"
               [ngClass]="{ d_none: !isVisibility }"
               (click)="toggleVisibility()"
             />
             <img
               class="visibility_off"
               src="assets/img/icons/visibility_icon.svg"
-              [ngClass]="{ d_none: !passwordFieldActive }"
               [ngClass]="{ d_none: isVisibility }"
               (click)="toggleVisibility()"
             />
-            }
+          }
         </div>
+        <!-- Password Error Message -->
+        @if (!isPasswordValid && signUpAttempted) {
+          <div class="error-message">
+            <p>Password must be 6-20 characters, with 1 capital letter, 1 number, and 1 special character.</p>
+          </div>
+        }
       </div>
+
+      <!-- Confirm Password Input -->
       <div class="confirm-password-container">
         <div
           class="confirm-password"
-          [ngClass]="{ 'input-focused': focusedInput === 'confirm-password' }"
-          [ngClass]="{ 'input-invalid': !isPasswordValid }"
+          [ngClass]="{ 'input-focused': focusedInput === 'confirm-password', 'input-invalid': !isPasswordEqual && signUpAttempted }"
         >
           <input
-          [type]="confirmPasswordVisible ? 'text' : 'password'"
+            [type]="confirmPasswordVisible ? 'text' : 'password'"
             id="confirm-password"
             name="confirm-password"
             placeholder="Confirm Password"
             (focus)="onFocus('confirm-password')"
             (blur)="onBlur()"
+            (input)="validateField('confirm-password')"
             [(ngModel)]="confirmPassword"
             #pwConfirmSignUp
           />
@@ -103,43 +126,24 @@
             [ngClass]="{ d_none: confirmPasswordFieldActive }"
           />
           @if(confirmPasswordFieldActive) {
-          <img
-            class="visibility_off"
-            src="assets/img/icons/visibility_off_icon.svg"
-            [ngClass]="{ d_none: !confirmPasswordFieldActive }"
-            [ngClass]="{ d_none: !isConfirmVisibility }"
-            (click)="toggleConfirmVisibility()"
-          />
-          <img
-            class="visibility_off"
-            src="assets/img/icons/visibility_icon.svg"
-            [ngClass]="{ d_none: !confirmPasswordFieldActive }"
-            [ngClass]="{ d_none: isConfirmVisibility }"
-            (click)="toggleConfirmVisibility()"
-          />
+            <img
+              class="visibility_off"
+              src="assets/img/icons/visibility_off_icon.svg"
+              [ngClass]="{ d_none: !isConfirmVisibility }"
+              (click)="toggleConfirmVisibility()"
+            />
+            <img
+              class="visibility_off"
+              src="assets/img/icons/visibility_icon.svg"
+              [ngClass]="{ d_none: isConfirmVisibility }"
+              (click)="toggleConfirmVisibility()"
+            />
           }
         </div>
-        <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
-        @if(signUpAttempted && (eMailPattern.test(this.email) != true ||
-        pwPattern.test(this.password) != true || namePattern.test(this.name) != true) ) {
-        <div class="error-message">
-          <p>
-            Check your name, email and password! Please try again.<br /> 
-            Name: (min 3character) <br>
-            Password: (min 6 character
-            - min 1 special character, 1 capital letter, 1 number). 
-          </p>
-        </div>
-        }
-        @if(signUpAttempted && (
-        pwPattern.test(this.password) != true || this.confirmPassword != this.password) ) {
-        <div class="error-message">
-          <p>
-            Your passwords don't match. Please try again..
-          </p>
-        </div>
-        }
+        <!-- No error message under confirm password as per request -->
       </div>
+
+      <!-- Policy Checkbox -->
       <div class="policy-checkbox-container">
         <input 
           type="checkbox"
@@ -154,6 +158,7 @@
         </div>
       </div>
       
+      <!-- Sign Up Button -->
       <div class="btn-section">
         <button
           class="btn-signUp"
@@ -184,5 +189,5 @@
     <div class="toast-message">
       <span>You Signed Up successfully</span>
     </div>
-    }
+  }
 </section>
