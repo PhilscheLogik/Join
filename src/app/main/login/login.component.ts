@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
     this.isEmailValid = !!this.email;
     this.isPasswordValid = !!this.password;
 
-    this.validateInput();    
+    this.validateInput();
   }
 
   /**
@@ -172,19 +172,22 @@ export class LoginComponent implements OnInit {
       this.eMailPattern.test(this.email) &&
       this.pwPattern.test(this.password)
     ) {
-      this.authService.login(this.email, this.password).then((isLoggedIn) => {
-        if (isLoggedIn) {
-          this.linkContent(); // Nur bei erfolgreicher Anmeldung ausführen
-          this.email = '';
-          this.password = '';
-          this.loginAttempted = false;
-          
-        } else {
-          console.log('Login fehlgeschlagen! Überprüfe die Eingaben.');
-        }
-      });
+      this.loginUser(this.email, this.password);      
     } else {
       console.log('Eingaben sind nicht gültig!');
     }
-  }  
+  }
+
+  loginUser(email: string, pw: string) {
+    this.authService.login(email, pw).then((isLoggedIn) => {
+      if (isLoggedIn) {
+        this.linkContent(); // Nur bei erfolgreicher Anmeldung ausführen
+        this.email = '';
+        this.password = '';
+        this.loginAttempted = false;
+      } else {
+        console.log('Login fehlgeschlagen! Überprüfe die Eingaben.');
+      }
+    });
+  }
 }
