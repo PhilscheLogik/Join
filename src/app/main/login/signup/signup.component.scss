@@ -87,7 +87,7 @@ h1 {
     &.input-focused {
       border: 1px solid $light_blue;
     }
-    
+
     > input {
       // flex: 1;
       width: 80%;
@@ -137,8 +137,8 @@ h1 {
 
     &.btn-disabled {
       background-color: $gray;
-      pointer-events: none; 
-      cursor: default; 
+      // pointer-events: none;
+      cursor: not-allowed;
     }
   }
 }
@@ -232,7 +232,7 @@ h1 {
 }
 
 @media (min-width: 500px) {
-  .signUp-section{
+  .signUp-section {
     .signUp-name,
     .signUp-email,
     .signUp-password,
@@ -244,7 +244,6 @@ h1 {
 
 @media (max-width: 380px) {
   .signUp-section {
-
     .back-btn {
       left: 40px;
     }
@@ -253,7 +252,7 @@ h1 {
     .signUp-email,
     .signUp-password,
     .confirm-password {
-      >input {
+      > input {
         @include font($fs: 16px, $fw: 400);
         // flex: 1;
         width: 80%;
