@@ -136,9 +136,9 @@ h1 {
     }
 
     &.btn-disabled {
-      background-color: $gray; // Grayed-out color
-      pointer-events: none; // Disables all cursor events (click, hover, etc.)
-      cursor: default; // Changes cursor to default arrow instead of pointer
+      background-color: $gray;
+      pointer-events: none; 
+      cursor: default; 
     }
   }
 }
@@ -266,10 +266,6 @@ h1 {
       }
     }
   }
-
-  
-  
-  
 }
 
 @media (max-width: 480px) {
