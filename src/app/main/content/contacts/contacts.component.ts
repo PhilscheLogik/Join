@@ -13,21 +13,27 @@ import { OverlayComponent } from './overlay/overlay.component';
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
+  /** UI State */
   isOverlayVisible: boolean = false;
   showSuccessMessage: boolean = false;
-  selectedContactInitials: string | null = null;
   isContactSelected: boolean = false;
   showContactContent: boolean = false;
-  isShown = false;
-  name = '';
-  email = '';
-  phone = '';
-  bgColor = '';
-  initials = '';
+  isShown: boolean = false;
+
+  /** Selected Contact Data */
+  selectedContactInitials: string | null = null;
+  initials: string = '';
+  bgColor: string = '';
+
+  /** User Input */
+  name: string = '';
+  email: string = '';
+  phone: string = '';
+
+  /** Injected Services */
+  contactService = inject(ContactsService);
 
   constructor(private contactsService: ContactsService) {}
-
-  contactService = inject(ContactsService);
 
   /**
    * Initializes the component and subscribes to the contact creation notification.

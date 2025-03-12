@@ -1,2 +1,123 @@
-<!-- <h3>login-Section</h3>
-<p>In dieser Sectionen kann man sich einloggen (kommt später).</p> -->
+<section class="content_max" [ngClass]="{ 'page-loaded': isPageLoaded }">
+  <img
+    class="animated-logo"
+    [ngClass]="{ 'logo-final-position': isLogoShifted }"
+    src="assets/img/join_logo.svg"
+    alt="Logo"
+  />
+
+  <!-- <div class="header-section"></div> -->
+
+  @if (isContentVisible) {
+  <div class="login-section">
+    <h1>Log in</h1>
+    <div class="border-blue"></div>
+    <form #contactForm="ngForm">
+      <div class="form-section">
+        <div
+          class="input-email"
+          [ngClass]="{ 'input-focused': focusedInput === 'email' }"
+          [ngClass]="{ 'input-invalid': !isEmailValid }"
+          (click)="focusInput(emailField)"
+        >
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            (focus)="onFocus('email')"
+            (blur)="onBlur()"
+            [(ngModel)]="email"
+            #emailLogin="ngModel"
+            #emailField
+          />
+          <img src="assets/img/icons/mail.svg" />
+        </div>
+        <div
+          class="input-password"
+          [ngClass]="{ 'input-focused': focusedInput === 'password' }"
+          [ngClass]="{ 'input-invalid': !isPasswordValid }"
+          (click)="focusInput(pwLogin)"
+        >
+          <input
+            [type]="passwordVisible ? 'text' : 'password'"
+            id="password"
+            name="password"
+            placeholder="Password"
+            (focus)="onFocus('password')"
+            (blur)="onBlur()"
+            [(ngModel)]="password"
+            #pwLogin
+          />
+          <img
+            class="lock"
+            src="assets/img/icons/lock_icon.svg"
+            [ngClass]="{ d_none: passwordFieldActive }"
+          />
+          @if(passwordFieldActive) {
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_off_icon.svg"
+            [ngClass]="{ d_none: !passwordFieldActive }"
+            [ngClass]="{ d_none: !isVisibility }"
+            (click)="toggleVisibility()"
+          />
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_icon.svg"
+            [ngClass]="{ d_none: !passwordFieldActive }"
+            [ngClass]="{ d_none: isVisibility }"
+            (click)="toggleVisibility()"
+          />
+          }
+        </div>
+      </div>
+      <!-- Check if a login attempt has been made and if the email or password do not match the required patterns -->
+      @if(loginAttempted && (eMailPattern.test(this.email) != true ||
+      pwPattern.test(this.password) != true) ) {
+      <div class="error-message">
+        <p>
+          Check your email and password! Please try again.<br />(min 6 character
+          - min 1 special character, 1 capital letter, 1 number).
+        </p>
+      </div>
+      }
+      <div class="btn-section">
+        <button
+          class="btn-login"
+          (click)="onLoginClick(); this.navigationService.setSelectedItem(0)"
+        >
+          Log in
+        </button>
+        <button
+          class="btn-guest-login"
+          (click)="
+            loginUser('guest@test.de', 'Guest1?');
+            this.navigationService.setSelectedItem(0)
+          "
+        >
+          Guest Log in
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="sign-up">
+    <p>Not a Join user?</p>
+    <button (click)="linkSignUp()">Sign up</button>
+  </div>
+
+  <div class="footer-section">
+    <a
+      [ngClass]="{ active: navigationService.selectedItem === 4 }"
+      (click)="selectItem(4); linkContent()"
+      >Privacy Policy</a
+    >
+    <a
+      [ngClass]="{ active: navigationService.selectedItem === 5 }"
+      (click)="selectItem(5); linkContent()"
+      >Legal Notice</a
+    >
+  </div>
+  }
+</section>

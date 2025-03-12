@@ -1,1 +1,15 @@
-@import './../../styles/';
+@import "./../../styles/";
+
+section {
+  position: relative;
+  width: 100%;
+}
+
+app-signup,
+app-login,
+app-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}

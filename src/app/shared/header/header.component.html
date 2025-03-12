@@ -1,39 +1,57 @@
 <section>
-  <div class="header-left">
-    <img class="responsive-header-logo" src="assets/img/icons/logo_desktop.svg" alt="">
-    <h1>Kanban Project Management Tool</h1>
-  </div>
-  <div class="header-right">
-    <a
-      class="help-link"
-      [ngClass]="{ active: navigationService.selectedItem === 6 }"
-      (click)="selectItem(6)"
-    ></a>
-
-    <div (click)="toggleOverlay()" [class.open]="isOpen" class="initials-btn">
-      <p>ID</p>
+  <div class="parent content_max">
+    <div class="header-left">
+      <img
+        class="responsive-header-logo"
+        src="assets/img/icons/logo_desktop.svg"
+        alt=""
+      />
+      <h1>Kanban Project Management Tool</h1>
     </div>
-    <div *ngIf="isOpen" (click)="closeOverlay()" class="toggleOff-container">
-      <div
-        id="overlay"
-        [class.open]="isOpen"
-        class="header-overlay"
-        >
-        <div class="inner-overlay">
-
-          <a class="burger-help-link" 
-          [ngClass]="{ active: navigationService.selectedItem === 6 }"
-            (click)="selectItem(6)">Help</a>
-
-          <a  [ngClass]="{ active: navigationService.selectedItem === 5 }"
-              (click)="selectItem(5)">Legal Notice</a>
-
-          <a [ngClass]="{ active: navigationService.selectedItem === 4 }"
-            (click)="selectItem(4)">Privacy Policy</a>
-
-          <a href="">Log out</a>
+    <div class="header-right">
+      @if(authService.isUserLoggedIn) {
+      <a
+        class="help-link"
+        [ngClass]="{ active: navigationService.selectedItem === 6 }"
+        (click)="selectItem(6)"
+      ></a>
+  
+      <div (click)="toggleOverlay()" [class.open]="isOpen" class="initials-btn">
+        <p>{{contactService.getInitials(authService.name)}}</p>
+      </div>
+  
+      @if (isOpen) {
+      <div (click)="closeOverlay()" class="toggleOff-container">
+        <div id="overlay" [class.open]="isOpen" class="header-overlay">
+          <div class="inner-overlay">
+            <a
+              class="burger-help-link"
+              [ngClass]="{ active: navigationService.selectedItem === 6 }"
+              (click)="selectItem(6)"
+              >Help</a
+            >
+            <a
+              [ngClass]="{ active: navigationService.selectedItem === 5 }"
+              (click)="selectItem(5)"
+              >Legal Notice</a
+            >
+            <a
+              [ngClass]="{ active: navigationService.selectedItem === 4 }"
+              (click)="selectItem(4)"
+              >Privacy Policy</a
+            >
+            <a
+              (click)="
+                authService.logout();
+                linkLogin();
+                navigationService.isAnimationSummarydone = false
+              "
+              >Log out</a
+            >
+          </div>
         </div>
       </div>
+      } }
     </div>
   </div>
 </section>

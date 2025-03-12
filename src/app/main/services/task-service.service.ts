@@ -16,22 +16,25 @@ import { Task } from '../../interfaces/task';
 export class TaskServiceService {
   firestore: Firestore = inject(Firestore);
 
+  // General Settings
   whatIsTheType = 'todo';
   isEditModeActivated = false;
+  hasBeenUpdated = false;
 
+  // Task Selection
   selectedTaskId = '';
   selectedTaskCategory = '';
+  selectedTask: Task | undefined;
 
+  // Task Lists
   todoList: Task[] = [];
   progressList: Task[] = [];
   feedbackList: Task[] = [];
   doneList: Task[] = [];
-  showCloseButton: boolean = false; // New variable to control button visibility
+
+  // UI Controls
+  showCloseButton: boolean = false; // Controls button visibility
   isClosing: boolean = false;
-
-  selectedTask: Task | undefined;
-
-  hasBeenUpdated = false;
 
   unsubToDo;
   unsubInProgress;
@@ -53,7 +56,12 @@ export class TaskServiceService {
     this.unsubDone = this.subDoneList();
   }
 
-  toggleCloseButton() {
+  /**
+   * Toggles the visibility of the close button.
+   * If the button is currently visible, it starts a closing animation and hides the button after 300ms.
+   * If the button is hidden, it becomes visible immediately.
+   */
+  toggleCloseButton(): void {
     if (this.showCloseButton) {
       this.isClosing = true;
 

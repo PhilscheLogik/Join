@@ -12,7 +12,11 @@ import { NavigationService } from '../navi/navigation.service';
 export class HelpComponent {
   navigationService = inject(NavigationService);
 
-  selectItem(index: number) {
+  /**
+   * Sets the selected menu item in the NavigationService.
+   * @param {number} index - The index of the menu item to be selected.
+   */
+  selectItem(index: number): void {
     this.navigationService.setSelectedItem(index);
   }
 }

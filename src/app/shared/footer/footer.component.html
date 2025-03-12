@@ -1,7 +1,8 @@
-<footer>
+<footer  class="content_max">
   <div class="logo-img"></div>
   <nav>
     <ul>
+      @if(authService.isUserLoggedIn){
       <li
         [ngClass]="{ active: navigationService.selectedItem === 0 }"
         (click)="selectItem(0)"
@@ -38,15 +39,27 @@
           Contacts</a
         >
       </li>
+      } @else{
+      <li (click)="linkLogin()">
+        <a
+          ><div class="icon-section login"></div>
+          Log In</a
+        >
+      </li>
+      }
     </ul>
   </nav>
 
   <div class="notes">
-    <a [ngClass]="{ active: navigationService.selectedItem === 4 }"
-    (click)="selectItem(4)"
-    >Privacy Policy</a>
-    <a [ngClass]="{ active: navigationService.selectedItem === 5 }"
-    (click)="selectItem(5)"
-    >Legal notice</a>
+    <a
+      [ngClass]="{ active: navigationService.selectedItem === 4 }"
+      (click)="selectItem(4)"
+      >Privacy Policy</a
+    >
+    <a
+      [ngClass]="{ active: navigationService.selectedItem === 5 }"
+      (click)="selectItem(5)"
+      >Legal notice</a
+    >
   </div>
 </footer>

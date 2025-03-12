@@ -76,6 +76,10 @@ nav {
   background-image: url("./../../../assets/img/icons/contacts.svg");
 }
 
+.login {
+  background-image: url("./../../../assets/img/icons/log_in.svg");
+}
+
 .notes {
   @include dFlex($ai: flex-start);
   flex-direction: column;
@@ -95,10 +99,9 @@ nav {
   }
 }
 
-.active{
+.active {
   background-color: $dark_dark_blue;
 }
-
 
 @media (max-width: 1024px) {
   .logo-img,
@@ -113,7 +116,7 @@ nav {
     height: 80px;
     position: fixed;
     left: 0;
-    bottom: 0;    
+    bottom: 0;
   }
 
   .icon-section {
@@ -127,7 +130,7 @@ nav {
     margin-bottom: 0;
 
     ul {
-      @include dFlex($jc: space-between, $g:10px);
+      @include dFlex($jc: space-between, $g: 10px);
       padding: 0 8px;
 
       li {

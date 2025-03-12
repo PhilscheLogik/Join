@@ -19,6 +19,7 @@ app-policy,
 app-imprint,
 app-help {
   display: none;
+  max-width: calc(1920px - 230px);
 }
 
 app-policy,
@@ -26,15 +27,13 @@ app-imprint,
 app-help {
   max-height: calc(100vh - 91px);
   overflow-y: auto;
-
-  box-shadow: 0px 4px 6px 0px rgba($black, 0.1) inset;
 }
 
 .active {
   display: block;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   section {
     display: flex;
     flex-direction: column;

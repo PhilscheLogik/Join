@@ -28,7 +28,7 @@
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
 
-  .initials{    
+  .initials {
     @include dFlex();
     width: 120px;
     height: 120px;
@@ -37,7 +37,7 @@
     border-radius: 50%;
     @include font($fs: 47px, $fw: 500);
     color: $white;
-}
+  }
 
   @media (max-width: 1150px) {
     flex-direction: column;

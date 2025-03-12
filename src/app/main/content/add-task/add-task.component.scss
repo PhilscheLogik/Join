@@ -44,10 +44,10 @@ form {
   }
 }
 
-.error-message {
-  @include font($fs: 10px, $fw: 400);
-  color: $red;
-}
+// .error-message {
+//   @include font($fs: 10px, $fw: 400);
+//   color: $red;
+// }
 
 /*linkes Div*/
 .content {
@@ -666,6 +666,7 @@ ul {
 
 .cancel-btn,
 .create-btn {
+  height: 56px;
   padding: 16px 18px;
   border: none;
   border-radius: 10px;

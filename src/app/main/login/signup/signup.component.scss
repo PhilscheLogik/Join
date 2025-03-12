@@ -1,0 +1,335 @@
+@import "./../../../../styles.scss";
+
+section {
+  @include dFlex($jc: space-between, $g: 50px);
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+
+.header-section {
+  @include dFlex($jc: space-between, $ai: flex-start);
+  padding-top: 48px;
+  padding-left: 48px;
+  padding-right: 48px;
+  width: 100%;
+
+  .logo {
+    width: 100px;
+    height: 122px;
+  }
+}
+
+h1 {
+  @include font($fs: 47px, $fw: 700);
+}
+
+.border-blue {
+  width: 150px;
+  border-bottom: 3px solid $aqua;
+  border-radius: 3px;
+}
+
+.signUp-section {
+  @include dFlex($g: 30px);
+  flex-direction: column;
+  width: 93%;
+  max-width: 652px;
+  height: auto;
+  background-color: $white;
+  border: unset;
+  border-radius: 30px;
+  padding: 48px 115px;
+
+  position: relative;
+
+  > .back-btn {
+    position: absolute;
+    top: 64px;
+    left: 56px;
+    background-image: url("./../../../../assets/img/icons/arrow_left.svg");
+    height: 32px;
+    width: 32px;
+    &:hover {
+      border-radius: 16px;
+      background-color: $hover_gray;
+      transform: scale(1.15);
+    }
+  }
+
+  form {
+    @include dFlex($g: 30px);
+    flex-direction: column;
+  }
+
+  .signUp-name,
+  .signUp-email,
+  .signUp-password,
+  .confirm-password {
+    @include dFlex($jc: space-between, $g: 10px);
+    width: 80vw;
+    max-width: 422px;
+    height: 48px;
+    border: 1px solid $light_gray;
+    border-radius: 10px;
+    padding: 12px 21px;
+    cursor: text;
+
+    > img {
+      width: 24px;
+      height: 24px;
+    }
+
+    &.input-invalid {
+      border: 1px solid $red;
+    }
+
+    &.input-focused {
+      border: 1px solid $light_blue;
+    }
+
+    > input {
+      // flex: 1;
+      width: 80%;
+      border: unset;
+      height: 24px;
+      @include font($fs: 20px, $fw: 400);
+
+      &:focus {
+        border: unset;
+        outline: none;
+      }
+
+      &::placeholder {
+        @include font($fs: 20px, $fw: 400);
+        color: $light_gray;
+      }
+    }
+  }
+}
+
+.back-btn {
+  background-image: url("./../../../../assets/img/icons/arrow_left.svg");
+  height: 37px;
+  width: 37px;
+}
+
+.btn-section {
+  @include dFlex($g: 30px);
+  margin-top: 8px;
+
+  .btn-signUp {
+    @include dFlex();
+    @include font($fs: 21px, $fw: 700);
+    height: 48px;
+    color: $white;
+    padding: 15px 24px;
+    border: unset;
+    border-radius: 8px;
+    background-color: $dark_blue;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $light_blue;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border: unset;
+    }
+
+    &.btn-disabled {
+      background-color: $gray;
+      // pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.join-aqua {
+  color: $aqua;
+}
+
+.policy-checkbox-container {
+  @include dFlex($jc: space-between);
+  max-width: 240px;
+  gap: 10px;
+
+  > input {
+    border-color: $dark_blue;
+    border-width: 4px;
+    border-style: solid;
+    height: 16px;
+    padding: 0;
+    &:hover {
+      cursor: pointer;
+      background-color: $gray;
+    }
+  }
+
+  > div p {
+    color: $light_gray;
+    span {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.policy-checkbox {
+  height: 20px;
+  width: 20px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.btn-disabled {
+  background-color: $hover_gray;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.footer-section {
+  @include dFlex($g: 40px);
+  padding-bottom: 30px;
+
+  > a {
+    @include font($fs: 16px, $fw: 400);
+    color: $gray;
+    cursor: pointer;
+
+    &:hover {
+      @include font($fs: 16px, $fw: 700);
+      color: $light_blue;
+    }
+  }
+}
+
+.lock,
+.visibility_off {
+  cursor: pointer;
+}
+/*--------------------------------------------------   Desktop   --------------------------------------------------*/
+@media (min-width: 1024px) {
+  .signUp-section {
+    width: 45.28vw;
+
+    > h1 {
+      @include font($fs: 61px, $fw: 700);
+    }
+  }
+
+  .sign-up {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+
+    > button {
+      &:hover {
+        background-color: $light_blue;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .signUp-section {
+    .signUp-name,
+    .signUp-email,
+    .signUp-password,
+    .confirm-password {
+      width: 92vw;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .signUp-section {
+    .back-btn {
+      left: 40px;
+    }
+
+    .signUp-name,
+    .signUp-email,
+    .signUp-password,
+    .confirm-password {
+      > input {
+        @include font($fs: 16px, $fw: 400);
+        // flex: 1;
+        width: 80%;
+        border: unset;
+        height: 24px;
+
+        &::placeholder {
+          @include font($fs: 16px, $fw: 400);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 32px;
+    white-space: nowrap;
+  }
+
+  .border-blue {
+    width: 100px;
+  }
+
+  .header-section {
+    padding-top: 36px;
+    padding-left: 36px;
+    padding-right: 36px;
+
+    .logo {
+      width: 64px;
+      height: 78px;
+    }
+  }
+}
+
+.toast-message {
+  @include dFlex($g: 16px);
+  position: fixed;
+  bottom: 160px;
+  background-color: $dark_blue;
+  color: $white;
+  padding: 24px 24px;
+  border-radius: 20px;
+  font-size: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 30;
+  opacity: 1;
+  transform: translateX(150%);
+  animation: slide-in 0.125s ease-in forwards,
+    slide-out 0.125s ease-out 1.5s forwards;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(250%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(250%);
+    opacity: 0;
+  }
+}

@@ -1,5 +1,371 @@
-@import './../../../../styles.scss';
+@import "./../../../../styles.scss";
+section {
+  width: 100%;
+  height: calc(100vh - 91px);
+  padding: 0 70px 8px;
+  overflow-y: auto;
 
-p{
-    background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+}
+
+.headline {
+  @include dFlex($jc: space-between);
+  padding-top: 80px;
+  width: 625px;
+  max-width: 650px;
+  h1 {
+    font-size: clamp(47px, 5vw, 61px);
+  }
+  > p {
+    font-size: clamp(20px, 2.5vw, 27px);
+  }
+}
+
+.border-blue {
+  background-color: $light_blue;
+  width: 3px;
+}
+
+.vertical {
+  width: 90px;
+  height: 3px;
+  display: none;
+}
+
+.horizontal {
+  width: 3px;
+  height: 59px;
+}
+
+.content {
+  @include dFlex();
+  width: 100%;
+  flex: 1;
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.left,
+.right {
+  width: 50%;
+  flex: 1;
+}
+
+.left {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(40px, 1fr));
+  grid-template-rows: auto auto auto;
+  gap: 32px;
+  align-content: space-evenly;
+  max-height: 90vh;
+}
+
+.box {
+  background-color: $white;
+  box-shadow: 0 0 4px 0px rgba($black, 0.1);
+  border-radius: 20px;
+  @include dFlex();
+  cursor: pointer;
+  box-shadow: 0 4px 4px 0 rgba($black, 0.25);
+  padding: 4px;
+
+  transition: transform 0.1s;
+  width: 100%;
+}
+
+.box:hover {
+  background-color: $dark_blue;
+  color: $white;
+  transform: scale(1.03);
+
+  .among-each-other > span,
+  .among-each-other-dealine > span {
+    color: $white;
+  }
+
+  .dark-bg {
+    background-color: $white;
+  }
+
+  .pencil {
+    background: url("./../../../../assets/img/icons/pencil_icon.svg");
+  }
+
+  .checkmark {
+    background: url("./../../../../assets/img/icons/checkmark_dark.svg");
+    width: 30px;
+    height: 22px;
+  }
+
+  .checkmark,
+  .pencil {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.box:nth-child(1) {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  aspect-ratio: 1.57/1;
+}
+
+.box:nth-child(2) {
+  grid-column: 4 / span 3;
+  grid-row: 1;
+  aspect-ratio: 1.57/1;
+}
+
+.box:nth-child(3) {
+  grid-column: 1 / span 6;
+  grid-row: 2;
+  padding: 36px 0;
+}
+
+.box:nth-child(4) {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  aspect-ratio: 1/1;
+}
+
+.box:nth-child(5) {
+  grid-column: 3 / span 2;
+  grid-row: 3;
+  aspect-ratio: 1/1;
+}
+
+.box:nth-child(6) {
+  grid-column: 5 / span 2;
+  grid-row: 3;
+  aspect-ratio: 1/1;
+}
+
+.circle {
+  width: 69px;
+  height: 69px;
+  border-radius: 50%;
+}
+
+.dark-bg {
+  background-color: $dark_blue;
+  @include dFlex();
+  margin-right: 16px;
+}
+
+.red-bg {
+  background-color: $special_red;
+  @include dFlex();
+  margin-right: 16px;
+}
+
+.arrow-up {
+  background: url("./../../../../assets/img/icons/arrow_up_white.svg");
+  width: 39px;
+  height: 29px;
+}
+
+.pencil {
+  background: url("./../../../../assets/img/icons/pencil_white.svg");
+  width: 32px;
+  height: 32px;
+}
+
+.checkmark {
+  background: url("./../../../../assets/img/icons/checkmark_white.svg");
+  width: 30px;
+  height: 22px;
+}
+
+.arrow-up,
+.pencil,
+.checkmark {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.among-each-other {
+  @include dFlex();
+  flex-direction: column;
+  font-size: clamp(47px, 5vw, 64px);
+  font-weight: 600;
+
+  > span {
+    font-size: clamp(14px, 2.5vw, 20px);
+    color: $dark_blue;
+    font-weight: 400;
+    text-align: center;
+    max-width: 83px;
+  }
+}
+
+.among-each-other-dealine {
+  @include dFlex($ai: flex-start);
+  flex-direction: column;
+  font-size: clamp(16px, 2.5vw, 21px);
+  font-weight: 700;
+  > span {
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: $dark_blue;
+    font-weight: 400;
+    text-align: center;
+    max-width: 150px;
+  }
+}
+.urgent {
+  @include dFlex();
+}
+.border-grey {
+  background-color: $light_gray;
+  width: 2px;
+  border: none;
+  height: 10vh;
+}
+
+.middle {
+  justify-content: space-around;
+}
+
+.right {
+  @include dFlex();
+  flex-direction: column;
+}
+
+.greeting {
+  color: $dark_blue;
+  font-size: clamp(36px, 5vw, 47px);
+  font-weight: 500;
+  text-align: center;
+}
+
+.greetingName {
+  color: $light_blue;
+  font-size: clamp(47px, 5vw, 64px);
+  font-weight: 700;
+  text-align: center;
+
+  max-width: 400px;
+}
+
+/*---------------------------------------------------------- MEDIA Mobile ---------------------------------------------------------- */
+/*---------------------------------------------------------------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  section {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  section {
+    height: calc(100vh - 91px);
+    position: relative;
+  }
+
+  .headline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .vertical {
+    display: inline-block;
+  }
+
+  .horizontal {
+    display: none;
+  }
+
+  .content {
+    flex-direction: column;
+    padding-top: 8px;
+    margin-bottom: 80px;
+    height: 100%;
+  }
+
+  .right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $cream_white;
+    z-index: -2;
+  }
+  .box {
+    padding: 8px;
+  }
+
+  .fade-out {
+    animation: fadeInOut 3s ease;
+  }
+  @keyframes fadeInOut {
+    0% {
+      z-index: 2;
+      opacity: 1;
+    }
+
+    50% {
+      z-index: 2;
+      opacity: 1;
+    }
+
+    95% {
+      z-index: 2;
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrow-up {
+    width: 23px;
+    height: 17px;
+  }
+
+  .pencil {
+    width: 19px;
+    height: 19px;
+  }
+
+  .checkmark {
+    width: 17px;
+    height: 13px;
+  }
+}
+
+@media (max-width: 800px) {
+  .left {
+    width: 65%;
+    gap: 8px;
+  }
+
+  .border-grey {
+    height: 7vh;
+  }
+
+  .box {
+    max-height: 116px;
+  }
+}
+
+@media (max-width: 650px) {
+  .left {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .left {
+    width: 100%;
+  }
 }

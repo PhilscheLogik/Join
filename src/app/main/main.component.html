@@ -1,4 +1,5 @@
 <section>
-  <!-- <app-login></app-login> -->
-  <app-content></app-content>
+  <app-signup [ngClass]="{ d_none: navigationService.isSignUpVisible }"></app-signup>
+  <app-login [ngClass]="{ d_none: navigationService.isLoginVisible }"></app-login>  
+  <app-content [ngClass]="{ d_none: navigationService.isContentVisible }"></app-content>
 </section>

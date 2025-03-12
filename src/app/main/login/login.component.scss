@@ -1,1 +1,261 @@
 @import "./../../../styles.scss";
+
+section {
+  @include dFlex($g: 50px);
+  flex-direction: column;
+  height: 100vh;
+  min-height: 750px;
+  position: relative;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  overflow: auto;
+
+  &.page-loaded {
+    opacity: 1;
+  }
+
+  .animated-logo {
+    position: absolute;
+    width: 100px;
+    height: 122px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 1s ease-in-out;
+    z-index: 100;
+
+    &.logo-final-position {
+      width: 64px;
+      height: 78px;
+      top: 36px;
+      left: 36px;
+      transform: translate(0%, 0%);
+    }
+  }
+}
+
+.login-section {
+  @include dFlex($g: 30px);
+  flex-direction: column;
+  width: 93%;
+  max-width: 652px;
+  background-color: $white;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+  border: unset;
+  border-radius: 30px;
+  padding: 32px 32px;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+
+  &.content-visible {
+    opacity: 1;
+  }
+
+  >h1 {
+    @include font($fs: 47px, $fw: 700);
+    width: 139px;
+    height: 59px;
+  }
+
+  .border-blue {
+    width: 88px;
+    border-bottom: 3px solid $aqua;
+    border-radius: 3px;
+  }
+
+  .form-section {
+    @include dFlex($g: 30px);
+    flex-direction: column;
+  }
+
+  .input-email,
+  .input-password {
+    @include dFlex($jc: space-between, $g: 10px);
+    width: 80vw;
+    max-width: 422px;
+    height: 48px;
+    border: 1px solid $light_gray;
+    border-radius: 10px;
+    padding: 12px 21px;
+
+    >img {
+      width: 24px;
+      height: 24px;
+    }
+
+    &.input-invalid {
+      border: 1px solid $red;
+    }
+
+    &.input-focused {
+      border: 1px solid $light_blue;
+    }
+
+    >input {
+      width: 80%;
+      border: unset;
+      height: 24px;
+      @include font($fs: 20px, $fw: 400);
+
+      &:focus {
+        border: unset;
+        outline: none;
+      }
+
+      &::placeholder {
+        @include font($fs: 20px, $fw: 400);
+        color: $light_gray;
+      }
+    }
+
+    .visibility_off {
+      cursor: pointer;
+    }
+  }
+
+  .btn-section {
+    @include dFlex($g: 30px);
+    flex-direction: column;
+    margin-top: 20px;
+
+    .btn-login,
+    .btn-guest-login {
+      @include dFlex();
+      @include font($fs: 21px, $fw: 700);
+      width: 180px;
+      height: 48px;
+      color: $white;
+      padding: 15px 24px;
+      border: unset;
+      border-radius: 8px;
+      background-color: $dark_blue;
+      cursor: pointer;
+    }
+
+    .btn-login {
+      &:hover {
+        background-color: $light_blue;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border: unset;
+      }
+    }
+
+    .btn-guest-login {
+      color: $dark_blue;
+      background-color: $white;
+      border: 1px solid $dark_blue;
+
+      &:hover {
+        border-color: $light_blue;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        color: $light_blue;
+      }
+    }
+  }
+}
+
+.sign-up {
+  @include dFlex($jc: space-between, $g: 20px);
+  position: absolute;
+  bottom: 96px;
+
+  >p {
+    @include font($fs: 20px, $fw: 400);
+  }
+
+  >button {
+    padding: 15px 16px;
+    border: unset;
+    border-radius: 8px;
+    background-color: $dark_blue;
+    @include font($fs: 16px, $fw: 700);
+    color: $white;
+    cursor: pointer;
+  }
+}
+
+.footer-section {
+  @include dFlex($g: 40px);
+  position: absolute;
+  bottom: 48px;
+
+  >a {
+    @include font($fs: 16px, $fw: 400);
+    color: $gray;
+    cursor: pointer;
+
+    &:hover {
+      @include font($fs: 16px, $fw: 700);
+      color: $light_blue;
+    }
+  }
+}
+
+/*--------------------------------------------------   Desktop   --------------------------------------------------*/
+@media (min-width: 480px) {
+  .animated-logo {
+
+    width: 274px !important;
+    height: 334px !important;
+
+
+    &.logo-final-position {
+      width: 100px !important;
+      height: 122px !important;
+      top: 48px !important;
+      left: 48px !important;
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .login-section {
+
+    .input-email,
+    .input-password {
+      width: 92vw;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .sign-up {
+    position: absolute;
+    top: 48px;
+    right: 108px;
+    bottom: auto;
+
+    >button {
+      &:hover {
+        background-color: $light_blue;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+
+  .login-section {
+    width: 652px;
+    height: 449px;
+
+    >h1 {
+      @include dFlex();
+      @include font($fs: 61px, $fw: 700);
+      width: 100%;
+      height: 59px;
+    }
+
+    .border-blue {
+      width: 150px;
+    }
+
+    .btn-section {
+      @include dFlex($g: 30px);
+      flex-direction: row;
+      margin-top: 50px;
+
+      .btn-login,
+      .btn-guest-login {
+        width: auto;
+      }
+    }
+  }
+}

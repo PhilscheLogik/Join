@@ -13,20 +13,26 @@ import { Contact } from '../../../../interfaces/contact';
   styleUrl: './overlay.component.scss',
 })
 export class OverlayComponent {
+  /** Form Reference */
   @ViewChild('contactForm') contactForm!: NgForm;
 
-  isOpen = false;
-  isClosing = false;
-  isValidName = false;
-  isValidEmail = false;
-  isValidPhone = false;
+  /** UI State */
+  isOpen: boolean = false;
+  isClosing: boolean = false;
 
-  name = '';
-  email = '';
-  phone = '';
-  bgColor = '';
-  initials = '';
+  /** Validation State */
+  isValidName: boolean = false;
+  isValidEmail: boolean = false;
+  isValidPhone: boolean = false;
 
+  /** User Input */
+  name: string = '';
+  email: string = '';
+  phone: string = '';
+  bgColor: string = '';
+  initials: string = '';
+
+  /** Injected Services */
   contactService = inject(ContactsService);
 
   /**
