@@ -6,26 +6,35 @@ import { Injectable } from '@angular/core';
 export class NavigationService {
   selectedItem = 0; // Signal für den aktiven Menüpunkt
   predecessor = 0;
-
   isSignUpVisible = true;
   isLoginVisible = false;
   isContentVisible = true;
-
   isAnimationSummarydone = false;
 
-  setSelectedItem(index: number) {
+  constructor() {}
+
+  /**
+   * Setzt den aktuell ausgewählten Menüpunkt und speichert den vorherigen Menüpunkt.
+   * @param {number} index - Der Index des neuen Menüpunktes.
+   */
+  setSelectedItem(index: number): void {
     this.predecessor = this.selectedItem;
     this.selectedItem = index;
   }
 
-  getSelectedItem() {
+  /**
+   * Gibt den vorherigen Menüpunkt zurück.
+   * @returns {number} Der Index des vorherigen Menüpunktes.
+   */
+  getSelectedItem(): number {
     return this.predecessor;
   }
 
-  constructor() {}
-
-  onAnimationEnd() {
-    // Zähler erst nach der Animation erhöhen
+  /**
+   * Wird nach dem Abschluss der Animation aufgerufen.
+   * Setzt `isAnimationSummarydone` auf `true`.
+   */
+  onAnimationEnd(): void {
     this.isAnimationSummarydone = true;
     // console.log('Animation abgeschlossen!');
   }
