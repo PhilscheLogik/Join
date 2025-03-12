@@ -65,6 +65,19 @@ export class LoginComponent implements OnInit {
   }
 
   /**
+   * Focuses the specified input element.
+   *
+   * This function programmatically sets the focus on a given input field,
+   * which is useful for enhancing user experience by allowing elements to be
+   * focused via click events on surrounding containers or icons.
+   *
+   * @param inputElement - The HTML input element to focus.
+   */
+  focusInput(inputElement: HTMLInputElement) {
+    inputElement.focus();
+  }
+
+  /**
    * This method is called when an input field receives focus.
    * It sets the focused input field name and toggles the visibility of the password field.
    *

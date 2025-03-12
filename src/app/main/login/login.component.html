@@ -18,6 +18,7 @@
           class="input-email"
           [ngClass]="{ 'input-focused': focusedInput === 'email' }"
           [ngClass]="{ 'input-invalid': !isEmailValid }"
+          (click)="focusInput(emailField)"
         >
           <input
             type="text"
@@ -28,6 +29,7 @@
             (blur)="onBlur()"
             [(ngModel)]="email"
             #emailLogin="ngModel"
+            #emailField
           />
           <img src="assets/img/icons/mail.svg" />
         </div>
@@ -35,6 +37,7 @@
           class="input-password"
           [ngClass]="{ 'input-focused': focusedInput === 'password' }"
           [ngClass]="{ 'input-invalid': !isPasswordValid }"
+          (click)="focusInput(pwLogin)"
         >
           <input
             [type]="passwordVisible ? 'text' : 'password'"

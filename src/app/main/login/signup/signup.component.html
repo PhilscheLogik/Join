@@ -9,9 +9,13 @@
     <div class="border-blue"></div>
     <form #signUpForm="ngForm">
       <div class="signUp-contaier">
-        <div 
+        <div
           class="signUp-name"
-          [ngClass]="{ 'input-focused': focusedInput === 'name', 'input-invalid': !isNameValid && signUpAttempted }"
+          [ngClass]="{
+            'input-focused': focusedInput === 'name',
+            'input-invalid': !isNameValid && signUpAttempted
+          }"
+          (click)="focusInput(nameSignUp)"
         >
           <input
             type="text"
@@ -27,15 +31,19 @@
           <img src="assets/img/icons/person.svg" />
         </div>
         @if (!isNameValid && signUpAttempted) {
-          <div class="error-message">
-            <p>Name must be at least 3 characters long.</p>
-          </div>
+        <div class="error-message">
+          <p>Name must be at least 3 characters long.</p>
+        </div>
         }
       </div>
       <div class="email-container">
         <div
           class="signUp-email"
-          [ngClass]="{ 'input-focused': focusedInput === 'email', 'input-invalid': !isEmailValid && signUpAttempted }"
+          [ngClass]="{
+            'input-focused': focusedInput === 'email',
+            'input-invalid': !isEmailValid && signUpAttempted
+          }"
+          (click)="focusInput(emailSignUp)"
         >
           <input
             type="text"
@@ -51,15 +59,19 @@
           <img src="assets/img/icons/mail.svg" />
         </div>
         @if (!isEmailValid && signUpAttempted) {
-          <div class="error-message">
-            <p>Please enter a valid email address.</p>
-          </div>
+        <div class="error-message">
+          <p>Please enter a valid email address.</p>
+        </div>
         }
       </div>
       <div class="password-container">
         <div
           class="signUp-password"
-          [ngClass]="{ 'input-focused': focusedInput === 'password', 'input-invalid': !isPasswordValid && signUpAttempted }"
+          [ngClass]="{
+            'input-focused': focusedInput === 'password',
+            'input-invalid': !isPasswordValid && signUpAttempted
+          }"
+          (click)="focusInput(pwSignUp)"
         >
           <input
             [type]="passwordVisible ? 'text' : 'password'"
@@ -73,35 +85,42 @@
             #pwSignUp
           />
           <img
-            class="lock" 
+            class="lock"
             src="assets/img/icons/lock_icon.svg"
-            [ngClass]="{ d_none: passwordFieldActive }" 
+            [ngClass]="{ d_none: passwordFieldActive }"
           />
           @if(passwordFieldActive) {
-            <img
-              class="visibility_off"
-              src="assets/img/icons/visibility_off_icon.svg"
-              [ngClass]="{ d_none: !isVisibility }"
-              (click)="toggleVisibility()"
-            />
-            <img
-              class="visibility_off"
-              src="assets/img/icons/visibility_icon.svg"
-              [ngClass]="{ d_none: isVisibility }"
-              (click)="toggleVisibility()"
-            />
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_off_icon.svg"
+            [ngClass]="{ d_none: !isVisibility }"
+            (click)="toggleVisibility()"
+          />
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_icon.svg"
+            [ngClass]="{ d_none: isVisibility }"
+            (click)="toggleVisibility()"
+          />
           }
         </div>
         @if (!isPasswordValid && signUpAttempted) {
-          <div class="error-message">
-            <p>Password must be 6-20 characters, with 1 capital letter, 1 number, and 1 special character.</p>
-          </div>
+        <div class="error-message">
+          <p>
+            Password must be 6-20 characters, with 1 capital letter, 1 number,
+            and 1 special character.
+          </p>
+        </div>
         }
       </div>
       <div class="confirm-password-container">
         <div
           class="confirm-password"
-          [ngClass]="{ 'input-focused': focusedInput === 'confirm-password', 'input-invalid': !isPasswordEqual && signUpAttempted }"
+          [ngClass]="{
+            'input-focused': focusedInput === 'confirm-password',
+            'input-invalid': !isPasswordEqual && signUpAttempted
+          }"
+          (click)="focusInput(pwConfirmSignUp)"
         >
           <input
             [type]="confirmPasswordVisible ? 'text' : 'password'"
@@ -120,32 +139,38 @@
             [ngClass]="{ d_none: confirmPasswordFieldActive }"
           />
           @if(confirmPasswordFieldActive) {
-            <img
-              class="visibility_off"
-              src="assets/img/icons/visibility_off_icon.svg"
-              [ngClass]="{ d_none: !isConfirmVisibility }"
-              (click)="toggleConfirmVisibility()"
-            />
-            <img
-              class="visibility_off"
-              src="assets/img/icons/visibility_icon.svg"
-              [ngClass]="{ d_none: isConfirmVisibility }"
-              (click)="toggleConfirmVisibility()"
-            />
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_off_icon.svg"
+            [ngClass]="{ d_none: !isConfirmVisibility }"
+            (click)="toggleConfirmVisibility()"
+          />
+          <img
+            class="visibility_off"
+            src="assets/img/icons/visibility_icon.svg"
+            [ngClass]="{ d_none: isConfirmVisibility }"
+            (click)="toggleConfirmVisibility()"
+          />
           }
         </div>
       </div>
       <div class="policy-checkbox-container">
-        <input 
+        <input
           type="checkbox"
           [(ngModel)]="acceptedPolicy"
           name="policy"
           #policyCheck="ngModel"
         />
         <div>
-          <p>I accept the <span class="join-aqua" 
-            [ngClass]="{ active: navigationService.selectedItem === 4 }"
-            (click)="selectItem(4); linkContent()">Privacy policy</span></p>
+          <p>
+            I accept the
+            <span
+              class="join-aqua"
+              [ngClass]="{ active: navigationService.selectedItem === 4 }"
+              (click)="selectItem(4); linkContent()"
+              >Privacy policy</span
+            >
+          </p>
         </div>
       </div>
       <div class="btn-section">
@@ -175,8 +200,8 @@
   </div>
 
   @if(showSignUpSuccess) {
-    <div class="toast-message">
-      <span>You Signed Up successfully</span>
-    </div>
+  <div class="toast-message">
+    <span>You Signed Up successfully</span>
+  </div>
   }
 </section>

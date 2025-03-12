@@ -54,6 +54,11 @@ export class SignupComponent {
   eMailPattern = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/;
   pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}/;
 
+
+  focusInput(inputElement: HTMLInputElement) {
+    inputElement.focus();
+  }
+  
   /**
    * Selects an item by its index.
    * @param {number} index - The index of the item to be selected.
