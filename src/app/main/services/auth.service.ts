@@ -24,14 +24,23 @@ const auth = getAuth(app);
   providedIn: 'root',
 })
 export class AuthService {
+  //  User Data
   email = 'conan@edo.de';
   password = 'D1#tester';
   name = '';
+
+  //  Authentication State
   isUserLoggedIn = false;
 
   constructor() {}
 
-  signUp(email: string, pw: string, name: string) {
+  /**
+   * Registers a new user with email, password, and name.
+   * @param {string} email - The email address of the new user.
+   * @param {string} pw - The password for the new user.
+   * @param {string} name - The display name of the new user.
+   */
+  signUp(email: string, pw: string, name: string): void {
     createUserWithEmailAndPassword(auth, email, pw)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -68,6 +77,12 @@ export class AuthService {
       });
   }
 
+  /**
+   * Logs in a user with the given email and password.
+   * @param {string} email - The user's email address.
+   * @param {string} pw - The user's password.
+   * @returns {Promise<boolean>} A promise resolving to `true` if login succeeds, otherwise `false`.
+   */
   login(email: string, pw: string): Promise<boolean> {
     return signInWithEmailAndPassword(auth, email, pw)
       .then((userCredential) => {
@@ -91,7 +106,10 @@ export class AuthService {
       });
   }
 
-  logout() {
+  /**
+   * Logs out the currently authenticated user.
+   */
+  logout(): void {
     signOut(auth)
       .then(() => {
         // console.log('User wurde ausgeloggt');
