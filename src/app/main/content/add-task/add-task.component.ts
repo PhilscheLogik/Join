@@ -21,34 +21,40 @@ import { NavigationService } from '../../../shared/navi/navigation.service';
   styleUrl: './add-task.component.scss',
 })
 export class AddTaskComponent {
+  // Dependency Injection
   firestore: Firestore = inject(Firestore);
   taskService = inject(TaskServiceService);
   contactService = inject(ContactsService);
+  naviService = inject(NavigationService);
 
+  // Task Properties
   toDo = [];
   prio = 'Medium';
-  selectList = false;
-  selectedContacts: any[] = [];
   selectedCategory = '';
   newDate = '';
   inputTitle = '';
   inputDescription = '';
   showSuccessMessage = false;
 
-  /*Subtask content*/
+  // Contact Selection
+  selectList = false;
+  selectedContacts: any[] = [];
+
+  // Subtask Management
   newSubtask: string = '';
   subtasks: { text: string; isEditing: boolean; IsCompleted?: boolean }[] = [];
   isEditing: boolean = false;
   openCategory = false;
 
-  // Errorstatus
+  // Error Handling
   errors: { title: boolean; date: boolean; category: boolean } = {
     title: false,
     date: false,
     category: false,
   };
+
+  // Miscellaneous
   box: any;
-  naviService = inject(NavigationService);
 
   /**
    * Listens for click events outside the select container and hides the select list if clicked outside.
@@ -379,7 +385,11 @@ export class AddTaskComponent {
     this.subtasks.splice(index, 1);
   }
 
-  handleEnter() {
+  /**
+   * Handles the Enter key press event when editing a subtask.
+   * If a subtask is being edited and is not empty, it is added to the list.
+   */
+  handleEnter(): void {
     if (this.isEditing && this.newSubtask.trim() !== '') {
       this.addSubtask();
     }
