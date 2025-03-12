@@ -134,6 +134,12 @@ h1 {
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border: unset;
     }
+
+    &.btn-disabled {
+      background-color: $gray; // Grayed-out color
+      pointer-events: none; // Disables all cursor events (click, hover, etc.)
+      cursor: default; // Changes cursor to default arrow instead of pointer
+    }
   }
 }
 
