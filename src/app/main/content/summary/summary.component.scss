@@ -2,7 +2,6 @@
 section {
   width: 100%;
   height: calc(100vh - 91px);
-  // box-shadow: 4px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
   padding: 0 70px 8px;
   overflow-y: auto;
 
@@ -45,7 +44,6 @@ section {
   flex: 1;
   display: flex;
   margin-bottom: 8px;
-  // position: relative;
 }
 
 .left,
@@ -56,12 +54,11 @@ section {
 
 .left {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, minmax(40px, 1fr));
   grid-template-rows: auto auto auto;
   gap: 32px;
-  //  justify-items: center;
-  // align-items: center;
-  // place-items: center;
+  align-content: space-evenly;
+  max-height: 90vh;
 }
 
 .box {
@@ -74,6 +71,7 @@ section {
   padding: 4px;
 
   transition: transform 0.1s;
+  width: 100%;
 }
 
 .box:hover {
@@ -261,10 +259,8 @@ section {
 
 @media (max-width: 1024px) {
   section {
-    // padding-bottom: 80px;
     height: calc(100vh - 91px);
     position: relative;
-    background-color: $cream_white;
   }
 
   .headline {
@@ -284,7 +280,6 @@ section {
 
   .content {
     flex-direction: column;
-    // flex: unset;
     padding-top: 8px;
     margin-bottom: 80px;
     height: 100%;
@@ -351,7 +346,6 @@ section {
 @media (max-width: 800px) {
   .left {
     width: 65%;
-    // height: 100%;
     gap: 8px;
   }
 

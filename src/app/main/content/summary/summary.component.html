@@ -1,4 +1,4 @@
-<section  class="content_max">
+<section class="content_max">
   <div class="headline">
     <h1>Join 360</h1>
     <div class="border-blue horizontal"></div>
@@ -62,10 +62,22 @@
       (animationend)="navigationService.onAnimationEnd()"
     >
       @if(authService.name && authService.name !== 'Guest'){
-      <span class="greeting">{{ getGreeting() }},</span>
-      <span class="greetingName">{{ authService.name }}</span>
+      <span
+        class="greeting"
+        [ngClass]="{ d_none: navigationService.isAnimationSummarydone }"
+        >{{ getGreeting() }},</span
+      >
+      <span
+        class="greetingName"
+        [ngClass]="{ d_none: navigationService.isAnimationSummarydone }"
+        >{{ authService.name }}</span
+      >
       } @else {
-      <span class="greeting">{{ getGreeting() }}!</span>
+      <span
+        class="greeting"
+        [ngClass]="{ d_none: navigationService.isAnimationSummarydone }"
+        >{{ getGreeting() }}!</span
+      >
       }
     </div>
   </div>
