@@ -145,6 +145,7 @@ export class SignupComponent {
     if (this.isFormValid()) {
       this.validateInput();
       this.showSignUpSuccess = true;
+      this.clearInputs();
       setTimeout(() => {
         this.showSignUpSuccess = false;
       }, 2000);
@@ -194,6 +195,14 @@ export class SignupComponent {
         this.linkLogin();
       }, 3000);
     }
+  }
+
+  clearInputs() {
+    this.name = '';
+    this.email = '';
+    this.password = '';
+    this.confirmPassword = '';
+    this.acceptedPolicy = false;
   }
 
   /**
