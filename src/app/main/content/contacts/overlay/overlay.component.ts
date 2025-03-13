@@ -87,10 +87,7 @@ export class OverlayComponent {
       this.contactsService.closeOverlay();
     }, 500);
 
-    if (this.contactForm) {
-      this.contactForm.resetForm();
-    }
-
+    this.contactForm.resetForm();
     this.name = '';
     this.email = '';
     this.phone = '';
@@ -164,9 +161,7 @@ export class OverlayComponent {
 
     this.contactService.addContact(newContact);
 
-    if (this.contactForm) {
-      this.contactForm.resetForm();
-    }
+    this.contactForm.resetForm();
 
     this.name = '';
     this.email = '';
@@ -219,6 +214,7 @@ export class OverlayComponent {
           initials: newInitials,
         };
       }
+      this.contactForm.resetForm();
     }
   }
 
