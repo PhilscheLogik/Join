@@ -54,11 +54,19 @@ export class SignupComponent {
   eMailPattern = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/;
   pwPattern = /(?=.*[A-Z])(?=.*\d)(?=.*[^\w]).{6,20}/;
 
-
+  /**
+   * Focuses the specified input element.
+   *
+   * This function programmatically sets the focus on a given input field,
+   * which is useful for enhancing user experience by allowing elements to be
+   * focused via click events on surrounding containers or icons.
+   *
+   * @param inputElement - The HTML input element to focus.
+   */
   focusInput(inputElement: HTMLInputElement) {
     inputElement.focus();
   }
-  
+
   /**
    * Selects an item by its index.
    * @param {number} index - The index of the item to be selected.
@@ -103,7 +111,9 @@ export class SignupComponent {
     } else if (field === 'password') {
       this.isPasswordValid = this.pwPattern.test(this.password);
     } else if (field === 'confirm-password') {
-      this.isPasswordEqual = this.password === this.confirmPassword && this.pwPattern.test(this.password);
+      this.isPasswordEqual =
+        this.password === this.confirmPassword &&
+        this.pwPattern.test(this.password);
     }
   }
 
